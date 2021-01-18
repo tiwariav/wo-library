@@ -1,0 +1,8 @@
+@import 'swiper/swiper.scss';
+@import 'swiper/components/navigation/navigation.scss';
+
+:global {
+  & body {
+    background-color: red;
+  }
+}
