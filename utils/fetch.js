@@ -53,7 +53,6 @@ export function createURL(
   if (devProxy && path.startsWith(devProxy)) {
     resourceURL = path.replace(devProxy, "");
   }
-  console.log(resourceURL);
   if (resourceURL.startsWith("http:") || resourceURL.startsWith("https:")) {
     resourceURL = new URL(combineURLs(resourceURL));
   } else {
@@ -65,7 +64,7 @@ export function createURL(
     resourceURL = new URL(combineURLs(baseURL, resourceURL));
   }
   if (id) {
-    resourceURL.pathname = `/${id}`;
+    resourceURL.pathname += `/${id}`;
   }
   if (query) {
     resourceURL.search = new URLSearchParams(query);
@@ -73,7 +72,6 @@ export function createURL(
   if (trailingSlash) {
     resourceURL.pathname += "/";
   }
-  console.log(resourceURL);
   return resourceURL;
 }
 
