@@ -37,17 +37,44 @@ export function defaultErrorHandler(response, status) {
 }
 
 export function combineURLs(baseURL, relativeURL) {
-  return relativeURL
+  const combinedUrl = relativeURL
     ? `${baseURL.replace(/\/+$/, "")}/${relativeURL.replace(/^\/+/, "")}`
     : baseURL;
+  return combinedUrl.replace(/\/+$/, "");
 }
 
-export function createURL(apiEndpoint, path, { query } = {}) {
-  const url = new URL(combineURLs(apiEndpoint, path));
-  if (query) {
-    url.search = new URLSearchParams(query);
+export function createURL(
+  apiEndpoint,
+  path,
+  { query, id, trailingSlash, devProxy } = {}
+) {
+  let resourceURL = path;
+  let baseURL = apiEndpoint;
+  if (devProxy && path.startsWith(devProxy)) {
+    resourceURL = path.replace(devProxy, "");
   }
-  return url;
+  console.log(resourceURL);
+  if (resourceURL.startsWith("http:") || resourceURL.startsWith("https:")) {
+    resourceURL = new URL(combineURLs(resourceURL));
+  } else {
+    if (
+      !(apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:"))
+    ) {
+      baseURL = combineURLs(window.location.origin, apiEndpoint);
+    }
+    resourceURL = new URL(combineURLs(baseURL, resourceURL));
+  }
+  if (id) {
+    resourceURL.pathname = `/${id}`;
+  }
+  if (query) {
+    resourceURL.search = new URLSearchParams(query);
+  }
+  if (trailingSlash) {
+    resourceURL.pathname += "/";
+  }
+  console.log(resourceURL);
+  return resourceURL;
 }
 
 export class WoFetch {
@@ -58,6 +85,8 @@ export class WoFetch {
       errorHandler = defaultErrorHandler,
       authHeader = "Authorization",
       authTokenPrefix = "Bearer",
+      trailingSlash = false,
+      devProxy,
     } = {}
   ) {
     this.apiEndpoint = apiEndpoint;
@@ -65,9 +94,11 @@ export class WoFetch {
     this.errorHandler = errorHandler;
     this.authHeader = authHeader;
     this.authTokenPrefix = authTokenPrefix;
+    this.trailingSlash = trailingSlash;
+    this.devProxy = devProxy;
   }
 
-  handleResponse = (response) =>
+  handleResponse = (response, errorHandler = this.errorHandler) =>
     new Promise((resolve, reject) => {
       if (response.ok) {
         const contentType = response.headers.get("content-type");
@@ -78,15 +109,13 @@ export class WoFetch {
         if (contentType && contentType.includes("application/json")) {
           return resolve(response.json());
         }
-        return reject(this.errorHandler(response, "20X"));
+        return reject(errorHandler(response, "20X"));
       }
-      return reject(this.errorHandler(response));
+      return reject(errorHandler(response));
     });
 
-  handleError = (error) =>
-    new Promise((resolve, reject) =>
-      reject(this.errorHandler(error, error.name))
-    );
+  handleError = (error, errorHandler = this.errorHandler) =>
+    new Promise((resolve, reject) => reject(errorHandler(error, error.name)));
 
   getHeaders = ({
     requireAuth = true,
@@ -117,19 +146,23 @@ export class WoFetch {
   fetchURL = async (
     method,
     path,
-    { query, requireAuth, contentType, token, data } = {}
+    { id, query = {}, requireAuth, contentType, token, data, errorHandler } = {}
   ) => {
-    const queryData = query || {};
     const headers = this.getHeaders({ requireAuth, contentType, token });
-    const url = createURL(this.apiEndpoint, path, { query: queryData });
+    const url = createURL(this.apiEndpoint, path, {
+      query,
+      id,
+      trailingSlash: this.trailingSlash,
+      devProxy: this.devProxy,
+    });
     let body;
     if (data) {
       body =
         contentType === "multipart/form-data" ? data : JSON.stringify(data);
     }
     return fetch(url, { method, headers, body })
-      .then(this.handleResponse)
-      .catch(this.handleError);
+      .then((response) => this.handleResponse(response, errorHandler))
+      .catch((error) => this.handleError(error, errorHandler));
   };
 
   getUrl = async (...args) => this.fetchURL("GET", ...args);
