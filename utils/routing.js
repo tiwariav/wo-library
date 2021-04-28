@@ -3,6 +3,9 @@ export function redirectToLogout({
   message,
   includeFrom = true,
 } = {}) {
+  if (window.location.pathname.split("/").includes(path)) {
+    return;
+  }
   const url = new URL(`${window.location.origin}/${path}`);
   const search = new URLSearchParams();
   if (message) {

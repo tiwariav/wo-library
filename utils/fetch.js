@@ -1,38 +1,36 @@
 import { ACCESS_TOKEN } from "../providers/AuthProvider/authStorage";
-import WoError from "./error";
+import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
-export function defaultErrorHandler(response, status) {
+export function defaultErrorHandler(error, data) {
   // handle manual set error status codes
-  switch (status) {
-    case "20X":
-      return new WoError("Response is not proper json!", response);
+  switch (error.name) {
     case "TypeError":
-      return new WoError("Network error!", response);
+      throw new WoErrorData(error, data, "Response is not proper json!");
     case "AbortError":
-      return new WoError("Request aborted!", response);
-    default:
+      throw new WoErrorData(error, data, "Request aborted!");
+    case "WoResponseError":
+      // handle http response status codes
+      switch (data.status) {
+        case 400:
+          throw new WoErrorData(error, data, "Invalid Data!");
+        case 401:
+          throw new WoErrorData(error, data, "You session has expired!");
+        case 403:
+          throw new WoErrorData(
+            error,
+            data,
+            "You are not authorized to access this page!"
+          );
+        case 404:
+          throw new WoErrorData(error, data, "Endpoint not found!");
+        case 500:
+          throw new WoErrorData(error, data, "Internal server error!");
+        default:
+          break;
+      }
       break;
-  }
-  // handle http response status codes
-  switch (response.status) {
-    case 400:
-      return new WoError("Invalid Data!", response);
-    case 401:
-      return new WoError(
-        "You session has expired! Please log in again.",
-        response
-      );
-    case 403:
-      return new WoError(
-        "You are not authorized to access this page! Kindly contact admin.",
-        response
-      );
-    case 404:
-      return new WoError("Api endpoint not found!", response);
-    case 500:
-      return new WoError("Server encountered an internal error!", response);
     default:
-      return new WoError("Unknown Error!", response);
+      throw new WoErrorData(error, data, "Unknown Error!");
   }
 }
 
@@ -96,24 +94,28 @@ export class WoFetch {
     this.devProxy = devProxy;
   }
 
-  handleResponse = (response, errorHandler = this.errorHandler) =>
-    new Promise((resolve, reject) => {
-      if (response.ok) {
-        const contentType = response.headers.get("content-type");
-        if (response.status === 204) {
-          // success, but no response content
-          return resolve(response.text());
-        }
-        if (contentType && contentType.includes("application/json")) {
-          return resolve(response.json());
-        }
-        return reject(errorHandler(response, "20X"));
+  handleResponse = async (response, errorHandler = this.errorHandler) => {
+    if (response.ok) {
+      if (response.status === 204) {
+        // success, but no response content
+        return response.text();
       }
-      return reject(errorHandler(response));
-    });
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        return response.json();
+      }
+      return errorHandler(new WoResponseError("20X!"), response);
+    }
+    return errorHandler(new WoResponseError("Not Ok!"), response);
+  };
 
-  handleError = (error, errorHandler = this.errorHandler) =>
-    new Promise((resolve, reject) => reject(errorHandler(error, error.name)));
+  handleError = async (error, errorHandler = this.errorHandler) => {
+    if (error.data) {
+      throw error;
+    } else {
+      return errorHandler(new WoNetworkError("Network Error!"), error);
+    }
+  };
 
   getHeaders = ({
     requireAuth = true,
