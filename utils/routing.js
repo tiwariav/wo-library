@@ -12,7 +12,10 @@ export function redirectToLogout({
     search.append("message", message);
   }
   if (includeFrom) {
-    search.append("from", window.location.pathname);
+    const from = window.location.pathname + window.location.hash;
+    if (from.match(/\w/g)) {
+      search.append("from", window.location.pathname + window.location.hash);
+    }
   }
   url.search = search;
   window.location.href = url;
