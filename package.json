@@ -14,6 +14,7 @@
   "dependencies": {
     "clsx": "^1.1.1",
     "lodash-es": "^4.17.21",
+    "micromatch": "^4.0.4",
     "paths.macro": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -21,7 +22,7 @@
     "react-hook-form": "^6.15.7",
     "react-icons": "^4.2.0",
     "react-use": "^17.2.4",
-    "swiper": "^6.5.8",
+    "swiper": "^6.5.9",
     "ye-ui": "worksapce:*"
   },
   "devDependencies": {
@@ -29,6 +30,6 @@
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@testing-library/react": "^11.2.6",
-    "core-js": "^3.11.0"
+    "core-js": "^3.11.2"
   }
 }
