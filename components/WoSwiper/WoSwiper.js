@@ -16,8 +16,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/swiper-bundle.css";
 import "./swiper.module.scss";
 import styles from "./woSwiper.module.css";
+
 // install Swiper components
-SwiperCore.use([A11y, EffectCoverflow, Mousewheel, Navigation, Autoplay]);
+SwiperCore.use([
+  // TODO: creating new wrapper-id for each storyshot run
+  ...(!process.env.JEST_WORKER_ID ? [A11y] : []),
+  EffectCoverflow,
+  Mousewheel,
+  Navigation,
+  Autoplay,
+]);
 
 const variants = ["basic", "coverflow"];
 
