@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
 import Button from "ye-ui/components/atoms/forms/Button/Button";
 import { WithImage as CardWithImage } from "ye-ui/components/atoms/sections/Card/Card.stories";
+import { getStoryName } from "../../utils/storybook";
 import WoSwiper from "./WoSwiper";
 
 const moreLinkMap = {
@@ -19,7 +20,7 @@ const moreLinkMap = {
 };
 
 const metadata = {
-  title: "wo-library/WoSwiper",
+  title: getStoryName(__dirname),
   component: WoSwiper,
   argTypes: {
     moreLink: {

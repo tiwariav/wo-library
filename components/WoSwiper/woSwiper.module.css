@@ -55,7 +55,7 @@
   & .swiper-slide-shadow-right {
     display: none;
 
-    /* border-radius: var(--em-xsmall); */
+    /* border-radius: var(--spacing-em-xsmall); */
   }
 }
 
@@ -70,7 +70,7 @@
 }
 
 .subtitle {
-  margin: var(--em-xtiny) 0 0;
+  margin: var(--spacing-em-xtiny) 0 0;
   font-weight: var(--font-weight-thin);
   font-size: var(--font-size);
 }

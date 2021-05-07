@@ -1,3 +1,11 @@
+export class WoReactInvalidProps extends Error {
+  constructor(propFullName, componentName, additionalHelp = "") {
+    const message = `Invalid prop \`${propFullName}\` supplied to \`${componentName}\`. ${additionalHelp}`;
+    super(message);
+    this.name = "WoReactInvalidProps";
+  }
+}
+
 export class WoNetworkError extends Error {
   constructor(message) {
     super(message);

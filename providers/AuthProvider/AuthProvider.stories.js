@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useRendersCount, useUpdate } from "react-use";
 import { Button } from "../../../ye-ui/components/atoms/forms/Button";
+import { getStoryName } from "../../utils/storybook";
 import * as ACTION_TYPES from "./authActions";
 import AuthProviderComponent, { AuthContext } from "./AuthProvider";
 
 const metadata = {
-  title: "wo-library/providers/AuthProvider",
+  title: getStoryName(__dirname),
   component: AuthProviderComponent,
 };
 
@@ -34,7 +35,7 @@ function RenderContainer({ children, style, hasUpdateButton, ...props }) {
     <div
       style={{
         border: "1px solid var(--color-black-10)",
-        padding: "var(--em-large)",
+        padding: "var(--spacing-em-large)",
         ...style,
       }}
       {...props}
