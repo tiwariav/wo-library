@@ -1,3 +1,10 @@
+export class WoLoadScriptError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "WoLoadScriptError";
+  }
+}
+
 export class WoReactInvalidProps extends Error {
   constructor(propFullName, componentName, additionalHelp = "") {
     const message = `Invalid prop \`${propFullName}\` supplied to \`${componentName}\`. ${additionalHelp}`;
