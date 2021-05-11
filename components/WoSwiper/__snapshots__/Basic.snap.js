@@ -2,7 +2,7 @@
 
 exports[`Storyshots wo-library/components/WoSwiper Basic 1`] = `
 <div
-  class=""
+  class="default"
 >
   <div
     class=""

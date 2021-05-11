@@ -2,7 +2,7 @@
 
 exports[`Storyshots wo-library/components/WoSwiper With Separator 1`] = `
 <div
-  class=""
+  class="default"
 >
   <div
     class="undefined"
