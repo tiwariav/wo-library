@@ -95,19 +95,18 @@ export default function WoSwiper({
       >
         {React.Children.map(children, (child, index) => (
           <SwiperSlide key={index}>
-            {({ isActive, isDuplicate }) =>
-              React.createElement(child.type, {
-                ...{
-                  ...child.props,
-                  viewMode:
-                    variant === "coverflow"
-                      ? isActive && !isDuplicate
-                        ? "mini"
-                        : "thumb"
-                      : undefined,
-                },
-              })
-            }
+            {({ isActive, isDuplicate }) => {
+              const extraProps = {};
+              if (child.type.displayName === "Card") {
+                extraProps.viewMode =
+                  variant === "coverflow"
+                    ? isActive && !isDuplicate
+                      ? "mini"
+                      : "thumb"
+                    : undefined;
+              }
+              return React.cloneElement(child, extraProps);
+            }}
           </SwiperSlide>
         ))}
         {fade ? (
