@@ -1,3 +1,4 @@
+import { anyStorage } from "../lib/storage";
 import { ACCESS_TOKEN } from "../providers/AuthProvider/authStorage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
@@ -128,7 +129,7 @@ export class WoFetch {
       headers.set("Content-Type", contentType);
     }
     if (requireAuth && this.tokenName) {
-      const accessToken = token || localStorage.getItem(this.tokenName);
+      const accessToken = token || anyStorage.getItem(this.tokenName);
       if (accessToken) {
         if (xhr) {
           headers[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
