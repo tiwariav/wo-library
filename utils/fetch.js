@@ -1,6 +1,7 @@
 import { anyStorage } from "../lib/storage";
-import { ACCESS_TOKEN } from "../providers/AuthProvider/authStorage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
+
+const ACCESS_TOKEN = "wo:authToken";
 
 export function defaultErrorHandler(error, data) {
   // handle manual set error status codes

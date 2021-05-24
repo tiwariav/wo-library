@@ -1,17 +1,17 @@
 /* A react context provider, that make basic authentication related state available to children */
 import React, { useReducer } from "react";
-import authReducer, { authInit, authInitialState } from "./authReducer";
+import reducer, { init, initialState } from "./reducer";
 
 export const AuthContext = React.createContext();
 
-const AuthProvider = React.memo(({ children }) => {
+const SampleProvider = React.memo(({ children }) => {
   const [state, dispatch] = useReducer(
-    authReducer,
+    reducer,
     {
-      ...authInitialState,
+      ...initialState,
       // add any props dependent values
     },
-    authInit
+    init
   );
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>
@@ -20,4 +20,4 @@ const AuthProvider = React.memo(({ children }) => {
   );
 });
 
-export default AuthProvider;
+export default SampleProvider;

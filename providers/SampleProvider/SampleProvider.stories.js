@@ -3,11 +3,11 @@ import { useRendersCount, useUpdate } from "react-use";
 import { Button } from "../../../ye-ui/components/atoms/forms/Button";
 import { getStoryName } from "../../utils/storybook";
 import * as ACTION_TYPES from "./authActions";
-import AuthProviderComponent, { AuthContext } from "./AuthProvider";
+import SampleProviderComponent, { AuthContext } from "./SampleProvider";
 
 const metadata = {
   title: getStoryName(__dirname),
-  component: AuthProviderComponent,
+  component: SampleProviderComponent,
 };
 
 export default metadata;
@@ -84,15 +84,15 @@ function StateComponent(props) {
 const Template = ({ ...args }) => (
   <RenderContainer hasUpdateButton>
     <h2>Parent Component</h2>
-    <AuthProviderComponent {...args}>
+    <SampleProviderComponent {...args}>
       <ActionsComponent />
       <StateComponent />
       <RenderContainer>
         <h2>Child Component not using Provider</h2>
       </RenderContainer>
-    </AuthProviderComponent>
+    </SampleProviderComponent>
   </RenderContainer>
 );
 
-export const AuthProvider = Template.bind({});
-AuthProvider.args = {};
+export const SampleProvider = Template.bind({});
+SampleProvider.args = {};
