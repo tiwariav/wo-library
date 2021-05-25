@@ -63,13 +63,13 @@ export function createURL(
     }
     resourceURL = new URL(combineURLs(baseURL, resourceURL));
   }
-  if (id) {
+  if (id && resourceURL.pathname.slice(-1) !== "/") {
     resourceURL.pathname += `/${id}`;
   }
   if (query) {
     resourceURL.search = new URLSearchParams(query);
   }
-  if (trailingSlash) {
+  if (trailingSlash && resourceURL.pathname.slice(-1) !== "/") {
     resourceURL.pathname += "/";
   }
   return resourceURL;
@@ -181,6 +181,7 @@ export class WoFetch {
     path,
     file,
     {
+      requireAuth,
       data,
       progressFunction,
       loadStartFunction,
@@ -189,41 +190,60 @@ export class WoFetch {
     }
   ) => {
     const formData = new FormData();
-    formData.append("file", file);
-
     if (data) {
       Object.entries(data).forEach(([key, value]) =>
         formData.append(key, value)
       );
     }
+
+    formData.append("file", file);
+
     const headers = this.getHeaders({
       contentType: "multipart/form-data",
       xhr: true,
+      requireAuth,
     });
 
     const xhrObj = new XMLHttpRequest();
 
-    // add event listeners to xhrObj
-    if (progressFunction) {
-      xhrObj.upload.addEventListener("loadstart", loadStartFunction, false);
-    }
-    if (loadStartFunction) {
-      xhrObj.upload.addEventListener("progress", progressFunction, false);
-    }
-    if (transferCompleteFunction) {
-      xhrObj.upload.addEventListener("load", transferCompleteFunction, false);
-    }
-    if (onStateChange) {
+    return new Promise((resolve, reject) => {
+      // add event listeners to xhrObj
+      if (loadStartFunction) {
+        xhrObj.upload.addEventListener("loadstart", loadStartFunction, false);
+      }
+      if (progressFunction) {
+        xhrObj.upload.addEventListener("progress", progressFunction, false);
+      }
+      if (transferCompleteFunction) {
+        xhrObj.upload.addEventListener("load", transferCompleteFunction, false);
+      }
+
       // when an XHR object is opened, add a listener for its readystatechange events
       xhrObj.addEventListener("readystatechange", (e) => {
-        onStateChange(xhrObj.readyState, xhrObj);
+        if (onStateChange) {
+          onStateChange(xhrObj.readyState, xhrObj);
+        }
+        if (xhrObj.readyState === 4) {
+          if (xhrObj.status >= 300 || xhrObj.status < 200) {
+            reject(xhrObj);
+          } else {
+            resolve(xhrObj);
+          }
+        }
       });
-    }
 
-    xhrObj.open("POST", createURL(this.apiEndpoint, path), true);
-    Object.keys(headers).forEach((key) =>
-      xhrObj.setRequestHeader(key, headers[key])
-    );
-    xhrObj.send(formData);
+      xhrObj.open(
+        "POST",
+        createURL(this.apiEndpoint, path, {
+          trailingSlash: this.trailingSlash,
+          devProxy: this.devProxy,
+        }),
+        true
+      );
+      Object.keys(headers).forEach((key) =>
+        xhrObj.setRequestHeader(key, headers[key])
+      );
+      xhrObj.send(formData);
+    });
   };
 }
