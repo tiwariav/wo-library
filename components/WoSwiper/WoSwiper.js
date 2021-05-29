@@ -152,3 +152,5 @@ WoSwiper.defaultProps = {
   navigation: true,
   autoplay: false,
 };
+
+//test commit
