@@ -20,11 +20,11 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^6.15.7",
+    "react-hook-form": "^6.15.8",
     "react-icons": "^4.2.0",
     "react-intersection-observer": "^8.32.0",
     "react-use": "^17.2.4",
-    "swiper": "^6.6.2",
+    "swiper": "^6.7.0",
     "ye-ui": "worksapce:*"
   },
   "devDependencies": {
@@ -32,6 +32,6 @@
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@testing-library/react": "^11.2.7",
-    "core-js": "^3.12.1"
+    "core-js": "^3.14.0"
   }
 }
