@@ -58,11 +58,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -93,11 +94,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -128,11 +130,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -163,11 +166,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -198,11 +202,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -233,11 +238,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -268,11 +274,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -303,11 +310,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -338,11 +346,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -373,11 +382,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -408,11 +418,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -443,11 +454,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -478,11 +490,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -513,11 +526,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -548,11 +562,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -583,11 +598,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -618,11 +634,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -653,11 +670,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -688,11 +706,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -723,11 +742,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -758,11 +778,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -793,11 +814,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -828,11 +850,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -863,11 +886,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -898,11 +922,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -933,11 +958,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -968,11 +994,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1003,11 +1030,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1038,11 +1066,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1073,11 +1102,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1108,11 +1138,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1143,11 +1174,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1178,11 +1210,12 @@ exports[`Storyshots wo-library/components/WoSwiper Coverflow 1`] = `
               </div>
             </div>
             <div>
-              <span
+              <div
+                class=""
                 style="min-height: 1.5em;"
               >
                 Card content
-              </span>
+              </div>
             </div>
           </div>
         </div>
