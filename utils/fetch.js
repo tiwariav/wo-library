@@ -106,7 +106,7 @@ export class WoFetch {
       if (contentType && contentType.includes("application/json")) {
         return response.json();
       }
-      return errorHandler(new WoResponseError("20X!"), response);
+      return response;
     }
     return errorHandler(new WoResponseError("Not Ok!"), response);
   };
@@ -148,14 +148,23 @@ export class WoFetch {
   fetchURL = async (
     method,
     path,
-    { id, query = {}, requireAuth, contentType, token, data, errorHandler } = {}
+    {
+      id,
+      query = {},
+      requireAuth,
+      contentType,
+      token,
+      data,
+      errorHandler,
+      noProxy,
+    } = {}
   ) => {
     const headers = this.getHeaders({ requireAuth, contentType, token });
     const url = createURL(this.apiEndpoint, path, {
       query,
       id,
       trailingSlash: this.trailingSlash,
-      devProxy: this.devProxy,
+      devProxy: !noProxy ? this.devProxy : undefined,
     });
     let body;
     if (data) {
