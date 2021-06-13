@@ -16,3 +16,16 @@ export function cloneIfModified(original, update) {
   }
   return original;
 }
+
+export function pushOrCreate(obj, key, value, index) {
+  if (!obj[key]) {
+    return [value];
+  }
+  const newVal = [...obj[key]];
+  if (index !== undefined) {
+    newVal[index] = value;
+  } else {
+    newVal.push(value);
+  }
+  return newVal;
+}
