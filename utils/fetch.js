@@ -149,21 +149,22 @@ export class WoFetch {
     method,
     path,
     {
-      id,
-      query = {},
-      requireAuth,
       contentType,
-      token,
       data,
       errorHandler,
+      id,
       noProxy,
+      query = {},
+      requireAuth,
+      trailingSlash = this.trailingSlash,
+      token,
     } = {}
   ) => {
     const headers = this.getHeaders({ requireAuth, contentType, token });
     const url = createURL(this.apiEndpoint, path, {
       query,
       id,
-      trailingSlash: this.trailingSlash,
+      trailingSlash,
       devProxy: !noProxy ? this.devProxy : undefined,
     });
     let body;
