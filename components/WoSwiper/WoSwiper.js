@@ -30,6 +30,7 @@ SwiperCore.use([
 const variants = ["basic", "coverflow"];
 
 export default function WoSwiper({
+  className,
   variant,
   title,
   subtitle,
@@ -58,9 +59,14 @@ export default function WoSwiper({
   }
   return (
     <div
-      className={clsx(styles.container, styles[`is-${variant}`], {
-        [styles.hasSeparator]: hasSeparator,
-      })}
+      className={clsx(
+        styles.container,
+        styles[`is-${variant}`],
+        {
+          [styles.hasSeparator]: hasSeparator,
+        },
+        className
+      )}
     >
       {title || subtitle || moreLink ? (
         <div className={styles.top}>
