@@ -59,10 +59,6 @@
   }
 }
 
-.is-coverflow {
-  text-align: center;
-}
-
 .title {
   margin: 0;
   font-weight: var(--font-weight-semibold);

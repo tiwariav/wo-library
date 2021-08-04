@@ -9,7 +9,7 @@ import SwiperCore, {
   Autoplay,
   EffectCoverflow,
   Mousewheel,
-  Navigation,
+  Navigation
 } from "swiper";
 // import "swiper/components/navigation/navigation.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,20 +43,16 @@ export default function WoSwiper({
   ...props
 }) {
   let derivedProps = {};
-  switch (variant) {
-    case "coverflow":
-      derivedProps = {
-        // effects
-        effect: "coverflow",
-        coverflowEffect: { rotate: 5, depth: 200, modifier: 1, stretch: 10 },
-        // loop
-        loop: true,
-      };
-      break;
-
-    default:
-      break;
+  if (variant === "coverflow") {
+    derivedProps = {
+      // effects
+      effect: "coverflow",
+      coverflowEffect: { rotate: 5, depth: 200, modifier: 1, stretch: 10 },
+      // loop
+      loop: true,
+    };
   }
+
   return (
     <div
       className={clsx(
@@ -74,7 +70,7 @@ export default function WoSwiper({
             {title ? <h2 className={styles.title}>{title}</h2> : null}
             {subtitle ? <h3 className={styles.subtitle}>{subtitle}</h3> : null}
           </div>
-          <div className={styles.topRight}>
+          <div>
             {moreLink && variant !== "coverflow" ? moreLink : null}
           </div>
         </div>

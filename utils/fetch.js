@@ -2,6 +2,40 @@ import { anyStorage } from "../lib/storage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
 const ACCESS_TOKEN = "wo:authToken";
+const DEFAULT_CONTENT_TYPE = "multipart/form-data";
+
+function getFormData(data, file) {
+  const formData = new FormData();
+  if (data) {
+    Object.entries(data).forEach(([key, value]) =>
+      formData.append(key, value)
+    );
+  }
+  formData.append("file", file);
+  return formData;
+}
+
+export function defaultResponseErrorHandler(error, data) {
+  // handle http response status codes
+  switch (data.status) {
+    case 400:
+      throw new WoErrorData(error, data, "Invalid Data!");
+    case 401:
+      throw new WoErrorData(error, data, "You session has expired!");
+    case 403:
+      throw new WoErrorData(
+        error,
+        data,
+        "You are not authorized to access this page!"
+      );
+    case 404:
+      throw new WoErrorData(error, data, "Endpoint not found!");
+    case 500:
+      throw new WoErrorData(error, data, "Internal server error!");
+    default:
+      break;
+  }
+}
 
 export function defaultErrorHandler(error, data) {
   // handle manual set error status codes
@@ -11,25 +45,7 @@ export function defaultErrorHandler(error, data) {
     case "AbortError":
       throw new WoErrorData(error, data, "Request aborted!");
     case "WoResponseError":
-      // handle http response status codes
-      switch (data.status) {
-        case 400:
-          throw new WoErrorData(error, data, "Invalid Data!");
-        case 401:
-          throw new WoErrorData(error, data, "You session has expired!");
-        case 403:
-          throw new WoErrorData(
-            error,
-            data,
-            "You are not authorized to access this page!"
-          );
-        case 404:
-          throw new WoErrorData(error, data, "Endpoint not found!");
-        case 500:
-          throw new WoErrorData(error, data, "Internal server error!");
-        default:
-          break;
-      }
+      defaultResponseErrorHandler(error, data);
       break;
     default:
       throw new WoErrorData(error, data, "Unknown Error!");
@@ -126,7 +142,7 @@ export class WoFetch {
     token,
   } = {}) => {
     const headers = xhr ? new Map() : new Headers();
-    if (contentType !== "multipart/form-data") {
+    if (contentType !== DEFAULT_CONTENT_TYPE) {
       headers.set("Content-Type", contentType);
     }
     if (requireAuth && this.tokenName) {
@@ -170,7 +186,7 @@ export class WoFetch {
     let body;
     if (data) {
       body =
-        contentType === "multipart/form-data" ? data : JSON.stringify(data);
+        contentType === DEFAULT_CONTENT_TYPE ? data : JSON.stringify(data);
     }
     return fetch(url, { method, headers, body })
       .then((response) => this.handleResponse(response, errorHandler))
@@ -199,17 +215,10 @@ export class WoFetch {
       onStateChange,
     }
   ) => {
-    const formData = new FormData();
-    if (data) {
-      Object.entries(data).forEach(([key, value]) =>
-        formData.append(key, value)
-      );
-    }
-
-    formData.append("file", file);
+    const formData = getFormData(data, file)
 
     const headers = this.getHeaders({
-      contentType: "multipart/form-data",
+      contentType: DEFAULT_CONTENT_TYPE,
       xhr: true,
       requireAuth,
     });
@@ -233,13 +242,13 @@ export class WoFetch {
         if (onStateChange) {
           onStateChange(xhrObj.readyState, xhrObj);
         }
-        if (xhrObj.readyState === 4) {
-          if (xhrObj.status >= 300 || xhrObj.status < 200) {
-            reject(xhrObj);
-          } else {
-            resolve(xhrObj);
-          }
+        if (xhrObj.readyState !== 4) {
+          return;
         }
+        if (xhrObj.status >= 300 || xhrObj.status < 200) {
+          reject(xhrObj);
+        }
+        resolve(xhrObj);
       });
 
       xhrObj.open(
