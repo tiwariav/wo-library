@@ -1,8 +1,12 @@
+import { merge } from "lodash-es";
 import { anyStorage } from "../lib/storage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
 const ACCESS_TOKEN = "wo:authToken";
-const DEFAULT_CONTENT_TYPE = "multipart/form-data";
+const CONTENT_TYPE_FORM = "multipart/form-data";
+const DEFAULT_HEADERS = {
+  "Content-Type": "application/json"
+}
 
 function getFormData(data, file) {
   const formData = new FormData();
@@ -136,38 +140,35 @@ export class WoFetch {
   };
 
   getHeaders = ({
+    headers = {},
     requireAuth = true,
-    contentType = "application/json",
-    xhr = false,
     token,
+    xhr = false,
   } = {}) => {
-    const headers = xhr ? new Map() : new Headers();
-    if (contentType !== DEFAULT_CONTENT_TYPE) {
-      headers.set("Content-Type", contentType);
-    }
+    const headersInstance = xhr ? new Map() : new Headers();
+    const allHeaders = merge(DEFAULT_HEADERS, headers);
     if (requireAuth && this.tokenName) {
       const accessToken = token || anyStorage.getItem(this.tokenName);
-      if (accessToken) {
-        if (xhr) {
-          headers[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
-        } else {
-          headers.set(
-            this.authHeader,
-            `${this.authTokenPrefix} ${accessToken}`
-          );
-        }
+      allHeaders[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
+    }
+    for (const key in allHeaders) {
+      const element = allHeaders[key];
+      if (xhr) {
+        headersInstance[key] = element;
+      } else {
+        headersInstance.set(key, element);
       }
     }
-    return headers;
+    return headersInstance;
   };
 
   fetchURL = async (
     method,
     path,
     {
-      contentType,
       data,
       errorHandler,
+      headers,
       id,
       noProxy,
       query = {},
@@ -176,7 +177,7 @@ export class WoFetch {
       token,
     } = {}
   ) => {
-    const headers = this.getHeaders({ requireAuth, contentType, token });
+    const requestHeaders = this.getHeaders({ headers, requireAuth, token });
     const url = createURL(this.apiEndpoint, path, {
       query,
       id,
@@ -186,9 +187,9 @@ export class WoFetch {
     let body;
     if (data) {
       body =
-        contentType === DEFAULT_CONTENT_TYPE ? data : JSON.stringify(data);
+        requestHeaders.get("Content-Type") === CONTENT_TYPE_FORM ? data : JSON.stringify(data);
     }
-    return fetch(url, { method, headers, body })
+    return fetch(url, { body, headers: requestHeaders, method })
       .then((response) => this.handleResponse(response, errorHandler))
       .catch((error) => this.handleError(error, errorHandler));
   };
@@ -218,7 +219,7 @@ export class WoFetch {
     const formData = getFormData(data, file)
 
     const headers = this.getHeaders({
-      contentType: DEFAULT_CONTENT_TYPE,
+      headers: { "Content-Type": CONTENT_TYPE_FORM },
       xhr: true,
       requireAuth,
     });
