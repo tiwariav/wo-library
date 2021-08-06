@@ -9,13 +9,13 @@ export default function createChartMethods(state) {
     setSymbolImages: (symbolsRef, symbolsData) => {
       const childNodes = symbolsRef.current.childNodes;
       const symbolImages = {};
-      symbolsData.forEach((item, index) => {
+      for (const [index, item] of symbolsData.entries()) {
         symbolImages[item.props.seriesName] = pushOrCreate(
           symbolImages,
           item.props.seriesName,
           svgNodeToData(childNodes[index])
         );
-      });
+      }
       return { ...state, symbolImages };
     },
     symbolImageReady: (seriesName, seriesIndex, node) => {

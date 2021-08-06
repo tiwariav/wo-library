@@ -39,7 +39,7 @@ const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
       moreLinkVertical={moreLinkMap[moreLinkVertical]}
       {...args}
     >
-      {Array(11).fill(<CardWithImage {...itemArgs} />)}
+      {Array.from({ length: 11 }).fill(<CardWithImage {...itemArgs} />)}
     </WoSwiper>
   );
 };

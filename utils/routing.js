@@ -13,7 +13,7 @@ export function redirectToLogout({
   }
   if (includeFrom) {
     const from = window.location.pathname + window.location.hash;
-    if (from.match(/\w/g)) {
+    if (/\w/g.test(from)) {
       search.append("from", window.location.pathname + window.location.hash);
     }
   }

@@ -11,9 +11,9 @@ const DEFAULT_HEADERS = {
 function getFormData(data, file) {
   const formData = new FormData();
   if (data) {
-    Object.entries(data).forEach(([key, value]) =>
+    for (const [key, value] of Object.entries(data)) 
       formData.append(key, value)
-    );
+    ;
   }
   formData.append("file", file);
   return formData;
@@ -224,35 +224,35 @@ export class WoFetch {
       requireAuth,
     });
 
-    const xhrObj = new XMLHttpRequest();
+    const xhrObject = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {
       // add event listeners to xhrObj
       if (loadStartFunction) {
-        xhrObj.upload.addEventListener("loadstart", loadStartFunction, false);
+        xhrObject.upload.addEventListener("loadstart", loadStartFunction, false);
       }
       if (progressFunction) {
-        xhrObj.upload.addEventListener("progress", progressFunction, false);
+        xhrObject.upload.addEventListener("progress", progressFunction, false);
       }
       if (transferCompleteFunction) {
-        xhrObj.upload.addEventListener("load", transferCompleteFunction, false);
+        xhrObject.upload.addEventListener("load", transferCompleteFunction, false);
       }
 
       // when an XHR object is opened, add a listener for its readystatechange events
-      xhrObj.addEventListener("readystatechange", (e) => {
+      xhrObject.addEventListener("readystatechange", (e) => {
         if (onStateChange) {
-          onStateChange(xhrObj.readyState, xhrObj);
+          onStateChange(xhrObject.readyState, xhrObject);
         }
-        if (xhrObj.readyState !== 4) {
+        if (xhrObject.readyState !== 4) {
           return;
         }
-        if (xhrObj.status >= 300 || xhrObj.status < 200) {
-          reject(xhrObj);
+        if (xhrObject.status >= 300 || xhrObject.status < 200) {
+          reject(xhrObject);
         }
-        resolve(xhrObj);
+        resolve(xhrObject);
       });
 
-      xhrObj.open(
+      xhrObject.open(
         "POST",
         createURL(this.apiEndpoint, path, {
           trailingSlash: this.trailingSlash,
@@ -260,10 +260,10 @@ export class WoFetch {
         }),
         true
       );
-      Object.keys(headers).forEach((key) =>
-        xhrObj.setRequestHeader(key, headers[key])
-      );
-      xhrObj.send(formData);
+      for (const key of Object.keys(headers)) 
+        xhrObject.setRequestHeader(key, headers[key])
+      ;
+      xhrObject.send(formData);
     });
   };
 }

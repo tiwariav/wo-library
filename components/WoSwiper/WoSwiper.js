@@ -102,9 +102,9 @@ export default function WoSwiper({
               if (child.type.displayName === "Card") {
                 extraProps.viewMode =
                   variant === "coverflow"
-                    ? isActive && !isDuplicate
+                    ? (isActive && !isDuplicate
                       ? "mini"
-                      : "thumb"
+                      : "thumb")
                     : undefined;
               }
               return React.cloneElement(child, extraProps);

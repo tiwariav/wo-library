@@ -17,15 +17,15 @@ export function cloneIfModified(original, update) {
   return original;
 }
 
-export function pushOrCreate(obj, key, value, index) {
-  if (!obj[key]) {
+export function pushOrCreate(object, key, value, index) {
+  if (!object[key]) {
     return [value];
   }
-  const newVal = [...obj[key]];
+  const newValue = [...object[key]];
   if (index !== undefined) {
-    newVal[index] = value;
+    newValue[index] = value;
   } else {
-    newVal.push(value);
+    newValue.push(value);
   }
-  return newVal;
+  return newValue;
 }
