@@ -1,10 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { useMethods } from "react-use";
 import createChartMethods from "./methods";
 import INITIAL_CHART_STATE from "./state";
 
-const ChartContext = React.createContext();
-const ChartDispatchContext = React.createContext();
+const ChartContext = createContext();
+const ChartDispatchContext = createContext();
 
 function ChartProvider({ children, data }) {
   const initialState = useMemo(

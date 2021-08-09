@@ -1,10 +1,10 @@
 /* A react context provider, that make basic authentication related state available to children */
-import React, { useReducer } from "react";
+import { createContext, memo, useReducer } from "react";
 import reducer, { init, initialState } from "./reducer";
 
-export const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
-const SampleProvider = React.memo(({ children }) => {
+const SampleProvider = memo(({ children }) => {
   const [state, dispatch] = useReducer(
     reducer,
     {

@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
 import Button from "ye-ui/components/atoms/forms/Button/Button";
 import { WithImage as CardWithImage } from "ye-ui/components/atoms/sections/Card/Card.stories";
