@@ -24,7 +24,7 @@
     "react-icons": "^4.2.0",
     "react-intersection-observer": "^8.32.0",
     "react-use": "^17.2.4",
-    "swiper": "^6.8.0",
+    "swiper": "^6.8.1",
     "ye-ui": "worksapce:*"
   },
   "devDependencies": {
@@ -32,6 +32,6 @@
     "@storybook/addon-docs": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
     "@testing-library/react": "^12.0.0",
-    "core-js": "^3.16.0"
+    "core-js": "^3.16.1"
   }
 }
