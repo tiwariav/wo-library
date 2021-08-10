@@ -1,8 +1,7 @@
-// Import Swiper React components
-// Import Swiper styles
 // import "!style-loader!sass-loader!swiper/swiper.scss";
 import clsx from "clsx";
 import PropTypes from "prop-types";
+import React from "react";
 import SwiperCore, {
   A11y,
   Autoplay,
