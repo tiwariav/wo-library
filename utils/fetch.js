@@ -3,7 +3,7 @@ import { anyStorage } from "../lib/storage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
 const ACCESS_TOKEN = "wo:authToken";
-const CONTENT_TYPE_FORM = "multipart/form-data";
+const CONTENT_TYPE_FORM = undefined;  // although "multipart/form-data", but setting undefined makes browser set the boundary too.
 const DEFAULT_HEADERS = {
   "Content-Type": "application/json"
 }
@@ -11,9 +11,9 @@ const DEFAULT_HEADERS = {
 function getFormData(data, file) {
   const formData = new FormData();
   if (data) {
-    for (const [key, value] of Object.entries(data)) 
+    for (const [key, value] of Object.entries(data)) {
       formData.append(key, value)
-    ;
+    }
   }
   formData.append("file", file);
   return formData;
@@ -146,7 +146,7 @@ export class WoFetch {
     xhr = false,
   } = {}) => {
     const headersInstance = xhr ? new Map() : new Headers();
-    const allHeaders = merge(DEFAULT_HEADERS, headers);
+    const allHeaders = merge({}, DEFAULT_HEADERS, headers);
     if (requireAuth && this.tokenName) {
       const accessToken = token || anyStorage.getItem(this.tokenName);
       allHeaders[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
@@ -260,9 +260,9 @@ export class WoFetch {
         }),
         true
       );
-      for (const key of Object.keys(headers)) 
+      for (const key of Object.keys(headers)) {
         xhrObject.setRequestHeader(key, headers[key])
-      ;
+      }
       xhrObject.send(formData);
     });
   };
