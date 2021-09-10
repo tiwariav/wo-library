@@ -1,13 +1,24 @@
 {
   "name": "wo-library",
   "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "description": "A component library smooth on the edges",
   "keywords": [
     "wo-library",
     "components",
     "react"
   ],
-  "main": "index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./components": "./components/index.js",
+    "./lib/*": "./lib/*.js",
+    "./lib/payments": "./lib/payments/index.js",
+    "./providers": "./providers/index.js",
+    "./utils/*": "./utils/index.js"
+  },
   "scripts": {
     "precommit": "lint-staged"
   },
