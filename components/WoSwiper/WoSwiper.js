@@ -11,6 +11,7 @@ import SwiperCore, {
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./swiper.scss";
+import styles from "./woSwiper.module.css";
 
 // install Swiper components
 SwiperCore.use([
