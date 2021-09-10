@@ -10,8 +10,7 @@ import SwiperCore, {
   Navigation
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./swiper.module.scss";
-import styles from "./woSwiper.module.css";
+import "./swiper.scss";
 
 // install Swiper components
 SwiperCore.use([
