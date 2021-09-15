@@ -14,8 +14,11 @@
   "exports": {
     ".": "./lib/index.js",
     "./components": "./components/index.js",
-    "./lib/*": "./lib/*.js",
+    "./lib/CRAProxy": {
+      "require": "./lib/CRAProxy.cjs"
+    },
     "./lib/payments": "./lib/payments/index.js",
+    "./lib/*": "./lib/*.js",
     "./providers": "./providers/index.js",
     "./utils/*": "./utils/index.js"
   },
