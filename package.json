@@ -26,6 +26,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.8",
     "clsx": "^1.1.1",
     "http-proxy-middleware": "^2.0.1",
     "lodash-es": "^4.17.21",
@@ -38,7 +39,7 @@
     "react-intersection-observer": "^8.32.0",
     "react-use": "^17.2.4",
     "swiper": "^6.8.1",
-    "ye-ui": "worksapce:*"
+    "ye-ui": "workspace:*"
   },
   "devDependencies": {
     "@mdx-js/react": "^1.6.22",
