@@ -34,19 +34,19 @@
     "paths.macro": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-hook-form": "^7.12.2",
+    "react-hook-form": "^7.15.4",
     "react-icons": "^4.2.0",
-    "react-intersection-observer": "^8.32.0",
-    "react-use": "^17.2.4",
-    "swiper": "^6.8.1",
+    "react-intersection-observer": "^8.32.1",
+    "react-use": "^17.3.1",
+    "swiper": "^6.8.4",
     "ye-ui": "workspace:*"
   },
   "devDependencies": {
     "@mdx-js/react": "^1.6.22",
-    "@storybook/addon-docs": "^6.3.7",
-    "@storybook/addon-links": "^6.3.7",
-    "@testing-library/react": "^12.0.0",
-    "core-js": "^3.16.1"
+    "@storybook/addon-docs": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@testing-library/react": "^12.1.0",
+    "core-js": "^3.18.0"
   },
   "peerDependencies": {
     "react-dom": "^17.0.2"
