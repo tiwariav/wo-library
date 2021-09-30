@@ -4,6 +4,8 @@
 
 .container :global .swiper-slide {
   width: auto;
+  height: auto;
+  align-self: stretch;
   background-color: transparent;
   touch-action: none;
 }
