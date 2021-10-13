@@ -35,6 +35,8 @@ export function defaultResponseErrorHandler(error, data) {
       );
     case 404:
       throw new WoErrorData(error, data, "Endpoint not found!");
+    case 429:
+      throw new WoErrorData(error, data, "Too many requests!");
     case 500:
       throw new WoErrorData(error, data, "Internal server error!");
     default:
