@@ -26,15 +26,15 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.15.8",
+    "@react-native-async-storage/async-storage": "^1.15.9",
     "clsx": "^1.1.1",
     "http-proxy-middleware": "^2.0.1",
     "lodash-es": "^4.17.21",
     "micromatch": "^4.0.4",
     "paths.macro": "^3.0.1",
     "prop-types": "^15.7.2",
-    "react-hook-form": "^7.16.2",
-    "react-icons": "^4.2.0",
+    "react-hook-form": "^7.17.4",
+    "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.32.1",
     "react-use": "^17.3.1",
     "swiper": "^6.8.4",
@@ -42,10 +42,9 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^1.6.22",
-    "@storybook/addon-docs": "^6.3.8",
-    "@storybook/addon-links": "^6.3.8",
-    "@testing-library/react": "^12.1.1",
-    "core-js": "^3.18.1"
+    "@storybook/addon-docs": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@testing-library/react": "^12.1.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",
