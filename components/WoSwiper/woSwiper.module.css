@@ -1,65 +1,64 @@
 .container {
   position: relative;
-}
 
-.container :global .swiper-slide {
-  width: auto;
-  height: auto;
-  align-self: stretch;
-  background-color: transparent;
-  touch-action: none;
-}
+  & :global .swiper-slide {
+    align-self: stretch;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    touch-action: none;
+  }
 
-.container :global .swiper-button-next {
-  right: 0.5rem;
+  & :global .swiper-button-next {
+    right: 0.5rem;
 
-  &::after {
-    right: -1px;
+    &::after {
+      right: -1px;
+    }
+  }
+
+  & :global .swiper-button-prev {
+    left: 0.5rem;
+
+    &::after {
+      left: -1px;
+    }
+  }
+
+  & :global .swiper-button-next,
+  & :global .swiper-button-prev {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-background);
+    border-radius: 100%;
+    box-shadow: var(--shadow-pressable);
+    opacity: 0.75;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: var(--shadow-pressed);
+      opacity: 1;
+    }
+
+    &::after {
+      position: relative;
+      font-size: var(--fnot-size-large);
+    }
+
+    &.swiper-button-disabled {
+      display: none;
+    }
+  }
+
+  & :global .swiper-container-3d {
+    & .swiper-slide-shadow-left,
+    & .swiper-slide-shadow-right {
+      display: none;
+    }
   }
 }
 
-.container :global .swiper-button-prev {
-  left: 0.5rem;
-
-  &::after {
-    left: -1px;
-  }
-}
-
-.container :global .swiper-button-next,
-.container :global .swiper-button-prev {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--color-background);
-  border-radius: 100%;
-  box-shadow: var(--shadow-pressable);
-  opacity: 0.75;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    box-shadow: var(--shadow-pressed);
-    opacity: 1;
-  }
-
-  &::after {
-    position: relative;
-    font-size: var(--fnot-size-large);
-  }
-
-  &.swiper-button-disabled {
-    display: none;
-  }
-}
-
-.container :global .swiper-container-3d {
-  & .swiper-slide-shadow-left,
-  & .swiper-slide-shadow-right {
-    display: none;
-
-    /* border-radius: var(--spacing-em-xsmall); */
-  }
-}
 
 .title {
   margin: 0;
@@ -126,6 +125,7 @@
     rgba(255, 255, 255, 0) 100%
   );
 }
+
 .fade-right {
   right: 0;
   background-image: linear-gradient(
