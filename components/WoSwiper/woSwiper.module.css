@@ -6,7 +6,6 @@
     width: auto;
     height: auto;
     background-color: transparent;
-    touch-action: none;
   }
 
   & :global .swiper-button-next {
