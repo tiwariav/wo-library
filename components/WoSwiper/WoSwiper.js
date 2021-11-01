@@ -1,27 +1,17 @@
-// import "!style-loader!sass-loader!swiper/swiper.scss";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
-import SwiperCore, {
+import {
   A11y,
   Autoplay,
   EffectCoverflow,
-  Mousewheel,
-  Navigation
-} from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "./swiper.scss";
-import styles from "./woSwiper.module.css";
-
-// install Swiper components
-SwiperCore.use([
-  // TODO: creating new wrapper-id for each storyshot run
-  ...(!process.env.JEST_WORKER_ID ? [A11y] : []),
-  EffectCoverflow,
+  FreeMode,
   Mousewheel,
   Navigation,
-  Autoplay,
-]);
+} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import "./swiper.scss";
+import styles from "./woSwiper.module.css";
 
 const variants = ["basic", "coverflow"];
 
@@ -66,21 +56,26 @@ export default function WoSwiper({
             {title ? <h2 className={styles.title}>{title}</h2> : null}
             {subtitle ? <h3 className={styles.subtitle}>{subtitle}</h3> : null}
           </div>
-          <div>
-            {moreLink && variant !== "coverflow" ? moreLink : null}
-          </div>
+          <div>{moreLink && variant !== "coverflow" ? moreLink : null}</div>
         </div>
       ) : null}
       <Swiper
+        // modules
+        modules={[
+          // TODO: creating new wrapper-id for each storyshot run
+          ...(!process.env.JEST_WORKER_ID ? [A11y] : []),
+          EffectCoverflow,
+          FreeMode,
+          Mousewheel,
+          Navigation,
+          Autoplay,
+        ]}
         className={styles.swiper}
         // swiper params
-        watchOverflow={true}
         // slides grid
         centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
         slidesPerView={"auto"}
-        // touches
-        simulateTouch={false}
         // freemode
         freeMode={true}
         freeModeSticky={!navigation}
@@ -98,9 +93,9 @@ export default function WoSwiper({
               if (child.type.displayName === "Card") {
                 extraProps.viewMode =
                   variant === "coverflow"
-                    ? (isActive && !isDuplicate
+                    ? isActive && !isDuplicate
                       ? "mini"
-                      : "thumb")
+                      : "thumb"
                     : undefined;
               }
               return React.cloneElement(child, extraProps);

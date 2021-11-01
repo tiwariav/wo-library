@@ -71,6 +71,10 @@
   font-size: var(--font-size-normal);
 }
 
+.swiper {
+  overflow: visible;
+}
+
 .title + .swiper {
   margin-top: var(--em-base);
 }
