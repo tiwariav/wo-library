@@ -10,7 +10,7 @@ import {
   Navigation,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import "./swiper.scss";
+import "./styles";
 import styles from "./woSwiper.module.css";
 
 const variants = ["basic", "coverflow"];

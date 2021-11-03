@@ -31,13 +31,13 @@
     background-color: var(--color-background);
     border-radius: 100%;
     box-shadow: var(--shadow-pressable);
-    opacity: 0.75;
+    opacity: 75%;
 
     &:hover,
     &:focus {
       outline: none;
       box-shadow: var(--shadow-pressed);
-      opacity: 1;
+      opacity: 100%;
     }
 
     &::after {
@@ -73,10 +73,10 @@
 
 .swiper {
   overflow: visible;
-}
 
-.title + .swiper {
-  margin-top: var(--em-base);
+  @nest .title + & {
+    margin-top: var(--em-base);
+  }
 }
 
 .top {
@@ -92,7 +92,7 @@
 .bottom {
   margin-top: 1em;
   text-align: center;
-  opacity: 0.25;
+  opacity: 25%;
 }
 
 .has-separator {
@@ -123,9 +123,9 @@
   left: 0;
   background-image: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.99) 0%,
-    rgba(255, 255, 255, 0.5) 25%,
-    rgba(255, 255, 255, 0) 100%
+    rgb(255 255 255 / 99%) 0%,
+    rgb(255 255 255 / 50%) 25%,
+    rgb(255 255 255 / 0%) 100%
   );
 }
 
@@ -133,8 +133,8 @@
   right: 0;
   background-image: linear-gradient(
     -90deg,
-    rgba(255, 255, 255, 0.99) 0%,
-    rgba(255, 255, 255, 0.5) 25%,
-    rgba(255, 255, 255, 0) 100%
+    rgb(255 255 255 / 99%) 0%,
+    rgb(255 255 255 / 50%) 25%,
+    rgb(255 255 255 / 0%) 100%
   );
 }

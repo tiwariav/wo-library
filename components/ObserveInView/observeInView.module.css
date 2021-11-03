@@ -1,13 +1,14 @@
 .root {
-  opacity: 0.5;
+  opacity: 50%;
   transition-timing-function: ease-in-out;
   transition-duration: 600ms;
   transition-property: opacity, transform;
   @media screen and (prefers-reduced-motion: reduce) {
     transition: none;
   }
+
   &.in-view {
-    opacity: 1;
+    opacity: 100%;
   }
 }
 
