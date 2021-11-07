@@ -1,5 +1,5 @@
 .root {
-  opacity: 50%;
+  opacity: 0.5;
   transition-timing-function: ease-in-out;
   transition-duration: 600ms;
   transition-property: opacity, transform;
@@ -8,7 +8,7 @@
   }
 
   &.in-view {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 

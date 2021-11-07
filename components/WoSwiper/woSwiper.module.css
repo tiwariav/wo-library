@@ -31,13 +31,13 @@
     background-color: var(--color-background);
     border-radius: 100%;
     box-shadow: var(--shadow-pressable);
-    opacity: 75%;
+    opacity: 0.75;
 
     &:hover,
     &:focus {
       outline: none;
       box-shadow: var(--shadow-pressed);
-      opacity: 100%;
+      opacity: 1;
     }
 
     &::after {
@@ -92,7 +92,7 @@
 .bottom {
   margin-top: 1em;
   text-align: center;
-  opacity: 25%;
+  opacity: 0.25;
 }
 
 .has-separator {
@@ -123,9 +123,9 @@
   left: 0;
   background-image: linear-gradient(
     90deg,
-    rgb(255 255 255 / 99%) 0%,
-    rgb(255 255 255 / 50%) 25%,
-    rgb(255 255 255 / 0%) 100%
+    rgb(255 255 255 / 0.99) 0%,
+    rgb(255 255 255 / 0.5) 25%,
+    rgb(255 255 255 / 0) 100%
   );
 }
 
@@ -133,8 +133,8 @@
   right: 0;
   background-image: linear-gradient(
     -90deg,
-    rgb(255 255 255 / 99%) 0%,
-    rgb(255 255 255 / 50%) 25%,
-    rgb(255 255 255 / 0%) 100%
+    rgb(255 255 255 / 0.99) 0%,
+    rgb(255 255 255 / 0.5) 25%,
+    rgb(255 255 255 / 0) 100%
   );
 }
