@@ -30,7 +30,6 @@ export function pushOrCreate(object, key, value, index) {
   return newValue;
 }
 
-
 export function getNestedValue(data, key) {
   let keys = Object.keys(data);
   let response = [];
@@ -38,11 +37,9 @@ export function getNestedValue(data, key) {
     for (const value of Object.values(data)) {
       if (!isObject(value)) continue;
       const child_response = getNestedValue(value, key);
-      if (Array.isArray(child_response)) {
-        response = [...response, ...child_response];
-      } else {
-        response = [...response, child_response];
-      }
+      response = Array.isArray(child_response)
+        ? [...response, ...child_response]
+        : [...response, child_response];
     }
     return response;
   }
