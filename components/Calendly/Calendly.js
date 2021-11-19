@@ -16,10 +16,10 @@ export default function Calendly({ onClick, calendlyLink, prefill, ...props }) {
     if (!(calendlyScript && calendlyStlyesheet)) {
       throw new WoLoadScriptError("Calendly SDK failed to load!");
     }
-    window.Calendly.initPopupWidget({
-      url: calendlyLink,
-      prefill,
-    });
+    // window.Calendly.initPopupWidget({
+    //   url: calendlyLink,
+    //   prefill,
+    // });
   });
 
   const handleClick = (event) => {
