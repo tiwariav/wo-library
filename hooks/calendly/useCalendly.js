@@ -1,10 +1,9 @@
 import { useEffectOnce } from "react-use";
-import { Button } from "ye-ui/components/atoms/forms";
 import loadScript from "../../lib/loadScript";
 import loadStylesheet from "../../lib/loadStylesheet";
 import { WoLoadScriptError } from "../../utils/error";
 
-export default function Calendly({ onClick, calendlyLink, prefill, ...props }) {
+export default function useCalendly({ calendlyLink, prefill }) {
   useEffectOnce(async () => {
     const calendlyScript = await loadScript(
       "https://assets.calendly.com/assets/external/widget.js"
@@ -18,12 +17,7 @@ export default function Calendly({ onClick, calendlyLink, prefill, ...props }) {
     }
   });
 
-  const handleClick = (event) => {
+  return () => {
     window.Calendly.initPopupWidget({ url: calendlyLink, prefill });
-    if (onClick) {
-      onClick(event);
-    }
   };
-
-  return <Button onClick={handleClick} {...props} />;
 }
