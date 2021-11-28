@@ -34,8 +34,8 @@ function RenderContainer({ children, style, hasUpdateButton, ...props }) {
   return (
     <div
       style={{
-        border: "1px solid var(--color-black-10)",
-        padding: "var(--spacing-em-large)",
+        border: "1px solid var(--ye-color-black-10)",
+        padding: "var(--ye-spacing-em-large)",
         ...style,
       }}
       {...props}

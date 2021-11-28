@@ -28,15 +28,15 @@
   & :global .swiper-button-prev {
     width: 3rem;
     height: 3rem;
-    background-color: var(--color-background);
+    background-color: var(--ye-color-background);
     border-radius: 100%;
-    box-shadow: var(--shadow-pressable);
+    box-shadow: var(--ye-shadow-pressable);
     opacity: 0.75;
 
     &:hover,
     &:focus {
       outline: none;
-      box-shadow: var(--shadow-pressed);
+      box-shadow: var(--ye-shadow-pressed);
       opacity: 1;
     }
 
@@ -60,28 +60,28 @@
 
 .title {
   margin: 0;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-huge);
+  font-weight: var(--ye-font-weight-semibold);
+  font-size: var(--ye-font-size-huge);
 }
 
 .subtitle {
-  margin: var(--spacing-em-xtiny) 0 0;
-  font-weight: var(--font-weight-thin);
-  font-size: var(--font-size-normal);
+  margin: var(--ye-spacing-em-xtiny) 0 0;
+  font-weight: var(--ye-font-weight-thin);
+  font-size: var(--ye-font-size-normal);
 }
 
 .swiper {
   overflow: visible;
 
   @nest .title + & {
-    margin-top: var(--em-base);
+    margin-top: var(--ye-em-base);
   }
 }
 
 .top {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 var(--em-base);
+  margin: 0 0 var(--ye-em-base);
 }
 
 .top-left {
@@ -96,8 +96,8 @@
 
 .has-separator {
   position: relative;
-  margin-bottom: var(--em-base);
-  padding-bottom: var(--em-base);
+  margin-bottom: var(--ye-em-base);
+  padding-bottom: var(--ye-em-base);
 
   &::after {
     position: absolute;
@@ -105,7 +105,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-black-10);
+    background-color: var(--ye-color-black-10);
     content: "";
   }
 }
