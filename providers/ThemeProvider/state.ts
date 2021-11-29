@@ -5,7 +5,7 @@ export interface ThemeState {
 
 const INITIAL_THEME_STATE: ThemeState = {
   themeOptions: {},
-  activeThemeClassName: "default",
+  activeThemeClassName: "",
 };
 
 export default INITIAL_THEME_STATE;
