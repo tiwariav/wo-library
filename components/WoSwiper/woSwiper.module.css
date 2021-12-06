@@ -26,12 +26,12 @@
 
   & :global .swiper-button-next,
   & :global .swiper-button-prev {
-    width: 3rem;
-    height: 3rem;
+    --swiper-navigation-size:3rem;
     background-color: var(--ye-color-background);
     border-radius: 100%;
     box-shadow: var(--ye-shadow-pressable);
     opacity: 0.75;
+    width: var(--swiper-navigation-size);
 
     &:hover,
     &:focus {
