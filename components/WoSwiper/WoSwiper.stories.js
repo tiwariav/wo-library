@@ -1,3 +1,4 @@
+import path from "node:path";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
 import Button from "ye-ui/components/atoms/forms/Button/Button";
 import { WithImage as CardWithImage } from "ye-ui/components/atoms/sections/Card/Card.stories";
@@ -19,7 +20,7 @@ const moreLinkMap = {
 };
 
 const metadata = {
-  title: getStoryName(__dirname),
+  title: getStoryName(path.dirname(import.meta.url)),
   component: WoSwiper,
   argTypes: {
     moreLink: {
