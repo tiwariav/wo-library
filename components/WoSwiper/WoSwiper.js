@@ -9,7 +9,7 @@ import {
   Mousewheel,
   Navigation,
 } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles";
 import styles from "./woSwiper.module.css";
 

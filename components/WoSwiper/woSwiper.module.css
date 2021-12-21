@@ -13,6 +13,8 @@
 
     &::after {
       right: -1px;
+      position: relative;
+      font-size: var(--fnot-size-large);
     }
   }
 
@@ -21,6 +23,8 @@
 
     &::after {
       left: -1px;
+      position: relative;
+      font-size: var(--fnot-size-large);
     }
   }
 
@@ -38,11 +42,6 @@
       outline: none;
       box-shadow: var(--ye-shadow-pressed);
       opacity: 1;
-    }
-
-    &::after {
-      position: relative;
-      font-size: var(--fnot-size-large);
     }
 
     &.swiper-button-disabled {

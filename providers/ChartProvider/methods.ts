@@ -1,5 +1,5 @@
-import { svgNodeToData } from "../../../ye-ui/lib/svg";
-import { pushOrCreate } from "../../utils/object";
+import { svgNodeToData } from "ye-ui/lib/svg";
+import { pushOrCreate } from "../../utils/objects";
 
 export default function createChartMethods(state) {
   return {

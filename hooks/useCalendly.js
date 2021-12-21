@@ -1,7 +1,6 @@
 import { useEffectOnce } from "react-use";
-import loadScript from "../../lib/loadScript";
-import loadStylesheet from "../../lib/loadStylesheet";
-import { WoLoadScriptError } from "../../utils/error";
+import { loadScript, loadStylesheet } from "../lib";
+import { WoLoadScriptError } from "../utils/error";
 
 export default function useCalendly({ calendlyLink, prefill }) {
   useEffectOnce(async () => {
