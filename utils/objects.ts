@@ -1,23 +1,11 @@
-import { isObject, reduce } from "lodash-es";
+import { isObject } from "lodash-es";
 
-export function cloneIfModified(original, update) {
-  const diff = reduce(
-    update,
-    function (result, value, key) {
-      if (original[key] !== value) result[key] = value;
-      return result;
-    },
-    {}
-  );
-  for (const key in diff) {
-    if (Object.prototype.hasOwnProperty.call(diff, key)) {
-      return { ...original, ...diff };
-    }
-  }
-  return original;
-}
-
-export function pushOrCreate(object, key, value, index) {
+export function pushOrCreate(
+  object: Record<any, any>,
+  key: string | number,
+  value: any,
+  index: string | number
+) {
   if (!object[key]) {
     return [value];
   }
@@ -30,7 +18,7 @@ export function pushOrCreate(object, key, value, index) {
   return newValue;
 }
 
-export function getNestedValue(data, key) {
+export function getNestedValue(data: Record<any, any>, key: string) {
   let keys = Object.keys(data);
   let response = [];
   if (keys && !keys.includes(key)) {

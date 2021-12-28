@@ -1,14 +1,14 @@
 import path from "node:path";
 import { posixPath } from "ye-ui/lib/path";
 
-const PACKAGE_NAME = "wo-library";
+const packageName = "wo-library";
 
-export function getStoryName(filename) {
+export function getStoryName(filename: string): string {
   const dirname = path.dirname(filename);
-  const storyName = posixPath(dirname).split(`/${PACKAGE_NAME}/`)[1];
-  return `${PACKAGE_NAME}/${storyName}`;
+  const storyName = posixPath(dirname).split(`/${packageName}/`)[1];
+  return `${packageName}/${storyName}`;
 }
 
-export function getStoryFile(storyKind) {
+export function getStoryFile(storyKind: string): string {
   return storyKind;
 }

@@ -2,14 +2,37 @@ import { merge } from "lodash-es";
 import { anyStorageInstance } from "../lib/storage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
-const CONTENT_TYPE = "Content-Type";
-const ACCESS_TOKEN = "wo:authToken";
-const CONTENT_TYPE_FORM = "multipart/form-data";
-const DEFAULT_HEADERS = {
-  [CONTENT_TYPE]: "application/json",
+export type WoRequestQuery = Record<string, number | boolean | string>;
+export type WoRequestId = Record<string, string>;
+type XHREventListener = (
+  this: XMLHttpRequestUpload,
+  ev: ProgressEvent<XMLHttpRequestEventTarget>
+) => any;
+type XHRStateChange = (
+  state: XMLHttpRequest["readyState"],
+  xhrObject: XMLHttpRequest
+) => any;
+
+interface FetchURLNamedArgs {
+  data?: Record<any, any>;
+  errorHandler?: typeof defaultErrorHandler;
+  headers?: Record<string, string>;
+  id?: WoRequestId;
+  noProxy?: boolean;
+  query?: WoRequestQuery;
+  requireAuth?: boolean;
+  trailingSlash?: boolean;
+  token?: string;
+}
+
+const contentType = "Content-Type";
+const accessToken = "wo:authToken";
+const contentTypeForm = "multipart/form-data";
+const defaultHeaders = {
+  [contentType]: "application/json",
 };
 
-function getFormData(data, file) {
+function getFormData(data?: Record<string, string>, file?: Blob): FormData {
   const formData = new FormData();
   if (data) {
     for (const [key, value] of Object.entries(data)) {
@@ -20,7 +43,10 @@ function getFormData(data, file) {
   return formData;
 }
 
-export function defaultResponseErrorHandler(error, data) {
+export function defaultResponseErrorHandler(
+  error: WoResponseError,
+  data: Response
+): void {
   // handle http response status codes
   switch (data.status) {
     case 400:
@@ -44,7 +70,10 @@ export function defaultResponseErrorHandler(error, data) {
   }
 }
 
-export function defaultErrorHandler(error, data) {
+export function defaultErrorHandler(
+  error: WoResponseError,
+  data: Response
+): void {
   // handle manual set error status codes
   switch (error.name) {
     case "TypeError":
@@ -59,7 +88,7 @@ export function defaultErrorHandler(error, data) {
   }
 }
 
-export function combineURLs(baseURL, relativeURL) {
+export function combineURLs(baseURL: string, relativeURL?: string): string {
   const combinedUrl = relativeURL
     ? `${baseURL.replace(/\/+$/, "")}/${relativeURL.replace(/^\/+/, "")}`
     : baseURL;
@@ -67,30 +96,42 @@ export function combineURLs(baseURL, relativeURL) {
 }
 
 export function createURL(
-  apiEndpoint,
-  path,
-  { query, id, trailingSlash, devProxy } = {}
-) {
-  let resourceURL = path;
+  apiEndpoint: string,
+  path: string,
+  {
+    query,
+    id,
+    trailingSlash,
+    devProxy,
+  }: {
+    query?: WoRequestQuery;
+    id?: WoRequestId;
+    trailingSlash?: boolean;
+    devProxy?: string;
+  } = {}
+): URL {
+  let resourcePath = path;
   let baseURL = apiEndpoint;
   if (devProxy && path.startsWith(devProxy)) {
-    resourceURL = path.replace(devProxy, "");
+    resourcePath = path.replace(devProxy, "");
   }
-  if (resourceURL.startsWith("http:") || resourceURL.startsWith("https:")) {
-    resourceURL = new URL(combineURLs(resourceURL));
+  let resourceURL: URL;
+  if (resourcePath.startsWith("http:") || resourcePath.startsWith("https:")) {
+    resourceURL = new URL(combineURLs(resourcePath));
   } else {
     if (
       !(apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:"))
     ) {
       baseURL = combineURLs(window.location.origin, apiEndpoint);
     }
-    resourceURL = new URL(combineURLs(baseURL, resourceURL));
+    resourceURL = new URL(combineURLs(baseURL, resourcePath));
   }
   if (id && resourceURL.pathname.slice(-1) !== "/") {
     resourceURL.pathname += `/${id}`;
   }
   if (query) {
-    resourceURL.search = new URLSearchParams(query);
+    const searchParams = new URLSearchParams(query as Record<string, string>);
+    resourceURL.search = searchParams.toString();
   }
   if (trailingSlash && resourceURL.pathname.slice(-1) !== "/") {
     resourceURL.pathname += "/";
@@ -98,17 +139,36 @@ export function createURL(
   return resourceURL;
 }
 
+interface WoFetchArgs {
+  tokenName?: string;
+  errorHandler?: typeof defaultErrorHandler;
+  authHeader?: string;
+  authTokenPrefix?: string;
+  trailingSlash?: boolean;
+  devProxy?: string;
+}
+
+export interface WoFetch extends WoFetchArgs {
+  apiEndpoint: string;
+}
+
+/**
+ *
+ *
+ * @export
+ * @class WoFetch
+ */
 export class WoFetch {
   constructor(
-    apiEndpoint,
+    apiEndpoint: string,
     {
-      tokenName = ACCESS_TOKEN,
+      tokenName = accessToken,
       errorHandler = defaultErrorHandler,
       authHeader = "Authorization",
       authTokenPrefix = "Bearer",
       trailingSlash = false,
       devProxy,
-    } = {}
+    }: WoFetchArgs = {}
   ) {
     this.apiEndpoint = apiEndpoint;
     this.tokenName = tokenName;
@@ -119,23 +179,38 @@ export class WoFetch {
     this.devProxy = devProxy;
   }
 
-  handleResponse = async (response, errorHandler = this.errorHandler) => {
+  /**
+   *
+   * @param response the fetch Response object
+   * @param {errorHandler} errorHandler
+   * @returns
+   */
+  handleResponse = async (
+    response: Response,
+    errorHandler = this.errorHandler
+  ): Promise<Response | object | string | ReturnType<typeof errorHandler>> => {
     if (response.ok) {
       if (response.status === 204) {
-        // success, but no response content
+        // success, but no response content, return empty string
         return response.text();
       }
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
+        // success, and response type json, return the json content
         return response.json();
       }
+      // success, and response type unknown, return the entire response
       return response;
     }
+    // request not successful, raise error from response
     return errorHandler(new WoResponseError("Not Ok!"), response);
   };
 
-  handleError = async (error, errorHandler = this.errorHandler) => {
-    if (error.data) {
+  handleError = async (
+    error: Response | WoErrorData,
+    errorHandler = this.errorHandler
+  ): Promise<void> => {
+    if (error instanceof WoErrorData) {
       throw error;
     } else {
       return errorHandler(new WoNetworkError("Network Error!"), error);
@@ -143,15 +218,20 @@ export class WoFetch {
   };
 
   getHeaders = async ({
+    token,
     headers = {},
     requireAuth = true,
-    token,
     xhr = false,
-  } = {}) => {
+  }: {
+    token?: string;
+    headers?: Record<string, string>;
+    requireAuth?: boolean;
+    xhr?: boolean;
+  } = {}): Promise<Headers | Map<string, string>> => {
     const headersInstance = xhr ? new Map() : new Headers();
-    const allHeaders = merge({}, DEFAULT_HEADERS, headers);
-    if (allHeaders[CONTENT_TYPE] === CONTENT_TYPE_FORM) {
-      delete allHeaders[CONTENT_TYPE];
+    const allHeaders = merge({}, defaultHeaders, headers);
+    if (allHeaders[contentType] === contentTypeForm) {
+      delete allHeaders[contentType];
     }
     if (requireAuth && this.tokenName) {
       const accessToken =
@@ -160,18 +240,14 @@ export class WoFetch {
     }
     for (const key in allHeaders) {
       const element = allHeaders[key];
-      if (xhr) {
-        headersInstance[key] = element;
-      } else {
-        headersInstance.set(key, element);
-      }
+      headersInstance.set(key, element);
     }
     return headersInstance;
   };
 
   fetchURL = async (
-    method,
-    path,
+    method: string,
+    path: string,
     {
       data,
       errorHandler,
@@ -182,8 +258,10 @@ export class WoFetch {
       requireAuth,
       trailingSlash = this.trailingSlash,
       token,
-    } = {}
-  ) => {
+    }: FetchURLNamedArgs = {}
+  ): Promise<
+    ReturnType<typeof this.handleResponse | typeof this.handleError>
+  > => {
     const requestHeaders = await this.getHeaders({
       headers,
       requireAuth,
@@ -195,31 +273,35 @@ export class WoFetch {
       trailingSlash,
       devProxy: !noProxy ? this.devProxy : undefined,
     });
-    let body;
+    let body: any;
     if (data) {
       body =
-        requestHeaders.get("Content-Type") === CONTENT_TYPE_FORM
+        requestHeaders.get("Content-Type") === contentTypeForm
           ? data
           : JSON.stringify(data);
     }
-    return fetch(url, { body, headers: requestHeaders, method })
+    return fetch(url.toString(), {
+      body,
+      headers: Object.fromEntries(requestHeaders),
+      method,
+    })
       .then((response) => this.handleResponse(response, errorHandler))
       .catch((error) => this.handleError(error, errorHandler));
   };
 
-  getUrl = async (...args) => this.fetchURL("GET", ...args);
+  getUrl = async (path, options) => this.fetchURL("GET", path, options);
 
-  postUrl = async (...args) => this.fetchURL("POST", ...args);
+  postUrl = async (path, options) => this.fetchURL("POST", path, options);
 
-  putUrl = async (...args) => this.fetchURL("PUT", ...args);
+  putUrl = async (path, options) => this.fetchURL("PUT", path, options);
 
-  patchUrl = async (...args) => this.fetchURL("PATCH", ...args);
+  patchUrl = async (path, options) => this.fetchURL("PATCH", path, options);
 
-  deleteUrl = async (...args) => this.fetchURL("DELETE", ...args);
+  deleteUrl = async (path, options) => this.fetchURL("DELETE", path, options);
 
   uploadFileXHR = async (
-    path,
-    file,
+    path: string,
+    file: Blob,
     {
       requireAuth,
       data,
@@ -227,12 +309,19 @@ export class WoFetch {
       loadStartFunction,
       transferCompleteFunction,
       onStateChange,
+    }: {
+      requireAuth: boolean;
+      data: Record<any, any>;
+      progressFunction: XHREventListener;
+      loadStartFunction: XHREventListener;
+      transferCompleteFunction: XHREventListener;
+      onStateChange: XHRStateChange;
     }
-  ) => {
+  ): Promise<void> => {
     const formData = getFormData(data, file);
 
     const headers = await this.getHeaders({
-      headers: { "Content-Type": CONTENT_TYPE_FORM },
+      headers: { "Content-Type": contentTypeForm },
       xhr: true,
       requireAuth,
     });
@@ -260,7 +349,7 @@ export class WoFetch {
       }
 
       // when an XHR object is opened, add a listener for its readystatechange events
-      xhrObject.addEventListener("readystatechange", (e) => {
+      xhrObject.addEventListener("readystatechange", () => {
         if (onStateChange) {
           onStateChange(xhrObject.readyState, xhrObject);
         }
@@ -270,7 +359,7 @@ export class WoFetch {
         if (xhrObject.status >= 300 || xhrObject.status < 200) {
           reject(xhrObject);
         }
-        resolve(xhrObject);
+        resolve();
       });
 
       xhrObject.open(

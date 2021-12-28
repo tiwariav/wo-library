@@ -1,6 +1,12 @@
 import { WoLoadScriptError } from "../../utils/error";
 import loadScript from "../loadScript";
 
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
 export async function checkout({
   currency,
   description,
@@ -11,8 +17,10 @@ export async function checkout({
   orderID,
   prefill,
 }) {
-  const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-  if (!res) {
+  const response = await loadScript(
+    "https://checkout.razorpay.com/v1/checkout.js"
+  );
+  if (!response) {
     throw new WoLoadScriptError("Razorpay SDK failed to load!");
   }
 
