@@ -77,7 +77,7 @@ export default function WoSwiper({
         spaceBetween={variant === "coverflow" ? 64 : 32}
         slidesPerView={"auto"}
         // freemode
-        freeMode={true}
+        freeMode
         freeModeSticky={!navigation}
         // navigation
         navigation={navigation}
