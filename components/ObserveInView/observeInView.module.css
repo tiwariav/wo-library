@@ -1,4 +1,4 @@
-.root {
+.animate {
   opacity: 0.5;
   transition-timing-function: ease-in-out;
   transition-duration: 600ms;
@@ -10,20 +10,13 @@
   &.in-view {
     opacity: 1;
   }
-}
 
-.out-bottom {
-  transform: translateY(0.75rem);
-
-  &.in-view {
-    transform: translateY(0);
+  &.out-bottom {
+    transform: translateY(0.75rem);
   }
-}
 
-.out-top {
-  transform: translateY(-0.75rem);
-
-  &.in-view {
-    transform: translateY(0);
+  &.out-top {
+    transform: translateY(-0.75rem);
   }
+
 }
