@@ -25,6 +25,7 @@ export default function WoSwiper({
   moreLinkVertical,
   hasSeparator,
   fade,
+  freeMode,
   navigation,
   ...props
 }) {
@@ -77,8 +78,11 @@ export default function WoSwiper({
         spaceBetween={variant === "coverflow" ? 64 : 32}
         slidesPerView={"auto"}
         // freemode
-        freeMode
-        freeModeSticky={!navigation}
+        freeMode={{
+          enabled: true,
+          sticky: !navigation,
+          ...freeMode,
+        }}
         // navigation
         navigation={navigation}
         // mousewheel
