@@ -13,40 +13,42 @@
   ],
   "exports": {
     "./components": "./components/index.js",
+    "./contexts": "./contexts/index.ts",
     "./hooks": "./hooks/index.js",
     "./lib/cjs": {
       "require": "./lib/cjs/index.cjs"
     },
     "./lib/*": "./lib/*/index.ts",
     "./lib": "./lib/index.ts",
-    "./providers": "./providers/index.ts",
     "./utils/*": "./utils/*"
   },
   "scripts": {
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.15.17",
+    "@react-native-async-storage/async-storage": "^1.16.0",
     "clsx": "^1.1.1",
-    "http-proxy-middleware": "^2.0.2",
+    "http-proxy-middleware": "^2.0.3",
     "immer": "^9.0.12",
     "lodash-es": "^4.17.21",
     "micromatch": "^4.0.4",
     "paths.macro": "^3.0.1",
     "prop-types": "^15.8.1",
-    "react-hook-form": "^7.25.3",
+    "react-hook-form": "^7.26.1",
     "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.33.1",
     "react-use": "^17.3.2",
-    "swiper": "^7.4.1",
+    "swiper": "^8.0.3",
     "ye-ui": "workspace:*"
   },
   "devDependencies": {
-    "@mdx-js/react": "^1.6.22",
-    "@storybook/addon-docs": "^6.4.17",
-    "@storybook/addon-links": "^6.4.17",
+    "@mdx-js/react": "^2.0.0",
+    "@storybook/addon-docs": "^6.4.18",
+    "@storybook/addon-links": "^6.4.18",
     "@testing-library/react": "^12.1.2",
-    "@types/node": "^17.0.13"
+    "@types/node": "^17.0.16",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11"
   },
   "peerDependencies": {
     "react": "^17.0.2",
