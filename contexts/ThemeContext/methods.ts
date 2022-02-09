@@ -11,5 +11,16 @@ export default function createThemeMethods(state: ThemeState) {
     setThemeOptions: (themeOptions) => {
       return { ...state, themeOptions };
     },
+    setSectionTheme: (sectionName, themeName) => {
+      if (state.sectionThemes[sectionName] === themeName) {
+        return state;
+      } else {
+        const sectionThemes = {
+          ...state.sectionThemes,
+          [sectionName]: themeName,
+        };
+        return { ...state, sectionThemes };
+      }
+    },
   };
 }
