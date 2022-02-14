@@ -6,7 +6,7 @@ export type WoRequestQuery = Record<string, number | boolean | string>;
 export type WoRequestId = Record<string, string>;
 type XHREventListener = (
   this: XMLHttpRequestUpload,
-  ev: ProgressEvent<XMLHttpRequestEventTarget>
+  event: ProgressEvent<XMLHttpRequestEventTarget>
 ) => any;
 type XHRStateChange = (
   state: XMLHttpRequest["readyState"],
