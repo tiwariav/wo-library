@@ -260,7 +260,7 @@ export class WoFetch {
       token,
     }: FetchURLNamedArgs = {}
   ): Promise<
-    ReturnType<typeof this.handleResponse | typeof this.handleError>
+    any | ReturnType<typeof this.handleResponse | typeof this.handleError>
   > => {
     const requestHeaders = await this.getHeaders({
       headers,
