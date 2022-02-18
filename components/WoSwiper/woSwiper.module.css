@@ -12,8 +12,8 @@
     right: 0.5rem;
 
     &::after {
-      right: -1px;
       position: relative;
+      right: -1px;
       font-size: var(--fnot-size-large);
     }
   }
@@ -22,8 +22,8 @@
     left: 0.5rem;
 
     &::after {
-      left: -1px;
       position: relative;
+      left: -1px;
       font-size: var(--fnot-size-large);
     }
   }
@@ -31,11 +31,12 @@
   & :global .swiper-button-next,
   & :global .swiper-button-prev {
     --swiper-navigation-size:3rem;
+
+    width: var(--swiper-navigation-size);
     background-color: var(--ye-color-background);
     border-radius: 100%;
     box-shadow: var(--ye-shadow-pressable);
     opacity: 0.75;
-    width: var(--swiper-navigation-size);
 
     &:hover,
     &:focus {
