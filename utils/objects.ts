@@ -19,7 +19,7 @@ export function pushOrCreate(
 }
 
 export function getNestedValue(data: Record<any, any>, key: string) {
-  let keys = Object.keys(data);
+  const keys = Object.keys(data);
   let response = [];
   if (keys && !keys.includes(key)) {
     for (const value of Object.values(data)) {
