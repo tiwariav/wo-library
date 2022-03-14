@@ -1,16 +1,19 @@
 import { ReactNode, useMemo } from "react";
-import { useMethods } from "react-use";
+import useMethods, { WrappedMethods } from "../../hooks/useMethods";
 import { createAndUseContext } from "../utils";
 import createThemeMethods from "./methods";
 import INITIAL_THEME_STATE, { ThemeState } from "./state";
 
 interface ThemeProviderProps {
   children: ReactNode;
-  data: object;
+  data: ThemeState;
 }
 
 const { Context, DispatchContext, useContextState, useContextDispatch } =
-  createAndUseContext<ThemeState, ReturnType<typeof createThemeMethods>>();
+  createAndUseContext<
+    ThemeState,
+    WrappedMethods<ReturnType<typeof createThemeMethods>>
+  >();
 
 export function ThemeProvider({ children, data }: ThemeProviderProps) {
   const memoizedInitialState = useMemo(

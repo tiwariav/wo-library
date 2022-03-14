@@ -4,7 +4,7 @@ export function pushOrCreate(
   object: Record<any, any>,
   key: string | number,
   value: any,
-  index: string | number
+  index?: string | number
 ) {
   if (!object[key]) {
     return [value];

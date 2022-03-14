@@ -13,7 +13,7 @@ type XHRStateChange = (
   xhrObject: XMLHttpRequest
 ) => any;
 
-interface FetchURLNamedArgs {
+interface FetchURLOptions {
   data?: Record<any, any>;
   errorHandler?: typeof defaultErrorHandler;
   headers?: Record<string, string>;
@@ -24,6 +24,8 @@ interface FetchURLNamedArgs {
   trailingSlash?: boolean;
   token?: string;
 }
+
+type FetchURLArgs = [path: string, options?: FetchURLOptions];
 
 const contentType = "Content-Type";
 const accessToken = "wo:authToken";
@@ -139,7 +141,7 @@ export function createURL(
   return resourceURL;
 }
 
-interface WoFetchArgs {
+interface WoFetchOptions {
   tokenName?: string;
   errorHandler?: typeof defaultErrorHandler;
   authHeader?: string;
@@ -148,7 +150,7 @@ interface WoFetchArgs {
   devProxy?: string;
 }
 
-export interface WoFetch extends WoFetchArgs {
+export interface WoFetch extends WoFetchOptions {
   apiEndpoint: string;
 }
 
@@ -168,7 +170,7 @@ export class WoFetch {
       authTokenPrefix = "Bearer",
       trailingSlash = false,
       devProxy,
-    }: WoFetchArgs = {}
+    }: WoFetchOptions = {}
   ) {
     this.apiEndpoint = apiEndpoint;
     this.tokenName = tokenName;
@@ -258,7 +260,7 @@ export class WoFetch {
       requireAuth,
       trailingSlash = this.trailingSlash,
       token,
-    }: FetchURLNamedArgs = {}
+    }: FetchURLOptions = {}
   ): Promise<
     any | ReturnType<typeof this.handleResponse | typeof this.handleError>
   > => {
@@ -289,15 +291,15 @@ export class WoFetch {
       .catch((error) => this.handleError(error, errorHandler));
   };
 
-  getUrl = async (path, options) => this.fetchURL("GET", path, options);
+  getUrl = async (...rest: FetchURLArgs) => this.fetchURL("GET", ...rest);
 
-  postUrl = async (path, options) => this.fetchURL("POST", path, options);
+  postUrl = async (...rest: FetchURLArgs) => this.fetchURL("POST", ...rest);
 
-  putUrl = async (path, options) => this.fetchURL("PUT", path, options);
+  putUrl = async (...rest: FetchURLArgs) => this.fetchURL("PUT", ...rest);
 
-  patchUrl = async (path, options) => this.fetchURL("PATCH", path, options);
+  patchUrl = async (...rest: FetchURLArgs) => this.fetchURL("PATCH", ...rest);
 
-  deleteUrl = async (path, options) => this.fetchURL("DELETE", path, options);
+  deleteUrl = async (...rest: FetchURLArgs) => this.fetchURL("DELETE", ...rest);
 
   uploadFileXHR = async (
     path: string,

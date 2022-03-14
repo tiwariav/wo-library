@@ -1,6 +1,14 @@
+export interface ThemeOptions {
+  [name: string]: string;
+}
+
+export interface SectionThemes {
+  [sectionName: string]: string;
+}
+
 export interface ThemeState {
-  themeOptions: { [name: string]: string };
-  sectionThemes: { [name: string]: string };
+  themeOptions: ThemeOptions;
+  sectionThemes: SectionThemes;
   activeThemeClassName: string;
 }
 

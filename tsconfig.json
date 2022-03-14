@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["components", "hooks", "lib", "providers", "utils"]
+  "include": ["components", "context", "hooks", "lib", "utils"]
 }

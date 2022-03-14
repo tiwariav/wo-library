@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
 
-export function createAndUseContext<TState, TDispatch>() {
-  const Context = createContext<TState>({} as TState);
-  const DispatchContext = createContext<TDispatch>({} as TDispatch);
+export function createAndUseContext<TypeState, TpyeDispatch>() {
+  const Context = createContext<TypeState>({} as TypeState);
+  const DispatchContext = createContext<TpyeDispatch>({} as TpyeDispatch);
 
   const useContextState = () => useContext(Context);
   const useContextDispatch = () => useContext(DispatchContext);

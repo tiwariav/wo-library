@@ -1,16 +1,19 @@
 import { ReactNode, useMemo } from "react";
-import { useMethods } from "react-use";
+import useMethods, { WrappedMethods } from "../../hooks/useMethods";
 import { createAndUseContext } from "../utils";
 import createChartMethods from "./methods";
-import INITIAL_CHART_STATE from "./state";
+import INITIAL_CHART_STATE, { ChartState } from "./state";
 
 interface ChartProviderProps {
   children: ReactNode;
-  data: object;
+  data: ChartState;
 }
 
 const { Context, DispatchContext, useContextState, useContextDispatch } =
-  createAndUseContext<any, ReturnType<typeof createChartMethods>>();
+  createAndUseContext<
+    ChartState,
+    WrappedMethods<ReturnType<typeof createChartMethods>>
+  >();
 
 export function ChartProvider({ children, data }: ChartProviderProps) {
   const memoizedInitialState = useMemo(

@@ -14,7 +14,7 @@
   "exports": {
     "./components": "./components/index.js",
     "./contexts": "./contexts/index.ts",
-    "./hooks": "./hooks/index.js",
+    "./hooks": "./hooks/index.ts",
     "./lib/cjs": {
       "require": "./lib/cjs/index.cjs"
     },

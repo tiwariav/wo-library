@@ -1,17 +1,17 @@
-import { ThemeState } from "./state";
+import { ThemeOptions, ThemeState } from "./state";
 
 export default function createThemeMethods(state: ThemeState) {
   return {
-    setThemeClassName: (themeClassName) => {
+    setThemeClassName: (themeClassName: string): ThemeState => {
       return { ...state, activeThemeClassName: themeClassName };
     },
-    setThemeName: (themeName) => {
+    setThemeName: (themeName: string): ThemeState => {
       return { ...state, activeThemeClassName: state.themeOptions[themeName] };
     },
-    setThemeOptions: (themeOptions) => {
+    setThemeOptions: (themeOptions: ThemeOptions): ThemeState => {
       return { ...state, themeOptions };
     },
-    setSectionTheme: (sectionName, themeName) => {
+    setSectionTheme: (sectionName: string, themeName: string): ThemeState => {
       if (state.sectionThemes[sectionName] === themeName) {
         return state;
       } else {
