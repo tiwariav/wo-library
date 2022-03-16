@@ -7,9 +7,9 @@ type Action = {
 
 type CreateMethods<M, T> = (state: T) => M;
 
-export type Some = Record<string, (...args: any[]) => any>;
+type FunctionRecord = Record<string, (...args: any[]) => any>;
 
-export type WrappedMethods<M extends Some> = {
+export type WrappedMethods<M extends FunctionRecord> = {
   [P in keyof M]: (...payload: Parameters<M[P]>) => void;
 };
 

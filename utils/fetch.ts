@@ -261,9 +261,7 @@ export class WoFetch {
       trailingSlash = this.trailingSlash,
       token,
     }: FetchURLOptions = {}
-  ): Promise<
-    any | ReturnType<typeof this.handleResponse | typeof this.handleError>
-  > => {
+  ): Promise<any> => {
     const requestHeaders = await this.getHeaders({
       headers,
       requireAuth,
