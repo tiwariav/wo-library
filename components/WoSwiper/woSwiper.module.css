@@ -34,7 +34,7 @@
 
     width: var(--swiper-navigation-size);
     background-color: var(--ye-color-background);
-    border-radius: 100%;
+    border-radius: var(--ye-radius-circle);
     box-shadow: var(--ye-shadow-pressable);
     opacity: 0.75;
 
