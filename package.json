@@ -26,7 +26,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.17.0",
+    "@react-native-async-storage/async-storage": "^1.17.1",
     "clsx": "^1.1.1",
     "http-proxy-middleware": "^2.0.4",
     "immer": "^9.0.12",
@@ -34,7 +34,7 @@
     "micromatch": "^4.0.5",
     "paths.macro": "^3.0.1",
     "prop-types": "^15.8.1",
-    "react-hook-form": "^7.28.1",
+    "react-hook-form": "^7.29.0",
     "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.33.1",
     "react-use": "^17.3.2",
