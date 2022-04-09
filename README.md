@@ -1,5 +1,7 @@
 # wo-library
 
+React components with minimum styling, to be used along with any other design system.
+
 ## Optimizations
 
 ### Providers

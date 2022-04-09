@@ -1,0 +1,136 @@
+import {
+  arrow,
+  autoPlacement,
+  autoUpdate,
+  offset,
+  Placement,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useFocus,
+  useHover,
+  useInteractions,
+  useRole,
+} from "@floating-ui/react-dom-interactions";
+import clsx from "clsx";
+import React, {
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import styles from "./tooltip.module.css";
+
+interface TooltipProps {
+  className?: string;
+  options?: any;
+  placement?: Placement;
+  title: string;
+  trigger: string[];
+  visible?: boolean;
+  popover?: boolean;
+  overlayClassName?: string;
+}
+
+const defaultOptions = { offset: 8, padding: 8 };
+
+const Tooltip: React.FC<TooltipProps> = ({
+  children,
+  className,
+  visible,
+  placement,
+  title,
+  options: propsOptions,
+  popover,
+  overlayClassName,
+  trigger = ["click"],
+  style,
+}) => {
+  const arrowRef = useRef(null);
+  const [show, setShow] = useState(visible);
+  const open = visible || show;
+  const options = { ...defaultOptions, ...propsOptions };
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    context,
+    refs,
+    update,
+    middlewareData,
+  } = useFloating({
+    ...(placement ? { placement } : {}),
+    open,
+    onOpenChange: setShow,
+    middleware: [
+      ...(arrowRef?.current ? [arrow({ element: arrowRef.current })] : []),
+      offset(options.offset),
+      shift({ padding: options.padding }),
+      ...(!placement ? [autoPlacement()] : []),
+    ],
+  });
+
+  const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useHover(context, {
+      enabled: trigger.includes("hover"),
+      delay: {
+        open: 0,
+        close: 500,
+      },
+    }),
+    useClick(context),
+    useFocus(context),
+    useRole(context, { role: "tooltip" }),
+    useDismiss(context),
+  ]);
+
+  useEffect(() => {
+    if (refs.reference.current && refs.floating.current && open) {
+      return autoUpdate(refs.reference.current, refs.floating.current, update);
+    }
+  }, [refs.reference, refs.floating, update, open]);
+
+  return (
+    <div className={clsx(styles.root, className)} style={style}>
+      {isValidElement(children) &&
+        cloneElement(children, getReferenceProps({ ref: reference }))}
+      {open && (
+        <div
+          className={clsx(
+            styles.tooltip,
+            { [styles.isVisible]: open },
+            { [styles.isPopover]: popover },
+            { [styles.isPlain]: !popover },
+            overlayClassName
+          )}
+          {...getFloatingProps({
+            ref: floating,
+            style: {
+              position: strategy,
+              top: y ?? "",
+              left: x ?? "",
+            },
+          })}
+        >
+          {title}
+          {/* <div
+            ref={arrowRef}
+            className={styles.arrow}
+            style={{
+              left: arrowX != null ? `${arrowX}px` : "",
+              top: arrowY != null ? `${arrowY}px` : "",
+            }}
+          /> */}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Tooltip;
