@@ -4,10 +4,14 @@
 }
 
 .tooltip {
+  z-index: var(--z-index-base);
   display: none;
+  padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
   font-size: var(--ye-font-size-small);
   background-color: var(--ye-color-black-75);
   border-radius: var(--ye-radius-normal);
+  box-shadow: var(--ye-shadow-floating-highest);
+
 
   &.is-visible {
     display: block;
