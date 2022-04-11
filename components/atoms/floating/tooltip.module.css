@@ -1,17 +1,14 @@
-.root {
+.reference {
   position: relative;
   display: flex;
 }
 
-.tooltip {
+.floating {
   z-index: var(--z-index-base);
   display: none;
   padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
   font-size: var(--ye-font-size-small);
-  background-color: var(--ye-color-black-75);
   border-radius: var(--ye-radius-normal);
-  box-shadow: var(--ye-shadow-floating-highest);
-
 
   &.is-visible {
     display: block;
@@ -19,10 +16,7 @@
 
   &.is-plain {
     color: var(--ye-color-white-90);
-  }
-
-  &.is-popover {
-    background-color: var(--ye-color-white);
+    background-color: var(--ye-color-black-75);
   }
 }
 

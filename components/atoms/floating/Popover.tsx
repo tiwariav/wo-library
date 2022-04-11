@@ -4,14 +4,20 @@ import Tooltip from "./Tooltip";
 
 type Props = {
   content: React.ReactNode;
-  className: string;
-  
-}
+  innerClassNames: any;
+};
 
-export default function Popover({ content, className, ...props }:Props) {
+export default function Popover({
+  content,
+  innerClassNames = {},
+  ...props
+}: Props) {
   return (
     <Tooltip
-      className={clsx(styles.root, className)}
+      innerClassNames={{
+        ...innerClassNames,
+        floating: clsx(styles.root, innerClassNames.floating),
+      }}
       title={content}
       popover
       {...props}

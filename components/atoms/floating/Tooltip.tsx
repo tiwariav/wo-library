@@ -14,13 +14,7 @@ import {
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
-import React, {
-  cloneElement,
-  isValidElement,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./tooltip.module.css";
 
 interface TooltipProps {
@@ -31,20 +25,19 @@ interface TooltipProps {
   trigger: string[];
   visible?: boolean;
   popover?: boolean;
-  overlayClassName?: string;
+  innerClassNames?: Record<string, string>;
 }
 
 const defaultOptions = { offset: 8, padding: 8 };
 
 const Tooltip: React.FC<TooltipProps> = ({
   children,
-  className,
+  innerClassNames = {},
   visible,
   placement,
   title,
   options: propsOptions,
   popover,
-  overlayClassName,
   trigger = ["click"],
   style,
 }) => {
@@ -81,7 +74,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       enabled: trigger.includes("hover"),
       delay: {
         open: 0,
-        close: 500,
+        close: 250,
       },
     }),
     useClick(context),
@@ -97,17 +90,22 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [refs.reference, refs.floating, update, open]);
 
   return (
-    <div className={clsx(styles.root, className)} style={style}>
-      {isValidElement(children) &&
-        cloneElement(children, getReferenceProps({ ref: reference }))}
+    <>
+      <div
+        className={clsx(styles.reference, innerClassNames.reference)}
+        style={style}
+        {...getReferenceProps({ ref: reference })}
+      >
+        {children}
+      </div>
       {open && (
         <div
           className={clsx(
-            styles.tooltip,
+            styles.floating,
             { [styles.isVisible]: open },
             { [styles.isPopover]: popover },
             { [styles.isPlain]: !popover },
-            overlayClassName
+            innerClassNames.floating
           )}
           {...getFloatingProps({
             ref: floating,
@@ -129,7 +127,7 @@ const Tooltip: React.FC<TooltipProps> = ({
           /> */}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
