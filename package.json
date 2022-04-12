@@ -27,7 +27,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.1.1",
+    "@floating-ui/react-dom-interactions": "^0.2.0",
     "@react-native-async-storage/async-storage": "^1.17.3",
     "clsx": "^1.1.1",
     "http-proxy-middleware": "^2.0.4",
@@ -38,7 +38,7 @@
     "prop-types": "^15.8.1",
     "react-hook-form": "^7.29.0",
     "react-icons": "^4.3.1",
-    "react-intersection-observer": "^8.33.1",
+    "react-intersection-observer": "^8.34.0",
     "react-use": "^17.3.2",
     "swiper": "^8.1.0",
     "ye-ui": "workspace:*"
@@ -47,9 +47,9 @@
     "@mdx-js/react": "^2.1.1",
     "@storybook/addon-docs": "^6.4.21",
     "@storybook/addon-links": "^6.4.21",
-    "@testing-library/react": "^13.0.0",
+    "@testing-library/react": "^13.0.1",
     "@types/node": "^17.0.23",
-    "@types/react": "^18.0.0",
+    "@types/react": "^18.0.3",
     "@types/react-dom": "^18.0.0"
   },
   "peerDependencies": {
