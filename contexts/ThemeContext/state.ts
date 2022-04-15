@@ -1,4 +1,4 @@
-export interface ThemeOptions {
+export interface ThemeVariants {
   [name: string]: string;
 }
 
@@ -7,15 +7,15 @@ export interface SectionThemes {
 }
 
 export interface ThemeState {
-  themeOptions: ThemeOptions;
+  themeVariants: ThemeVariants;
   sectionThemes: SectionThemes;
-  activeThemeClassName: string;
+  activeThemeName: string;
 }
 
 const INITIAL_THEME_STATE: ThemeState = {
-  themeOptions: {},
+  themeVariants: {},
   sectionThemes: {},
-  activeThemeClassName: "",
+  activeThemeName: "base",
 };
 
 export default INITIAL_THEME_STATE;
