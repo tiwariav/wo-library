@@ -1,22 +1,29 @@
 export function redirectToLogout({
-  path = "logout",
-  message,
+  hashNavigation = true,
   includeFrom = true,
+  message = "",
+  logoutPath = "logout",
 } = {}) {
-  if (window.location.pathname.split("/").includes(path)) {
+  const { search, hash, pathname } = window.location;
+  const considerHash = hash && hashNavigation;
+  const isAlreadyThere =
+    pathname.split("/").includes(logoutPath) ||
+    (considerHash && hash.split("/").includes(logoutPath));
+  if (isAlreadyThere) {
+    // already on logout path
     return;
   }
-  const url = new URL(`${window.location.origin}/${path}`);
-  const search = new URLSearchParams();
+  const currentPath = pathname + search + hash;
+  const redirectPath = `${considerHash && "/#"}/${logoutPath}`;
+  const newSearch = new URLSearchParams();
   if (message) {
-    search.append("message", message);
+    newSearch.append("message", message);
   }
   if (includeFrom) {
-    const from = window.location.pathname + window.location.hash;
-    if (/\w/g.test(from)) {
-      search.append("from", window.location.pathname + window.location.hash);
-    }
+    newSearch.append("from", currentPath);
   }
-  url.search = search;
-  window.location.href = url;
+  const url = new URL(`${window.location.origin}${redirectPath}`);
+  url.search = newSearch.toString();
+  // reload the window to automatically clear session storage and any other data in memory.
+  window.location.href = url.href;
 }
