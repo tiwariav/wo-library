@@ -2,8 +2,11 @@ import { merge } from "lodash-es";
 import { anyStorageInstance } from "../lib/storage";
 import { WoErrorData, WoNetworkError, WoResponseError } from "./error";
 
-export type WoRequestQuery = Record<string, number | boolean | string>;
-export type WoRequestId = Record<string, string>;
+type WoRequestQueryTypes = number | boolean | string;
+export type WoRequestQuery = Record<
+  string,
+  WoRequestQueryTypes | WoRequestQueryTypes[]
+>;
 type XHREventListener = (
   this: XMLHttpRequestUpload,
   event: ProgressEvent<XMLHttpRequestEventTarget>
@@ -13,11 +16,11 @@ type XHRStateChange = (
   xhrObject: XMLHttpRequest
 ) => any;
 
-interface FetchURLOptions {
+export interface FetchURLOptions {
   data?: Record<any, any>;
   errorHandler?: typeof defaultErrorHandler;
   headers?: Record<string, string>;
-  id?: WoRequestId;
+  id?: string;
   noProxy?: boolean;
   query?: WoRequestQuery;
   requireAuth?: boolean;
@@ -107,7 +110,7 @@ export function createURL(
     devProxy,
   }: {
     query?: WoRequestQuery;
-    id?: WoRequestId;
+    id?: string;
     trailingSlash?: boolean;
     devProxy?: string;
   } = {}
