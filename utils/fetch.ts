@@ -16,8 +16,8 @@ type XHRStateChange = (
   xhrObject: XMLHttpRequest
 ) => any;
 
-export interface FetchURLOptions {
-  data?: Record<any, any>;
+export interface FetchURLOptions<DataType = Record<any, any>> {
+  data?: DataType;
   errorHandler?: typeof defaultErrorHandler;
   headers?: Record<string, string>;
   id?: string;
