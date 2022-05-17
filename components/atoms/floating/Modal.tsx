@@ -1,10 +1,10 @@
 import {
+  FloatingFocusManager,
   FloatingOverlay,
   FloatingPortal,
   useClick,
   useDismiss,
   useFloating,
-  useFocusTrap,
   useId,
   useInteractions,
   useRole,
@@ -46,7 +46,6 @@ const Modal: React.FC<Props> = ({
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useClick(context),
-    useFocusTrap(context),
     useRole(context),
     useDismiss(context),
   ]);
@@ -56,18 +55,20 @@ const Modal: React.FC<Props> = ({
       <div {...getReferenceProps({ ref: reference })} />
       <FloatingPortal>
         {open && (
-          <FloatingOverlay lockScroll className={styles.overlay}>
-            <div
-              {...getFloatingProps({
-                ref: floating,
-                className: clsx(styles.modal, className),
-                "aria-labelledby": labelId,
-                "aria-describedby": descriptionId,
-              })}
-            >
-              {children}
-            </div>
-          </FloatingOverlay>
+          <FloatingFocusManager context={context}>
+            <FloatingOverlay lockScroll className={styles.overlay}>
+              <div
+                {...getFloatingProps({
+                  ref: floating,
+                  className: clsx(styles.modal, className),
+                  "aria-labelledby": labelId,
+                  "aria-describedby": descriptionId,
+                })}
+              >
+                {children}
+              </div>
+            </FloatingOverlay>
+          </FloatingFocusManager>
         )}
       </FloatingPortal>
     </>
