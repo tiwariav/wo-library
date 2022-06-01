@@ -2,6 +2,7 @@ import {
   arrow,
   autoPlacement,
   autoUpdate,
+  FloatingPortal,
   offset,
   Placement,
   shift,
@@ -25,6 +26,7 @@ interface TooltipProps {
   trigger: string[];
   visible?: boolean;
   popover?: boolean;
+  portal?: boolean;
   innerClassNames?: Record<string, string>;
 }
 
@@ -38,6 +40,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   title,
   options: propsOptions,
   popover,
+  portal,
   trigger = ["click"],
   style,
 }) => {
@@ -89,6 +92,36 @@ const Tooltip: React.FC<TooltipProps> = ({
     }
   }, [refs.reference, refs.floating, update, open]);
 
+  const body = (
+    <div
+      className={clsx(
+        styles.floating,
+        { [styles.isVisible]: open },
+        { [styles.isPopover]: popover },
+        { [styles.isPlain]: !popover },
+        innerClassNames.floating
+      )}
+      {...getFloatingProps({
+        ref: floating,
+        style: {
+          position: strategy,
+          top: y ?? "",
+          left: x ?? "",
+        },
+      })}
+    >
+      {title}
+      {/* <div
+            ref={arrowRef}
+            className={styles.arrow}
+            style={{
+              left: arrowX != null ? `${arrowX}px` : "",
+              top: arrowY != null ? `${arrowY}px` : "",
+            }}
+          /> */}
+    </div>
+  );
+
   return (
     <>
       <div
@@ -98,35 +131,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      {open && (
-        <div
-          className={clsx(
-            styles.floating,
-            { [styles.isVisible]: open },
-            { [styles.isPopover]: popover },
-            { [styles.isPlain]: !popover },
-            innerClassNames.floating
-          )}
-          {...getFloatingProps({
-            ref: floating,
-            style: {
-              position: strategy,
-              top: y ?? "",
-              left: x ?? "",
-            },
-          })}
-        >
-          {title}
-          {/* <div
-            ref={arrowRef}
-            className={styles.arrow}
-            style={{
-              left: arrowX != null ? `${arrowX}px` : "",
-              top: arrowY != null ? `${arrowY}px` : "",
-            }}
-          /> */}
-        </div>
-      )}
+      {open && (portal ? <FloatingPortal>{body}</FloatingPortal> : body)}
     </>
   );
 };
