@@ -16,17 +16,25 @@ type XHRStateChange = (
   xhrObject: XMLHttpRequest
 ) => any;
 
-export interface FetchURLOptions<DataType = Record<any, any>> {
+export interface FetchURLOptions<
+  DataType = Record<string, any>,
+  QueryType = Record<string, WoRequestQueryTypes | WoRequestQueryTypes[]>
+> {
   data?: DataType;
   errorHandler?: typeof defaultErrorHandler;
   headers?: Record<string, string>;
   id?: string;
   noProxy?: boolean;
-  query?: WoRequestQuery;
+  query?: QueryType;
   requireAuth?: boolean;
   trailingSlash?: boolean;
   token?: string;
 }
+
+export interface FetchURLOptionsData<DataType, QueryType = void>
+  extends FetchURLOptions<DataType, QueryType> {}
+export interface FetchURLOptionsQuery<QueryType, DataType = void>
+  extends FetchURLOptions<DataType, QueryType> {}
 
 type FetchURLArgs = [path: string, options?: FetchURLOptions];
 
