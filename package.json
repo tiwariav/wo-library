@@ -27,8 +27,8 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.6.5",
-    "@react-native-async-storage/async-storage": "^1.17.6",
+    "@floating-ui/react-dom-interactions": "^0.6.6",
+    "@react-native-async-storage/async-storage": "^1.17.7",
     "clsx": "^1.1.1",
     "http-proxy-middleware": "^2.0.6",
     "immer": "^9.0.15",
@@ -36,9 +36,9 @@
     "micromatch": "^4.0.5",
     "paths.macro": "^3.0.1",
     "prop-types": "^15.8.1",
-    "react-hook-form": "^7.32.2",
+    "react-hook-form": "^7.33.0",
     "react-icons": "^4.4.0",
-    "react-intersection-observer": "^9.3.3",
+    "react-intersection-observer": "^9.3.4",
     "react-use": "^17.4.0",
     "swiper": "^8.2.4",
     "ye-ui": "workspace:*"
