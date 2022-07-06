@@ -1,22 +1,28 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+interface StorageBackend {
+  getItem: (arg0: string) => any;
+  setItem: (arg0: string, arg1: any) => void;
+  removeItem: (arg0: string) => void;
+}
+
 export const STORAGE_ENVIRONMENTS = {
   mobile: "mobile",
   server: "server",
   web: "web",
-};
+} as const;
 
 export const STORAGE_TYPES = {
   persist: "persist",
   temp: "temp",
-};
+} as const;
 
 export const memoryStorageItems = {};
 
 const memoryStorage = {
-  getItem: async (key) => memoryStorageItems[key] || null,
-  setItem: async (key, value) => (memoryStorageItems[key] = value),
-  removeItem: async (key) => (memoryStorageItems[key] = null),
+  getItem: async (key: string) => memoryStorageItems[key] || null,
+  setItem: async (key: string, value: any) => (memoryStorageItems[key] = value),
+  removeItem: async (key: string) => (memoryStorageItems[key] = null),
 };
 
 export const DEFAULT_STORAGE_BACKENDS = {
@@ -32,8 +38,17 @@ export const DEFAULT_STORAGE_BACKENDS = {
   },
 };
 
+type StorageEnvironments =
+  typeof STORAGE_ENVIRONMENTS[keyof typeof STORAGE_ENVIRONMENTS];
+type StorageTypes = typeof STORAGE_TYPES[keyof typeof STORAGE_TYPES];
+
 export class AnyStorage {
-  constructor(storageEnv, storageBackends = {}) {
+  storageEnv: StorageEnvironments;
+  storageBackends: {
+    [key in StorageTypes]: StorageBackend;
+  };
+
+  constructor(storageEnv?: StorageEnvironments, storageBackends = {}) {
     this.storageEnv =
       storageEnv ||
       (typeof localStorage !== "undefined"
