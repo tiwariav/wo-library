@@ -56,37 +56,38 @@ function getFormData(data?: Record<string, string>, file?: Blob): FormData {
   return formData;
 }
 
-export function defaultResponseErrorHandler(
+export async function defaultResponseErrorHandler(
   error: WoResponseError,
   data: Response
-): void {
+): Promise<void> {
   // handle http response status codes
+  const errorData = await data.json();
   switch (data.status) {
     case 400:
-      throw new WoErrorData(error, data, "Invalid Data!");
+      throw new WoErrorData(error, errorData, "Invalid Data!");
     case 401:
-      throw new WoErrorData(error, data, "You session has expired!");
+      throw new WoErrorData(error, errorData, "You session has expired!");
     case 403:
       throw new WoErrorData(
         error,
-        data,
+        errorData,
         "You are not authorized to access this page!"
       );
     case 404:
-      throw new WoErrorData(error, data, "Endpoint not found!");
+      throw new WoErrorData(error, errorData, "Endpoint not found!");
     case 429:
-      throw new WoErrorData(error, data, "Too many requests!");
+      throw new WoErrorData(error, errorData, "Too many requests!");
     case 500:
-      throw new WoErrorData(error, data, "Internal server error!");
+      throw new WoErrorData(error, errorData, "Internal server error!");
     default:
       break;
   }
 }
 
-export function defaultErrorHandler(
+export async function defaultErrorHandler(
   error: WoResponseError,
   data: Response
-): void {
+): Promise<void> {
   // handle manual set error status codes
   switch (error.name) {
     case "TypeError":
@@ -94,7 +95,7 @@ export function defaultErrorHandler(
     case "AbortError":
       throw new WoErrorData(error, data, "Request aborted!");
     case "WoResponseError":
-      defaultResponseErrorHandler(error, data);
+      await defaultResponseErrorHandler(error, data);
       break;
     default:
       throw new WoErrorData(error, data, "Unknown Error!");
@@ -216,7 +217,7 @@ export class WoFetch {
       return response;
     }
     // request not successful, raise error from response
-    return errorHandler(new WoResponseError("Not Ok!"), response);
+    return await errorHandler(new WoResponseError("Not Ok!"), response);
   };
 
   handleError = async (
