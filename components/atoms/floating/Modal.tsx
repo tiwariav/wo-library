@@ -2,18 +2,19 @@ import {
   FloatingFocusManager,
   FloatingOverlay,
   FloatingPortal,
-  useClick,
-  useDismiss,
   useFloating,
   useId,
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import clsx from "clsx";
-import React, { useCallback, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import styles from "./modal.module.css";
 
 interface Props {
+  className?: string;
+  children: ReactNode;
+  onClose?: Function;
   open?: boolean;
   render: (props: {
     close: () => void;
@@ -30,10 +31,13 @@ const Modal: React.FC<Props> = ({
 }) => {
   const [show, setShow] = useState(passedOpen);
   const open = passedOpen || show;
-  const handleOpenChange = useCallback((value) => {
-    setShow(value);
-    if (onClose) onClose();
-  }, []);
+  const handleOpenChange = useCallback(
+    (value) => {
+      setShow(value);
+      if (onClose) onClose();
+    },
+    [onClose]
+  );
 
   const { reference, floating, context } = useFloating({
     open,
@@ -45,10 +49,14 @@ const Modal: React.FC<Props> = ({
   const descriptionId = `${id}-description`;
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
-    useClick(context),
     useRole(context),
-    useDismiss(context),
   ]);
+
+  const handleOutsideClick = (event) => {
+    if (event.target === event.currentTarget) {
+      handleOpenChange(false);
+    }
+  };
 
   return (
     <>
@@ -56,7 +64,11 @@ const Modal: React.FC<Props> = ({
       <FloatingPortal>
         {open && (
           <FloatingFocusManager context={context}>
-            <FloatingOverlay lockScroll className={styles.overlay}>
+            <FloatingOverlay
+              lockScroll
+              className={styles.overlay}
+              onClick={handleOutsideClick}
+            >
               <div
                 {...getFloatingProps({
                   ref: floating,

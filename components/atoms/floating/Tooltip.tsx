@@ -131,7 +131,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      {open && (portal ? <FloatingPortal>{body}</FloatingPortal> : body)}
+      {portal ? <FloatingPortal>{open && body}</FloatingPortal> : open && body}
     </>
   );
 };
