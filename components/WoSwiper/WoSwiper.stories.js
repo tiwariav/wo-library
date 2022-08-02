@@ -1,8 +1,6 @@
-import path from "node:path";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
 import { Button } from "ye-ui/components/atoms/forms";
-import { WithImage as CardWithImage } from "ye-ui/components/atoms/sections/Card/Card.stories";
-import { getStoryName } from "../../utils/storybook";
+import { Card } from "ye-ui/components/atoms/sections";
 import WoSwiper from "./WoSwiper";
 
 const moreLinkMap = {
@@ -20,7 +18,6 @@ const moreLinkMap = {
 };
 
 const metadata = {
-  title: getStoryName(path.dirname(import.meta.url)),
   component: WoSwiper,
   argTypes: {
     moreLink: {
@@ -32,14 +29,19 @@ const metadata = {
 export default metadata;
 
 const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
-  const itemArgs = { ...CardWithImage.args, style: { width: cardWidth } };
+  const itemArgs = {
+    ...Card.Stories.WithImage.args,
+    style: { width: cardWidth },
+  };
   return (
     <WoSwiper
       moreLink={moreLinkMap[moreLink]}
       moreLinkVertical={moreLinkMap[moreLinkVertical]}
       {...args}
     >
-      {Array.from({ length: 11 }).fill(<CardWithImage {...itemArgs} />)}
+      {Array.from({ length: 11 }).fill(
+        <Card.Stories.WithImage {...itemArgs} />
+      )}
     </WoSwiper>
   );
 };
