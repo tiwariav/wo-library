@@ -1,18 +1,9 @@
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
-import { Button } from "ye-ui/components/atoms/forms";
-import { CardStories } from "ye-ui/components/atoms/sections";
 import WoSwiper from "./WoSwiper";
 
 const moreLinkMap = {
   None: null,
-  SeeMore: (
-    <Button
-      label="See more"
-      size="small"
-      iconAfter={<AiOutlineRight />}
-      variant="outlined"
-    />
-  ),
+  SeeMore: <button>See more</button>,
   ArrowHorizontal: <AiOutlineRight />,
   ArrowVertical: <AiOutlineDown />,
 };
@@ -30,7 +21,6 @@ export default metadata;
 
 const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
   const itemArgs = {
-    ...CardStories.WithImage.args,
     style: { width: cardWidth },
   };
   return (
@@ -39,7 +29,7 @@ const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
       moreLinkVertical={moreLinkMap[moreLinkVertical]}
       {...args}
     >
-      {Array.from({ length: 11 }).fill(<CardStories.WithImage {...itemArgs} />)}
+      {Array.from({ length: 11 }).fill(<p>Content...</p>)}
     </WoSwiper>
   );
 };

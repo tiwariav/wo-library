@@ -24,11 +24,14 @@
     "./utils/*": "./utils/*"
   },
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "storybook": "start-storybook -p 6008",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.9.1",
     "@react-native-async-storage/async-storage": "^1.17.7",
+    "chromatic": "^6.7.3",
     "clsx": "^1.2.1",
     "http-proxy-middleware": "^2.0.6",
     "immer": "^9.0.15",
@@ -40,21 +43,39 @@
     "react-icons": "^4.4.0",
     "react-intersection-observer": "^9.4.0",
     "react-use": "^17.4.0",
-    "swiper": "^8.3.2",
-    "ye-ui": "workspace:*"
+    "swiper": "^8.3.2"
   },
   "devDependencies": {
-    "@mdx-js/react": "^2.1.2",
-    "@storybook/addon-docs": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
+    "@babel/core": "^7.18.10",
+    "@gt-web/browserslist-config": "workspace:*",
+    "@mdx-js/react": "^1.6.22",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-docs": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-jest": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-toolbars": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
     "@testing-library/react": "^13.3.0",
+    "@types/babel__core": "^7",
     "@types/node": "^18.6.3",
     "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6"
+    "@types/react-dom": "^18.0.6",
+    "babel-loader": "^8.2.5",
+    "postcss": "^8.4.14",
+    "postcss-import": "^14.1.0",
+    "postcss-preset-env": "^7.7.2"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "workspaces": [
     "packages/*"

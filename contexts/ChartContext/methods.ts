@@ -1,4 +1,4 @@
-import { svgNodeToData } from "ye-ui/lib/svg";
+import { svgNodeToData } from "../../lib/svg";
 import { pushOrCreate } from "../../utils/objects";
 import { ChartState } from "./state";
 

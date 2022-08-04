@@ -14,7 +14,7 @@
     &::after {
       position: relative;
       right: -1px;
-      font-size: var(--fnot-size-large);
+      font-size: var(--font-size-large);
     }
   }
 
@@ -24,7 +24,7 @@
     &::after {
       position: relative;
       left: -1px;
-      font-size: var(--fnot-size-large);
+      font-size: var(--font-size-large);
     }
   }
 
