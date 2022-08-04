@@ -1,6 +1,3 @@
-import { withTests } from "@storybook/addon-jest";
-import { addDecorator } from "@storybook/react";
-
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: { expanded: true },
@@ -33,15 +30,3 @@ export const globalTypes = {
     },
   },
 };
-
-export function registerResults(filePath) {
-  let results;
-
-  try {
-    results = filePath;
-  } catch (error) {
-    console.log("reports/test-report.json does not exist, skipping.");
-  }
-
-  if (results) addDecorator(withTests({ results }));
-}
