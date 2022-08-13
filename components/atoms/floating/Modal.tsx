@@ -16,7 +16,7 @@ interface Props {
   children: ReactNode;
   onClose?: Function;
   open?: boolean;
-  render: (props: {
+  render?: (props: {
     close: () => void;
     labelId: string;
     descriptionId: string;
