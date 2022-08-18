@@ -8,6 +8,7 @@ import {
   FreeMode,
   Mousewheel,
   Navigation,
+  Pagination,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles";
@@ -27,6 +28,7 @@ export default function WoSwiper({
   fade,
   freeMode,
   navigation,
+  pagination,
   ...props
 }) {
   let derivedProps = {};
@@ -70,21 +72,34 @@ export default function WoSwiper({
           Mousewheel,
           Navigation,
           Autoplay,
+          Pagination,
         ]}
+        pagination={
+          pagination
+            ? {
+                dynamicBullets: true,
+                clickable: true,
+              }
+            : false
+        }
         className={styles.swiper}
         // swiper params
         // slides grid
         centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
-        slidesPerView={"auto"}
+        slidesPerView={pagination ? 1 : "auto"}
         // freemode
-        freeMode={{
-          enabled: true,
-          sticky: !navigation,
-          ...freeMode,
-        }}
+        freeMode={
+          !pagination
+            ? {
+                enabled: true,
+                sticky: !navigation,
+                ...freeMode,
+              }
+            : false
+        }
         // navigation
-        navigation={navigation}
+        navigation={!pagination ? navigation : false}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
         {...derivedProps}
