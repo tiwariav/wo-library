@@ -30,7 +30,7 @@
 
   & :global .swiper-button-next,
   & :global .swiper-button-prev {
-    --swiper-navigation-size:3rem;
+    --swiper-navigation-size: 3rem;
 
     width: var(--swiper-navigation-size);
     background-color: var(--ye-color-background);
@@ -71,6 +71,7 @@
 }
 
 .swiper {
+  height: 100%;
   overflow: visible;
 
   @nest .title + & {
