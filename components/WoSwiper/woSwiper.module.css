@@ -71,7 +71,6 @@
 }
 
 .swiper {
-  height: 100%;
   overflow: visible;
 
   @nest .title + & {
