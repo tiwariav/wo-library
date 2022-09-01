@@ -1,6 +1,6 @@
-import { ReactNode, useMemo } from "react";
-import useMethods, { WrappedMethods } from "../../hooks/useMethods";
-import { createAndUseContext } from "../utils";
+import React, { ReactNode, useMemo } from "react";
+import useMethods from "../../hooks/useMethods";
+import { createAndUseContext, Dispatch } from "../utils";
 import createThemeMethods from "./methods";
 import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state";
 
@@ -12,7 +12,7 @@ interface ThemeProviderProps {
 const { Context, DispatchContext, useContextState, useContextDispatch } =
   createAndUseContext<
     ThemeState,
-    WrappedMethods<ReturnType<typeof createThemeMethods>>
+    Dispatch<ReturnType<typeof createThemeMethods>>
   >();
 
 export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
@@ -34,7 +34,7 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   );
 
   return (
-    <DispatchContext.Provider value={dispatch}>
+    <DispatchContext.Provider value={{ dispatch }}>
       <Context.Provider value={contextValue}>{children}</Context.Provider>
     </DispatchContext.Provider>
   );
