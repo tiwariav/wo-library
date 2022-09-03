@@ -57,7 +57,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     context,
     refs,
     update,
-    middlewareData,
+    // middlewareData,
   } = useFloating({
     ...(placement ? { placement } : {}),
     open,
@@ -70,7 +70,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     ],
   });
 
-  const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
+  // const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
