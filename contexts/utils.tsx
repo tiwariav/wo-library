@@ -17,5 +17,5 @@ export function createAndUseContext<TypeState, TpyeDispatch>() {
   const useContextState = () => useContext(Context);
   const useContextDispatch = () => useContext(DispatchContext);
 
-  return { Context, DispatchContext, useContextState, useContextDispatch };
+  return { Context, DispatchContext, useContextDispatch, useContextState };
 }

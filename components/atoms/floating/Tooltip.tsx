@@ -60,25 +60,25 @@ const Tooltip: React.FC<TooltipProps> = ({
     // middlewareData,
   } = useFloating({
     ...(placement ? { placement } : {}),
-    open,
-    onOpenChange: setShow,
     middleware: [
       ...(arrowRef?.current ? [arrow({ element: arrowRef.current })] : []),
       offset(options.offset),
       shift({ padding: options.padding }),
       ...(!placement ? [autoPlacement()] : []),
     ],
+    onOpenChange: setShow,
+    open,
   });
 
   // const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
-      enabled: trigger.includes("hover"),
       delay: {
-        open: 0,
         close: 250,
+        open: 0,
       },
+      enabled: trigger.includes("hover"),
     }),
     useClick(context),
     useFocus(context),
@@ -104,9 +104,9 @@ const Tooltip: React.FC<TooltipProps> = ({
       {...getFloatingProps({
         ref: floating,
         style: {
+          left: x ?? "",
           position: strategy,
           top: y ?? "",
-          left: x ?? "",
         },
       })}
     >

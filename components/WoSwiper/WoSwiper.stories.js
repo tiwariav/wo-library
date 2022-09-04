@@ -2,27 +2,24 @@ import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
 import WoSwiper from "./WoSwiper";
 
 const moreLinkMap = {
-  None: null,
-  SeeMore: <button>See more</button>,
   ArrowHorizontal: <AiOutlineRight />,
   ArrowVertical: <AiOutlineDown />,
+  None: null,
+  SeeMore: <button>See more</button>,
 };
 
 const metadata = {
-  component: WoSwiper,
   argTypes: {
     moreLink: {
-      control: { type: "select", options: Object.keys(moreLinkMap) },
+      control: { options: Object.keys(moreLinkMap), type: "select" },
     },
   },
+  component: WoSwiper,
 };
 
 export default metadata;
 
 const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
-  const itemArgs = {
-    style: { width: cardWidth },
-  };
   return (
     <WoSwiper
       moreLink={moreLinkMap[moreLink]}
@@ -37,8 +34,8 @@ const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
 export const Basic = Template.bind({});
 Basic.args = {
   cardWidth: 160,
-  title: "A swiper section",
   subtitle: "Horizontally scrollable elements",
+  title: "A swiper section",
 };
 
 export const Coverflow = Template.bind({});
@@ -57,7 +54,7 @@ WithLinks.args = {
 export const WithSeparator = Template.bind({});
 WithSeparator.args = {
   ...Basic.args,
+  hasSeparator: true,
   moreLink: "SeeMore",
   moreLinkVertical: "ArrowVertical",
-  hasSeparator: true,
 };

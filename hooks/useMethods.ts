@@ -33,7 +33,7 @@ export default function useMethods<
     const actionTypes = Object.keys(createMethods(initialState));
     const response = {} as WrappedMethods<M>;
     for (const type of actionTypes) {
-      response[type as keyof M] = (...payload) => dispatch({ type, payload });
+      response[type as keyof M] = (...payload) => dispatch({ payload, type });
     }
     return response;
   }, [createMethods, initialState]);

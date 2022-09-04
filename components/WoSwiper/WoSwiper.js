@@ -34,9 +34,9 @@ export default function WoSwiper({
   let derivedProps = {};
   if (variant === "coverflow") {
     derivedProps = {
+      coverflowEffect: { depth: 200, modifier: 1, rotate: 5, stretch: 10 },
       // effects
       effect: "coverflow",
-      coverflowEffect: { rotate: 5, depth: 200, modifier: 1, stretch: 10 },
       // loop
       loop: true,
     };
@@ -77,8 +77,8 @@ export default function WoSwiper({
         pagination={
           pagination
             ? {
-                dynamicBullets: true,
                 clickable: true,
+                dynamicBullets: true,
               }
             : false
         }
@@ -145,13 +145,14 @@ export default function WoSwiper({
 
 WoSwiper.propTypes = {
   /**
-   * Title text
-   */
-  title: PropTypes.string,
-  /**
    * Subtitle text
    */
   subtitle: PropTypes.string,
+
+  /**
+   * Title text
+   */
+  title: PropTypes.string,
   /**
    * Swiper variant
    */
@@ -159,8 +160,9 @@ WoSwiper.propTypes = {
 };
 
 WoSwiper.defaultProps = {
-  variant: "basic",
+  autoplay: false,
+
   // swiper default props
   navigation: true,
-  autoplay: false,
+  variant: "basic",
 };

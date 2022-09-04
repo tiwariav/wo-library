@@ -280,10 +280,10 @@ export class WoFetch {
       token,
     });
     const url = createURL(this.apiEndpoint, path, {
-      query,
-      id,
-      trailingSlash,
       devProxy: !noProxy ? this.devProxy : undefined,
+      id,
+      query,
+      trailingSlash,
     });
     let body: any;
     if (data) {
@@ -334,8 +334,8 @@ export class WoFetch {
 
     const headers = await this.getHeaders({
       headers: { "Content-Type": contentTypeForm },
-      xhr: true,
       requireAuth,
+      xhr: true,
     });
 
     const xhrObject = new XMLHttpRequest();
@@ -377,8 +377,8 @@ export class WoFetch {
       xhrObject.open(
         "POST",
         createURL(this.apiEndpoint, path, {
-          trailingSlash: this.trailingSlash,
           devProxy: this.devProxy,
+          trailingSlash: this.trailingSlash,
         }),
         true
       );
