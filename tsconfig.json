@@ -1,4 +1,31 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "include": ["components", "context", "hooks", "lib", "utils"]
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    // @react-native-async-storage/async-storage throws error
+    // "declarationDir": "lib/@types",
+    "diagnostics": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "NodeNext",
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "lib",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": { "classnameTransform": "camelCase" }
+      }
+    ],
+    "rootDir": "src",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    // "strict": true,
+    "target": "ES2015"
+  },
+  "include": ["src", "types"],
+  "exclude": ["**/__snapshots__", "**/__tests__", "node_modules"]
 }
