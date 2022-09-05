@@ -21,6 +21,6 @@ export default function useCalendly({ calendlyLink, prefill }) {
   });
 
   return () => {
-    window.Calendly.initPopupWidget({ url: calendlyLink, prefill });
+    window.Calendly.initPopupWidget({ prefill, url: calendlyLink });
   };
 }

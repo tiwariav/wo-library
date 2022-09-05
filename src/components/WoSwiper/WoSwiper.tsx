@@ -7,6 +7,7 @@ import {
   FreeMode,
   Mousewheel,
   Navigation,
+  Pagination,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles.js";
@@ -23,6 +24,7 @@ type WoSwiperProps = {
   moreLink: string;
   moreLinkVertical: string;
   navigation?: boolean;
+  pagination?: boolean;
   subtitle: string;
   title: string;
   variant?: typeof variants[number];
@@ -40,14 +42,15 @@ export default function WoSwiper({
   subtitle,
   title,
   variant = "basic",
+  pagination,
   ...props
 }: WoSwiperProps) {
   let derivedProps = {};
   if (variant === "coverflow") {
     derivedProps = {
+      coverflowEffect: { depth: 200, modifier: 1, rotate: 5, stretch: 10 },
       // effects
       effect: "coverflow",
-      coverflowEffect: { rotate: 5, depth: 200, modifier: 1, stretch: 10 },
       // loop
       loop: true,
     };
@@ -84,21 +87,34 @@ export default function WoSwiper({
           Mousewheel,
           Navigation,
           Autoplay,
+          Pagination,
         ]}
+        pagination={
+          pagination
+            ? {
+                clickable: true,
+                dynamicBullets: true,
+              }
+            : false
+        }
         className={styles.swiper}
         // swiper params
         // slides grid
         centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
-        slidesPerView={"auto"}
+        slidesPerView={pagination ? 1 : "auto"}
         // freemode
-        freeMode={{
-          enabled: true,
-          sticky: !navigation,
-          ...freeMode,
-        }}
+        freeMode={
+          !pagination
+            ? {
+                enabled: true,
+                sticky: !navigation,
+                ...freeMode,
+              }
+            : false
+        }
         // navigation
-        navigation={navigation}
+        navigation={!pagination ? navigation : false}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
         {...derivedProps}

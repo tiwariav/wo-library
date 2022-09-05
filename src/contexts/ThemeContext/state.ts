@@ -13,9 +13,9 @@ export interface ThemeState {
 }
 
 const INITIAL_THEME_STATE: ThemeState = {
-  themeVariants: {},
-  sectionThemes: {},
   activeThemeName: "base",
+  sectionThemes: {},
+  themeVariants: {},
 };
 
 export default INITIAL_THEME_STATE;

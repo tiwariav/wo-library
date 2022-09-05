@@ -21,8 +21,8 @@ export const memoryStorageItems = {};
 
 const memoryStorage = {
   getItem: async (key: string) => memoryStorageItems[key] || null,
-  setItem: async (key: string, value: any) => (memoryStorageItems[key] = value),
   removeItem: async (key: string) => (memoryStorageItems[key] = null),
+  setItem: async (key: string, value: any) => (memoryStorageItems[key] = value),
 };
 
 export const DEFAULT_STORAGE_BACKENDS = {

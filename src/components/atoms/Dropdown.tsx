@@ -34,10 +34,10 @@ const WoTooltip: React.FC<WoTooltipProps> = ({
 
   const { x, y, reference, floating, strategy, context, refs, update } =
     useFloating({
-      placement,
-      open,
-      onOpenChange: setOpen,
       middleware: [offset(5), flip(), shift({ padding: 8 })],
+      onOpenChange: setOpen,
+      open,
+      placement,
     });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
@@ -60,12 +60,12 @@ const WoTooltip: React.FC<WoTooltipProps> = ({
       {open && (
         <div
           {...getFloatingProps({
-            ref: floating,
             className: "Tooltip",
+            ref: floating,
             style: {
+              left: x ?? "",
               position: strategy,
               top: y ?? "",
-              left: x ?? "",
             },
           })}
         >

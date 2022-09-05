@@ -16,7 +16,7 @@ interface Props {
   children: ReactNode;
   onClose?: Function;
   open?: boolean;
-  render: (props: {
+  render?: (props: {
     close: () => void;
     labelId: string;
     descriptionId: string;
@@ -40,8 +40,8 @@ const Modal: React.FC<Props> = ({
   );
 
   const { reference, floating, context } = useFloating({
-    open,
     onOpenChange: handleOpenChange,
+    open,
   });
 
   const id = useId();
@@ -71,10 +71,10 @@ const Modal: React.FC<Props> = ({
             >
               <div
                 {...getFloatingProps({
-                  ref: floating,
-                  className: clsx(styles.modal, className),
-                  "aria-labelledby": labelId,
                   "aria-describedby": descriptionId,
+                  "aria-labelledby": labelId,
+                  className: clsx(styles.modal, className),
+                  ref: floating,
                 })}
               >
                 {children}
