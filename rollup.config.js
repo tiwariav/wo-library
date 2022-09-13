@@ -2,6 +2,8 @@ import beep from "@rollup/plugin-beep";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import fs from "fs";
+import path from "path";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
@@ -53,6 +55,24 @@ const output = {
   minifyInternalExports: !isDev,
 };
 
+function walk(dir) {
+  const response = {};
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    var filepath = path.join(dir, file);
+    const stats = fs.statSync(filepath);
+    if (filepath.includes("/cjs") || filepath.includes("__")) {
+      continue;
+    }
+    if (stats.isDirectory()) {
+      response[filepath.replace("src/", "")] = filepath + "/index.ts";
+    }
+  }
+  return response;
+}
+
+const toolsSubdirs = walk("src/tools");
+
 export default [
   {
     input: {
@@ -63,7 +83,8 @@ export default [
       contexts: "src/contexts/index.ts",
       hooks: "src/hooks/index.ts",
       tools: "src/tools/index.ts",
-      // "tools/**": "src/tools/**/index.ts",
+      "tools/cjs": "src/tools/cjs/index.cjs",
+      ...toolsSubdirs,
     },
     output,
     plugins: [...plugins, del({ targets: "lib/**/*" }), typescript()],
