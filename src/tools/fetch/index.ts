@@ -1,6 +1,10 @@
 import { merge } from "lodash-es";
-import { anyStorageInstance } from "../tools/storage/index.js";
-import { WoErrorData, WoNetworkError, WoResponseError } from "./error.js";
+import {
+  WoErrorData,
+  WoNetworkError,
+  WoResponseError,
+} from "../error/index.js";
+import { anyStorageInstance } from "../storage/index.js";
 
 type WoRequestQueryTypes = number | boolean | string;
 export type WoRequestQuery = Record<

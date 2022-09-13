@@ -1,6 +1,6 @@
 import { useEffectOnce } from "react-use";
+import { WoLoadScriptError } from "../tools/error/index.js";
 import { loadScript, loadStylesheet } from "../tools/index.js";
-import { WoLoadScriptError } from "../utils/error.js";
 
 async function loadCalendlyAssets() {
   const calendlyScript = await loadScript(

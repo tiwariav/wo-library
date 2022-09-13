@@ -1,4 +1,4 @@
-import { WoLoadScriptError } from "../../utils/error.js";
+import { WoLoadScriptError } from "../error/index.js";
 import loadScript from "../loadScript.js";
 
 declare global {

@@ -1,5 +1,5 @@
+import { pushOrCreate } from "../../tools/others/objects.js";
 import { svgNodeToData } from "../../tools/svg.js";
-import { pushOrCreate } from "../../utils/objects.js";
 import { ChartState } from "./state.js";
 
 export default function createChartMethods(state: ChartState) {
