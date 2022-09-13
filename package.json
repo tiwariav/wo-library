@@ -1,6 +1,6 @@
 {
   "name": "wo-library",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "type": "module",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
@@ -87,6 +87,23 @@
     "react-hook-form": "^7.34.0",
     "react-icons": "^4.4.0",
     "swiper": "^8.3.2"
+  },
+  "peerDependenciesMeta": {
+    "@react-native-async-storage/async-storage": {
+      "optional": true
+    },
+    "http-proxy-middleware": {
+      "optional": true
+    },
+    "react-hook-form": {
+      "optional": true
+    },
+    "react-icons": {
+      "optional": true
+    },
+    "swiper": {
+      "optional": true
+    }
   },
   "overrides": {
     "@react-native-async-storage/async-storage": {
