@@ -1,4 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+let AsyncStorage;
+try {
+  AsyncStorage = await import("@react-native-async-storage/async-storage");
+} catch {}
 
 interface StorageBackend {
   getItem: (arg0: string) => any;
@@ -33,8 +36,8 @@ export const DEFAULT_STORAGE_BACKENDS = {
       typeof sessionStorage !== "undefined" ? sessionStorage : undefined,
   },
   [STORAGE_ENVIRONMENTS.mobile]: {
-    [STORAGE_TYPES.persist]: AsyncStorage,
     [STORAGE_TYPES.temp]: memoryStorage,
+    ...(AsyncStorage ? { [STORAGE_TYPES.persist]: AsyncStorage } : {}),
   },
 };
 
