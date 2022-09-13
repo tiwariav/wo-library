@@ -1,5 +1,5 @@
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
-import WoSwiper from "./WoSwiper";
+import WoSwiper from "./WoSwiper.js";
 
 const moreLinkMap = {
   ArrowHorizontal: <AiOutlineRight />,

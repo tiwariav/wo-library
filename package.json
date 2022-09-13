@@ -1,6 +1,6 @@
 {
   "name": "wo-library",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "type": "module",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
@@ -11,26 +11,11 @@
     "components",
     "react"
   ],
-  "exports": {
-    "./components/atoms": "./lib/components/atoms.js",
-    "./components/molecules": "./lib/components/molecules.js",
-    "./components": "./lib/components.js",
-    "./contexts": "./lib/contexts.js",
-    "./hooks": "./lib/hooks.js",
-    "./cjs/*": {
-      "require": "./lib/cjs/*.js"
-    },
-    "./tools": "./lib/tools.js"
-  },
-  "files": [
-    "lib"
-  ],
-  "types": "dist/@types/**/*.d.ts",
   "scripts": {
     "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
-    "build": "tsc",
-    "build:webpack": "NODE_ENV=production webpack",
+    "build": "rollup -c",
     "dev": "NODE_ENV=development webpack",
+    "deploy": "cp package.json LICENSE README.md lib && cd lib && npm publish",
     "precommit": "lint-staged",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook"
