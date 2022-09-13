@@ -1,6 +1,6 @@
 {
   "name": "wo-library",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
