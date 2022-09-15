@@ -1,5 +1,3 @@
-# .github/workflows/chromatic.yml
-
 # Workflow name
 name: "Chromatic"
 
