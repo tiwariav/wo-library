@@ -1,4 +1,4 @@
-const { storybook } = require("../lib/cjs/index.cjs");
+const { storybook } = require("../src/tools/cjs/index.cjs");
 const { main } = storybook;
 
 module.exports = {
