@@ -1,14 +1,14 @@
+# Workflow name
 name: Publish to NPM
+
 on:
   push:
     branches:
       - master
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled]
+
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    steps:
   build:
     runs-on: ubuntu-latest
     steps:
