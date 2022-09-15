@@ -1,8 +1,3 @@
-let AsyncStorage;
-try {
-  AsyncStorage = await import("@react-native-async-storage/async-storage");
-} catch {}
-
 interface StorageBackend {
   getItem: (arg0: string) => any;
   setItem: (arg0: string, arg1: any) => void;
@@ -37,7 +32,6 @@ export const DEFAULT_STORAGE_BACKENDS = {
   },
   [STORAGE_ENVIRONMENTS.mobile]: {
     [STORAGE_TYPES.temp]: memoryStorage,
-    ...(AsyncStorage ? { [STORAGE_TYPES.persist]: AsyncStorage } : {}),
   },
 };
 
@@ -48,20 +42,25 @@ type StorageTypes = typeof STORAGE_TYPES[keyof typeof STORAGE_TYPES];
 export class AnyStorage {
   storageEnv: StorageEnvironments;
   storageBackends: {
-    [key in StorageTypes]: StorageBackend;
+    [key in StorageTypes]?: StorageBackend;
   };
 
-  constructor(storageEnv?: StorageEnvironments, storageBackends = {}) {
+  constructor() {
     this.storageEnv =
-      storageEnv ||
-      (typeof localStorage !== "undefined"
+      typeof localStorage !== "undefined"
         ? STORAGE_ENVIRONMENTS.web
-        : STORAGE_ENVIRONMENTS.mobile);
+        : STORAGE_ENVIRONMENTS.mobile;
     this.storageBackends = {
-      ...storageBackends,
       ...DEFAULT_STORAGE_BACKENDS[this.storageEnv],
     };
   }
+
+  setBackend = (storageBackends) => {
+    this.storageBackends = {
+      ...this.storageBackends,
+      ...storageBackends,
+    };
+  };
 
   getItem = async (
     key,

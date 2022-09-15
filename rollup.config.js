@@ -55,7 +55,7 @@ const output = {
   minifyInternalExports: !isDev,
 };
 
-function walk(dir) {
+function walkIndex(dir) {
   const response = {};
   const files = fs.readdirSync(dir);
   for (const file of files) {
@@ -64,14 +64,31 @@ function walk(dir) {
     if (filepath.includes("/cjs") || filepath.includes("__")) {
       continue;
     }
-    if (stats.isDirectory()) {
-      response[filepath.replace("src/", "")] = filepath + "/index.ts";
+    const indexFile = filepath + "/index.ts";
+    if (stats.isDirectory() && fs.existsSync(indexFile)) {
+      response[filepath.replace("src/", "")] = indexFile;
     }
   }
   return response;
 }
 
-const toolsSubdirs = walk("src/tools");
+function walk(dir) {
+  const response = {};
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    var filepath = path.join(dir, file);
+    const stats = fs.statSync(filepath);
+    if (
+      stats.isDirectory() ||
+      !filepath.endsWith(".ts") ||
+      filepath.endsWith("index.ts")
+    ) {
+      continue;
+    }
+    response[filepath.replace("src/", "").replace(".ts", "")] = filepath;
+  }
+  return response;
+}
 
 export default [
   {
@@ -83,8 +100,8 @@ export default [
       contexts: "src/contexts/index.ts",
       hooks: "src/hooks/index.ts",
       tools: "src/tools/index.ts",
-      "tools/cjs": "src/tools/cjs/index.cjs",
-      ...toolsSubdirs,
+      ...walkIndex("src/tools"),
+      ...walk("src/components"),
     },
     output,
     plugins: [...plugins, del({ targets: "lib/**/*" }), typescript()],
