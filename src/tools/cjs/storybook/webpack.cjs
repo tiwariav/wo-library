@@ -61,8 +61,16 @@ function modulesFullySpecified(config) {
   return config;
 }
 
+function nodeNextExtensionAlias(config) {
+  config.resolve.extensionAlias = {
+    ".js": [".js", ".ts", ".tsx"],
+  };
+  return config;
+}
+
 module.exports = {
   cssModules,
   sass,
   modulesFullySpecified,
+  nodeNextExtensionAlias,
 };

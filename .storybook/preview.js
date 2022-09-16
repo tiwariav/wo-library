@@ -1,6 +1,6 @@
-import { globalTypes, parameters } from "wo-library/lib/storybook";
 import { withTests } from "@storybook/addon-jest";
 import { addDecorator } from "@storybook/react";
+import { globalTypes, parameters } from "../src/tools/cjs/storybook/index.cjs";
 // import "../styles/base.css";
 
 export { parameters, globalTypes };

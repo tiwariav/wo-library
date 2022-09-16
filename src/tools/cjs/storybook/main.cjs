@@ -1,4 +1,8 @@
-const { cssModules, modulesFullySpecified } = require("./webpack.cjs");
+const {
+  cssModules,
+  modulesFullySpecified,
+  nodeNextExtensionAlias,
+} = require("./webpack.cjs");
 
 module.exports = {
   addons: [
@@ -34,6 +38,7 @@ module.exports = {
     disableTelemetry: true, // 👈 Disables telemetry
   },
   features: {
+    previewMdx2: true,
     // babelModeV7: true,
   },
   framework: "@storybook/react",
@@ -45,6 +50,7 @@ module.exports = {
     // Make whatever fine-grained changes you need
     config = cssModules(config, { configType });
     config = modulesFullySpecified(config);
+    config = nodeNextExtensionAlias(config);
     return config;
   },
 };

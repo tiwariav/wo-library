@@ -33,7 +33,6 @@
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.19.1",
     "@babel/preset-typescript": "^7.18.6",
-    "@mdx-js/react": "^1.6.22",
     "@rollup/plugin-beep": "^0.2.0",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-eslint": "^8.0.2",
@@ -50,6 +49,7 @@
     "@storybook/addon-toolbars": "^6.5.12",
     "@storybook/builder-webpack5": "^6.5.12",
     "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/mdx2-csf": "^0.0.3",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/react": "^13.4.0",
@@ -66,6 +66,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.8.2",
     "prop-types": "^15.8.1",
+    "react-icons": "^4.4.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^4.2.2",
@@ -84,17 +85,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.35.0",
-    "react-icons": "^4.4.0",
-    "swiper": "^8.4.1"
+    "swiper": "^8.4.2"
   },
   "peerDependenciesMeta": {
     "http-proxy-middleware": {
       "optional": true
     },
     "react-hook-form": {
-      "optional": true
-    },
-    "react-icons": {
       "optional": true
     },
     "swiper": {
