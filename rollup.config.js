@@ -72,20 +72,20 @@ function walkIndex(dir) {
   return response;
 }
 
-function walk(dir) {
+function walk(dir, { includeDirs, ext } = { includeDirs: false, ext: "ts" }) {
   const response = {};
   const files = fs.readdirSync(dir);
   for (const file of files) {
-    var filepath = path.join(dir, file);
-    const stats = fs.statSync(filepath);
-    if (
-      stats.isDirectory() ||
-      !filepath.endsWith(".ts") ||
-      filepath.endsWith("index.ts")
-    ) {
+    const filePath = path.join(dir, file);
+    let destPath = filePath;
+    const stats = fs.statSync(filePath);
+    const indexFile = `/index.${ext}`;
+    if (includeDirs && stats.isDirectory()) {
+      destPath += indexFile;
+    } else if (!filePath.endsWith(ext) || filePath.endsWith(indexFile)) {
       continue;
     }
-    response[filepath.replace("src/", "").replace(".ts", "")] = filepath;
+    response[filePath.replace("src/", "").replace(`.${ext}`, "")] = destPath;
   }
   return response;
 }
@@ -109,9 +109,9 @@ export default [
   },
   {
     input: {
-      tools: "src/tools/cjs/index.cjs",
+      ...walk("src/tools/cjs", { includeDirs: true, ext: "cjs" }),
     },
-    output: { ...output, dir: "lib/cjs", format: "cjs", exports: "auto" },
+    output: { ...output, format: "cjs", exports: "auto" },
     plugins,
     perf: isDev,
   },
