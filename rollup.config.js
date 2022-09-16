@@ -11,6 +11,8 @@ import postcssPresetEnv from "postcss-preset-env";
 import autoExternal from "rollup-plugin-auto-external";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
+import progress from "rollup-plugin-progress";
+import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { terser } from "rollup-plugin-terser";
 import visualizer from "rollup-plugin-visualizer";
 
@@ -43,8 +45,8 @@ const plugins = [
   }),
   resolve(),
   commonjs(),
-  // sizeSnapshot(),
-  // progress(),
+  sizeSnapshot(),
+  progress(),
   ...(isDev ? [beep(), visualizer()] : [terser()]),
 ];
 
@@ -99,7 +101,7 @@ export default [
       components: "src/components/index.ts",
       "components/atoms": "src/components/atoms/index.ts",
       "components/molecules": "src/components/molecules/index.ts",
-      "components/templates": "src/components/templates/index.ts",
+      // "components/templates": "src/components/templates/index.ts",
       contexts: "src/contexts/index.ts",
       hooks: "src/hooks/index.ts",
       tools: "src/tools/index.ts",
