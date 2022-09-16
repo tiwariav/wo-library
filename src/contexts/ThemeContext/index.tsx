@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from "react";
 import useMethods from "../../hooks/useMethods.js";
-import { createAndUseContext } from "../utils.js";
+import { createAndUseContext, Dispatch } from "../utils.js";
 import createThemeMethods from "./methods.js";
 import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state.js";
 

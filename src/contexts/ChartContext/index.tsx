@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from "react";
 import useMethods from "../../hooks/useMethods.js";
-import { createAndUseContext } from "../utils.js";
+import { createAndUseContext, Dispatch } from "../utils.js";
 import createChartMethods from "./methods.js";
 import INITIAL_CHART_STATE, { ChartState } from "./state.js";
 

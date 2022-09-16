@@ -43,6 +43,8 @@ const plugins = [
   }),
   resolve(),
   commonjs(),
+  // sizeSnapshot(),
+  // progress(),
   ...(isDev ? [beep(), visualizer()] : [terser()]),
 ];
 
@@ -53,6 +55,7 @@ const output = {
   chunkFileNames: "chunks/[name]-[hash].js",
   format: "es",
   minifyInternalExports: !isDev,
+  sourcemap: isDev,
 };
 
 function walkIndex(dir) {

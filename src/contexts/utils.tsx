@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { FunctionRecord, WrappedMethods } from "../hooks/useMethods";
+import { FunctionRecord, WrappedMethods } from "../hooks/useMethods.js";
 
 export interface Dispatch<Methods extends FunctionRecord> {
   dispatch: WrappedMethods<Methods>;
