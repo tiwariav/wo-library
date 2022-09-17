@@ -12,7 +12,7 @@
     "react"
   ],
   "scripts": {
-    "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
+    "analyze": "source-map-explorer 'lib/**/*.js' --no-border-checks",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "precommit": "lint-staged",

@@ -1,1 +1,1 @@
-export { default as WoSwiper } from "./templates/WoSwiper/WoSwiper.js";
+export { default as WoSwiper } from "./structures/WoSwiper/WoSwiper.js";
