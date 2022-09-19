@@ -21,7 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@floating-ui/react-dom-interactions": "^0.9.3",
+    "@floating-ui/react-dom-interactions": "^0.10.1",
     "clsx": "^1.2.1",
     "immer": "^9.0.15",
     "lodash-es": "^4.17.21",
