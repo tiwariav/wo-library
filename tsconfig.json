@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     // @react-native-async-storage/async-storage throws error
     // "declarationDir": "lib/@types",
     "diagnostics": true,
+    // "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "NodeNext",
+    "module": "ESNext",
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
     "outDir": "lib",
@@ -20,7 +22,7 @@
         "options": { "classnameTransform": "camelCase" }
       }
     ],
-    "rootDir": "src",
+    // "rootDir": "src",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,

@@ -7,6 +7,7 @@ import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state.js";
 interface ThemeProviderProps {
   children: ReactNode;
   themeVariants: ThemeVariants;
+  activeThemeName?: string;
 }
 
 const { Context, DispatchContext, useContextState, useContextDispatch } =

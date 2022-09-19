@@ -394,7 +394,7 @@
   "components/swiper.js": {
     "bundled": 46561,
     "minified": 33122,
-    "gzipped": 10167,
+    "gzipped": 10170,
     "treeshaked": {
       "rollup": {
         "code": 28733,
