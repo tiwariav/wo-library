@@ -105,6 +105,7 @@ dist
 
 # build
 lib
+stats.html
 
 # storybook
 storybook-static

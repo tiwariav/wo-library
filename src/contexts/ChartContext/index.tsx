@@ -6,7 +6,6 @@ import INITIAL_CHART_STATE, { ChartState } from "./state.js";
 
 interface ChartProviderProps {
   children: ReactNode;
-  data: ChartState;
 }
 
 const { Context, DispatchContext, useContextState, useContextDispatch } =
@@ -15,11 +14,8 @@ const { Context, DispatchContext, useContextState, useContextDispatch } =
     Dispatch<ReturnType<typeof createChartMethods>>
   >();
 
-export function ChartProvider({ children, data }: ChartProviderProps) {
-  const memoizedInitialState = useMemo(
-    () => ({ ...INITIAL_CHART_STATE, ...data }),
-    [data]
-  );
+export function ChartProvider({ children }: ChartProviderProps) {
+  const memoizedInitialState = useMemo(() => ({ ...INITIAL_CHART_STATE }), []);
   const [state, dispatch] = useMethods(
     createChartMethods,
     memoizedInitialState

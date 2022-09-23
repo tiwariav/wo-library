@@ -1,6 +1,5 @@
 import beep from "@rollup/plugin-beep";
 import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import fs from "fs";
 import path from "path";
@@ -9,6 +8,7 @@ import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
 import postcssPresetEnv from "postcss-preset-env";
 import autoExternal from "rollup-plugin-auto-external";
+import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
@@ -18,7 +18,10 @@ import visualizer from "rollup-plugin-visualizer";
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 const plugins = [
+  sizeSnapshot(),
+  progress(),
   autoExternal(),
+  commonjs(),
   postcss({
     plugins: [
       postcssImport(),
@@ -40,13 +43,10 @@ const plugins = [
       // which in turn let's users customize the target behavior as per their needs.
       postcssNormalize(),
     ],
+    modules: { localsConvention: "camelCase" },
     sourceMap: isDev,
     extensions: [".css"],
   }),
-  resolve(),
-  commonjs(),
-  sizeSnapshot(),
-  progress(),
   ...(isDev ? [beep(), visualizer()] : [terser()]),
 ];
 
@@ -109,7 +109,17 @@ export default [
       ...walk("src/components"),
     },
     output,
-    plugins: [...plugins, del({ targets: "lib/**/*" }), typescript()],
+    plugins: [
+      ...plugins,
+      copy({
+        targets: [
+          { src: "assets/**/*", dest: "lib/assets" },
+          { src: ["package.json", "README.md"], dest: "lib" },
+        ],
+      }),
+      del({ targets: "lib/**/*", runOnce: isDev }),
+      typescript(),
+    ],
     perf: isDev,
   },
   {

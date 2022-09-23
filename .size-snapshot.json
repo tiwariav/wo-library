@@ -112,37 +112,37 @@
     }
   },
   "components/atoms.js": {
-    "bundled": 431,
-    "minified": 402,
-    "gzipped": 245,
+    "bundled": 408,
+    "minified": 379,
+    "gzipped": 232,
     "treeshaked": {
       "rollup": {
-        "code": 330,
-        "import_statements": 330
+        "code": 315,
+        "import_statements": 315
       },
       "webpack": {
-        "code": 1617
+        "code": 1601
       }
     }
   },
   "components/molecules.js": {
-    "bundled": 312,
-    "minified": 293,
-    "gzipped": 189,
+    "bundled": 291,
+    "minified": 272,
+    "gzipped": 179,
     "treeshaked": {
       "rollup": {
-        "code": 270,
-        "import_statements": 270
+        "code": 255,
+        "import_statements": 255
       },
       "webpack": {
-        "code": 1490
+        "code": 1474
       }
     }
   },
   "hooks.js": {
-    "bundled": 1143,
-    "minified": 892,
-    "gzipped": 441,
+    "bundled": 1123,
+    "minified": 872,
+    "gzipped": 431,
     "treeshaked": {
       "rollup": {
         "code": 273,
@@ -154,16 +154,16 @@
     }
   },
   "components.js": {
-    "bundled": 487,
-    "minified": 452,
-    "gzipped": 263,
+    "bundled": 460,
+    "minified": 425,
+    "gzipped": 249,
     "treeshaked": {
       "rollup": {
-        "code": 367,
-        "import_statements": 367
+        "code": 352,
+        "import_statements": 352
       },
       "webpack": {
-        "code": 1683
+        "code": 1668
       }
     }
   },
@@ -210,16 +210,16 @@
     }
   },
   "contexts.js": {
-    "bundled": 4441,
-    "minified": 2985,
-    "gzipped": 866,
+    "bundled": 4292,
+    "minified": 2842,
+    "gzipped": 843,
     "treeshaked": {
       "rollup": {
-        "code": 355,
-        "import_statements": 223
+        "code": 340,
+        "import_statements": 208
       },
       "webpack": {
-        "code": 1700
+        "code": 1685
       }
     }
   },
@@ -252,9 +252,9 @@
     }
   },
   "tools.js": {
-    "bundled": 710,
-    "minified": 647,
-    "gzipped": 294,
+    "bundled": 715,
+    "minified": 652,
+    "gzipped": 290,
     "treeshaked": {
       "rollup": {
         "code": 411,
@@ -280,9 +280,9 @@
     }
   },
   "tools/others.js": {
-    "bundled": 192,
-    "minified": 177,
-    "gzipped": 156,
+    "bundled": 172,
+    "minified": 157,
+    "gzipped": 144,
     "treeshaked": {
       "rollup": {
         "code": 90,
@@ -294,9 +294,9 @@
     }
   },
   "tools/storybook.js": {
-    "bundled": 80,
-    "minified": 74,
-    "gzipped": 92,
+    "bundled": 70,
+    "minified": 64,
+    "gzipped": 84,
     "treeshaked": {
       "rollup": {
         "code": 35,
@@ -322,9 +322,9 @@
     }
   },
   "tools/storage.js": {
-    "bundled": 232,
-    "minified": 220,
-    "gzipped": 183,
+    "bundled": 202,
+    "minified": 190,
+    "gzipped": 168,
     "treeshaked": {
       "rollup": {
         "code": 74,
@@ -350,9 +350,9 @@
     }
   },
   "tools/payments.js": {
-    "bundled": 174,
-    "minified": 163,
-    "gzipped": 135,
+    "bundled": 181,
+    "minified": 170,
+    "gzipped": 138,
     "treeshaked": {
       "rollup": {
         "code": 133,
@@ -364,9 +364,9 @@
     }
   },
   "tools/fetch.js": {
-    "bundled": 274,
-    "minified": 257,
-    "gzipped": 180,
+    "bundled": 249,
+    "minified": 232,
+    "gzipped": 169,
     "treeshaked": {
       "rollup": {
         "code": 146,
@@ -392,16 +392,16 @@
     }
   },
   "components/swiper.js": {
-    "bundled": 46561,
-    "minified": 33122,
-    "gzipped": 10170,
+    "bundled": 13392,
+    "minified": 11411,
+    "gzipped": 4144,
     "treeshaked": {
       "rollup": {
-        "code": 28733,
-        "import_statements": 291
+        "code": 8754,
+        "import_statements": 393
       },
       "webpack": {
-        "code": 30313
+        "code": 10178
       }
     }
   },
@@ -411,8 +411,302 @@
     "gzipped": 300
   },
   "tools/cjs/storybook.js": {
-    "bundled": 215821,
-    "minified": 90785,
-    "gzipped": 26637
+    "bundled": 3715,
+    "minified": 1909,
+    "gzipped": 828
+  },
+  "chunks/tslib.es6-75bdc1df.js": {
+    "bundled": 1941,
+    "minified": 662,
+    "gzipped": 379,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/svg-822f14dc.js": {
+    "bundled": 308,
+    "minified": 224,
+    "gzipped": 181,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/loadScript-c26ef7c3.js": {
+    "bundled": 813,
+    "minified": 386,
+    "gzipped": 258,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/loadStylesheet-08e30de2.js": {
+    "bundled": 886,
+    "minified": 429,
+    "gzipped": 279,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/index-49641361.js": {
+    "bundled": 1134,
+    "minified": 668,
+    "gzipped": 404,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/useMethods-1c0354da.js": {
+    "bundled": 718,
+    "minified": 286,
+    "gzipped": 205,
+    "treeshaked": {
+      "rollup": {
+        "code": 14,
+        "import_statements": 14
+      },
+      "webpack": {
+        "code": 998
+      }
+    }
+  },
+  "chunks/objects-3d9bdaad.js": {
+    "bundled": 891,
+    "minified": 403,
+    "gzipped": 265,
+    "treeshaked": {
+      "rollup": {
+        "code": 18,
+        "import_statements": 18
+      },
+      "webpack": {
+        "code": 1002
+      }
+    }
+  },
+  "chunks/style-inject.es-11b0c8fe.js": {
+    "bundled": 661,
+    "minified": 383,
+    "gzipped": 259,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "chunks/ObserveInView-4b08292f.js": {
+    "bundled": 8297,
+    "minified": 6178,
+    "gzipped": 2864,
+    "treeshaked": {
+      "rollup": {
+        "code": 3397,
+        "import_statements": 243
+      },
+      "webpack": {
+        "code": 4636
+      }
+    }
+  },
+  "chunks/Tooltip-b3202cd1.js": {
+    "bundled": 6403,
+    "minified": 5311,
+    "gzipped": 2542,
+    "treeshaked": {
+      "rollup": {
+        "code": 3512,
+        "import_statements": 157
+      },
+      "webpack": {
+        "code": 4632
+      }
+    }
+  },
+  "chunks/Popover-38c83f37.js": {
+    "bundled": 1217,
+    "minified": 1081,
+    "gzipped": 719,
+    "treeshaked": {
+      "rollup": {
+        "code": 702,
+        "import_statements": 161
+      },
+      "webpack": {
+        "code": 1822
+      }
+    }
+  },
+  "chunks/index-e5d0eee6.js": {
+    "bundled": 1095,
+    "minified": 730,
+    "gzipped": 445,
+    "treeshaked": {
+      "rollup": {
+        "code": 90,
+        "import_statements": 90
+      },
+      "webpack": {
+        "code": 1141
+      }
+    }
+  },
+  "chunks/index-368050f5.js": {
+    "bundled": 3691,
+    "minified": 2236,
+    "gzipped": 701,
+    "treeshaked": {
+      "rollup": {
+        "code": 1288,
+        "import_statements": 52
+      },
+      "webpack": {
+        "code": 2488
+      }
+    }
+  },
+  "chunks/index-e25a4f18.js": {
+    "bundled": 1472,
+    "minified": 756,
+    "gzipped": 442,
+    "treeshaked": {
+      "rollup": {
+        "code": 30,
+        "import_statements": 30
+      },
+      "webpack": {
+        "code": 1052
+      }
+    }
+  },
+  "chunks/index-b0d2d4cb.js": {
+    "bundled": 10478,
+    "minified": 5234,
+    "gzipped": 1885,
+    "treeshaked": {
+      "rollup": {
+        "code": 103,
+        "import_statements": 103
+      },
+      "webpack": {
+        "code": 1187
+      }
+    }
+  },
+  "chunks/Popover-9fbc850e.js": {
+    "bundled": 830,
+    "minified": 694,
+    "gzipped": 405,
+    "treeshaked": {
+      "rollup": {
+        "code": 285,
+        "import_statements": 151
+      },
+      "webpack": {
+        "code": 1405
+      }
+    }
+  },
+  "chunks/Tooltip-64be4e09.js": {
+    "bundled": 4346,
+    "minified": 3254,
+    "gzipped": 1319,
+    "treeshaked": {
+      "rollup": {
+        "code": 1435,
+        "import_statements": 147
+      },
+      "webpack": {
+        "code": 2555
+      }
+    }
+  },
+  "chunks/ObserveInView-25738ddd.js": {
+    "bundled": 6352,
+    "minified": 4233,
+    "gzipped": 1722,
+    "treeshaked": {
+      "rollup": {
+        "code": 1417,
+        "import_statements": 233
+      },
+      "webpack": {
+        "code": 2646
+      }
+    }
+  },
+  "chunks/Popover-a54d3095.js": {
+    "bundled": 1217,
+    "minified": 1081,
+    "gzipped": 719,
+    "treeshaked": {
+      "rollup": {
+        "code": 702,
+        "import_statements": 161
+      },
+      "webpack": {
+        "code": 1822
+      }
+    }
+  },
+  "chunks/Tooltip-7ac4153e.js": {
+    "bundled": 6493,
+    "minified": 5397,
+    "gzipped": 2553,
+    "treeshaked": {
+      "rollup": {
+        "code": 3512,
+        "import_statements": 157
+      },
+      "webpack": {
+        "code": 4632
+      }
+    }
+  },
+  "chunks/ObserveInView-5f5020ab.js": {
+    "bundled": 8444,
+    "minified": 6319,
+    "gzipped": 2885,
+    "treeshaked": {
+      "rollup": {
+        "code": 3397,
+        "import_statements": 243
+      },
+      "webpack": {
+        "code": 4636
+      }
+    }
   }
 }

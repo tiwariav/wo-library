@@ -7,12 +7,11 @@
     // @react-native-async-storage/async-storage throws error
     // "declarationDir": "lib/@types",
     "diagnostics": true,
-    // "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "ESNext",
+    "module": "NodeNext",
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
     "outDir": "lib",
@@ -22,8 +21,6 @@
         "options": { "classnameTransform": "camelCase" }
       }
     ],
-    // "rootDir": "src",
-    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     // "strict": true,
