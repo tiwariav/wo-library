@@ -14,7 +14,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'lib/**/*.js' --no-border-checks",
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "rollup -c -w --watch.onBundleEnd 'yalc push lib'",
     "precommit": "lint-staged",
     "release": "cd lib && npm publish",
     "storybook": "start-storybook",
