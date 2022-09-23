@@ -16,7 +16,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "precommit": "lint-staged",
-    "release": "cp package.json LICENSE README.md lib && cd lib && npm publish",
+    "release": "cd lib && npm publish",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook"
   },
