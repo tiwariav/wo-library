@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.1](https://github.com/tiwariav/wo-library/compare/v1.0.0...v1.0.1) (2022-09-23)
+
+
+### Bug Fixes
+
+* ChartProvider props ([84ac222](https://github.com/tiwariav/wo-library/commit/84ac2222bcd54ce4c20f72eed9de714819dbd691))
+* move types into src directory ([d28ac11](https://github.com/tiwariav/wo-library/commit/d28ac11ee6a8a375e0dbfd051e806d19d0bd65ac))
+* nodenext imports ([30dad66](https://github.com/tiwariav/wo-library/commit/30dad66187637d65104efdb18a3b1c63c91ddd77))
+* update tsconfig ([7cc58fd](https://github.com/tiwariav/wo-library/commit/7cc58fd980e2864506c31a9582b535f726b7a57a))
+
 ## 1.0.0 (2022-09-15)
 
 
