@@ -1,6 +1,6 @@
 {
   "name": "wo-library",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
@@ -29,12 +29,12 @@
     "react-use": "^17.4.0"
   },
   "devDependencies": {
-    "@rollup/plugin-beep": "^0.2.0",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-eslint": "^8.0.2",
-    "@rollup/plugin-multi-entry": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-beep": "^1.0.0",
+    "@rollup/plugin-commonjs": "^23.0.0",
+    "@rollup/plugin-eslint": "^9.0.0",
+    "@rollup/plugin-multi-entry": "^5.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^9.0.1",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-docs": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
@@ -49,30 +49,29 @@
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/react": "^13.4.0",
-    "@types/node": "^18.7.18",
+    "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.12",
-    "chromatic": "^6.9.0",
-    "postcss": "^8.4.16",
+    "chromatic": "^6.10.2",
+    "cssnano": "^5.1.13",
+    "postcss": "^8.4.18",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^15.0.0",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.8.2",
-    "react-icons": "^4.4.0",
-    "rollup": "^2.79.1",
+    "react-icons": "^4.6.0",
+    "rollup": "^3.1.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-visualizer": "^5.8.1",
-    "source-map-explorer": "^2.5.2",
-    "swiper": "^8.4.2",
-    "typescript": "^4.8.3",
+    "rollup-plugin-visualizer": "^5.8.2",
+    "source-map-explorer": "^2.5.3",
+    "typescript": "^4.8.4",
     "typescript-plugin-css-modules": "^3.4.0",
     "webpack": "^5.74.0"
   },
@@ -81,11 +80,14 @@
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.36.0",
-    "swiper": "^8.4.2"
+    "react-hook-form": "^7.37.0",
+    "swiper": "^8.4.4"
   },
   "peerDependenciesMeta": {
     "http-proxy-middleware": {
+      "optional": true
+    },
+    "react-dom": {
       "optional": true
     },
     "react-hook-form": {
@@ -98,6 +100,15 @@
   "overrides": {
     "@react-native-async-storage/async-storage": {
       "react": "$react"
+    },
+    "rollup-plugin-size-snapshot": {
+      "rollup": "$rollup"
+    },
+    "rollup-plugin-terser": {
+      "rollup": "$rollup"
+    },
+    "rollup-plugin-visualizer": {
+      "rollup": "$rollup"
     }
   }
 }

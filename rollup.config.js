@@ -1,6 +1,7 @@
 import beep from "@rollup/plugin-beep";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import cssnano from "cssnano";
 import fs from "fs";
 import path from "path";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
@@ -17,38 +18,7 @@ import { terser } from "rollup-plugin-terser";
 import visualizer from "rollup-plugin-visualizer";
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
-const plugins = [
-  sizeSnapshot(),
-  progress(),
-  autoExternal(),
-  commonjs(),
-  postcss({
-    plugins: [
-      postcssImport(),
-      postcssFlexbugsFixes(),
-      postcssPresetEnv({
-        autoprefixer: {
-          flexbox: "no-2009",
-        },
-        features: {
-          "custom-media-queries": true,
-          "custom-properties": true,
-          "gap-properties": true,
-          "nesting-rules": true,
-        },
-        stage: 1,
-      }),
-      // Adds PostCSS Normalize as the reset css with default options,
-      // so that it honors browserslist config in package.json
-      // which in turn let's users customize the target behavior as per their needs.
-      postcssNormalize(),
-    ],
-    modules: { localsConvention: "camelCase" },
-    sourceMap: isDev,
-    extensions: [".css"],
-  }),
-  ...(isDev ? [beep(), visualizer()] : [terser()]),
-];
+const plugins = [sizeSnapshot(), progress(), autoExternal(), commonjs()];
 
 const output = {
   dir: "./lib",
@@ -111,6 +81,33 @@ export default [
     output,
     plugins: [
       ...plugins,
+      postcss({
+        extract: "dist.css",
+        plugins: [
+          cssnano({ preset: "default" }),
+          postcssImport(),
+          postcssFlexbugsFixes(),
+          postcssPresetEnv({
+            autoprefixer: {
+              flexbox: "no-2009",
+            },
+            features: {
+              "custom-media-queries": true,
+              "custom-properties": true,
+              "gap-properties": true,
+              "nesting-rules": true,
+            },
+            stage: 1,
+          }),
+          // Adds PostCSS Normalize as the reset css with default options,
+          // so that it honors browserslist config in package.json
+          // which in turn let's users customize the target behavior as per their needs.
+          postcssNormalize(),
+        ],
+        modules: { localsConvention: "camelCase" },
+        sourceMap: isDev,
+        extensions: [".css"],
+      }),
       copy({
         targets: [
           { src: "assets/**/*", dest: "lib/assets" },
@@ -119,6 +116,7 @@ export default [
       }),
       del({ targets: "lib/**/*", runOnce: isDev }),
       typescript(),
+      ...(isDev ? [beep(), visualizer()] : [terser()]),
     ],
     perf: isDev,
   },
@@ -127,7 +125,7 @@ export default [
       ...walk("src/tools/cjs", { includeDirs: true, ext: "cjs" }),
     },
     output: { ...output, format: "cjs", exports: "auto" },
-    plugins,
+    plugins: [...plugins, ...(isDev ? [beep(), visualizer()] : [terser()])],
     perf: isDev,
   },
 ];
