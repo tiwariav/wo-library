@@ -13,12 +13,17 @@ import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
-import { sizeSnapshot } from "rollup-plugin-size-snapshot";
+// import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { terser } from "rollup-plugin-terser";
 import visualizer from "rollup-plugin-visualizer";
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
-const plugins = [sizeSnapshot(), progress(), autoExternal(), commonjs()];
+const plugins = [
+  // sizeSnapshot(),
+  progress(),
+  autoExternal(),
+  commonjs(),
+];
 
 const output = {
   chunkFileNames: "chunks/[name]-[hash].js",
@@ -47,7 +52,11 @@ function walkIndex(directory) {
 }
 
 function walk(directory, options) {
-  const { includeDirs, ext } = { ext: "ts", includeDirs: false, ...options };
+  const { includeDirs, ext } = {
+    ext: ["ts", "tsx"],
+    includeDirs: false,
+    ...options,
+  };
   const response = {};
   const files = fs.readdirSync(directory);
   for (const file of files) {
