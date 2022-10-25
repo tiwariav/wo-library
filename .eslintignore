@@ -1,0 +1,12 @@
+**/node_modules/**
+**/dist/**
+**/storybook-static/**
+**/coverage/**
+**/lib/**
+**/.git/**
+**/public/**
+**/.yarn/**
+.pnp.js
+**/*.snap.js
+**/*.snap.ts
+reports
