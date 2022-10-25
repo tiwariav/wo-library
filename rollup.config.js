@@ -2,8 +2,8 @@ import beep from "@rollup/plugin-beep";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import cssnano from "cssnano";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
@@ -21,20 +21,19 @@ const isDev = Boolean(process.env.ROLLUP_WATCH);
 const plugins = [sizeSnapshot(), progress(), autoExternal(), commonjs()];
 
 const output = {
-  dir: "./lib",
-  sourcemap: isDev,
-  entryFileNames: "[name].js",
   chunkFileNames: "chunks/[name]-[hash].js",
+  dir: "./lib",
+  entryFileNames: "[name].js",
   format: "es",
   minifyInternalExports: !isDev,
   sourcemap: isDev,
 };
 
-function walkIndex(dir) {
+function walkIndex(directory) {
   const response = {};
-  const files = fs.readdirSync(dir);
+  const files = fs.readdirSync(directory);
   for (const file of files) {
-    var filepath = path.join(dir, file);
+    var filepath = path.join(directory, file);
     const stats = fs.statSync(filepath);
     if (filepath.includes("/cjs") || filepath.includes("__")) {
       continue;
@@ -47,25 +46,27 @@ function walkIndex(dir) {
   return response;
 }
 
-function walk(dir, { includeDirs, ext } = { includeDirs: false, ext: "ts" }) {
+function walk(directory, options) {
+  const { includeDirs, ext } = { ext: "ts", includeDirs: false, ...options };
   const response = {};
-  const files = fs.readdirSync(dir);
+  const files = fs.readdirSync(directory);
   for (const file of files) {
-    const filePath = path.join(dir, file);
-    let destPath = filePath;
+    const filePath = path.join(directory, file);
+    let destinationPath = filePath;
     const stats = fs.statSync(filePath);
     const indexFile = `/index.${ext}`;
     if (includeDirs && stats.isDirectory()) {
-      destPath += indexFile;
+      destinationPath += indexFile;
     } else if (!filePath.endsWith(ext) || filePath.endsWith(indexFile)) {
       continue;
     }
-    response[filePath.replace("src/", "").replace(`.${ext}`, "")] = destPath;
+    response[filePath.replace("src/", "").replace(`.${ext}`, "")] =
+      destinationPath;
   }
   return response;
 }
 
-export default [
+const config = [
   {
     input: {
       components: "src/components/index.ts",
@@ -79,10 +80,13 @@ export default [
       ...walk("src/components"),
     },
     output,
+    perf: isDev,
     plugins: [
       ...plugins,
       postcss({
+        extensions: [".css"],
         extract: "dist.css",
+        modules: { localsConvention: "camelCase" },
         plugins: [
           cssnano({ preset: "default" }),
           postcssImport(),
@@ -104,28 +108,33 @@ export default [
           // which in turn let's users customize the target behavior as per their needs.
           postcssNormalize(),
         ],
-        modules: { localsConvention: "camelCase" },
         sourceMap: isDev,
-        extensions: [".css"],
       }),
       copy({
         targets: [
-          { src: "assets/**/*", dest: "lib/assets" },
-          { src: ["package.json", "README.md"], dest: "lib" },
+          { dest: "lib/assets", src: "assets/**/*" },
+          { dest: "lib", src: ["package.json", "README.md"] },
         ],
       }),
-      del({ targets: "lib/**/*", runOnce: isDev }),
+      del({ runOnce: isDev, targets: "lib/**/*" }),
       typescript(),
       ...(isDev ? [beep(), visualizer()] : [terser()]),
     ],
-    perf: isDev,
   },
   {
     input: {
-      ...walk("src/tools/cjs", { includeDirs: true, ext: "cjs" }),
+      ...walk("src/tools/cjs", { ext: "cjs", includeDirs: true }),
     },
-    output: { ...output, format: "cjs", exports: "auto" },
-    plugins: [...plugins, ...(isDev ? [beep(), visualizer()] : [terser()])],
+
+    output: {
+      ...output,
+      entryFileNames: "[name].cjs",
+      exports: "auto",
+      format: "cjs",
+    },
     perf: isDev,
+    plugins: [...plugins, ...(isDev ? [beep(), visualizer()] : [terser()])],
   },
 ];
+
+export default config;
