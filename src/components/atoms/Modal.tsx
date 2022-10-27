@@ -2,25 +2,22 @@ import {
   FloatingFocusManager,
   FloatingOverlay,
   FloatingPortal,
+  useClick,
+  useDismiss,
   useFloating,
   useId,
   useInteractions,
   useRole,
 } from "@floating-ui/react-dom-interactions";
 import { clsx } from "clsx";
-import React, { ReactNode, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./modal.module.css";
 
 interface Props {
   className?: string;
-  children: ReactNode;
+  children: JSX.Element;
   onClose?: Function;
   open?: boolean;
-  render?: (props: {
-    close: () => void;
-    labelId: string;
-    descriptionId: string;
-  }) => React.ReactNode;
 }
 
 const Modal: React.FC<Props> = ({
@@ -49,38 +46,39 @@ const Modal: React.FC<Props> = ({
   const descriptionId = `${id}-description`;
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
+    useClick(context),
     useRole(context),
+    useDismiss(context),
   ]);
 
-  const handleOutsideClick = (event) => {
-    if (event.target === event.currentTarget) {
-      handleOpenChange(false);
-    }
-  };
+  // const handleOutsideClick = (event) => {
+  //   if (event.target === event.currentTarget) {
+  //     handleOpenChange(false);
+  //   }
+  // };
 
   return (
     <>
       <div {...getReferenceProps({ ref: reference })} />
       <FloatingPortal>
         {open && (
-          <FloatingFocusManager context={context}>
-            <FloatingOverlay
-              lockScroll
-              className={styles.overlay}
-              onClick={handleOutsideClick}
-            >
+          <FloatingOverlay
+            lockScroll
+            className={styles.overlay}
+            // onClick={handleOutsideClick}
+          >
+            <FloatingFocusManager context={context}>
               <div
-                {...getFloatingProps({
-                  "aria-describedby": descriptionId,
-                  "aria-labelledby": labelId,
-                  className: clsx(styles.modal, className),
-                  ref: floating,
-                })}
+                ref={floating}
+                className={clsx(styles.modal, className)}
+                aria-labelledby={labelId}
+                aria-describedby={descriptionId}
+                {...getFloatingProps()}
               >
                 {children}
               </div>
-            </FloatingOverlay>
-          </FloatingFocusManager>
+            </FloatingFocusManager>
+          </FloatingOverlay>
         )}
       </FloatingPortal>
     </>
