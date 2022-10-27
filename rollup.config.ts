@@ -1,21 +1,30 @@
-import beep from "@rollup/plugin-beep";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
+import _beep from "@rollup/plugin-beep";
+import _commonjs from "@rollup/plugin-commonjs";
+import _typescript from "@rollup/plugin-typescript";
 import cssnano from "cssnano";
-import fs from "node:fs";
-import path from "node:path";
+import { defaultImport } from "default-import";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
 import postcssPresetEnv from "postcss-preset-env";
+import type { OutputOptions, RollupOptions } from "rollup";
 import autoExternal from "rollup-plugin-auto-external";
-import copy from "rollup-plugin-copy";
-import del from "rollup-plugin-delete";
-import postcss from "rollup-plugin-postcss";
+import _copy from "rollup-plugin-copy";
+import _del from "rollup-plugin-delete";
+import _postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
+import { walk, walkIndex } from "./src/tools/files/index.js";
 // import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { terser } from "rollup-plugin-terser";
-import visualizer from "rollup-plugin-visualizer";
+import _visualizer from "rollup-plugin-visualizer";
+
+const commonjs = defaultImport(_commonjs);
+const postcss = defaultImport(_postcss);
+const copy = defaultImport(_copy);
+const del = defaultImport(_del);
+const typescript = defaultImport(_typescript);
+const beep = defaultImport(_beep);
+const visualizer = defaultImport(_visualizer);
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 const plugins = [
@@ -25,7 +34,7 @@ const plugins = [
   commonjs(),
 ];
 
-const output = {
+const output: OutputOptions = {
   chunkFileNames: "chunks/[name]-[hash].js",
   dir: "./lib",
   entryFileNames: "[name].js",
@@ -34,48 +43,7 @@ const output = {
   sourcemap: isDev,
 };
 
-function walkIndex(directory) {
-  const response = {};
-  const files = fs.readdirSync(directory);
-  for (const file of files) {
-    var filepath = path.join(directory, file);
-    const stats = fs.statSync(filepath);
-    if (filepath.includes("/cjs") || filepath.includes("__")) {
-      continue;
-    }
-    const indexFile = filepath + "/index.ts";
-    if (stats.isDirectory() && fs.existsSync(indexFile)) {
-      response[filepath.replace("src/", "")] = indexFile;
-    }
-  }
-  return response;
-}
-
-function walk(directory, options) {
-  const { includeDirs, ext } = {
-    ext: ["ts", "tsx"],
-    includeDirs: false,
-    ...options,
-  };
-  const response = {};
-  const files = fs.readdirSync(directory);
-  for (const file of files) {
-    const filePath = path.join(directory, file);
-    let destinationPath = filePath;
-    const stats = fs.statSync(filePath);
-    const indexFile = `/index.${ext}`;
-    if (includeDirs && stats.isDirectory()) {
-      destinationPath += indexFile;
-    } else if (!filePath.endsWith(ext) || filePath.endsWith(indexFile)) {
-      continue;
-    }
-    response[filePath.replace("src/", "").replace(`.${ext}`, "")] =
-      destinationPath;
-  }
-  return response;
-}
-
-const config = [
+const config: RollupOptions[] = [
   {
     input: {
       components: "src/components/index.ts",
@@ -126,13 +94,18 @@ const config = [
         ],
       }),
       del({ runOnce: isDev, targets: "lib/**/*" }),
-      typescript(),
+      typescript({
+        tsconfig: "tsconfig.rollup.json",
+      }),
       ...(isDev ? [beep(), visualizer()] : [terser()]),
     ],
   },
   {
     input: {
-      ...walk("src/tools/cjs", { ext: "cjs", includeDirs: true }),
+      ...walk("src/tools/cjs", {
+        extensions: ["cjs"],
+        includeDirectories: true,
+      }),
     },
 
     output: {

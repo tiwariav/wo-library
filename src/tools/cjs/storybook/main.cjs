@@ -6,6 +6,14 @@ const {
 
 module.exports = {
   addons: [
+    // "@storybook/addon-a11y",
+    "@storybook/addon-actions",
+    "@storybook/addon-backgrounds",
+    "@storybook/addon-controls",
+    "@storybook/addon-docs",
+    "@storybook/addon-events",
+    "@storybook/addon-jest",
+    "@storybook/addon-links",
     {
       name: "@storybook/addon-postcss",
       options: {
@@ -14,18 +22,10 @@ module.exports = {
         },
       },
     },
-    "@storybook/addon-docs",
-    // "@storybook/addon-a11y",
-    // "@storybook/addon-actions",
-    // "@storybook/addon-backgrounds",
-    // "@storybook/addon-controls",
-    // // "@storybook/addon-events",
-    "@storybook/addon-jest",
-    // "@storybook/addon-links",
-    // // "@storybook/addon-queryparams",
-    // "@storybook/addon-storysource",
+    "@storybook/addon-queryparams",
+    "@storybook/addon-storysource",
     "@storybook/addon-toolbars",
-    // "@storybook/addon-viewport",
+    "@storybook/addon-viewport",
   ],
   core: {
     builder: {

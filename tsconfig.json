@@ -7,6 +7,7 @@
     // @react-native-async-storage/async-storage throws error
     // "declarationDir": "lib/@types",
     "diagnostics": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -26,6 +27,6 @@
     // "strict": true,
     "target": "ES2015"
   },
-  "include": ["src"],
+  "include": ["src", "rollup.config.ts"],
   "exclude": ["**/__snapshots__", "**/__tests__", "node_modules"]
 }
