@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/tiwariav/wo-library/compare/v1.2.0...v1.2.0) (2022-10-27)
+
+
+### Bug Fixes
+
+* fix node version for github action ([ec006ad](https://github.com/tiwariav/wo-library/commit/ec006adca8026ff332bb17d9d9fa3907ea0d0ae6))
+
 ## [1.2.0](https://github.com/tiwariav/wo-library/compare/v1.0.1...v1.2.0) (2022-10-27)
 
 
