@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/tiwariav/wo-library/compare/v1.0.1...v1.2.0) (2022-10-27)
+
+
+### Bug Fixes
+
+* modal overflow behaviour ([c919191](https://github.com/tiwariav/wo-library/commit/c919191add210eb931d27769c24c842a8b78d22d))
+* release please config ([2d096c4](https://github.com/tiwariav/wo-library/commit/2d096c443e13c9f28cd7ca24fef1d4de5b08b3cb))
+
 ## [1.0.1](https://github.com/tiwariav/wo-library/compare/v1.0.0...v1.0.1) (2022-09-23)
 
 
