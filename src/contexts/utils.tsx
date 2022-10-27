@@ -10,9 +10,9 @@ export interface LoadingDispatch<Methods extends FunctionRecord>
   loadingDispatch: WrappedMethods<Methods>;
 }
 
-export function createAndUseContext<TypeState, TpyeDispatch>() {
+export function createAndUseContext<TypeState, TypeDispatch>() {
   const Context = createContext<TypeState>({} as TypeState);
-  const DispatchContext = createContext<TpyeDispatch>({} as TpyeDispatch);
+  const DispatchContext = createContext<TypeDispatch>({} as TypeDispatch);
 
   const useContextState = () => useContext(Context);
   const useContextDispatch = () => useContext(DispatchContext);
