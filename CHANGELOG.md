@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/tiwariav/wo-library/compare/v1.2.2...v1.2.3) (2022-10-28)
+
+
+### Bug Fixes
+
+* actions config ([2330502](https://github.com/tiwariav/wo-library/commit/2330502195d97c7a17f5df136ec4bb73bda4b6fb))
+
 ## [1.2.2](https://github.com/tiwariav/wo-library/compare/v1.2.1...v1.2.2) (2022-10-28)
 
 
