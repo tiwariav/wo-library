@@ -65,7 +65,7 @@
     "autoprefixer": "^10.4.13",
     "babel-jest": "29.2.2",
     "chromatic": "^6.11.2",
-    "cssnano": "^5.1.13",
+    "cssnano": "^5.1.14",
     "default-import": "^1.1.5",
     "eslint": "8.26.0",
     "eslint-config-prettier": "8.5.0",
