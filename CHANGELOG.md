@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/tiwariav/wo-library/compare/v1.2.3...v1.2.4) (2022-10-29)
+
+
+### Bug Fixes
+
+* add calendly options type ([8e718fe](https://github.com/tiwariav/wo-library/commit/8e718feab3d6c6961633dc47d5137c7714cd89ba))
+
 ## [1.2.3](https://github.com/tiwariav/wo-library/compare/v1.2.2...v1.2.3) (2022-10-28)
 
 
