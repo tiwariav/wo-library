@@ -15,7 +15,15 @@ async function loadCalendlyAssets() {
   }
 }
 
-export default function useCalendly({ calendlyLink, prefill }) {
+export interface CalendlyOptions {
+  calendlyLink: string;
+  prefill?: any;
+}
+
+export default function useCalendly({
+  calendlyLink,
+  prefill,
+}: CalendlyOptions) {
   useEffectOnce(() => {
     loadCalendlyAssets();
   });
