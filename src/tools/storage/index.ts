@@ -2,6 +2,7 @@ interface StorageBackend {
   getItem: (arg0: string) => any;
   setItem: (arg0: string, arg1: any) => void;
   removeItem: (arg0: string) => void;
+  clear: () => void;
 }
 
 export const STORAGE_ENVIRONMENTS = {
@@ -15,9 +16,10 @@ export const STORAGE_TYPES = {
   temp: "temp",
 } as const;
 
-export const memoryStorageItems = {};
+export let memoryStorageItems = {};
 
 const memoryStorage = {
+  clear: async () => (memoryStorageItems = {}),
   getItem: async (key: string) => memoryStorageItems[key] || null,
   removeItem: async (key: string) => (memoryStorageItems[key] = null),
   setItem: async (key: string, value: any) => (memoryStorageItems[key] = value),
@@ -98,6 +100,11 @@ export class AnyStorage {
     // remove the key from both temp and persist storage
     this.storageBackends[STORAGE_TYPES.temp].removeItem(key);
     return this.storageBackends[STORAGE_TYPES.persist].removeItem(key);
+  };
+
+  clear = async () => {
+    this.storageBackends[STORAGE_TYPES.temp].clear();
+    return this.storageBackends[STORAGE_TYPES.persist].clear();
   };
 }
 
