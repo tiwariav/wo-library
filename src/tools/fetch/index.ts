@@ -67,24 +67,31 @@ export async function defaultResponseErrorHandler(
   // handle http response status codes
   const errorData = await data.json();
   switch (data.status) {
-    case 400:
+    case 400: {
       throw new WoErrorData(error, errorData, "Invalid Data!");
-    case 401:
+    }
+    case 401: {
       throw new WoErrorData(error, errorData, "You session has expired!");
-    case 403:
+    }
+    case 403: {
       throw new WoErrorData(
         error,
         errorData,
         "You are not authorized to access this page!"
       );
-    case 404:
+    }
+    case 404: {
       throw new WoErrorData(error, errorData, "Endpoint not found!");
-    case 429:
+    }
+    case 429: {
       throw new WoErrorData(error, errorData, "Too many requests!");
-    case 500:
+    }
+    case 500: {
       throw new WoErrorData(error, errorData, "Internal server error!");
-    default:
+    }
+    default: {
       break;
+    }
   }
 }
 
@@ -94,15 +101,19 @@ export async function defaultErrorHandler(
 ): Promise<void> {
   // handle manual set error status codes
   switch (error.name) {
-    case "TypeError":
+    case "TypeError": {
       throw new WoErrorData(error, data, "Response is not proper json!");
-    case "AbortError":
+    }
+    case "AbortError": {
       throw new WoErrorData(error, data, "Request aborted!");
-    case "WoResponseError":
+    }
+    case "WoResponseError": {
       await defaultResponseErrorHandler(error, data);
       break;
-    default:
+    }
+    default: {
       throw new WoErrorData(error, data, "Unknown Error!");
+    }
   }
 }
 
@@ -278,6 +289,9 @@ export class WoFetch {
       token,
     }: FetchURLOptions = {}
   ): Promise<any> => {
+    if (!this.apiEndpoint) {
+      throw new Error("API endpoint is not defined");
+    }
     const requestHeaders = await this.getHeaders({
       headers,
       requireAuth,

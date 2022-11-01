@@ -1,0 +1,5 @@
+[production]
+extends @tiwariav/browserslist-config/production
+
+[development]
+extends @tiwariav/browserslist-config/development
