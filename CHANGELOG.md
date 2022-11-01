@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/tiwariav/wo-library/compare/v1.2.4...v1.3.0) (2022-11-01)
+
+
+### Features
+
+* add browserslist config ([4592cda](https://github.com/tiwariav/wo-library/commit/4592cdae95b790aedde7bc8ff710cc4055caed25))
+* add clear method to storage instance ([d77cc1e](https://github.com/tiwariav/wo-library/commit/d77cc1e054bec70dadb04e26f7c046903ad5fedc))
+
 ## [1.2.4](https://github.com/tiwariav/wo-library/compare/v1.2.3...v1.2.4) (2022-10-29)
 
 
