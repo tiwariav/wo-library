@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/tiwariav/wo-library/compare/v1.3.0...v1.3.1) (2022-11-04)
+
+
+### Bug Fixes
+
+* update package versions ([d4d0a05](https://github.com/tiwariav/wo-library/commit/d4d0a0531f9bea815906c68cfb79e053335b4f34))
+
 ## [1.3.0](https://github.com/tiwariav/wo-library/compare/v1.2.4...v1.3.0) (2022-11-01)
 
 
