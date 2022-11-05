@@ -9,6 +9,8 @@
 
 .overlay {
   z-index: var(--z-index-modal);
+  display: grid;
   background: rgb(25 25 25 / 0.8);
   backdrop-filter: blur(12px);
+  place-items: center;
 }
