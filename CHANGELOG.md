@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/tiwariav/wo-library/compare/v1.3.1...v1.3.2) (2022-11-06)
+
+
+### Bug Fixes
+
+* modal vertical alignment ([e79d5fb](https://github.com/tiwariav/wo-library/commit/e79d5fbbace0f674b913107299d4798e2878d531))
+
 ## [1.3.1](https://github.com/tiwariav/wo-library/compare/v1.3.0...v1.3.1) (2022-11-04)
 
 
