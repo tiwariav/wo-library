@@ -68,7 +68,7 @@
     "chromatic": "^6.11.4",
     "cssnano": "^5.1.14",
     "default-import": "^1.1.5",
-    "eslint": "8.26.0",
+    "eslint": "8.27.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-formatter-gitlab": "3.0.0",
