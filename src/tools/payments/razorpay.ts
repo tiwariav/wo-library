@@ -28,7 +28,9 @@ export async function checkout({
     currency,
     description,
     handler: handleSuccess,
-    key: process.env.REACT_APP_WO_RAZORPAY_KEY,
+    key:
+      process.env.REACT_APP_WO_RAZORPAY_KEY ||
+      process.env.NEXT_PUBLIC_WO_RAZORPAY_KEY,
     modal: { ondismiss: handleClose },
     name,
     order_id: orderID,

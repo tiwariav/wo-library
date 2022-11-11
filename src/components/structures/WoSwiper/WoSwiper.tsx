@@ -10,7 +10,7 @@ import {
   Pagination,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./styles.js";
+import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
 const variants = ["basic", "coverflow"] as const;
