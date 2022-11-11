@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/tiwariav/wo-library/compare/v1.3.2...v1.3.3) (2022-11-11)
+
+
+### Bug Fixes
+
+* move swiper css impors to css file ([a209625](https://github.com/tiwariav/wo-library/commit/a209625a88eaf1aade60aa7e298f67b0ee73778e))
+
 ## [1.3.2](https://github.com/tiwariav/wo-library/compare/v1.3.1...v1.3.2) (2022-11-06)
 
 
