@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/tiwariav/wo-library/compare/v1.3.3...v1.4.0) (2022-11-13)
+
+
+### Features
+
+* replace release please with semantic release ([06b684f](https://github.com/tiwariav/wo-library/commit/06b684fbfd088ae891da70489393494b919c57cf))
+
 # Changelog
 
 ## [1.3.3](https://github.com/tiwariav/wo-library/compare/v1.3.2...v1.3.3) (2022-11-11)
