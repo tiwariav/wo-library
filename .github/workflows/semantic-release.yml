@@ -1,5 +1,5 @@
 # Workflow name
-name: "Release Please"
+name: "Semantic Release"
 
 on:
   push:
