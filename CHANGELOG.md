@@ -1,3 +1,11 @@
+## [1.4.3](https://github.com/tiwariav/wo-library/compare/v1.4.2...v1.4.3) (2022-12-07)
+
+
+### Bug Fixes
+
+* storybook webpack config for css modules ([6696b40](https://github.com/tiwariav/wo-library/commit/6696b405e410449d6bcd09dcd6cd4e991b5184ba))
+* update packages ([5c7bf2f](https://github.com/tiwariav/wo-library/commit/5c7bf2ff1951c0cccdd4e42cd861c9e0110b3df9))
+
 ## [1.4.2](https://github.com/tiwariav/wo-library/compare/v1.4.1...v1.4.2) (2022-11-23)
 
 
