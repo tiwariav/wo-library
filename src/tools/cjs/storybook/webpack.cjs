@@ -16,19 +16,19 @@ function cssModules(config, { configType }) {
       ...cssRule,
       test: /\.module\.css$/,
       use: cssRule.use.map((rule) => {
-        if (rule && rule.loader && rule.loader.match(/\Wcss-loader/g)) {
+        if (rule && rule.loader && /\Wcss-loader/g.test(rule.loader)) {
           return {
             ...rule,
             options: {
               ...rule.options,
-              sourceMap: true,
-              localsConvention: "camelCase",
               modules: {
                 localIdentName:
                   configType === "DEVELOPMENT"
                     ? "[name]__[local]"
                     : "[hash:base64]",
+                localsConvention: "camelCase",
               },
+              sourceMap: true,
             },
           };
         }
@@ -70,7 +70,7 @@ function nodeNextExtensionAlias(config) {
 
 module.exports = {
   cssModules,
-  sass,
   modulesFullySpecified,
   nodeNextExtensionAlias,
+  sass,
 };
