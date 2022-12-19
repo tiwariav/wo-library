@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/tiwariav/wo-library/compare/v1.4.4...v1.4.5) (2022-12-19)
+
+
+### Bug Fixes
+
+* update packages ([f3ca815](https://github.com/tiwariav/wo-library/commit/f3ca81501f7349ab57ceea0b36263ed7aa730c45))
+
 ## [1.4.4](https://github.com/tiwariav/wo-library/compare/v1.4.3...v1.4.4) (2022-12-19)
 
 
