@@ -15,7 +15,7 @@ import styles from "./modal.module.css";
 
 interface Props {
   className?: string;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   onClose?: Function;
   open?: boolean;
 }
