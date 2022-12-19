@@ -48,25 +48,15 @@ const Modal: React.FC<Props> = ({
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useClick(context),
     useRole(context),
-    useDismiss(context),
+    useDismiss(context, { outsidePressEvent: "mousedown" }),
   ]);
-
-  // const handleOutsideClick = (event) => {
-  //   if (event.target === event.currentTarget) {
-  //     handleOpenChange(false);
-  //   }
-  // };
 
   return (
     <>
       <div {...getReferenceProps({ ref: reference })} />
       <FloatingPortal>
         {open && (
-          <FloatingOverlay
-            lockScroll
-            className={styles.overlay}
-            // onClick={handleOutsideClick}
-          >
+          <FloatingOverlay lockScroll className={styles.overlay}>
             <FloatingFocusManager context={context}>
               <div
                 ref={floating}
