@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/tiwariav/wo-library/compare/v1.4.3...v1.4.4) (2022-12-19)
+
+
+### Bug Fixes
+
+* add outside press event to modal dismiss hook ([11c2c66](https://github.com/tiwariav/wo-library/commit/11c2c669dcc9f977cbc814fd973886503479057a))
+
 ## [1.4.3](https://github.com/tiwariav/wo-library/compare/v1.4.2...v1.4.3) (2022-12-07)
 
 
