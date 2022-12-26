@@ -22,11 +22,11 @@ function cssModules(config, { configType }) {
             options: {
               ...rule.options,
               modules: {
+                exportLocalsConvention: "camelCase",
                 localIdentName:
                   configType === "DEVELOPMENT"
                     ? "[name]__[local]"
                     : "[hash:base64]",
-                localsConvention: "camelCase",
               },
               sourceMap: true,
             },
@@ -63,7 +63,7 @@ function modulesFullySpecified(config) {
 
 function nodeNextExtensionAlias(config) {
   config.resolve.extensionAlias = {
-    ".js": [".js", ".ts", ".tsx"],
+    ".js": [".js", ".jsx", ".ts", ".tsx"],
   };
   return config;
 }

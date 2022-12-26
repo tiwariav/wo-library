@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.3",
+    "@mdx-js/react": "^2.2.1",
     "clsx": "^1.2.1",
     "immer": "^9.0.16",
     "lodash-es": "^4.17.21",
