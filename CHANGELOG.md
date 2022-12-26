@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/tiwariav/wo-library/compare/v1.4.5...v1.4.6) (2022-12-26)
+
+
+### Bug Fixes
+
+* remove addons from storybook config ([b2720a4](https://github.com/tiwariav/wo-library/commit/b2720a4a85b8d821fadc6e10efe4a5c4ba1fe671))
+
 ## [1.4.5](https://github.com/tiwariav/wo-library/compare/v1.4.4...v1.4.5) (2022-12-19)
 
 
