@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/tiwariav/wo-library/compare/v1.5.2...v1.5.3) (2023-01-08)
+
+
+### Bug Fixes
+
+* walk subdirectory without index files ([5c3b984](https://github.com/tiwariav/wo-library/commit/5c3b9843dce4817e667fa47bb992185732b7d477))
+
 ## [1.5.2](https://github.com/tiwariav/wo-library/compare/v1.5.1...v1.5.2) (2023-01-08)
 
 
