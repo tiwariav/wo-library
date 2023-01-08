@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/tiwariav/wo-library/compare/v1.5.1...v1.5.2) (2023-01-08)
+
+
+### Performance Improvements
+
+* update packages ([975112f](https://github.com/tiwariav/wo-library/commit/975112f842f6844c7738c52ef30ae10f23c6f7b4))
+
 ## [1.5.1](https://github.com/tiwariav/wo-library/compare/v1.5.0...v1.5.1) (2023-01-08)
 
 
