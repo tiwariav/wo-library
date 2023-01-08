@@ -15,14 +15,15 @@ module.exports = {
     // "@storybook/addon-events",
     // "@storybook/addon-jest",
     // "@storybook/addon-links",
-    // {
-    //   name: "@storybook/addon-postcss",
-    //   options: {
-    //     postcssLoaderOptions: {
-    //       implementation: require("postcss"),
-    //     },
-    //   },
-    // },
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        postcssLoaderOptions: {
+          // to use postcss v8
+          implementation: require("postcss"),
+        },
+      },
+    },
     // "@storybook/addon-queryparams",
     // "@storybook/addon-storysource",
     // "@storybook/addon-toolbars",

@@ -21,8 +21,8 @@ function cssModules(config, { configType }) {
             ...rule,
             options: {
               ...rule.options,
+              localsConvention: "camelCase",
               modules: {
-                exportLocalsConvention: "camelCase",
                 localIdentName:
                   configType === "DEVELOPMENT"
                     ? "[name]__[local]"
