@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/tiwariav/wo-library/compare/v1.5.0...v1.5.1) (2023-01-08)
+
+
+### Bug Fixes
+
+* update package json after version update ([9e2edb4](https://github.com/tiwariav/wo-library/commit/9e2edb491a9345dfbb3f1edfccc57d9827e59a3f))
+
 # [1.5.0](https://github.com/tiwariav/wo-library/compare/v1.4.6...v1.5.0) (2023-01-08)
 
 
