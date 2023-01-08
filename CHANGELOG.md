@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/tiwariav/wo-library/compare/v1.4.6...v1.5.0) (2023-01-08)
+
+
+### Features
+
+* add hook for scroll direction ([e9d5340](https://github.com/tiwariav/wo-library/commit/e9d53403ec5575470e3f91a03f82ce888e1998e1))
+
 ## [1.4.6](https://github.com/tiwariav/wo-library/compare/v1.4.5...v1.4.6) (2022-12-26)
 
 
