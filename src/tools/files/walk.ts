@@ -61,6 +61,8 @@ export function walk(directory: string, options: WalkOptions = {}) {
       const indexFile = getIndexFile(filePath);
       if (indexFile && extensions.includes(indexFile.extension)) {
         destinationPath = indexFile.path;
+      } else {
+        continue;
       }
     } else if (
       extensions.length > 0 &&
