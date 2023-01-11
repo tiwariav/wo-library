@@ -32,7 +32,7 @@
     "react-use": "^17.4.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.0",
+    "@commitlint/cli": "17.4.1",
     "@commitlint/config-conventional": "17.4.0",
     "@rollup/plugin-beep": "^1.0.2",
     "@rollup/plugin-commonjs": "^24.0.0",
@@ -85,7 +85,7 @@
     "eslint-plugin-formatjs": "^4.3.9",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.2.1",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-jsx-a11y": "^6.7.0",
     "eslint-plugin-lodash": "^7.4.0",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^4.2.1",
