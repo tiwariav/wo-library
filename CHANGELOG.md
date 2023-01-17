@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/tiwariav/wo-library/compare/v1.5.4...v1.6.0) (2023-01-17)
+
+
+### Features
+
+* add prefix and version to store ([c872158](https://github.com/tiwariav/wo-library/commit/c8721584d6338c6cecf22b734df15fd3c1cddc61))
+
 ## [1.5.4](https://github.com/tiwariav/wo-library/compare/v1.5.3...v1.5.4) (2023-01-11)
 
 
