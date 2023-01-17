@@ -27,7 +27,7 @@ type WoSwiperProps = {
   pagination?: boolean;
   subtitle: string;
   title: string;
-  variant?: typeof variants[number];
+  variant?: (typeof variants)[number];
 };
 
 export default function WoSwiper({
@@ -81,7 +81,7 @@ export default function WoSwiper({
         // @ts-ignore
         modules={[
           // TODO: creating new wrapper-id for each storyshot run
-          ...(!process.env.JEST_WORKER_ID ? [A11y] : []),
+          ...(process.env.JEST_WORKER_ID ? [] : [A11y]),
           EffectCoverflow,
           FreeMode,
           Mousewheel,
@@ -105,16 +105,16 @@ export default function WoSwiper({
         slidesPerView={pagination ? 1 : "auto"}
         // freemode
         freeMode={
-          !pagination
-            ? {
+          pagination
+            ? false
+            : {
                 enabled: true,
                 sticky: !navigation,
                 ...freeMode,
               }
-            : false
         }
         // navigation
-        navigation={!pagination ? navigation : false}
+        navigation={pagination ? false : navigation}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
         {...derivedProps}
