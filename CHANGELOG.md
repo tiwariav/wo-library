@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/tiwariav/wo-library/compare/v1.6.2...v1.6.3) (2023-01-19)
+
+
+### Bug Fixes
+
+* swiper enable navigation with pagination ([f948bdf](https://github.com/tiwariav/wo-library/commit/f948bdfdcfd210362007201fc812734b6a6055a3))
+
 ## [1.6.2](https://github.com/tiwariav/wo-library/compare/v1.6.1...v1.6.2) (2023-01-19)
 
 
