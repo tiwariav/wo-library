@@ -29,6 +29,7 @@ type WoSwiperProps = {
   title: string;
   variant?: typeof variants[number];
   hideFreeMode?: boolean;
+  slideCount?: number;
 };
 
 export default function WoSwiper({
@@ -44,7 +45,8 @@ export default function WoSwiper({
   title,
   variant = "basic",
   hideFreeMode = false,
-  pagination,
+  pagination = false,
+  slideCount = 1,
   ...props
 }: WoSwiperProps) {
   let derivedProps = {};
@@ -104,7 +106,7 @@ export default function WoSwiper({
         // slides grid
         centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
-        slidesPerView={pagination ? 1 : "auto"}
+        slidesPerView={pagination ? slideCount : "auto"}
         // freemode
         freeMode={
           hideFreeMode
