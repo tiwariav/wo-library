@@ -27,8 +27,10 @@ const memoryStorage = {
 
 export const DEFAULT_STORAGE_BACKENDS = {
   [STORAGE_ENVIRONMENTS.web]: {
-    [STORAGE_TYPES.persist]: localStorage,
-    [STORAGE_TYPES.temp]: sessionStorage,
+    [STORAGE_TYPES.persist]:
+      typeof localStorage === "undefined" ? undefined : localStorage,
+    [STORAGE_TYPES.temp]:
+      typeof sessionStorage === "undefined" ? undefined : sessionStorage,
   },
   [STORAGE_ENVIRONMENTS.mobile]: {
     [STORAGE_TYPES.temp]: memoryStorage,
@@ -36,8 +38,8 @@ export const DEFAULT_STORAGE_BACKENDS = {
 };
 
 type StorageEnvironments =
-  (typeof STORAGE_ENVIRONMENTS)[keyof typeof STORAGE_ENVIRONMENTS];
-type StorageTypes = (typeof STORAGE_TYPES)[keyof typeof STORAGE_TYPES];
+  typeof STORAGE_ENVIRONMENTS[keyof typeof STORAGE_ENVIRONMENTS];
+type StorageTypes = typeof STORAGE_TYPES[keyof typeof STORAGE_TYPES];
 
 export class AnyStorage {
   backends: {
