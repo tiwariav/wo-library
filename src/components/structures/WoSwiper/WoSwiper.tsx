@@ -114,7 +114,7 @@ export default function WoSwiper({
               }
         }
         // navigation
-        navigation={pagination ? false : navigation}
+        navigation={navigation}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
         {...derivedProps}
