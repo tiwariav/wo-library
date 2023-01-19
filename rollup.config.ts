@@ -61,6 +61,7 @@ const config: RollupOptions[] = [
     plugins: [
       ...plugins,
       postcss({
+        config: false,
         extensions: [".css"],
         extract: "dist.css",
         modules: { localsConvention: "camelCase" },

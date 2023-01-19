@@ -18,7 +18,7 @@ import { clsx } from "clsx";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./tooltip.module.css";
 
-interface TooltipProps {
+export interface TooltipProps {
   className?: string;
   children?: ReactNode;
   options?: any;
@@ -66,7 +66,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       ...(arrowRef?.current ? [arrow({ element: arrowRef.current })] : []),
       offset(options.offset),
       shift({ padding: options.padding }),
-      ...(!placement ? [autoPlacement()] : []),
+      ...(placement ? [] : [autoPlacement()]),
     ],
     onOpenChange: setShow,
     open,

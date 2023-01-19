@@ -67,15 +67,15 @@ export default function WoSwiper({
         className
       )}
     >
-      {title || subtitle || moreLink ? (
+      {(title || subtitle || moreLink) && (
         <div className={styles.top}>
           <div className={styles.topLeft}>
-            {title ? <h2 className={styles.title}>{title}</h2> : null}
-            {subtitle ? <h3 className={styles.subtitle}>{subtitle}</h3> : null}
+            {title && <h2 className={styles.title}>{title}</h2>}
+            {subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
           </div>
-          <div>{moreLink && variant !== "coverflow" ? moreLink : null}</div>
+          <div>{moreLink && variant !== "coverflow" && moreLink}</div>
         </div>
-      ) : null}
+      )}
       <Swiper
         // modules
         // @ts-ignore
@@ -136,7 +136,7 @@ export default function WoSwiper({
             }}
           </SwiperSlide>
         ))}
-        {fade ? (
+        {fade && (
           <>
             <div
               className={styles.fadeLeft}
@@ -149,11 +149,11 @@ export default function WoSwiper({
               slot="container-end"
             />
           </>
-        ) : null}
+        )}
       </Swiper>
-      {moreLinkVertical ? (
+      {moreLinkVertical && (
         <div className={styles.bottom}>{moreLinkVertical}</div>
-      ) : null}
+      )}
     </div>
   );
 }

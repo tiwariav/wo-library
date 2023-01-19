@@ -1,17 +1,17 @@
 import { clsx } from "clsx";
-import Tooltip from "../atoms/Tooltip.js";
+import Tooltip, { TooltipProps } from "../atoms/Tooltip.js";
 import styles from "./popover.module.css";
 
-type Props = {
+interface PopoverProps extends TooltipProps {
   content: React.ReactNode;
   innerClassNames: any;
-};
+}
 
 export default function Popover({
   content,
   innerClassNames = {},
   ...props
-}: Props) {
+}: PopoverProps) {
   return (
     <Tooltip
       innerClassNames={{

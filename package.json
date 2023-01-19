@@ -19,7 +19,7 @@
     "precommit": "lint-staged",
     "prepare": "(test -d '.git' && husky install) || true",
     "release": "cd lib && npm publish",
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 9001",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
