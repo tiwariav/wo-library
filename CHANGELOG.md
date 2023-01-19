@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/tiwariav/wo-library/compare/v1.6.0...v1.6.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* local storage revert ([946f701](https://github.com/tiwariav/wo-library/commit/946f701445825f42e7f680045b5924b4216ad0b4))
+
 # [1.6.0](https://github.com/tiwariav/wo-library/compare/v1.5.4...v1.6.0) (2023-01-17)
 
 
