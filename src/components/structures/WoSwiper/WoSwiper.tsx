@@ -27,7 +27,8 @@ type WoSwiperProps = {
   pagination?: boolean;
   subtitle: string;
   title: string;
-  variant?: (typeof variants)[number];
+  variant?: typeof variants[number];
+  hideFreeMode?: boolean;
 };
 
 export default function WoSwiper({
@@ -42,6 +43,7 @@ export default function WoSwiper({
   subtitle,
   title,
   variant = "basic",
+  hideFreeMode = false,
   pagination,
   ...props
 }: WoSwiperProps) {
@@ -105,7 +107,7 @@ export default function WoSwiper({
         slidesPerView={pagination ? 1 : "auto"}
         // freemode
         freeMode={
-          pagination
+          hideFreeMode
             ? false
             : {
                 enabled: true,
@@ -114,7 +116,7 @@ export default function WoSwiper({
               }
         }
         // navigation
-        navigation={pagination ? false : navigation}
+        navigation={navigation}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
         {...derivedProps}
