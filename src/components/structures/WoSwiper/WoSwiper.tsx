@@ -16,17 +16,17 @@ import styles from "./woSwiper.module.css";
 const variants = ["basic", "coverflow"] as const;
 
 type WoSwiperProps = {
-  className: string;
-  children: JSX.Element;
-  fade: { left: number; right: number };
-  freeMode: object;
-  hasSeparator: boolean;
-  moreLink: string;
-  moreLinkVertical: string;
+  className?: string;
+  children: JSX.Element | JSX.Element[];
+  fade?: { left: number; right: number };
+  freeMode?: object;
+  hasSeparator?: boolean;
+  moreLink?: string;
+  moreLinkVertical?: string;
   navigation?: boolean;
   pagination?: boolean;
-  subtitle: string;
-  title: string;
+  subtitle?: string;
+  title?: string;
   variant?: (typeof variants)[number];
 };
 

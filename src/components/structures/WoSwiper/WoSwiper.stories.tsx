@@ -26,7 +26,7 @@ const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
       moreLinkVertical={moreLinkMap[moreLinkVertical]}
       {...args}
     >
-      {Array.from({ length: 11 }).fill(<p>Content...</p>)}
+      {Array.from<JSX.Element>({ length: 11 }).fill(<p>Content...</p>)}
     </WoSwiper>
   );
 };
