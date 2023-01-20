@@ -1,11 +1,16 @@
 import { clsx } from "clsx";
+import { ReactNode } from "react";
+import { SetOptional } from "type-fest";
 import Tooltip, { TooltipProps } from "../atoms/Tooltip.js";
 import styles from "./popover.module.css";
 
-interface PopoverProps extends TooltipProps {
+type PopoverTooltipProps = TooltipProps & {
   content: React.ReactNode;
-  innerClassNames: any;
-}
+  innerClassNames?: any;
+  title?: ReactNode;
+};
+
+type PopoverProps = SetOptional<PopoverTooltipProps, "title">;
 
 export default function Popover({
   content,
