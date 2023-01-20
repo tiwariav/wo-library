@@ -1,3 +1,17 @@
+## [1.6.4](https://github.com/tiwariav/wo-library/compare/v1.6.3...v1.6.4) (2023-01-20)
+
+
+### Bug Fixes
+
+* popover story typing ([ad89a3c](https://github.com/tiwariav/wo-library/commit/ad89a3c947b16cc6053c8911a9affe4f9290ceb4))
+* postcss config for rollup ([1cd452b](https://github.com/tiwariav/wo-library/commit/1cd452b712edbb8da14ba43908555af9f0d7885b))
+* woswiper story typing ([0d08594](https://github.com/tiwariav/wo-library/commit/0d08594cd41b495f2f67288ad5f065cfb6688a03))
+
+
+### Performance Improvements
+
+* update packages ([f4148f6](https://github.com/tiwariav/wo-library/commit/f4148f6006e0ca274f55178213c8b7f63e7bee18))
+
 ## [1.6.3](https://github.com/tiwariav/wo-library/compare/v1.6.2...v1.6.3) (2023-01-19)
 
 
