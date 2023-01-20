@@ -38,8 +38,8 @@ export const DEFAULT_STORAGE_BACKENDS = {
 };
 
 type StorageEnvironments =
-  typeof STORAGE_ENVIRONMENTS[keyof typeof STORAGE_ENVIRONMENTS];
-type StorageTypes = typeof STORAGE_TYPES[keyof typeof STORAGE_TYPES];
+  (typeof STORAGE_ENVIRONMENTS)[keyof typeof STORAGE_ENVIRONMENTS];
+type StorageTypes = (typeof STORAGE_TYPES)[keyof typeof STORAGE_TYPES];
 
 export class AnyStorage {
   backends: {
