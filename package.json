@@ -12,13 +12,13 @@
     "react"
   ],
   "scripts": {
-    "analyze": "source-map-explorer 'lib/**/*.js' --no-border-checks",
+    "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
     "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "dev": "rollup -w --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch.onEnd 'yalc push lib'",
+    "dev": "rollup -w --config rollup.config.ts --configPlugin @rollup/plugin-typescript --watch.onEnd 'yalc push dist'",
     "postversion": "cp -r package.json ..",
     "precommit": "lint-staged",
     "prepare": "(test -d '.git' && husky install) || true",
-    "release": "cd lib && npm publish",
+    "release": "cd dist && npm publish",
     "storybook": "start-storybook -p 9001",
     "build-storybook": "build-storybook"
   },
@@ -114,6 +114,7 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-node-externals": "^5.1.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-size-snapshot": "^0.12.0",

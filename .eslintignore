@@ -2,7 +2,7 @@
 **/dist/**
 **/storybook-static/**
 **/coverage/**
-**/lib/**
+**/dist/**
 **/.git/**
 **/public/**
 **/.yarn/**

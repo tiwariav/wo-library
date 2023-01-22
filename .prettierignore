@@ -1,5 +1,5 @@
 .pnp.js
 .yarn/*
 node_modules/
-lib/
+dist/
 reports/

@@ -15,7 +15,7 @@
     "module": "NodeNext",
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
