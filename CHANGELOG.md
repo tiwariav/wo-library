@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/tiwariav/wo-library/compare/v1.6.4...v1.7.0) (2023-01-22)
+
+
+### Features
+
+* use rollup prrservemodules ([7317f77](https://github.com/tiwariav/wo-library/commit/7317f770da1544469c95c3e4b71f4c2ca9f46944))
+
 ## [1.6.4](https://github.com/tiwariav/wo-library/compare/v1.6.3...v1.6.4) (2023-01-20)
 
 
