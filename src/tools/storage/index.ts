@@ -117,9 +117,10 @@ export class AnyStorage {
   };
 
   removeItem = async (key) => {
-    // remove the key from both temp and persist storage
+    // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
     this.backends[STORAGE_TYPES.temp].removeItem(storageKey);
+    this.backends[STORAGE_TYPES.session].removeItem(storageKey);
     return this.backends[STORAGE_TYPES.persist].removeItem(storageKey);
   };
 
