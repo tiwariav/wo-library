@@ -16,7 +16,7 @@ import styles from "./modal.module.css";
 interface Props {
   className?: string;
   children: JSX.Element | JSX.Element[];
-  onClose?: Function;
+  onClose?: () => boolean;
   open?: boolean;
 }
 
@@ -29,7 +29,7 @@ const Modal: React.FC<Props> = ({
   const [show, setShow] = useState(passedOpen);
   const open = passedOpen || show;
   const handleOpenChange = useCallback(
-    (value) => {
+    (value: boolean) => {
       setShow(value);
       if (onClose) onClose();
     },

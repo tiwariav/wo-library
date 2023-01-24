@@ -35,10 +35,14 @@ export interface FetchURLOptions<
   token?: string;
 }
 
-export interface FetchURLOptionsData<DataType, QueryType = any>
-  extends FetchURLOptions<DataType, QueryType> {}
-export interface FetchURLOptionsQuery<QueryType, DataType = any>
-  extends FetchURLOptions<DataType, QueryType> {}
+export type FetchURLOptionsData<DataType, QueryType = any> = FetchURLOptions<
+  DataType,
+  QueryType
+>;
+export type FetchURLOptionsQuery<QueryType, DataType = any> = FetchURLOptions<
+  DataType,
+  QueryType
+>;
 
 type FetchURLArgs = [path: string, options?: FetchURLOptions];
 
@@ -298,7 +302,7 @@ export class WoFetch {
       token,
     });
     const url = createURL(this.apiEndpoint, path, {
-      devProxy: !noProxy ? this.devProxy : undefined,
+      devProxy: noProxy ? undefined : this.devProxy,
       id,
       query,
       trailingSlash,

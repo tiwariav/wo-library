@@ -1,7 +1,9 @@
 export default function loadScript(source) {
   return new Promise((resolve) => {
     const existingScript = document.querySelector(`script[src="${source}"]`);
-    if (!existingScript) {
+    if (existingScript) {
+      resolve(true);
+    } else {
       const script = document.createElement("script");
       script.src = source;
       const nonceMeta: HTMLMetaElement = document.head.querySelector(
@@ -17,8 +19,6 @@ export default function loadScript(source) {
         resolve(false);
       });
       document.body.append(script);
-    } else {
-      resolve(true);
     }
   });
 }

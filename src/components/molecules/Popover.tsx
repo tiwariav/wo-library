@@ -6,7 +6,7 @@ import styles from "./popover.module.css";
 
 type PopoverTooltipProps = TooltipProps & {
   content: React.ReactNode;
-  innerClassNames?: any;
+  innerClassNames?: object;
   title?: ReactNode;
 };
 

@@ -10,10 +10,10 @@ export function pushOrCreate(
     return [value];
   }
   const newValue = [...object[key]];
-  if (index !== undefined) {
-    newValue[index] = value;
-  } else {
+  if (index === undefined) {
     newValue.push(value);
+  } else {
+    newValue[index] = value;
   }
   return newValue;
 }

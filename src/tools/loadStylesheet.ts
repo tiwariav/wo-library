@@ -1,7 +1,9 @@
 export default function loadStylesheet(source) {
   return new Promise((resolve) => {
     const existingStyle = document.querySelector(`link[href="${source}"]`);
-    if (!existingStyle) {
+    if (existingStyle) {
+      resolve(true);
+    } else {
       const style = document.createElement("link");
       style.rel = "stylesheet";
       style.type = "text/css";
@@ -19,8 +21,6 @@ export default function loadStylesheet(source) {
         resolve(false);
       });
       document.head.append(style);
-    } else {
-      resolve(true);
     }
   });
 }

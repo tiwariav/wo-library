@@ -4,8 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
-    // @react-native-async-storage/async-storage throws error
-    // "declarationDir": "lib/@types",
     "diagnostics": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -22,11 +20,11 @@
         "options": { "classnameTransform": "camelCase" }
       }
     ],
-    "skipLibCheck": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     // "strict": true,
     "target": "ES2015"
   },
-  "include": ["src", "rollup.config.ts"],
+  "include": ["src", "rollup.config.ts", "types"],
   "exclude": ["**/__snapshots__", "**/__tests__", "node_modules"]
 }

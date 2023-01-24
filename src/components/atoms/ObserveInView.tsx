@@ -7,9 +7,9 @@ import styles from "./observeInView.module.css";
 type ObserveInViewProps = {
   animate: boolean;
   className?: string;
-  dynamicClasses?: Record<string, any>;
+  dynamicClasses?: Record<string, string>;
   observeOptions: IntersectionOptions;
-  onViewChange: Function;
+  onViewChange: (boolean) => void;
 };
 
 export default function ObserveInView({
