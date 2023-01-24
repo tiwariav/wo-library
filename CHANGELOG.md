@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/tiwariav/wo-library/compare/v1.9.1...v1.9.2) (2023-01-24)
+
+
+### Bug Fixes
+
+* in anystorage remove item from session too ([74adea0](https://github.com/tiwariav/wo-library/commit/74adea08cf0b9ebdbe59a75dd56500b221f799b5))
+
 ## [1.9.1](https://github.com/tiwariav/wo-library/compare/v1.9.0...v1.9.1) (2023-01-24)
 
 
