@@ -33,6 +33,7 @@ export interface FetchURLOptions<
   requireAuth?: boolean;
   trailingSlash?: boolean;
   token?: string;
+  credentials?: RequestCredentials;
 }
 
 export type FetchURLOptionsData<DataType, QueryType = any> = FetchURLOptions<
@@ -179,6 +180,7 @@ interface WoFetchOptions {
   authTokenPrefix?: string;
   trailingSlash?: boolean;
   devProxy?: string;
+  credentials?: RequestCredentials;
 }
 
 export interface WoFetch extends WoFetchOptions {
@@ -201,6 +203,7 @@ export class WoFetch {
       authTokenPrefix = "Bearer",
       trailingSlash = false,
       devProxy,
+      credentials,
     }: WoFetchOptions = {}
   ) {
     this.apiEndpoint = apiEndpoint;
@@ -210,6 +213,7 @@ export class WoFetch {
     this.authTokenPrefix = authTokenPrefix;
     this.trailingSlash = trailingSlash;
     this.devProxy = devProxy;
+    this.credentials = credentials;
   }
 
   /**
@@ -291,6 +295,7 @@ export class WoFetch {
       requireAuth,
       trailingSlash = this.trailingSlash,
       token,
+      credentials,
     }: FetchURLOptions = {}
   ): Promise<any> => {
     if (!this.apiEndpoint) {
@@ -316,6 +321,7 @@ export class WoFetch {
     }
     return fetch(url.toString(), {
       body,
+      credentials,
       headers: Object.fromEntries(requestHeaders),
       method,
     })
