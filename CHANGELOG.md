@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/tiwariav/wo-library/compare/v1.7.0...v1.8.0) (2023-01-24)
+
+
+### Features
+
+* update rollup config to preserve modules ([03c842a](https://github.com/tiwariav/wo-library/commit/03c842a862ee7b48d66c023f88d9a341b8f87b6d))
+
 # [1.7.0](https://github.com/tiwariav/wo-library/compare/v1.6.4...v1.7.0) (2023-01-22)
 
 
