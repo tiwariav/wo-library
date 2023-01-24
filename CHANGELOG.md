@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/tiwariav/wo-library/compare/v1.9.0...v1.9.1) (2023-01-24)
+
+
+### Bug Fixes
+
+* rollup postcss config for custom media queries ([9f1418d](https://github.com/tiwariav/wo-library/commit/9f1418d0837470b4de6a2368308272d8c9178e13))
+
 # [1.9.0](https://github.com/tiwariav/wo-library/compare/v1.8.0...v1.9.0) (2023-01-24)
 
 
