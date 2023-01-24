@@ -13,6 +13,7 @@ export const STORAGE_ENVIRONMENTS = {
 
 export const STORAGE_TYPES = {
   persist: "persist",
+  session: "session",
   temp: "temp",
 } as const;
 
@@ -29,10 +30,12 @@ export const DEFAULT_STORAGE_BACKENDS = {
   [STORAGE_ENVIRONMENTS.web]: {
     [STORAGE_TYPES.persist]:
       typeof localStorage === "undefined" ? undefined : localStorage,
-    [STORAGE_TYPES.temp]:
+    [STORAGE_TYPES.session]:
       typeof sessionStorage === "undefined" ? undefined : sessionStorage,
+    [STORAGE_TYPES.temp]: memoryStorage,
   },
   [STORAGE_ENVIRONMENTS.mobile]: {
+    [STORAGE_TYPES.session]: memoryStorage,
     [STORAGE_TYPES.temp]: memoryStorage,
   },
 };
@@ -68,20 +71,28 @@ export class AnyStorage {
 
   formKey = (key) => (this.prefix ? `${this.prefix}.${key}` : key);
 
+  getBackend = (persist, session) => {
+    if (persist) {
+      return this.backends[STORAGE_TYPES.persist];
+    }
+    if (session) {
+      return this.backends[STORAGE_TYPES.session];
+    }
+    return this.backends[STORAGE_TYPES.temp];
+  };
+
   getItem = async (
     key,
-    { persist = false, temp = false, json = false } = {}
+    { persist = false, session = false, temp = false, json = false } = {}
   ) => {
     let response;
     const storageKey = this.formKey(key);
-    if (!persist) {
-      // do not check persist storage, return what found in temp
-      response = await this.backends[STORAGE_TYPES.temp].getItem(storageKey);
-      if (temp) return response || null;
-    }
-    if (!response) {
-      // if checking persist only, or value not found in temp, return from persist
-      response = await this.backends[STORAGE_TYPES.persist].getItem(storageKey);
+    const backend = this.getBackend(persist, session);
+    response = await backend.getItem(storageKey);
+    if (response === null && !persist) {
+      response = await (session
+        ? this.backends[STORAGE_TYPES.persist].getItem(storageKey)
+        : this.backends[STORAGE_TYPES.session].getItem(storageKey));
     }
     if (json && response) {
       response = JSON.parse(response);
@@ -89,7 +100,11 @@ export class AnyStorage {
     return response || null;
   };
 
-  setItem = async (key, value, { persist = false, json = false } = {}) => {
+  setItem = async (
+    key,
+    value,
+    { persist = false, session = false, json = false } = {}
+  ) => {
     // based on value of `persist` either store a value in temp or persist
     if (value === null) return;
     const storageKey = this.formKey(key);
@@ -97,9 +112,8 @@ export class AnyStorage {
     if (json) {
       saveValue = JSON.stringify(value);
     }
-    return await (persist
-      ? this.backends[STORAGE_TYPES.persist].setItem(storageKey, saveValue)
-      : this.backends[STORAGE_TYPES.temp].setItem(storageKey, saveValue));
+    const backend = this.getBackend(persist, session);
+    return await backend.setItem(storageKey, saveValue);
   };
 
   removeItem = async (key) => {
@@ -111,7 +125,12 @@ export class AnyStorage {
 
   clear = async () => {
     this.backends[STORAGE_TYPES.temp].clear();
-    return this.backends[STORAGE_TYPES.persist].clear();
+    if (this.prefix) {
+      for (const key of Object.keys(localStorage)) {
+        this.backends[STORAGE_TYPES.session].removeItem(key);
+        this.backends[STORAGE_TYPES.persist].removeItem(key);
+      }
+    }
   };
 }
 
