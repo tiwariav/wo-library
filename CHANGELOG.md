@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/tiwariav/wo-library/compare/v1.8.0...v1.9.0) (2023-01-24)
+
+
+### Features
+
+* add session backend and set temp as in-memory ([118438f](https://github.com/tiwariav/wo-library/commit/118438fcda9c2d6759f49e2b12449d6e2cb47a2b))
+* allow fetch to send and accept cookies ([4f2d59a](https://github.com/tiwariav/wo-library/commit/4f2d59ab8e1e8444171c235266de52e179586c4d))
+
 # [1.8.0](https://github.com/tiwariav/wo-library/compare/v1.7.0...v1.8.0) (2023-01-24)
 
 
