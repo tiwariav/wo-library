@@ -83,7 +83,7 @@ export class AnyStorage {
 
   getItem = async (
     key,
-    { persist = false, session = false, temp = false, json = false } = {}
+    { persist = false, session = false, json = false } = {}
   ) => {
     let response;
     const storageKey = this.formKey(key);
