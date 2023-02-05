@@ -10,7 +10,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "NodeNext",
+    "module": "nodenext",
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
     "outDir": "dist",
@@ -23,7 +23,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     // "strict": true,
-    "target": "ES2015"
+    "target": "es2017"
   },
   "include": ["src", "rollup.config.ts", "types"],
   "exclude": ["**/__snapshots__", "**/__tests__", "node_modules"]
