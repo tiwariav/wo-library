@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
-import postcssPresetEnv from "postcss-preset-env";
+import _postcssPresetEnv from "postcss-preset-env";
 import type { OutputChunk, OutputOptions, Plugin } from "rollup";
 import _copy from "rollup-plugin-copy";
 import _del from "rollup-plugin-delete";
@@ -29,6 +29,7 @@ const typescript = defaultImport(_typescript);
 const beep = defaultImport(_beep);
 const visualizer = defaultImport(_visualizer);
 const externals = defaultImport(_externals);
+const postcssPresetEnv = defaultImport(_postcssPresetEnv);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const json = defaultImport(_json);
 

@@ -122,7 +122,11 @@ export default function WoSwiper({
       >
         {React.Children.map(children, (child, index) => (
           <SwiperSlide key={index}>
-            {({ isActive, isDuplicate }) => {
+            {({
+              isActive,
+              // @ts-ignore
+              isDuplicate,
+            }) => {
               const extraProps = {} as { viewMode?: string };
               if (child.type.displayName === "Card") {
                 extraProps.viewMode =
