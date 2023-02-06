@@ -112,7 +112,7 @@
     "postcss-preset-env": "^8.0.1",
     "prettier": "2.8.3",
     "react-icons": "^4.7.1",
-    "rollup": "^3.13.0",
+    "rollup": "^3.14.0",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
