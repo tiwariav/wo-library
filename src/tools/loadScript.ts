@@ -1,4 +1,4 @@
-export default function loadScript(source) {
+export default function loadScript(source: string) {
   return new Promise((resolve) => {
     const existingScript = document.querySelector(`script[src="${source}"]`);
     if (existingScript) {

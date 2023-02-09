@@ -21,7 +21,7 @@ import styles from "./tooltip.module.css";
 export interface TooltipProps {
   className?: string;
   children?: ReactNode;
-  options?: any;
+  options?: Record<string, any>;
   placement?: Placement;
   title: ReactNode;
   trigger?: string[];
@@ -46,7 +46,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   trigger = ["click"],
   style,
 }) => {
-  const arrowRef = useRef(null);
+  const arrowRef = useRef<HTMLElement>(null);
   const [show, setShow] = useState(visible);
   const open = visible || show;
   const options = { ...defaultOptions, ...propsOptions };

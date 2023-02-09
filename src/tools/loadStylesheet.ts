@@ -1,4 +1,4 @@
-export default function loadStylesheet(source) {
+export default function loadStylesheet(source: string) {
   return new Promise((resolve) => {
     const existingStyle = document.querySelector(`link[href="${source}"]`);
     if (existingStyle) {

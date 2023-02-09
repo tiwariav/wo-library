@@ -1,6 +1,6 @@
 export interface ChartState {
   isLoading: boolean;
-  symbolImages: any;
+  symbolImages: object;
 }
 
 const INITIAL_CHART_STATE: ChartState = {

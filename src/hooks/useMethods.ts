@@ -19,6 +19,7 @@ export default function useMethods<
 >(createMethods: CreateMethods<M, T>, initialState: T): [T, WrappedMethods<M>] {
   const reducer = useMemo<Reducer<T, Action>>(
     () => (reducerState: T, action: Action) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       return createMethods(reducerState)[action.type](...action.payload);
     },
     [createMethods]

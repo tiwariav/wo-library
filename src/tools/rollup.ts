@@ -1,5 +1,6 @@
 import _beep from "@rollup/plugin-beep";
 import _commonjs from "@rollup/plugin-commonjs";
+import _eslint from "@rollup/plugin-eslint";
 import _json from "@rollup/plugin-json";
 import _typescript from "@rollup/plugin-typescript";
 import cssnano from "cssnano";
@@ -30,6 +31,7 @@ const beep = defaultImport(_beep);
 const visualizer = defaultImport(_visualizer);
 const externals = defaultImport(_externals);
 const postcssPresetEnv = defaultImport(_postcssPresetEnv);
+const eslint = defaultImport(_eslint);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const json = defaultImport(_json);
 
@@ -92,6 +94,7 @@ export const commonPlugins = [
   commonjs(),
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   json(),
+  eslint({ fix: true, include: "src/**/*.{ts,tsx}", throwOnError: true }),
   // use svgr when import svg as react component
   // svgr({ icon: true }),
 ];
@@ -104,7 +107,7 @@ export const devPlugins = isDev
 export const tsPlugins = [
   copy({
     targets: [
-      { dest: "dist/assets", src: "assets/**/*" },
+      { dest: "dist/assets", src: "assets" },
       { dest: "dist", src: ["package.json", "README.md"] },
     ],
   }),

@@ -1,9 +1,9 @@
 import { isObject } from "lodash-es";
 
-export function pushOrCreate(
-  object: Record<any, any>,
+export function pushOrCreate<V>(
+  object: Record<any, V[]>,
   key: string | number,
-  value: any,
+  value: V,
   index?: string | number
 ) {
   if (!object[key]) {
@@ -17,16 +17,22 @@ export function pushOrCreate(
   }
   return newValue;
 }
+interface RecInterface {
+  [name: string]: any | RecInterface;
+}
 
-export function getNestedValue(data: Record<any, any>, key: string) {
+export function getNestedValue(
+  data: Record<any, RecInterface>,
+  key: string
+): RecInterface | RecInterface[] {
   const keys = Object.keys(data);
-  let response = [];
+  let response: RecInterface[] = [];
   if (keys && !keys.includes(key)) {
     for (const value of Object.values(data)) {
       if (!isObject(value)) continue;
-      const child_response = getNestedValue(value, key);
+      const child_response = getNestedValue(value as RecInterface, key);
       response = Array.isArray(child_response)
-        ? [...response, ...child_response]
+        ? [...response, ...(child_response as RecInterface[])]
         : [...response, child_response];
     }
     return response;

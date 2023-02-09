@@ -17,7 +17,7 @@ async function loadCalendlyAssets() {
 
 export interface CalendlyOptions {
   calendlyLink: string;
-  prefill?: any;
+  prefill?: CalendlyPopupWidgetOptionsPrefill;
 }
 
 export default function useCalendly({
@@ -25,7 +25,7 @@ export default function useCalendly({
   prefill,
 }: CalendlyOptions) {
   useEffectOnce(() => {
-    loadCalendlyAssets();
+    void loadCalendlyAssets();
   });
 
   return () => {

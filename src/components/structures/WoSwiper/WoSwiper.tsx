@@ -14,7 +14,18 @@ import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
 const variants = ["basic", "coverflow"] as const;
-
+const modules = [
+  // TODO: creating new wrapper-id for each storyshot run
+  EffectCoverflow,
+  FreeMode,
+  Mousewheel,
+  Navigation,
+  Autoplay,
+  Pagination,
+];
+if (process.env.JEST_WORKER_ID) {
+  modules.push(A11y);
+}
 type WoSwiperProps = {
   className?: string;
   children: JSX.Element | JSX.Element[];
@@ -78,17 +89,8 @@ export default function WoSwiper({
       )}
       <Swiper
         // modules
-        // @ts-ignore
-        modules={[
-          // TODO: creating new wrapper-id for each storyshot run
-          ...(process.env.JEST_WORKER_ID ? [] : [A11y]),
-          EffectCoverflow,
-          FreeMode,
-          Mousewheel,
-          Navigation,
-          Autoplay,
-          Pagination,
-        ]}
+        // @ts-ignore: TS2322 because library definition is wrong
+        modules={modules}
         pagination={
           pagination
             ? {
@@ -124,10 +126,11 @@ export default function WoSwiper({
           <SwiperSlide key={index}>
             {({
               isActive,
-              // @ts-ignore
+              // @ts-expect-error: TS2339 because library definition is wrong
               isDuplicate,
             }) => {
               const extraProps = {} as { viewMode?: string };
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
               if (child.type.displayName === "Card") {
                 extraProps.viewMode =
                   variant === "coverflow"

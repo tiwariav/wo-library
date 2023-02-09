@@ -12,6 +12,12 @@ const extendConfig = [
 ];
 
 const rulesConfig = {
+  "@typescript-eslint/ban-ts-comment": [
+    "error",
+    {
+      "ts-ignore": { descriptionFormat: "^: TS\\d+ because .+$" },
+    },
+  ],
   "css-modules/no-undef-class": ["off", { camelCase: true }],
   "css-modules/no-unused-class": ["off", { camelCase: true }],
   "eslint-comments/disable-enable-pair": ["error", { allowWholeFile: true }],
@@ -79,21 +85,21 @@ module.exports = {
   extends: ["eslint:recommended", ...extendConfig],
   overrides: [
     // typescript
-    // {
-    //   extends: [
-    //     "eslint:recommended",
-    //     "plugin:@typescript-eslint/recommended",
-    //     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    //     ...extendConfig,
-    //   ],
-    //   files: ["*.{ts,tsx}"],
-    //   parserOptions: {
-    //     project: ["./tsconfig.json"],
-    //     tsconfigRootDir: __dirname,
-    //   },
-    //   plugins: pluginsConfig,
-    //   rules: rulesConfig,
-    // },
+    {
+      extends: [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        ...extendConfig,
+      ],
+      files: ["*.{ts,tsx}"],
+      parserOptions: {
+        project: ["./tsconfig.json"],
+        tsconfigRootDir: __dirname,
+      },
+      plugins: pluginsConfig,
+      rules: rulesConfig,
+    },
   ],
   parser: "@typescript-eslint/parser",
   plugins: pluginsConfig,

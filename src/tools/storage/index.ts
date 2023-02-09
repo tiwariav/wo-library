@@ -1,6 +1,6 @@
 interface StorageBackend {
-  getItem: (arg0: string) => any;
-  setItem: (arg0: string, arg1: any) => void;
+  getItem: (arg0: string) => string | Promise<string>;
+  setItem: (arg0: string, arg1: string) => void;
   removeItem: (arg0: string) => void;
   clear: () => void;
 }
@@ -17,13 +17,13 @@ export const STORAGE_TYPES = {
   temp: "temp",
 } as const;
 
-export let memoryStorageItems = {};
+export let memoryStorageItems: Record<string, string> = {};
 
 const memoryStorage = {
-  clear: async () => (memoryStorageItems = {}),
-  getItem: async (key: string) => memoryStorageItems[key] || null,
-  removeItem: async (key: string) => (memoryStorageItems[key] = null),
-  setItem: async (key: string, value: any) => (memoryStorageItems[key] = value),
+  clear: () => (memoryStorageItems = {}),
+  getItem: (key: string): string | null => memoryStorageItems[key] || null,
+  removeItem: (key: string) => (memoryStorageItems[key] = null),
+  setItem: (key: string, value: string) => (memoryStorageItems[key] = value),
 };
 
 export const DEFAULT_STORAGE_BACKENDS = {
@@ -43,11 +43,12 @@ export const DEFAULT_STORAGE_BACKENDS = {
 type StorageEnvironments =
   (typeof STORAGE_ENVIRONMENTS)[keyof typeof STORAGE_ENVIRONMENTS];
 type StorageTypes = (typeof STORAGE_TYPES)[keyof typeof STORAGE_TYPES];
+type StorageBackendOptions = {
+  [key in StorageTypes]?: StorageBackend;
+};
 
 export class AnyStorage {
-  backends: {
-    [key in StorageTypes]?: StorageBackend;
-  };
+  backends: StorageBackendOptions;
   env: StorageEnvironments;
   prefix: string;
   version: number;
@@ -62,14 +63,14 @@ export class AnyStorage {
     };
   }
 
-  setBackend = (storageBackends) => {
+  setBackend = (storageBackends: StorageBackendOptions) => {
     this.backends = {
       ...this.backends,
       ...storageBackends,
     };
   };
 
-  formKey = (key) => (this.prefix ? `${this.prefix}.${key}` : key);
+  formKey = (key: string) => (this.prefix ? `${this.prefix}.${key}` : key);
 
   getBackend = (persist, session) => {
     if (persist) {
@@ -82,27 +83,27 @@ export class AnyStorage {
   };
 
   getItem = async (
-    key,
+    key: string,
     { persist = false, session = false, json = false } = {}
   ) => {
-    let response;
     const storageKey = this.formKey(key);
     const backend = this.getBackend(persist, session);
-    response = await backend.getItem(storageKey);
+    let response = await backend.getItem(storageKey);
     if (response === null && !persist) {
       response = await (session
         ? this.backends[STORAGE_TYPES.persist].getItem(storageKey)
         : this.backends[STORAGE_TYPES.session].getItem(storageKey));
     }
     if (json && response) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       response = JSON.parse(response);
     }
     return response || null;
   };
 
-  setItem = async (
-    key,
-    value,
+  setItem = (
+    key: string,
+    value: string | null,
     { persist = false, session = false, json = false } = {}
   ) => {
     // based on value of `persist` either store a value in temp or persist
@@ -113,10 +114,10 @@ export class AnyStorage {
       saveValue = JSON.stringify(value);
     }
     const backend = this.getBackend(persist, session);
-    return await backend.setItem(storageKey, saveValue);
+    return backend.setItem(storageKey, saveValue);
   };
 
-  removeItem = async (key) => {
+  removeItem = (key: string) => {
     // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
     this.backends[STORAGE_TYPES.temp].removeItem(storageKey);
@@ -124,7 +125,7 @@ export class AnyStorage {
     return this.backends[STORAGE_TYPES.persist].removeItem(storageKey);
   };
 
-  clear = async () => {
+  clear = () => {
     this.backends[STORAGE_TYPES.temp].clear();
     if (this.prefix) {
       for (const key of Object.keys(localStorage)) {

@@ -1,9 +1,5 @@
 import { merge } from "lodash-es";
-import {
-  WoErrorData,
-  WoNetworkError,
-  WoResponseError,
-} from "../error/index.js";
+import { WoResponseError } from "../error/index.js";
 import { anyStorageInstance } from "../storage/index.js";
 
 type WoRequestQueryTypes = number | boolean | string;
@@ -21,7 +17,7 @@ type XHRStateChange = (
 ) => any;
 
 export interface FetchURLOptions<
-  DataType = Record<string, any>,
+  DataType = RequestInit["body"],
   QueryType = Record<string, WoRequestQueryTypes | WoRequestQueryTypes[]>
 > {
   data?: DataType;
@@ -65,59 +61,33 @@ function getFormData(data?: Record<string, string>, file?: Blob): FormData {
   return formData;
 }
 
-export async function defaultResponseErrorHandler(
-  error: WoResponseError,
-  data: Response
-): Promise<void> {
-  // handle http response status codes
-  const errorData = await data.json();
-  switch (data.status) {
+export async function defaultErrorHandler(response: Response): Promise<void> {
+  // handle error depending on http response status codes
+  const responseData = (await response.json()) as object;
+  switch (response.status) {
     case 400: {
-      throw new WoErrorData(error, errorData, "Invalid Data!");
+      throw new WoResponseError(responseData, "Invalid Data!");
     }
     case 401: {
-      throw new WoErrorData(error, errorData, "You session has expired!");
+      throw new WoResponseError(responseData, "You session has expired!");
     }
     case 403: {
-      throw new WoErrorData(
-        error,
-        errorData,
+      throw new WoResponseError(
+        responseData,
         "You are not authorized to access this page!"
       );
     }
     case 404: {
-      throw new WoErrorData(error, errorData, "Endpoint not found!");
+      throw new WoResponseError(responseData, "Endpoint not found!");
     }
     case 429: {
-      throw new WoErrorData(error, errorData, "Too many requests!");
+      throw new WoResponseError(responseData, "Too many requests!");
     }
     case 500: {
-      throw new WoErrorData(error, errorData, "Internal server error!");
+      throw new WoResponseError(responseData, "Internal server error!");
     }
     default: {
       break;
-    }
-  }
-}
-
-export async function defaultErrorHandler(
-  error: WoResponseError,
-  data: Response
-): Promise<void> {
-  // handle manual set error status codes
-  switch (error.name) {
-    case "TypeError": {
-      throw new WoErrorData(error, data, "Response is not proper json!");
-    }
-    case "AbortError": {
-      throw new WoErrorData(error, data, "Request aborted!");
-    }
-    case "WoResponseError": {
-      await defaultResponseErrorHandler(error, data);
-      break;
-    }
-    default: {
-      throw new WoErrorData(error, data, "Unknown Error!");
     }
   }
 }
@@ -173,9 +143,9 @@ export function createURL(
   return resourceURL;
 }
 
-interface WoFetchOptions {
+interface WoFetchOptions<E = typeof defaultErrorHandler> {
   tokenName?: string;
-  errorHandler?: typeof defaultErrorHandler;
+  errorHandler?: E;
   authHeader?: string;
   authTokenPrefix?: string;
   trailingSlash?: boolean;
@@ -234,24 +204,15 @@ export class WoFetch {
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
         // success, and response type json, return the json content
-        return response.json();
+        return response.json() as object;
       }
       // success, and response type unknown, return the entire response
       return response;
     }
-    // request not successful, raise error from response
-    return await errorHandler(new WoResponseError("Not Ok!"), response);
-  };
-
-  handleError = async (
-    error: Response | WoErrorData,
-    errorHandler = this.errorHandler
-  ): Promise<void> => {
-    if (error instanceof WoErrorData) {
-      throw error;
-    } else {
-      return errorHandler(new WoNetworkError("Network Error!"), error);
-    }
+    // request not successful, call errorHandler with request param
+    // since the function awaits, if it throws any error, that will
+    // be passed on to the catch block.
+    return await errorHandler(response);
   };
 
   getHeaders = async ({
@@ -312,7 +273,7 @@ export class WoFetch {
       query,
       trailingSlash,
     });
-    let body: any;
+    let body: string | RequestInit["body"];
     if (data) {
       body =
         requestHeaders.get("Content-Type") === contentTypeForm
@@ -324,9 +285,7 @@ export class WoFetch {
       credentials,
       headers: Object.fromEntries(requestHeaders),
       method,
-    })
-      .then((response) => this.handleResponse(response, errorHandler))
-      .catch((error) => this.handleError(error, errorHandler));
+    }).then((response) => this.handleResponse(response, errorHandler));
   };
 
   getUrl = async (...rest: FetchURLArgs) => this.fetchURL("GET", ...rest);
@@ -411,7 +370,7 @@ export class WoFetch {
         true
       );
       for (const key of Object.keys(headers)) {
-        xhrObject.setRequestHeader(key, headers[key]);
+        xhrObject.setRequestHeader(key, headers[key] as string);
       }
       xhrObject.send(formData);
     });

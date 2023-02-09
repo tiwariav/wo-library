@@ -7,7 +7,10 @@ export default function createChartMethods(state: ChartState) {
     setLoading: (isLoading: boolean): ChartState => {
       return { ...state, isLoading };
     },
-    setSymbolImages: (symbolsRef, symbolsData): ChartState => {
+    setSymbolImages: (
+      symbolsRef: React.MutableRefObject<HTMLDivElement>,
+      symbolsData: React.Component<{ seriesName: string }>[]
+    ): ChartState => {
       const childNodes = symbolsRef.current.childNodes;
       const symbolImages = {};
       for (const [index, item] of symbolsData.entries()) {
@@ -19,7 +22,11 @@ export default function createChartMethods(state: ChartState) {
       }
       return { ...state, symbolImages };
     },
-    symbolImageReady: (seriesName, seriesIndex, node): ChartState => {
+    symbolImageReady: (
+      seriesName: string,
+      seriesIndex: string | number,
+      node: Node
+    ): ChartState => {
       const symbolImages = { ...state.symbolImages };
       symbolImages[seriesName] = pushOrCreate(
         symbolImages,
