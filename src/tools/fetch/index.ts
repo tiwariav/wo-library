@@ -17,7 +17,7 @@ type XHRStateChange = (
 ) => any;
 
 export interface FetchURLOptions<
-  DataType = RequestInit["body"],
+  DataType = Record<string, any> | FormData,
   QueryType = Record<string, WoRequestQueryTypes | WoRequestQueryTypes[]>
 > {
   data?: DataType;
@@ -273,11 +273,11 @@ export class WoFetch {
       query,
       trailingSlash,
     });
-    let body: string | RequestInit["body"];
+    let body: FormData | RequestInit["body"];
     if (data) {
       body =
         requestHeaders.get("Content-Type") === contentTypeForm
-          ? data
+          ? (data as FormData)
           : JSON.stringify(data);
     }
     return fetch(url.toString(), {
