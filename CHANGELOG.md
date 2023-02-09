@@ -1,3 +1,16 @@
+## [1.9.5](https://github.com/tiwariav/wo-library/compare/v1.9.4...v1.9.5) (2023-02-09)
+
+
+### Bug Fixes
+
+* eslint typescript issues ([184d903](https://github.com/tiwariav/wo-library/commit/184d90345a3a3b831e4c486abf1a1203d2392f1a))
+* swiper type errors ([147cde8](https://github.com/tiwariav/wo-library/commit/147cde8a6081650d73bb28a7574f6ce18d31a4d7))
+
+
+### Performance Improvements
+
+* update packages ([0107926](https://github.com/tiwariav/wo-library/commit/0107926aa847f218c4cd51c96f456d3c1244acea))
+
 ## [1.9.4](https://github.com/tiwariav/wo-library/compare/v1.9.3...v1.9.4) (2023-01-27)
 
 
