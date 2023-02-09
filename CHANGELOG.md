@@ -1,3 +1,10 @@
+## [1.9.6](https://github.com/tiwariav/wo-library/compare/v1.9.5...v1.9.6) (2023-02-09)
+
+
+### Bug Fixes
+
+* fetch body type ([a10373b](https://github.com/tiwariav/wo-library/commit/a10373bf418a829657f650d282173e162189ce36))
+
 ## [1.9.5](https://github.com/tiwariav/wo-library/compare/v1.9.4...v1.9.5) (2023-02-09)
 
 
