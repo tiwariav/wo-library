@@ -1,3 +1,10 @@
+## [1.9.8](https://github.com/tiwariav/wo-library/compare/v1.9.7...v1.9.8) (2023-02-10)
+
+
+### Bug Fixes
+
+* rollup asset config ([4d9c33c](https://github.com/tiwariav/wo-library/commit/4d9c33c4bb68cba7e195d3c5ea637ae82d91fcca))
+
 ## [1.9.7](https://github.com/tiwariav/wo-library/compare/v1.9.6...v1.9.7) (2023-02-10)
 
 
