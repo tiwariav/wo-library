@@ -1,6 +1,6 @@
 interface StorageBackend {
   getItem: (arg0: string) => string | Promise<string>;
-  setItem: (arg0: string, arg1: string) => void;
+  setItem: (arg0: string, arg1: unknown) => void;
   removeItem: (arg0: string) => void;
   clear: () => void;
 }
@@ -103,7 +103,7 @@ export class AnyStorage {
 
   setItem = (
     key: string,
-    value: string | null,
+    value: unknown,
     { persist = false, session = false, json = false } = {}
   ) => {
     // based on value of `persist` either store a value in temp or persist
