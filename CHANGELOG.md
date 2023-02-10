@@ -1,3 +1,10 @@
+## [1.9.7](https://github.com/tiwariav/wo-library/compare/v1.9.6...v1.9.7) (2023-02-10)
+
+
+### Bug Fixes
+
+* storage setitem ([21c7faf](https://github.com/tiwariav/wo-library/commit/21c7faff176e883e604b35f989a04b116d3a86dd))
+
 ## [1.9.6](https://github.com/tiwariav/wo-library/compare/v1.9.5...v1.9.6) (2023-02-09)
 
 
