@@ -107,7 +107,7 @@ export const devPlugins = isDev
 export const tsPlugins = [
   copy({
     targets: [
-      { dest: "dist/assets", src: "assets" },
+      { dest: "dist", src: "assets" },
       { dest: "dist", src: ["package.json", "README.md"] },
     ],
   }),
