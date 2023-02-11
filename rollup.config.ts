@@ -10,7 +10,7 @@ import {
   postcssConfig,
   rollupInputMap,
   tsPlugins,
-} from "./src/tools/rollup.js";
+} from "./src/tools/rollup/index.js";
 
 const postcss = defaultImport(_postcss);
 

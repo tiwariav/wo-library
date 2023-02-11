@@ -1,7 +1,6 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-prettier",
     "stylelint-config-css-modules",
     "stylelint-a11y/recommended",
     "stylelint-config-rational-order"
