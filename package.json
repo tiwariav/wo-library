@@ -174,15 +174,6 @@
       "react": "$react",
       "react-dom": "18.2.0"
     },
-    "stylelint-a11y": {
-      "stylelint": "$stylelint"
-    },
-    "stylelint-declaration-block-no-ignored-properties": {
-      "stylelint": "$stylelint"
-    },
-    "stylelint-declaration-strict-value": {
-      "stylelint": "$stylelint"
-    },
     "rollup-plugin-size-snapshot": {
       "rollup": "$rollup"
     },
@@ -191,6 +182,15 @@
     },
     "rollup-plugin-visualizer": {
       "rollup": "$rollup"
+    },
+    "stylelint-a11y": {
+      "stylelint": "$stylelint"
+    },
+    "stylelint-declaration-block-no-ignored-properties": {
+      "stylelint": "$stylelint"
+    },
+    "stylelint-declaration-strict-value": {
+      "stylelint": "$stylelint"
     }
   }
 }
