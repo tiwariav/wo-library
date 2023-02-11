@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/tiwariav/wo-library/compare/v1.9.8...v1.10.0) (2023-02-11)
+
+
+### Features
+
+* add rollup external asset plugin ([f2190f1](https://github.com/tiwariav/wo-library/commit/f2190f14b8d89eab9222b9e00aebb3eb562ff8d3))
+
 ## [1.9.8](https://github.com/tiwariav/wo-library/compare/v1.9.7...v1.9.8) (2023-02-10)
 
 
