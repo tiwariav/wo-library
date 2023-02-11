@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/tiwariav/wo-library/compare/v1.10.1...v1.10.2) (2023-02-11)
+
+
+### Bug Fixes
+
+* enable import replacement in rollup asset plugin ([02047c1](https://github.com/tiwariav/wo-library/commit/02047c12d7eec6b0b295cf83f9adc9c39cfb5a50))
+
 ## [1.10.1](https://github.com/tiwariav/wo-library/compare/v1.10.0...v1.10.1) (2023-02-11)
 
 
