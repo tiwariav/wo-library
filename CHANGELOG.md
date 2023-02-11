@@ -1,3 +1,11 @@
+## [1.10.1](https://github.com/tiwariav/wo-library/compare/v1.10.0...v1.10.1) (2023-02-11)
+
+
+### Performance Improvements
+
+* udpate packages ([3d30171](https://github.com/tiwariav/wo-library/commit/3d30171beb20d5ea782d3cf3473dd015ccbf3ed9))
+* udpate packages ([5f44674](https://github.com/tiwariav/wo-library/commit/5f446740de7067b19a8698b3ff848d254151aa65))
+
 # [1.10.0](https://github.com/tiwariav/wo-library/compare/v1.9.8...v1.10.0) (2023-02-11)
 
 
