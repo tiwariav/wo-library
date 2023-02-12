@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/tiwariav/wo-library/compare/v1.10.2...v1.10.3) (2023-02-12)
+
+
+### Bug Fixes
+
+* replace rollup tsplugins config ([185c9ba](https://github.com/tiwariav/wo-library/commit/185c9baef4f00198ced623a95ee2fa201d59625f))
+
 ## [1.10.2](https://github.com/tiwariav/wo-library/compare/v1.10.1...v1.10.2) (2023-02-11)
 
 
