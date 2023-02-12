@@ -1,18 +1,19 @@
+import _typescript from "@rollup/plugin-typescript";
 import { defaultImport } from "default-import";
 import type { RollupOptions } from "rollup";
 import _postcss from "rollup-plugin-postcss";
-// import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import {
   cjsOutputOptions,
   commonPlugins,
   devPlugins,
   esOutputOptions,
+  getBuildPlugins,
   postcssConfig,
   rollupInputMap,
-  tsPlugins,
 } from "./src/tools/rollup/index.js";
 
 const postcss = defaultImport(_postcss);
+const typescript = defaultImport(_typescript);
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 
@@ -24,7 +25,8 @@ const config: RollupOptions[] = [
     plugins: [
       ...commonPlugins,
       postcss(postcssConfig),
-      ...tsPlugins,
+      typescript({ tsconfig: "tsconfig.rollup.json" }),
+      ...getBuildPlugins(),
       ...devPlugins,
     ],
   },

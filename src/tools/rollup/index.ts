@@ -104,17 +104,16 @@ export const devPlugins = isDev
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       terser() as Plugin,
     ];
-export const tsPlugins = [
-  copy({
-    targets: [
-      { dest: "dist", src: "assets" },
-      { dest: "dist", src: ["package.json", "README.md"] },
-    ],
-  }),
-  del({ runOnce: isDev, targets: "dist/**/*" }),
-  del({ targets: "dist/chunks/*" }),
-  typescript({ tsconfig: "tsconfig.rollup.json" }),
-];
+
+export function getBuildPlugins(buildPath = "dist") {
+  return [
+    copy({
+      targets: [{ dest: buildPath, src: ["package.json", "README.md"] }],
+    }),
+    del({ runOnce: isDev, targets: "dist/**/*" }),
+    del({ targets: "dist/chunks/*" }),
+  ];
+}
 
 export const postcssConfig: PostCSSPluginConf = {
   config: false,
