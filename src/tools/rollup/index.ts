@@ -4,7 +4,7 @@ import _eslint from "@rollup/plugin-eslint";
 import _json from "@rollup/plugin-json";
 import cssnano from "cssnano";
 import { defaultImport } from "default-import";
-import glob from "glob";
+import { globSync } from "glob";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
@@ -45,7 +45,7 @@ export function rollupInputMap(
 ) {
   const pattern = `${directory}/**/${extension}`;
   const response: string[][] = [];
-  for (const file of glob.sync(pattern)) {
+  for (const file of globSync(pattern)) {
     if (
       file.includes("__") ||
       excludeDirectories.some((item) => file.includes(item))
