@@ -1,3 +1,10 @@
+## [1.10.5](https://github.com/tiwariav/wo-library/compare/v1.10.4...v1.10.5) (2023-03-02)
+
+
+### Bug Fixes
+
+* update glob version ([876db47](https://github.com/tiwariav/wo-library/commit/876db476d7f8867c774cd070434b26d24076715a))
+
 ## [1.10.4](https://github.com/tiwariav/wo-library/compare/v1.10.3...v1.10.4) (2023-03-02)
 
 
