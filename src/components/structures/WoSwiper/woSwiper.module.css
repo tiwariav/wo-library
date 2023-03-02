@@ -138,3 +138,9 @@
     rgb(255 255 255 / 0) 100%
   );
 }
+
+.has-pagination {
+  & :global .swiper {
+    padding-bottom: var(--ye-sapcing-rem-normal);
+  }
+}

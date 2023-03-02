@@ -74,6 +74,7 @@ export default function WoSwiper({
         styles[`is-${variant}`],
         {
           [styles.hasSeparator]: hasSeparator,
+          [styles.hasPagination]: pagination,
         },
         className
       )}

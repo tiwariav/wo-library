@@ -1,9 +1,12 @@
-import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
+import {
+  IconCircleChevronDown,
+  IconCircleChevronRight,
+} from "@tabler/icons-react";
 import WoSwiper from "./WoSwiper.js";
 
 const moreLinkMap = {
-  ArrowHorizontal: <AiOutlineRight />,
-  ArrowVertical: <AiOutlineDown />,
+  ArrowHorizontal: <IconCircleChevronRight />,
+  ArrowVertical: <IconCircleChevronDown />,
   None: null,
   SeeMore: <button>See more</button>,
 };
