@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/tiwariav/wo-library/compare/v1.10.5...v1.11.0) (2023-03-03)
+
+
+### Features
+
+* mark sideEffects as false for webpack ([cb54a87](https://github.com/tiwariav/wo-library/commit/cb54a870f0118f8c9dde7e0b2684a228e3f49056))
+
 ## [1.10.5](https://github.com/tiwariav/wo-library/compare/v1.10.4...v1.10.5) (2023-03-02)
 
 
