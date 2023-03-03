@@ -2,6 +2,7 @@
   "name": "wo-library",
   "version": "1.10.5",
   "type": "module",
+  "sideEffects": false,
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
   },
@@ -25,7 +26,6 @@
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.3",
     "@mdx-js/react": "^2.3.0",
-    "@tabler/icons-react": "^2.7.0",
     "@types/lodash-es": "^4.17.6",
     "clsx": "^1.2.1",
     "glob": "^9.1.2",
@@ -68,6 +68,7 @@
     "@storybook/mdx2-csf": "0.0.3",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
+    "@tabler/icons-react": "^2.7.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^14.0.0",
     "@tiwariav/browserslist-config": "^1.0.3",
