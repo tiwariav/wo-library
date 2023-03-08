@@ -10,6 +10,7 @@ export async function checkout({
   name,
   orderID,
   prefill,
+  key,
 }: {
   currency: string;
   description: string;
@@ -19,6 +20,7 @@ export async function checkout({
   name: string;
   orderID: string;
   prefill: object;
+  key: string;
 }) {
   const response = await loadScript(
     "https://checkout.razorpay.com/v1/checkout.js"
@@ -31,9 +33,7 @@ export async function checkout({
     currency,
     description,
     handler: handleSuccess,
-    key:
-      process?.env?.REACT_APP_WO_RAZORPAY_KEY ||
-      process?.env?.NEXT_PUBLIC_WO_RAZORPAY_KEY,
+    key,
     modal: { ondismiss: handleClose },
     name,
     order_id: orderID,

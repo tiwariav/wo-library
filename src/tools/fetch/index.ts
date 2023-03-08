@@ -144,6 +144,7 @@ export function createURL(
 }
 
 interface WoFetchOptions<E = typeof defaultErrorHandler> {
+  endpoint?: string;
   tokenName?: string;
   errorHandler?: E;
   authHeader?: string;
@@ -154,7 +155,7 @@ interface WoFetchOptions<E = typeof defaultErrorHandler> {
 }
 
 export interface WoFetch extends WoFetchOptions {
-  apiEndpoint: string;
+  endpoint: string;
 }
 
 /**
@@ -164,19 +165,17 @@ export interface WoFetch extends WoFetchOptions {
  * @class WoFetch
  */
 export class WoFetch {
-  constructor(
-    apiEndpoint: string,
-    {
-      tokenName = accessToken,
-      errorHandler = defaultErrorHandler,
-      authHeader = "Authorization",
-      authTokenPrefix = "Bearer",
-      trailingSlash = false,
-      devProxy,
-      credentials,
-    }: WoFetchOptions = {}
-  ) {
-    this.apiEndpoint = apiEndpoint;
+  constructor({
+    endpoint,
+    tokenName = accessToken,
+    errorHandler = defaultErrorHandler,
+    authHeader = "Authorization",
+    authTokenPrefix = "Bearer",
+    trailingSlash = false,
+    devProxy,
+    credentials,
+  }: WoFetchOptions = {}) {
+    this.endpoint = endpoint;
     this.tokenName = tokenName;
     this.errorHandler = errorHandler;
     this.authHeader = authHeader;
@@ -259,7 +258,7 @@ export class WoFetch {
       credentials,
     }: FetchURLOptions = {}
   ): Promise<any> => {
-    if (!this.apiEndpoint) {
+    if (!this.endpoint) {
       throw new Error("API endpoint is not defined");
     }
     const requestHeaders = await this.getHeaders({
@@ -267,7 +266,7 @@ export class WoFetch {
       requireAuth,
       token,
     });
-    const url = createURL(this.apiEndpoint, path, {
+    const url = createURL(this.endpoint, path, {
       devProxy: noProxy ? undefined : this.devProxy,
       id,
       query,
@@ -363,7 +362,7 @@ export class WoFetch {
 
       xhrObject.open(
         "POST",
-        createURL(this.apiEndpoint, path, {
+        createURL(this.endpoint, path, {
           devProxy: this.devProxy,
           trailingSlash: this.trailingSlash,
         }),
