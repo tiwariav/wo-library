@@ -1,3 +1,5 @@
+## [1.11.2](https://github.com/tiwariav/wo-library/compare/v1.11.1...v1.11.2) (2023-03-07)
+
 ## [1.11.1](https://github.com/tiwariav/wo-library/compare/v1.11.0...v1.11.1) (2023-03-07)
 
 # [1.11.0](https://github.com/tiwariav/wo-library/compare/v1.10.5...v1.11.0) (2023-03-03)
