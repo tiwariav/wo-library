@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/tiwariav/wo-library/compare/v1.11.2...v1.12.0) (2023-03-08)
+
+
+### Features
+
+* replace process.env variables with arguments ([f4aadea](https://github.com/tiwariav/wo-library/commit/f4aadea803d0fcebcdcf4ca0464c8e068c8ad8b7))
+
 ## [1.11.2](https://github.com/tiwariav/wo-library/compare/v1.11.1...v1.11.2) (2023-03-07)
 
 ## [1.11.1](https://github.com/tiwariav/wo-library/compare/v1.11.0...v1.11.1) (2023-03-07)
