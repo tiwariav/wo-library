@@ -1,6 +1,18 @@
 import { WoLoadScriptError } from "../error/index.js";
 import loadScript from "../loadScript.js";
 
+interface RazorpayCheckoutOptions {
+  currency: string;
+  description?: string;
+  handleClose: CallableFunction;
+  handleSuccess: CallableFunction;
+  handleError: CallableFunction;
+  name: string;
+  orderID: string;
+  prefill: object;
+  key: string;
+}
+
 export async function checkout({
   currency,
   description,
@@ -11,17 +23,7 @@ export async function checkout({
   orderID,
   prefill,
   key,
-}: {
-  currency: string;
-  description: string;
-  handleClose: CallableFunction;
-  handleSuccess: CallableFunction;
-  handleError: CallableFunction;
-  name: string;
-  orderID: string;
-  prefill: object;
-  key: string;
-}) {
+}: RazorpayCheckoutOptions) {
   const response = await loadScript(
     "https://checkout.razorpay.com/v1/checkout.js"
   );
