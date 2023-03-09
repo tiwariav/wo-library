@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/tiwariav/wo-library/compare/v1.12.0...v1.12.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* fix razorpay types ([40381fe](https://github.com/tiwariav/wo-library/commit/40381fe74d5a213908f3801748fd5c4cd30131f0))
+
 # [1.12.0](https://github.com/tiwariav/wo-library/compare/v1.11.2...v1.12.0) (2023-03-08)
 
 
