@@ -96,8 +96,12 @@ export class AnyStorage {
         : this.backends[STORAGE_TYPES.session].getItem(storageKey));
     }
     if (json && response) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      response = JSON.parse(response);
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        response = JSON.parse(response);
+      } catch {
+        // do nothing, return the string
+      }
     }
     return response || null;
   };
