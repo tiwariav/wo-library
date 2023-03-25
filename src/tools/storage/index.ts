@@ -52,6 +52,7 @@ export class AnyStorage {
   env: StorageEnvironments;
   prefix: string;
   version: number;
+  json = false;
 
   constructor() {
     this.env =
@@ -84,7 +85,7 @@ export class AnyStorage {
 
   getItem = async (
     key: string,
-    { persist = false, session = false, json = false } = {}
+    { persist = false, session = false, json = this.json } = {}
   ) => {
     const storageKey = this.formKey(key);
     const backend = this.getBackend(persist, session);
@@ -104,7 +105,7 @@ export class AnyStorage {
   setItem = (
     key: string,
     value: unknown,
-    { persist = false, session = false, json = false } = {}
+    { persist = false, session = false, json = this.json } = {}
   ) => {
     // based on value of `persist` either store a value in temp or persist
     if (value === null) return;
@@ -128,8 +129,10 @@ export class AnyStorage {
   clear = () => {
     this.backends[STORAGE_TYPES.temp].clear();
     if (this.prefix) {
-      for (const key of Object.keys(localStorage)) {
+      for (const key of Object.keys(this.backends[STORAGE_TYPES.session])) {
         this.backends[STORAGE_TYPES.session].removeItem(key);
+      }
+      for (const key of Object.keys(this.backends[STORAGE_TYPES.persist])) {
         this.backends[STORAGE_TYPES.persist].removeItem(key);
       }
     }
