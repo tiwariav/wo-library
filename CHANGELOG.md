@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/tiwariav/wo-library/compare/v1.12.3...v1.12.4) (2023-03-25)
+
+
+### Bug Fixes
+
+* storage getItem error if value is not json but default json is true ([ae857ba](https://github.com/tiwariav/wo-library/commit/ae857ba7784b5a30394dbaba6f9d753c3df18557))
+
 ## [1.12.3](https://github.com/tiwariav/wo-library/compare/v1.12.2...v1.12.3) (2023-03-25)
 
 
