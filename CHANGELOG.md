@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/tiwariav/wo-library/compare/v1.12.2...v1.12.3) (2023-03-25)
+
+
+### Bug Fixes
+
+* storing string value and dynamic storage ([2eb26ff](https://github.com/tiwariav/wo-library/commit/2eb26ff00126438db0b4293acfec58cf8906d449))
+
 ## [1.12.2](https://github.com/tiwariav/wo-library/compare/v1.12.1...v1.12.2) (2023-03-10)
 
 ## [1.12.1](https://github.com/tiwariav/wo-library/compare/v1.12.0...v1.12.1) (2023-03-09)
