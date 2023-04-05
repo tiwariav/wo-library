@@ -34,30 +34,38 @@ const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
   );
 };
 
-export const Basic = Template.bind({});
-Basic.args = {
-  cardWidth: 160,
-  subtitle: "Horizontally scrollable elements",
-  title: "A swiper section",
+export const Basic = {
+  args: {
+    cardWidth: 160,
+    subtitle: "Horizontally scrollable elements",
+    title: "A swiper section",
+  },
+  render: (args) => <Template {...args} />,
 };
 
-export const Coverflow = Template.bind({});
-Coverflow.args = {
-  ...Basic.args,
-  variant: "coverflow",
+export const Coverflow = {
+  args: {
+    ...Basic.args,
+    variant: "coverflow",
+  },
+  render: (args) => <Template {...args} />,
 };
 
-export const WithLinks = Template.bind({});
-WithLinks.args = {
-  ...Basic.args,
-  moreLink: "SeeMore",
-  moreLinkVertical: "ArrowVertical",
+export const WithLinks = {
+  args: {
+    ...Basic.args,
+    moreLink: "SeeMore",
+    moreLinkVertical: "ArrowVertical",
+  },
+  render: (args) => <Template {...args} />,
 };
 
-export const WithSeparator = Template.bind({});
-WithSeparator.args = {
-  ...Basic.args,
-  hasSeparator: true,
-  moreLink: "SeeMore",
-  moreLinkVertical: "ArrowVertical",
+export const WithSeparator = {
+  args: {
+    ...Basic.args,
+    hasSeparator: true,
+    moreLink: "SeeMore",
+    moreLinkVertical: "ArrowVertical",
+  },
+  render: (args) => <Template {...args} />,
 };

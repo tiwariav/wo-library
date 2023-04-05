@@ -1,5 +1,4 @@
 import { withTests } from "@storybook/addon-jest";
-import { addDecorator } from "@storybook/react";
 import { globalTypes, parameters } from "../src/tools/cjs/storybook/index.cjs";
 // import "../styles/base.css";
 
@@ -12,5 +11,4 @@ try {
 } catch {
   console.log("reports/test-report.json does not exist, skipping.");
 }
-
-if (results) addDecorator(withTests({ results }));
+export const decorators = [withTests({ results })];

@@ -18,5 +18,6 @@ const Template = ({ ...args }) => {
   );
 };
 
-export const Basic = Template.bind({});
-Basic.args = {};
+export const Basic = {
+  render: (args) => <Template {...args} />,
+};
