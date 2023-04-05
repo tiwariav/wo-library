@@ -1,3 +1,10 @@
+## [1.12.6](https://github.com/tiwariav/wo-library/compare/v1.12.5...v1.12.6) (2023-04-05)
+
+
+### Bug Fixes
+
+* update storybook config ([6484e61](https://github.com/tiwariav/wo-library/commit/6484e6172c380a196aeec0366cfa25823648cf46))
+
 ## [1.12.5](https://github.com/tiwariav/wo-library/compare/v1.12.4...v1.12.5) (2023-04-05)
 
 ## [1.12.4](https://github.com/tiwariav/wo-library/compare/v1.12.3...v1.12.4) (2023-03-25)
