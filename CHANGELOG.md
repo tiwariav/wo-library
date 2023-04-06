@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/tiwariav/wo-library/compare/v1.13.0...v1.14.0) (2023-04-06)
+
+
+### Features
+
+* add shared jest config ([4cc640e](https://github.com/tiwariav/wo-library/commit/4cc640e3610b3e9b4a2e221cfe80421eb4abe63a))
+
 # [1.13.0](https://github.com/tiwariav/wo-library/compare/v1.12.6...v1.13.0) (2023-04-06)
 
 
