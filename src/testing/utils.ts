@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 
 export function storybookRender(
   story: StoryObj,
-  args: unknown[]
+  args: object
 ): ReturnType<typeof render> {
   return render(story.render(args, {} as StoryContext));
 }

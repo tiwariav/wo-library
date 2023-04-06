@@ -25,7 +25,7 @@ const config: RollupOptions[] = [
     plugins: [
       ...commonPlugins,
       postcss(postcssConfig),
-      typescript({ tsconfig: "tsconfig.rollup.json" }),
+      typescript(),
       ...getBuildPlugins(),
       ...devPlugins,
     ],
