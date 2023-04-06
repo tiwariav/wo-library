@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/tiwariav/wo-library/compare/v1.14.0...v1.14.1) (2023-04-06)
+
+
+### Bug Fixes
+
+* update self jest config ([9b47303](https://github.com/tiwariav/wo-library/commit/9b473038398445c459b6d1fd09e97495205a5ffe))
+
 # [1.14.0](https://github.com/tiwariav/wo-library/compare/v1.13.0...v1.14.0) (2023-04-06)
 
 
