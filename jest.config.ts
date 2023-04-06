@@ -1,6 +1,6 @@
 import { Config } from "jest";
 // @ts-ignore: TS2835 because jest.config.ts is not read as module by jest
-import sharedConfig from "./src/tools/sharedConfig/jest";
+import { config as sharedConfig } from "./src/tools/cjs/jest/config.cjs";
 
 const config: Config = {
   ...(sharedConfig as Config),

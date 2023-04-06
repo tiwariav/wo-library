@@ -1,9 +1,8 @@
-import type { Config } from "jest";
-import path from "node:path";
+const path = require("node:path");
 
-export const reportsDirectory = path.join(process.cwd(), "reports");
+const reportsDirectory = path.join(process.cwd(), "reports");
 
-export const ciReporters = [
+const ciReporters = [
   [
     "jest-junit",
     {
@@ -11,7 +10,7 @@ export const ciReporters = [
     },
   ],
 ];
-export const devReporters = [
+const devReporters = [
   [
     "jest-html-reporter",
     {
@@ -27,11 +26,11 @@ export const devReporters = [
     },
   ],
 ];
-export const reporters = process.env.CI
+const reporters = process.env.CI
   ? [...devReporters, ...ciReporters]
   : devReporters;
 
-const config: Config = {
+const config = {
   collectCoverageFrom: ["src/**/*.{js,jsx}"],
   coverageDirectory: "reports",
   coveragePathIgnorePatterns: ["/node_modules/", "/dist/"],
@@ -60,4 +59,10 @@ const config: Config = {
   },
 };
 
-export default config;
+module.exports = {
+  ciReporters,
+  config,
+  devReporters,
+  reporters,
+  reportsDirectory,
+};
