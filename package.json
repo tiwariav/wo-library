@@ -21,7 +21,8 @@
     "prepare": "(test -d '.git' && husky install) || true",
     "release": "cd dist && npm publish",
     "storybook": "sb dev -p 9001",
-    "build-storybook": "sb build"
+    "build-storybook": "sb build",
+    "test": "jest --coverage --json --outputFile=./reports/test-report.json"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.3",

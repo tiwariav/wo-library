@@ -25,6 +25,6 @@
     // "strict": true,
     "target": "es2017"
   },
-  "include": ["src", "rollup.config.ts", "types"],
-  "exclude": ["**/__snapshots__", "**/__tests__", "node_modules"]
+  "include": ["src", "*.config.ts", "types"],
+  "exclude": ["**/__snapshots__", "node_modules"]
 }
