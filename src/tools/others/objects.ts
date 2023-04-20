@@ -30,7 +30,7 @@ export function getNestedValue(
   if (keys && !keys.includes(key)) {
     for (const value of Object.values(data)) {
       if (!isObject(value)) continue;
-      const child_response = getNestedValue(value as RecInterface, key);
+      const child_response = getNestedValue(value, key);
       response = Array.isArray(child_response)
         ? [...response, ...(child_response as RecInterface[])]
         : [...response, child_response];

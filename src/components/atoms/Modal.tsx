@@ -8,7 +8,7 @@ import {
   useId,
   useInteractions,
   useRole,
-} from "@floating-ui/react-dom-interactions";
+} from "@floating-ui/react";
 import { clsx } from "clsx";
 import React, { useCallback, useState } from "react";
 import styles from "./modal.module.css";

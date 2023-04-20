@@ -13,7 +13,7 @@ import {
   useHover,
   useInteractions,
   useRole,
-} from "@floating-ui/react-dom-interactions";
+} from "@floating-ui/react";
 import { clsx } from "clsx";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./tooltip.module.css";
