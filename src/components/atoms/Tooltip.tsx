@@ -15,7 +15,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import styles from "./tooltip.module.css";
 
 export interface TooltipProps {
@@ -53,12 +53,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   const {
     x,
     y,
-    reference,
-    floating,
     strategy,
     context,
     refs,
-    update,
     // middlewareData,
   } = useFloating({
     ...(placement ? { placement } : {}),
@@ -70,6 +67,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     ],
     onOpenChange: setShow,
     open,
+    whileElementsMounted: autoUpdate,
   });
 
   // const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
@@ -88,12 +86,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     useDismiss(context),
   ]);
 
-  useEffect(() => {
-    if (refs.reference.current && refs.floating.current && open) {
-      return autoUpdate(refs.reference.current, refs.floating.current, update);
-    }
-  }, [refs.reference, refs.floating, update, open]);
-
   const body = (
     <div
       className={clsx(
@@ -104,7 +96,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         innerClassNames.floating
       )}
       {...getFloatingProps({
-        ref: floating,
+        ref: refs.setFloating,
         style: {
           left: x ?? "",
           position: strategy,
@@ -129,7 +121,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       <div
         className={clsx(styles.reference, innerClassNames.reference)}
         style={style}
-        {...getReferenceProps({ ref: reference })}
+        {...getReferenceProps({ ref: refs.setReference })}
       >
         {children}
       </div>

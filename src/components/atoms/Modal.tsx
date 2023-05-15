@@ -36,7 +36,7 @@ const Modal: React.FC<Props> = ({
     [onClose]
   );
 
-  const { reference, floating, context } = useFloating({
+  const { refs, context } = useFloating({
     onOpenChange: handleOpenChange,
     open,
   });
@@ -53,13 +53,13 @@ const Modal: React.FC<Props> = ({
 
   return (
     <>
-      <div {...getReferenceProps({ ref: reference })} />
+      <div {...getReferenceProps({ ref: refs.setReference })} />
       <FloatingPortal>
         {open && (
           <FloatingOverlay lockScroll className={styles.overlay}>
             <FloatingFocusManager context={context}>
               <div
-                ref={floating}
+                ref={refs.setFloating}
                 className={clsx(styles.modal, className)}
                 aria-labelledby={labelId}
                 aria-describedby={descriptionId}
