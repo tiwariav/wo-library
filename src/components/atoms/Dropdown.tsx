@@ -15,30 +15,25 @@ import React, {
   cloneElement,
   isValidElement,
   ReactNode,
-  useEffect,
   useState,
 } from "react";
 
-interface WoTooltipProps {
+export interface DropdownProps {
   children: ReactNode;
   label: string;
   placement?: Placement;
 }
 
-const WoTooltip: React.FC<WoTooltipProps> = ({
-  children,
-  label,
-  placement,
-}) => {
+const Dropdown: React.FC<DropdownProps> = ({ children, label, placement }) => {
   const [open, setOpen] = useState(false);
 
-  const { x, y, reference, floating, strategy, context, refs, update } =
-    useFloating({
-      middleware: [offset(5), flip(), shift({ padding: 8 })],
-      onOpenChange: setOpen,
-      open,
-      placement,
-    });
+  const { x, y, strategy, context, refs } = useFloating({
+    middleware: [offset(5), flip(), shift({ padding: 8 })],
+    onOpenChange: setOpen,
+    open,
+    placement,
+    whileElementsMounted: autoUpdate,
+  });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context),
@@ -47,21 +42,15 @@ const WoTooltip: React.FC<WoTooltipProps> = ({
     useDismiss(context),
   ]);
 
-  useEffect(() => {
-    if (refs.reference.current && refs.floating.current && open) {
-      return autoUpdate(refs.reference.current, refs.floating.current, update);
-    }
-  }, [refs.reference, refs.floating, update, open]);
-
   return (
     <>
       {isValidElement(children) &&
-        cloneElement(children, getReferenceProps({ ref: reference }))}
+        cloneElement(children, getReferenceProps({ ref: refs.setReference }))}
       {open && (
         <div
           {...getFloatingProps({
             className: "Tooltip",
-            ref: floating,
+            ref: refs.setFloating,
             style: {
               left: x ?? "",
               position: strategy,
@@ -69,7 +58,6 @@ const WoTooltip: React.FC<WoTooltipProps> = ({
             },
           })}
         >
-          "Arrey waaaah"
           {label}
         </div>
       )}
@@ -77,4 +65,4 @@ const WoTooltip: React.FC<WoTooltipProps> = ({
   );
 };
 
-export default WoTooltip;
+export default Dropdown;

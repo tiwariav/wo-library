@@ -13,14 +13,14 @@ import { clsx } from "clsx";
 import React, { useCallback, useState } from "react";
 import styles from "./modal.module.css";
 
-interface Props {
+export interface ModalProps {
   className?: string;
   children: JSX.Element | JSX.Element[];
-  onClose?: () => boolean;
+  onClose?: () => void;
   open?: boolean;
 }
 
-const Modal: React.FC<Props> = ({
+const Modal: React.FC<ModalProps> = ({
   className,
   children,
   onClose,
@@ -36,7 +36,7 @@ const Modal: React.FC<Props> = ({
     [onClose]
   );
 
-  const { reference, floating, context } = useFloating({
+  const { refs, context } = useFloating({
     onOpenChange: handleOpenChange,
     open,
   });
@@ -53,13 +53,13 @@ const Modal: React.FC<Props> = ({
 
   return (
     <>
-      <div {...getReferenceProps({ ref: reference })} />
+      <div {...getReferenceProps({ ref: refs.setReference })} />
       <FloatingPortal>
         {open && (
           <FloatingOverlay lockScroll className={styles.overlay}>
             <FloatingFocusManager context={context}>
               <div
-                ref={floating}
+                ref={refs.setFloating}
                 className={clsx(styles.modal, className)}
                 aria-labelledby={labelId}
                 aria-describedby={descriptionId}
