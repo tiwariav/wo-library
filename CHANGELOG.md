@@ -1,3 +1,11 @@
+## [1.14.5](https://github.com/tiwariav/wo-library/compare/v1.14.4...v1.14.5) (2023-05-16)
+
+
+### Bug Fixes
+
+* config for floating-ui ([4ed32a0](https://github.com/tiwariav/wo-library/commit/4ed32a05fdeee93e0fb61e0d03e5834e49ce3dd0))
+* config for floating-ui ([40760a4](https://github.com/tiwariav/wo-library/commit/40760a41e77537de31286eea0c0f3d4af9f54c23))
+
 ## [1.14.4](https://github.com/tiwariav/wo-library/compare/v1.14.3...v1.14.4) (2023-04-20)
 
 
