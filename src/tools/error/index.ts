@@ -20,7 +20,7 @@ export class WoNetworkError extends WoError {
 }
 
 export class WoResponseError extends WoError {
-  data: unknown;
+  data: any;
 
   constructor(data: object, message = "Response Error!") {
     super(message);
