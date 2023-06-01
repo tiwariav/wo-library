@@ -4,10 +4,8 @@ import { config as sharedConfig } from "./src/tools/cjs/jest/config.cjs";
 
 const config: Config = {
   ...(sharedConfig as Config),
+  setupFilesAfterEnv: ["<rootDir>/src/tools/cjs/jest/setupTests.cjs"],
   testRegex: "src.*(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
-  transform: {
-    "^.+\\.tsx?$": ["ts-jest", { tsconfig: "tsconfig.jest.json" }],
-  },
 };
 
 export default config;
