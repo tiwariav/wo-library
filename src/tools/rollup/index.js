@@ -11,11 +11,10 @@ import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
 import _postcssPresetEnv from "postcss-preset-env";
-import type { OutputChunk, OutputOptions, Plugin } from "rollup";
 import _copy from "rollup-plugin-copy";
 import _del from "rollup-plugin-delete";
 import _externals from "rollup-plugin-node-externals";
-import _postcss, { PostCSSPluginConf } from "rollup-plugin-postcss";
+import _postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
 // import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { terser } from "rollup-plugin-terser";
@@ -36,15 +35,15 @@ const json = defaultImport(_json);
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 
 export function rollupInputMap(
-  root: string,
-  directory: string,
+  root,
+  directory,
   {
     extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
-    excludeDirectories = [] as string[],
+    excludeDirectories = [],
   } = {}
 ) {
   const pattern = `${directory}/**/${extension}`;
-  const response: string[][] = [];
+  const response = [];
   for (const file of globSync(pattern)) {
     if (
       file.includes("__") ||
@@ -64,11 +63,11 @@ export function rollupInputMap(
       fileURLToPath(new URL(file, root)),
     ]);
   }
-  return Object.fromEntries(response) as { [k: string]: string };
+  return Object.fromEntries(response);
 }
 
-export function bundleCss(root: string, directory: string, options: object) {
-  const config: Plugin[] = [];
+export function bundleCss(root, directory, options) {
+  const config = [];
   const files = rollupInputMap(root, directory, options);
   for (const [key, value] of Object.entries(files)) {
     config.push(
@@ -88,7 +87,7 @@ export const commonPlugins = [
     include: [/^style-inject\/dist.*/, "tslib"],
   }),
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  progress() as Plugin,
+  progress(),
   commonjs(),
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   json(),
@@ -100,7 +99,7 @@ export const devPlugins = isDev
   ? [beep(), visualizer()]
   : [
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      terser() as Plugin,
+      terser(),
     ];
 
 export function getBuildPlugins(buildPath = "dist") {
@@ -113,7 +112,7 @@ export function getBuildPlugins(buildPath = "dist") {
   ];
 }
 
-export const postcssConfig: PostCSSPluginConf = {
+export const postcssConfig = {
   config: false,
   extensions: [".css"],
   extract: "dist.css",
@@ -144,7 +143,7 @@ export const postcssConfig: PostCSSPluginConf = {
   sourceMap: isDev,
 };
 
-export const esOutputOptions: OutputOptions = {
+export const esOutputOptions = {
   chunkFileNames: "chunks/[name]-[hash].js",
   dir: "./dist",
   entryFileNames: "[name].js",
@@ -155,14 +154,14 @@ export const esOutputOptions: OutputOptions = {
   sourcemap: isDev,
 };
 
-export const cjsOutputOptions: OutputOptions = {
+export const cjsOutputOptions = {
   ...esOutputOptions,
   entryFileNames: "[name].cjs",
   exports: "auto",
   format: "cjs",
 };
 
-export function getCssOutputOptions(directory = "./dist"): OutputOptions {
+export function getCssOutputOptions(directory = "./dist") {
   return {
     dir: directory,
     entryFileNames: "[name].css",
@@ -172,7 +171,7 @@ export function getCssOutputOptions(directory = "./dist"): OutputOptions {
   };
 }
 
-export function addScriptBanner(chunk: OutputChunk, directory = "scripts/") {
+export function addScriptBanner(chunk, directory = "scripts/") {
   if (chunk.fileName.startsWith(directory)) {
     return "#!/usr/bin/env node";
   }

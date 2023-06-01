@@ -1,6 +1,9 @@
+/**
+ * Due to unknown reason ts config file is not working
+ */
+
 import _typescript from "@rollup/plugin-typescript";
 import { defaultImport } from "default-import";
-import type { RollupOptions } from "rollup";
 import _postcss from "rollup-plugin-postcss";
 import {
   cjsOutputOptions,
@@ -17,7 +20,7 @@ const typescript = defaultImport(_typescript);
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 
-const config: RollupOptions[] = [
+const config = [
   {
     input: rollupInputMap(import.meta.url, "src"),
     output: esOutputOptions,
@@ -25,7 +28,7 @@ const config: RollupOptions[] = [
     plugins: [
       ...commonPlugins,
       postcss(postcssConfig),
-      typescript({ sourceMap: true, tsconfig: "tsconfig.rollup.json" }),
+      typescript({ tsconfig: "./tsconfig.rollup.json" }),
       ...getBuildPlugins(),
       ...devPlugins,
     ],

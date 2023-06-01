@@ -4,7 +4,8 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
-    "diagnostics": true,
+    // enable to debug
+    // "diagnostics": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -23,7 +24,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    // "strict": true,
     "target": "es2017"
   },
   "include": ["src", "*.config.ts", "types"],
