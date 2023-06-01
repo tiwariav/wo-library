@@ -19,14 +19,25 @@ export const STORAGE_TYPES = {
 
 export let memoryStorageItems: Record<string, string> = {};
 
-const memoryStorage = {
+export const memoryStorage = {
   clear: () => (memoryStorageItems = {}),
-  getItem: (key: string): string | null => memoryStorageItems[key] || null,
+  // eslint-disable-next-line @typescript-eslint/require-await
+  getItem: async (key: string): Promise<string> =>
+    memoryStorageItems[key] || null,
   removeItem: (key: string) => (memoryStorageItems[key] = null),
   setItem: (key: string, value: string) => (memoryStorageItems[key] = value),
 };
 
-export const DEFAULT_STORAGE_BACKENDS = {
+export type StorageEnvironments =
+  (typeof STORAGE_ENVIRONMENTS)[keyof typeof STORAGE_ENVIRONMENTS];
+type StorageTypes = (typeof STORAGE_TYPES)[keyof typeof STORAGE_TYPES];
+type StorageBackendOptions = {
+  [key in StorageTypes]?: StorageBackend;
+};
+
+export const DEFAULT_STORAGE_BACKENDS: {
+  [Key in StorageEnvironments]?: StorageBackendOptions;
+} = {
   [STORAGE_ENVIRONMENTS.web]: {
     [STORAGE_TYPES.persist]:
       typeof localStorage === "undefined" ? undefined : localStorage,
@@ -40,13 +51,6 @@ export const DEFAULT_STORAGE_BACKENDS = {
   },
 };
 
-type StorageEnvironments =
-  (typeof STORAGE_ENVIRONMENTS)[keyof typeof STORAGE_ENVIRONMENTS];
-type StorageTypes = (typeof STORAGE_TYPES)[keyof typeof STORAGE_TYPES];
-type StorageBackendOptions = {
-  [key in StorageTypes]?: StorageBackend;
-};
-
 export class AnyStorage {
   backends: StorageBackendOptions;
   env: StorageEnvironments;
@@ -54,9 +58,9 @@ export class AnyStorage {
   version: number;
   json = false;
 
-  constructor() {
+  constructor(env?: StorageEnvironments) {
     this.env =
-      typeof localStorage === "undefined"
+      env || typeof localStorage === "undefined"
         ? STORAGE_ENVIRONMENTS.mobile
         : STORAGE_ENVIRONMENTS.web;
     this.backends = {
@@ -106,10 +110,11 @@ export class AnyStorage {
     return response || null;
   };
 
-  setItem = (
+  setItem = async (
     key: string,
     value: unknown,
     { persist = false, session = false, json = this.json } = {}
+    // eslint-disable-next-line @typescript-eslint/require-await
   ) => {
     // based on value of `persist` either store a value in temp or persist
     if (value === null) return;
@@ -122,7 +127,8 @@ export class AnyStorage {
     return backend.setItem(storageKey, saveValue);
   };
 
-  removeItem = (key: string) => {
+  // eslint-disable-next-line @typescript-eslint/require-await
+  removeItem = async (key: string) => {
     // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
     this.backends[STORAGE_TYPES.temp].removeItem(storageKey);

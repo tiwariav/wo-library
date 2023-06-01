@@ -50,6 +50,7 @@ const config = {
     // @ts-ignore: TS2322 because ReporterConfig is not exported from jest
     ...reporters,
   ],
+  setupFilesAfterEnv: ["<rootDir>/src/tools/cjs/jest/setupTests.cjs"],
   testEnvironment: "jsdom",
   testPathIgnorePatterns: ["/node_modules/", "/dist/", "/reports/"],
   transform: {

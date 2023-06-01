@@ -39,8 +39,11 @@
     "type-fest": "^3.11.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.4",
+    "@babel/preset-react": "^7.22.3",
     "@commitlint/cli": "17.6.3",
     "@commitlint/config-conventional": "17.6.3",
+    "@jest/globals": "^29.5.0",
     "@rollup/plugin-beep": "^1.0.2",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-eslint": "^9.0.4",
