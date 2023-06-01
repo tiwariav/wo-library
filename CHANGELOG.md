@@ -1,3 +1,10 @@
+## [1.14.8](https://github.com/tiwariav/wo-library/compare/v1.14.7...v1.14.8) (2023-06-01)
+
+
+### Bug Fixes
+
+* update jest and rollup config ([e7998e9](https://github.com/tiwariav/wo-library/commit/e7998e91b850f16f717feffbf86cea3a0cefa7a5))
+
 ## [1.14.7](https://github.com/tiwariav/wo-library/compare/v1.14.6...v1.14.7) (2023-05-24)
 
 
