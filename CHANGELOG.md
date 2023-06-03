@@ -1,3 +1,10 @@
+## [1.14.10](https://github.com/tiwariav/wo-library/compare/v1.14.9...v1.14.10) (2023-06-03)
+
+
+### Bug Fixes
+
+* tsconfig for declaration files ([78315d2](https://github.com/tiwariav/wo-library/commit/78315d251a2496434c96eb848f7ce9e42fbb0ba9))
+
 ## [1.14.9](https://github.com/tiwariav/wo-library/compare/v1.14.8...v1.14.9) (2023-06-01)
 
 ## [1.14.8](https://github.com/tiwariav/wo-library/compare/v1.14.7...v1.14.8) (2023-06-01)
