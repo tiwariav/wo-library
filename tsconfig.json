@@ -22,10 +22,9 @@
       }
     ],
     "resolveJsonModule": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "target": "es2017"
   },
-  "include": ["src", "*.config.ts", "types"],
+  "include": ["src", "types"],
   "exclude": ["**/__snapshots__", "node_modules"]
 }
