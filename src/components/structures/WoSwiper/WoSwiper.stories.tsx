@@ -11,6 +11,8 @@ const moreLinkMap = {
   SeeMore: <button>See more</button>,
 };
 
+type MoreLinkOptions = keyof typeof moreLinkMap;
+
 const metadata = {
   argTypes: {
     moreLink: {
@@ -22,21 +24,31 @@ const metadata = {
 
 export default metadata;
 
-const Template = ({ moreLink, moreLinkVertical, cardWidth, ...args }) => {
+const Template = ({
+  moreLink,
+  moreLinkVertical,
+  ...args
+}: {
+  moreLink: MoreLinkOptions;
+  moreLinkVertical: MoreLinkOptions;
+}) => {
   return (
     <WoSwiper
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       moreLink={moreLinkMap[moreLink]}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       moreLinkVertical={moreLinkMap[moreLinkVertical]}
       {...args}
     >
-      {Array.from<JSX.Element>({ length: 11 }).fill(<p>Content...</p>)}
+      {/* {Array.from({ length: 11 }).map((_, index) => ( */}
+      <p>Content ...</p>
+      {/* ))} */}
     </WoSwiper>
   );
 };
 
 export const Basic = {
   args: {
-    cardWidth: 160,
     subtitle: "Horizontally scrollable elements",
     title: "A swiper section",
   },

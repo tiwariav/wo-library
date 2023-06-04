@@ -26,7 +26,7 @@ const modules = [
 if (process.env.JEST_WORKER_ID) {
   modules.push(A11y);
 }
-type WoSwiperProps = {
+interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
   className?: string;
   children: JSX.Element | JSX.Element[];
   fade?: { left: number; right: number };
@@ -39,7 +39,7 @@ type WoSwiperProps = {
   subtitle?: string;
   title?: string;
   variant?: (typeof variants)[number];
-};
+}
 
 export default function WoSwiper({
   className,
@@ -63,7 +63,7 @@ export default function WoSwiper({
       // effects
       effect: "coverflow",
       // loop
-      loop: true,
+      // loop: true,
     };
   }
 
@@ -103,9 +103,9 @@ export default function WoSwiper({
         className={styles.swiper}
         // swiper params
         // slides grid
-        centeredSlides={variant === "coverflow"}
+        // centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
-        slidesPerView={pagination ? 1 : "auto"}
+        // slidesPerView={pagination ? 1 : "auto"}
         // freemode
         freeMode={
           pagination
