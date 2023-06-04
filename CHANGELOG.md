@@ -1,3 +1,10 @@
+## [1.14.11](https://github.com/tiwariav/wo-library/compare/v1.14.10...v1.14.11) (2023-06-04)
+
+
+### Bug Fixes
+
+* add babel config to enable types ([620c551](https://github.com/tiwariav/wo-library/commit/620c5512b280a7e5380056e1a7bf6e38aa199d11))
+
 ## [1.14.10](https://github.com/tiwariav/wo-library/compare/v1.14.9...v1.14.10) (2023-06-03)
 
 
