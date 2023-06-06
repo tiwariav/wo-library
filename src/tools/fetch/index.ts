@@ -311,9 +311,9 @@ export class WoFetch {
       requireAuth: boolean;
       data: Record<any, any>;
       progressFunction: XHREventListener;
-      loadStartFunction: XHREventListener;
-      transferCompleteFunction: XHREventListener;
-      onStateChange: XHRStateChange;
+      loadStartFunction?: XHREventListener;
+      transferCompleteFunction?: XHREventListener;
+      onStateChange?: XHRStateChange;
     }
   ): Promise<void> => {
     const formData = getFormData(data, file);
