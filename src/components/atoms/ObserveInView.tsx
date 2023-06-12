@@ -2,6 +2,7 @@ import { clsx } from "clsx";
 import { isObject } from "lodash-es";
 import { useEffect, useState } from "react";
 import { IntersectionOptions, useInView } from "react-intersection-observer";
+
 import styles from "./observeInView.module.css";
 
 type ObserveInViewProps = {
@@ -21,15 +22,15 @@ export default function ObserveInView({
   ...props
 }: ObserveInViewProps) {
   const [rootRef, inView, rootEntry] = useInView(observeOptions);
-  const [rootClasses, setRootClasses] = useState<Record<string, any>>();
+  const [rootClasses, setRootClasses] = useState<Record<string, boolean>>();
 
   useEffect(() => {
     if (rootEntry) {
       const classNameProps = {
         [styles.animate]: animate,
-        [styles["in-view"]]: inView,
-        [styles["out-bottom"]]: !inView && rootEntry.boundingClientRect.top > 0,
-        [styles["out-top"]]: !inView && rootEntry.boundingClientRect.top < 0,
+        [styles.inView]: inView,
+        [styles.outBottom]: !inView && rootEntry.boundingClientRect.top > 0,
+        [styles.outTop]: !inView && rootEntry.boundingClientRect.top < 0,
       };
       if (dynamicClasses && isObject(dynamicClasses)) {
         for (const [key, value] of Object.entries(dynamicClasses)) {
@@ -47,6 +48,6 @@ export default function ObserveInView({
   }, [inView, onViewChange]);
 
   return (
-    <div ref={rootRef} className={clsx(rootClasses, className)} {...props} />
+    <div className={clsx(rootClasses, className)} ref={rootRef} {...props} />
   );
 }

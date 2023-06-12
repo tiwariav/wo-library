@@ -1,8 +1,8 @@
 import {
+  Placement,
   autoUpdate,
   flip,
   offset,
-  Placement,
   shift,
   useDismiss,
   useFloating,
@@ -12,9 +12,9 @@ import {
   useRole,
 } from "@floating-ui/react";
 import React, {
+  ReactNode,
   cloneElement,
   isValidElement,
-  ReactNode,
   useState,
 } from "react";
 
@@ -27,7 +27,7 @@ export interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ children, label, placement }) => {
   const [open, setOpen] = useState(false);
 
-  const { x, y, strategy, context, refs } = useFloating({
+  const { context, refs, strategy, x, y } = useFloating({
     middleware: [offset(5), flip(), shift({ padding: 8 })],
     onOpenChange: setOpen,
     open,
@@ -35,7 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({ children, label, placement }) => {
     whileElementsMounted: autoUpdate,
   });
 
-  const { getReferenceProps, getFloatingProps } = useInteractions([
+  const { getFloatingProps, getReferenceProps } = useInteractions([
     useHover(context),
     useFocus(context),
     useRole(context, { role: "tooltip" }),

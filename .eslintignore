@@ -9,3 +9,4 @@
 **/*.snap.js
 **/*.snap.ts
 reports
+*.d.ts

@@ -3,20 +3,20 @@
   transition-timing-function: ease-in-out;
   transition-duration: 600ms;
   transition-property: opacity, transform;
+
   @media screen and (prefers-reduced-motion: reduce) {
     transition: none;
   }
+}
 
-  &.in-view {
-    opacity: 1;
-  }
+.in-view {
+  opacity: 1;
+}
 
-  &.out-bottom {
-    transform: translateY(0.75rem);
-  }
+.out-bottom {
+  transform: translateY(0.75rem);
+}
 
-  &.out-top {
-    transform: translateY(-0.75rem);
-  }
-
+.out-top {
+  transform: translateY(-0.75rem);
 }

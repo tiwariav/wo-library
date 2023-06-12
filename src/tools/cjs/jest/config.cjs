@@ -31,9 +31,16 @@ const reporters = process.env.CI
   : devReporters;
 
 const config = {
-  collectCoverageFrom: ["src/**/*.{js,jsx}"],
+  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
   coverageDirectory: "reports",
-  coveragePathIgnorePatterns: ["/node_modules/", "/dist/"],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "/dist/",
+    "/build/",
+    "/out/",
+    "/.next/",
+  ],
+  coverageProvider: "v8",
   extensionsToTreatAsEsm: [".ts", ".tsx", ".jsx"],
   moduleNameMapper: {
     "\\.(css|less|scss)$": "identity-obj-proxy",

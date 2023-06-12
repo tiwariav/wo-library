@@ -11,18 +11,19 @@ import {
 } from "@floating-ui/react";
 import { clsx } from "clsx";
 import React, { useCallback, useState } from "react";
+
 import styles from "./modal.module.css";
 
 export interface ModalProps {
-  className?: string;
   children: JSX.Element | JSX.Element[];
+  className?: string;
   onClose?: () => void;
   open?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
-  className,
   children,
+  className,
   onClose,
   open: passedOpen = false,
 }) => {
@@ -36,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({
     [onClose]
   );
 
-  const { refs, context } = useFloating({
+  const { context, refs } = useFloating({
     onOpenChange: handleOpenChange,
     open,
   });
@@ -45,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({
   const labelId = `${id}-label`;
   const descriptionId = `${id}-description`;
 
-  const { getReferenceProps, getFloatingProps } = useInteractions([
+  const { getFloatingProps, getReferenceProps } = useInteractions([
     useClick(context),
     useRole(context),
     useDismiss(context, { outsidePressEvent: "mousedown" }),
@@ -56,13 +57,13 @@ const Modal: React.FC<ModalProps> = ({
       <div {...getReferenceProps({ ref: refs.setReference })} />
       <FloatingPortal>
         {open && (
-          <FloatingOverlay lockScroll className={styles.overlay}>
+          <FloatingOverlay className={styles.overlay} lockScroll>
             <FloatingFocusManager context={context}>
               <div
-                ref={refs.setFloating}
-                className={clsx(styles.modal, className)}
-                aria-labelledby={labelId}
                 aria-describedby={descriptionId}
+                aria-labelledby={labelId}
+                className={clsx(styles.modal, className)}
+                ref={refs.setFloating}
                 {...getFloatingProps()}
               >
                 {children}

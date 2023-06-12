@@ -1,8 +1,8 @@
 import { Reducer, useMemo, useReducer } from "react";
 
 type Action = {
-  type: string;
   payload: any[];
+  type: string;
 };
 
 type CreateMethods<M, T> = (state: T) => M;

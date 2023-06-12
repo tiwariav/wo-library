@@ -9,48 +9,13 @@
   padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
   font-size: var(--ye-font-size-small);
   border-radius: var(--ye-radius-normal);
-
-  &.is-visible {
-    display: block;
-  }
-
-  /* stylelint-disable-next-line block-no-empty */
-  &.is-popover {
-  }
-
-  &.is-plain {
-    color: var(--ye-color-white-90);
-    background-color: var(--ye-color-black-75);
-  }
 }
 
-.arrow {
-  visibility: hidden;
+.is-visible {
+  display: block;
+}
 
-  &,
-  &::before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: inherit;
-  }
-
-  &::before {
-    transform: rotate(45deg);
-    visibility: visible;
-    content: "";
-  }
-
-  @nest :global([data-popper-placement*="top"]) > & {
-    bottom: -4px;
-  }
-  @nest :global([data-popper-placement*="bottom"]) > & {
-    top: -4px;
-  }
-  @nest :global([data-popper-placement*="left"]) > & {
-    right: -4px;
-  }
-  @nest :global([data-popper-placement*="right"]) > & {
-    left: -4px;
-  }
+.is-plain {
+  color: var(--ye-color-white-90);
+  background-color: var(--ye-color-black-75);
 }

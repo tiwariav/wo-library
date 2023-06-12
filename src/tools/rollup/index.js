@@ -38,8 +38,8 @@ export function rollupInputMap(
   root,
   directory,
   {
-    extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
     excludeDirectories = [],
+    extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
   } = {}
 ) {
   const pattern = `${directory}/**/${extension}`;

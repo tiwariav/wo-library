@@ -24,7 +24,7 @@ export default function createChartMethods(state: ChartState) {
     },
     symbolImageReady: (
       seriesName: string,
-      seriesIndex: string | number,
+      seriesIndex: number | string,
       node: Node
     ): ChartState => {
       const symbolImages = { ...state.symbolImages };

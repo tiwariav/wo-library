@@ -5,24 +5,24 @@ interface RazorpayCheckoutOptions {
   currency: string;
   description?: string;
   handleClose: CallableFunction;
-  handleSuccess: CallableFunction;
   handleError: CallableFunction;
+  handleSuccess: CallableFunction;
+  key: string;
   name: string;
   orderID: string;
   prefill: object;
-  key: string;
 }
 
 export async function checkout({
   currency,
   description,
   handleClose,
-  handleSuccess,
   handleError,
+  handleSuccess,
+  key,
   name,
   orderID,
   prefill,
-  key,
 }: RazorpayCheckoutOptions) {
   const response = await loadScript(
     "https://checkout.razorpay.com/v1/checkout.js"

@@ -1,10 +1,10 @@
 import {
+  FloatingPortal,
+  Placement,
   arrow,
   autoPlacement,
   autoUpdate,
-  FloatingPortal,
   offset,
-  Placement,
   shift,
   useClick,
   useDismiss,
@@ -16,20 +16,21 @@ import {
 } from "@floating-ui/react";
 import { clsx } from "clsx";
 import React, { ReactNode, useRef, useState } from "react";
+
 import styles from "./tooltip.module.css";
 
 export interface TooltipProps {
-  className?: string;
   children?: ReactNode;
+  className?: string;
+  innerClassNames?: Record<string, string>;
   options?: Record<string, any>;
   placement?: Placement;
-  title: ReactNode;
-  trigger?: string[];
-  visible?: boolean;
   popover?: boolean;
   portal?: boolean;
   style?: Record<string, any>;
-  innerClassNames?: Record<string, string>;
+  title: ReactNode;
+  trigger?: string[];
+  visible?: boolean;
 }
 
 const defaultOptions = { offset: 8, padding: 8 };
@@ -37,27 +38,20 @@ const defaultOptions = { offset: 8, padding: 8 };
 const Tooltip: React.FC<TooltipProps> = ({
   children,
   innerClassNames = {},
-  visible,
-  placement,
-  title,
   options: propsOptions,
+  placement,
   popover,
   portal,
-  trigger = ["click"],
   style,
+  title,
+  trigger = ["click"],
+  visible,
 }) => {
   const arrowRef = useRef<HTMLElement>(null);
   const [show, setShow] = useState(visible);
   const open = visible || show;
   const options = { ...defaultOptions, ...propsOptions };
-  const {
-    x,
-    y,
-    strategy,
-    context,
-    refs,
-    // middlewareData,
-  } = useFloating({
+  const { context, refs, strategy, x, y } = useFloating({
     ...(placement ? { placement } : {}),
     middleware: [
       ...(arrowRef?.current ? [arrow({ element: arrowRef.current })] : []),
@@ -70,9 +64,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     whileElementsMounted: autoUpdate,
   });
 
-  // const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
-
-  const { getReferenceProps, getFloatingProps } = useInteractions([
+  const { getFloatingProps, getReferenceProps } = useInteractions([
     useHover(context, {
       delay: {
         close: 250,
@@ -91,7 +83,6 @@ const Tooltip: React.FC<TooltipProps> = ({
       className={clsx(
         styles.floating,
         { [styles.isVisible]: open },
-        { [styles.isPopover]: popover },
         { [styles.isPlain]: !popover },
         innerClassNames.floating
       )}
@@ -105,14 +96,6 @@ const Tooltip: React.FC<TooltipProps> = ({
       })}
     >
       {title}
-      {/* <div
-            ref={arrowRef}
-            className={styles.arrow}
-            style={{
-              left: arrowX != null ? `${arrowX}px` : "",
-              top: arrowY != null ? `${arrowY}px` : "",
-            }}
-          /> */}
     </div>
   );
 

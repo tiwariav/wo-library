@@ -10,12 +10,12 @@ import {
   Pagination,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
 const variants = ["basic", "coverflow"] as const;
 const modules = [
-  // TODO: creating new wrapper-id for each storyshot run
   EffectCoverflow,
   FreeMode,
   Mousewheel,
@@ -27,8 +27,8 @@ if (process.env.JEST_WORKER_ID) {
   modules.push(A11y);
 }
 interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
-  className?: string;
   children: JSX.Element | JSX.Element[];
+  className?: string;
   fade?: { left: number; right: number };
   freeMode?: object;
   hasSeparator?: boolean;
@@ -42,18 +42,18 @@ interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
 }
 
 export default function WoSwiper({
-  className,
   children,
+  className,
   fade,
   freeMode,
   hasSeparator,
   moreLink,
   moreLinkVertical,
   navigation = true,
+  pagination,
   subtitle,
   title,
   variant = "basic",
-  pagination,
   ...props
 }: WoSwiperProps) {
   let derivedProps = {};
@@ -73,8 +73,8 @@ export default function WoSwiper({
         styles.container,
         styles[`is-${variant}`],
         {
-          [styles.hasSeparator]: hasSeparator,
           [styles.hasPagination]: pagination,
+          [styles.hasSeparator]: hasSeparator,
         },
         className
       )}
@@ -90,8 +90,17 @@ export default function WoSwiper({
       )}
       <Swiper
         // modules
+        // freemode
         // @ts-ignore: TS2322 because library definition is wrong
-        modules={modules}
+        freeMode={
+          pagination
+            ? false
+            : {
+                enabled: true,
+                sticky: !navigation,
+                ...freeMode,
+              }
+        }
         pagination={
           pagination
             ? {
@@ -103,23 +112,15 @@ export default function WoSwiper({
         className={styles.swiper}
         // swiper params
         // slides grid
-        // centeredSlides={variant === "coverflow"}
-        spaceBetween={variant === "coverflow" ? 64 : 32}
+        // @ts-ignore: TS2322 because library definition is wrong
+        modules={modules}
         // slidesPerView={pagination ? 1 : "auto"}
-        // freemode
-        freeMode={
-          pagination
-            ? false
-            : {
-                enabled: true,
-                sticky: !navigation,
-                ...freeMode,
-              }
-        }
-        // navigation
-        navigation={navigation}
         // mousewheel
         mousewheel={{ forceToAxis: true }}
+        // navigation
+        navigation={navigation}
+        // centeredSlides={variant === "coverflow"}
+        spaceBetween={variant === "coverflow" ? 64 : 32}
         {...derivedProps}
         {...props}
       >
@@ -148,13 +149,13 @@ export default function WoSwiper({
           <>
             <div
               className={styles.fadeLeft}
-              style={{ width: fade.left }}
               slot="container-start"
+              style={{ width: fade.left }}
             />
             <div
               className={styles.fadeRight}
-              style={{ width: fade.right }}
               slot="container-end"
+              style={{ width: fade.right }}
             />
           </>
         )}

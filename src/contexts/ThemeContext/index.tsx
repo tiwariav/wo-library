@@ -1,16 +1,17 @@
 import { ReactNode, useMemo } from "react";
+
 import useMethods from "../../hooks/useMethods.js";
-import { createAndUseContext, Dispatch } from "../utils.js";
+import { Dispatch, createAndUseContext } from "../utils.js";
 import createThemeMethods from "./methods.js";
 import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state.js";
 
 interface ThemeProviderProps {
+  activeThemeName?: string;
   children: ReactNode;
   themeVariants: ThemeVariants;
-  activeThemeName?: string;
 }
 
-const { Context, DispatchContext, useContextState, useContextDispatch } =
+const { Context, DispatchContext, useContextDispatch, useContextState } =
   createAndUseContext<
     ThemeState,
     Dispatch<ReturnType<typeof createThemeMethods>>
@@ -41,4 +42,4 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   );
 }
 
-export { useContextState, useContextDispatch };
+export { useContextDispatch, useContextState };

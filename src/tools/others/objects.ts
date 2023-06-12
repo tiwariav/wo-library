@@ -2,9 +2,9 @@ import { isObject } from "lodash-es";
 
 export function pushOrCreate<V>(
   object: Record<any, V[]>,
-  key: string | number,
+  key: number | string,
   value: V,
-  index?: string | number
+  index?: number | string
 ) {
   if (!object[key]) {
     return [value];
@@ -18,7 +18,7 @@ export function pushOrCreate<V>(
   return newValue;
 }
 interface RecInterface {
-  [name: string]: any | RecInterface;
+  [name: string]: RecInterface | any;
 }
 
 export function getNestedValue(

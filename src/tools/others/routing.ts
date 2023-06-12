@@ -1,10 +1,10 @@
 export function redirectToLogout({
   hashNavigation = true,
   includeFrom = true,
-  message = "",
   logoutPath = "logout",
+  message = "",
 } = {}) {
-  const { search, hash, pathname } = window.location;
+  const { hash, pathname, search } = window.location;
   const considerHash = hash && hashNavigation;
   const isAlreadyThere =
     pathname.split("/").includes(logoutPath) ||

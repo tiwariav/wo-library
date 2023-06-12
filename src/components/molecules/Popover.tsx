@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { ReactNode } from "react";
 import { SetOptional } from "type-fest";
+
 import Tooltip, { TooltipProps } from "../atoms/Tooltip.js";
 import styles from "./popover.module.css";
 
@@ -23,8 +24,8 @@ export default function Popover({
         ...innerClassNames,
         floating: clsx(styles.root, innerClassNames.floating),
       }}
-      title={content}
       popover
+      title={content}
       {...props}
     />
   );

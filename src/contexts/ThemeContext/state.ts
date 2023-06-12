@@ -7,9 +7,9 @@ export interface SectionThemes {
 }
 
 export interface ThemeState {
-  themeVariants: ThemeVariants;
-  sectionThemes: SectionThemes;
   activeThemeName: string;
+  sectionThemes: SectionThemes;
+  themeVariants: ThemeVariants;
 }
 
 const INITIAL_THEME_STATE: ThemeState = {

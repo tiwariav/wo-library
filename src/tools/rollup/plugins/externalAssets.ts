@@ -1,23 +1,23 @@
-function isMatchSingle(include: string | RegExp, module: string) {
+function isMatchSingle(include: RegExp | string, module: string) {
   return new RegExp(include, "g").test(module);
 }
 
-function isMatch(include: string | RegExp, module: string) {
+function isMatch(include: RegExp | string, module: string) {
   if (include === undefined) return true;
   return Array.isArray(include)
-    ? include.some((index: string | RegExp) => isMatchSingle(index, module))
+    ? include.some((index: RegExp | string) => isMatchSingle(index, module))
     : isMatchSingle(include, module);
 }
 
 export default function externalAssets({
-  include,
-  copyTargets,
   assetTargetDir,
+  copyTargets,
+  include,
   replaceImports,
 }: {
-  include: string | RegExp;
-  copyTargets?: object[];
   assetTargetDir?: string;
+  copyTargets?: object[];
+  include: RegExp | string;
   replaceImports?: [RegExp, string];
 }) {
   return {
