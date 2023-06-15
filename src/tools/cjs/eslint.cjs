@@ -3,6 +3,7 @@ const extendJs = [
   "plugin:compat/recommended",
   "plugin:css-modules/recommended",
   "plugin:eslint-comments/recommended",
+  "plugin:import/recommended",
   "plugin:lodash/recommended",
   "plugin:perfectionist/recommended-natural",
   "plugin:sonarjs/recommended",
