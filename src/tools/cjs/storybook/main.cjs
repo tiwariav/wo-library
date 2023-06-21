@@ -11,7 +11,6 @@ module.exports = {
     "@storybook/addon-backgrounds",
     "@storybook/addon-controls",
     "@storybook/addon-docs",
-    "@storybook/addon-events",
     "@storybook/addon-interactions",
     "@storybook/addon-jest",
     "@storybook/addon-links",
