@@ -13,7 +13,11 @@ const extendJs = [
   "prettier",
 ];
 
-const extendTs = ["plugin:@typescript-eslint/recommended", ...extendJs];
+const extendTs = [
+  "plugin:@typescript-eslint/recommended",
+  ...extendJs,
+  "plugin:import/typescript",
+];
 extendTs.splice(3, 0, "plugin:etc/recommended");
 
 const rulesJs = {
@@ -69,6 +73,7 @@ const rulesTs = {
   ],
   "etc/no-deprecated": "off",
   "etc/no-internal": "off",
+  "import/no-unresolved": "off",
 };
 
 const plugins = ["css-modules", "formatjs", "lodash", "sonarjs"];
