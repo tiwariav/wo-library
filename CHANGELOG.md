@@ -1,3 +1,10 @@
+## [1.14.16](https://github.com/tiwariav/wo-library/compare/v1.14.15...v1.14.16) (2023-06-28)
+
+
+### Bug Fixes
+
+* ignore eslint import/no-resolved error for js files ([6ff110d](https://github.com/tiwariav/wo-library/commit/6ff110d5c8f763ddfe890aa38bec8fcd88addb77))
+
 ## [1.14.15](https://github.com/tiwariav/wo-library/compare/v1.14.14...v1.14.15) (2023-06-21)
 
 ## [1.14.14](https://github.com/tiwariav/wo-library/compare/v1.14.13...v1.14.14) (2023-06-13)
