@@ -24,6 +24,7 @@ const rulesJs = {
   "css-modules/no-undef-class": ["error", { camelCase: true }],
   "css-modules/no-unused-class": ["error", { camelCase: true }],
   "eslint-comments/disable-enable-pair": ["error", { allowWholeFile: true }],
+  "import/no-unresolved": "off",
   "jest/valid-describe": "off",
   "jest/valid-describe-callback": "warn",
   "lodash/import-scope": ["error", "member"],
@@ -73,7 +74,6 @@ const rulesTs = {
   ],
   "etc/no-deprecated": "off",
   "etc/no-internal": "off",
-  "import/no-unresolved": "off",
 };
 
 const plugins = ["css-modules", "formatjs", "lodash", "sonarjs"];

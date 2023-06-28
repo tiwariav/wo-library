@@ -7,7 +7,7 @@ export default metadata;
 
 const Template = ({ ...args }) => {
   return (
-    <Tooltip style={{ display: "inline-block" }} title={"In Tooltip"} {...args}>
+    <Tooltip style={{ display: "inline-block" }} title="In Tooltip" {...args}>
       Click Me
     </Tooltip>
   );
