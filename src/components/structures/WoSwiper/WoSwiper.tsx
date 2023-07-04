@@ -8,7 +8,7 @@ import {
   Mousewheel,
   Navigation,
   Pagination,
-} from "swiper";
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./woSwiper.css";
