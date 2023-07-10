@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/tiwariav/wo-library/compare/v1.14.17...v2.0.0) (2023-07-10)
+
+
+### Code Refactoring
+
+* reduce typescript errors ([a1d5fbf](https://github.com/tiwariav/wo-library/commit/a1d5fbfc74a7be7a587b6f76e1af31f5d39123a6))
+
+
+### BREAKING CHANGES
+
+* Functions may break due to updated signatures.
+
 ## [1.14.17](https://github.com/tiwariav/wo-library/compare/v1.14.16...v1.14.17) (2023-07-04)
 
 ## [1.14.16](https://github.com/tiwariav/wo-library/compare/v1.14.15...v1.14.16) (2023-06-28)
