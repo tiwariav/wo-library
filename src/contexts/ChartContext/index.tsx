@@ -19,7 +19,7 @@ export function ChartProvider({ children }: ChartProviderProps) {
   const memoizedInitialState = useMemo(() => ({ ...INITIAL_CHART_STATE }), []);
   const [state, dispatch] = useMethods(
     createChartMethods,
-    memoizedInitialState
+    memoizedInitialState,
   );
 
   return (

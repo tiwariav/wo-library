@@ -20,11 +20,11 @@ const { Context, DispatchContext, useContextDispatch, useContextState } =
 export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   const memoizedInitialState = useMemo(
     () => ({ ...INITIAL_THEME_STATE, themeVariants }),
-    [themeVariants]
+    [themeVariants],
   );
   const [state, dispatch] = useMethods(
     createThemeMethods,
-    memoizedInitialState
+    memoizedInitialState,
   );
 
   const contextValue = useMemo(
@@ -32,7 +32,7 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
       ...state,
       activeThemeClassName: state.sectionThemes[state.activeThemeName],
     }),
-    [state]
+    [state],
   );
 
   return (

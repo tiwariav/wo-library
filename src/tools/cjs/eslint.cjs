@@ -8,17 +8,19 @@ const extendJs = [
   "plugin:perfectionist/recommended-natural",
   "plugin:sonarjs/recommended",
   "plugin:unicorn/recommended",
+  // TODO: try replacing react-app plugins with official eslint-plugin-react and other plugins used within
   "react-app",
   "react-app/jest",
   "prettier",
 ];
 
 const extendTs = [
-  "plugin:@typescript-eslint/recommended",
+  "plugin:@typescript-eslint/recommended-requiring-type-checking",
+  // TODO: add v6 typescript plugins when available
   ...extendJs,
   "plugin:import/typescript",
+  "plugin:etc/recommended",
 ];
-extendTs.splice(3, 0, "plugin:etc/recommended");
 
 const rulesJs = {
   "css-modules/no-undef-class": ["error", { camelCase: true }],

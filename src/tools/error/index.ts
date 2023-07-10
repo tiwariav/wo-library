@@ -19,10 +19,10 @@ export class WoNetworkError extends WoError {
   }
 }
 
-export class WoResponseError extends WoError {
-  data: any;
+export class WoResponseError<TData> extends WoError {
+  data: TData;
 
-  constructor(data: object, message = "Response Error!") {
+  constructor(data: TData, message = "Response Error!") {
     super(message);
     this.name = "WoResponseError";
     this.data = data;

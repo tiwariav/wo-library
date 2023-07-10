@@ -25,7 +25,6 @@ module.exports = {
         },
       },
     },
-    "@storybook/addon-queryparams",
     "@storybook/addon-toolbars",
     "@storybook/addon-viewport",
   ],

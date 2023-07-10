@@ -1,10 +1,10 @@
 import { isObject } from "lodash-es";
 
-export function pushOrCreate<V>(
-  object: Record<any, V[]>,
-  key: number | string,
-  value: V,
-  index?: number | string
+export function pushOrCreate<TValue, TKey extends number | string>(
+  object: Record<TKey, TValue[]>,
+  key: TKey,
+  value: TValue,
+  index?: number | string,
 ) {
   if (!object[key]) {
     return [value];
@@ -18,12 +18,12 @@ export function pushOrCreate<V>(
   return newValue;
 }
 interface RecInterface {
-  [name: string]: RecInterface | any;
+  [name: string]: RecInterface | object;
 }
 
 export function getNestedValue(
-  data: Record<any, RecInterface>,
-  key: string
+  data: RecInterface | object,
+  key: string,
 ): RecInterface | RecInterface[] {
   const keys = Object.keys(data);
   let response: RecInterface[] = [];
@@ -32,10 +32,10 @@ export function getNestedValue(
       if (!isObject(value)) continue;
       const child_response = getNestedValue(value, key);
       response = Array.isArray(child_response)
-        ? [...response, ...(child_response as RecInterface[])]
+        ? [...response, ...child_response]
         : [...response, child_response];
     }
     return response;
   }
-  return data[key];
+  return data[key] as RecInterface;
 }

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 function scrollDirection(
   lastScrollRef: React.MutableRefObject<number>,
-  callback: CallableFunction
+  callback: CallableFunction,
 ) {
   const currentScroll = window.pageYOffset;
   const lastScroll = lastScrollRef.current;

@@ -76,7 +76,7 @@ export default function WoSwiper({
           [styles.hasPagination]: pagination,
           [styles.hasSeparator]: hasSeparator,
         },
-        className
+        className,
       )}
     >
       {(title || subtitle || moreLink) && (

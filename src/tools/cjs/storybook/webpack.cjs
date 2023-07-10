@@ -2,11 +2,11 @@ const css_regex = "/\\.css$/";
 
 function cssModules(config, { configType }) {
   const cssRule = config.module.rules.find(
-    (rule) => rule.test && rule.test.toString() === css_regex
+    (rule) => rule.test && rule.test.toString() === css_regex,
   );
   config.module.rules = [
     ...config.module.rules.filter(
-      (rule) => rule.test && rule.test.toString() !== css_regex
+      (rule) => rule.test && rule.test.toString() !== css_regex,
     ),
     {
       ...cssRule,

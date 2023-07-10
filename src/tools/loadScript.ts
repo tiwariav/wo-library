@@ -7,7 +7,7 @@ export default function loadScript(source: string) {
       const script = document.createElement("script");
       script.src = source;
       const nonceMeta: HTMLMetaElement = document.head.querySelector(
-        "[property~=csp-nonce][content]"
+        "[property~=csp-nonce][content]",
       );
       if (nonceMeta) {
         script.setAttribute("nonce", nonceMeta.content);

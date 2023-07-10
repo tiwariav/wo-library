@@ -78,7 +78,7 @@ export class AnyStorage {
 
   getItem = async (
     key: string,
-    { json = this.json, persist = false, session = false } = {}
+    { json = this.json, persist = false, session = false } = {},
   ) => {
     const storageKey = this.formKey(key);
     const backend = this.getBackend(persist, session);
@@ -122,7 +122,7 @@ export class AnyStorage {
   setItem = async (
     key: string,
     value: unknown,
-    { json = this.json, persist = false, session = false } = {}
+    { json = this.json, persist = false, session = false } = {},
     // eslint-disable-next-line @typescript-eslint/require-await
   ) => {
     // based on value of `persist` either store a value in temp or persist

@@ -25,7 +25,7 @@ export async function checkout({
   prefill,
 }: RazorpayCheckoutOptions) {
   const response = await loadScript(
-    "https://checkout.razorpay.com/v1/checkout.js"
+    "https://checkout.razorpay.com/v1/checkout.js",
   );
   if (!response) {
     throw new WoLoadScriptError("Razorpay SDK failed to load!");

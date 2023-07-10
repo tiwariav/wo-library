@@ -2,6 +2,7 @@ import _beep from "@rollup/plugin-beep";
 import _commonjs from "@rollup/plugin-commonjs";
 import _eslint from "@rollup/plugin-eslint";
 import _json from "@rollup/plugin-json";
+import _terser from "@rollup/plugin-terser";
 import cssnano from "cssnano";
 import { defaultImport } from "default-import";
 import { globSync } from "glob";
@@ -16,8 +17,6 @@ import _del from "rollup-plugin-delete";
 import _externals from "rollup-plugin-node-externals";
 import _postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
-// import { sizeSnapshot } from "rollup-plugin-size-snapshot";
-import { terser } from "rollup-plugin-terser";
 import _visualizer from "rollup-plugin-visualizer";
 
 const commonjs = defaultImport(_commonjs);
@@ -27,6 +26,7 @@ const del = defaultImport(_del);
 const beep = defaultImport(_beep);
 const visualizer = defaultImport(_visualizer);
 const externals = defaultImport(_externals);
+const terser = defaultImport(_terser);
 const postcssPresetEnv = defaultImport(_postcssPresetEnv);
 const eslint = defaultImport(_eslint);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -40,7 +40,7 @@ export function rollupInputMap(
   {
     excludeDirectories = [],
     extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
-  } = {}
+  } = {},
 ) {
   const pattern = `${directory}/**/${extension}`;
   const response = [];
@@ -56,7 +56,7 @@ export function rollupInputMap(
       // file, so e.g. src/nested/foo.js becomes nested/foo
       path.relative(
         directory,
-        file.slice(0, file.length - path.extname(file).length)
+        file.slice(0, file.length - path.extname(file).length),
       ),
       // This expands the relative paths to absolute paths, so e.g.
       // src/nested/foo becomes /project/src/nested/foo.js
@@ -75,7 +75,7 @@ export function bundleCss(root, directory, options) {
         ...postcssConfig,
         extract: key + ".css",
         include: value,
-      })
+      }),
     );
   }
   return config;

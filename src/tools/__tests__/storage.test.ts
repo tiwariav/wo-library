@@ -16,7 +16,7 @@ describe("storage in web", () => {
   });
   test("backends should be browser storage", () => {
     expect(anyStorageInstance.backends).toStrictEqual(
-      DEFAULT_STORAGE_BACKENDS[STORAGE_ENVIRONMENTS.web]
+      DEFAULT_STORAGE_BACKENDS[STORAGE_ENVIRONMENTS.web],
     );
   });
 });
@@ -63,14 +63,14 @@ describe("storage operations", () => {
       });
       expect(
         await anyStorageInstance.backends[STORAGE_TYPES.persist].getItem(
-          TEST_KEY
-        )
+          TEST_KEY,
+        ),
       ).toBe(TEST_PERSIST_VALUE);
       expect(
-        await anyStorageInstance.getItem(TEST_KEY, { persist: true })
+        await anyStorageInstance.getItem(TEST_KEY, { persist: true }),
       ).toBe(TEST_PERSIST_VALUE);
       expect(
-        await anyStorageInstance.getItem(TEST_KEY, { session: true })
+        await anyStorageInstance.getItem(TEST_KEY, { session: true }),
       ).toBe(TEST_PERSIST_VALUE);
 
       // session
@@ -79,37 +79,37 @@ describe("storage operations", () => {
       });
       expect(
         await anyStorageInstance.backends[STORAGE_TYPES.session].getItem(
-          TEST_KEY
-        )
+          TEST_KEY,
+        ),
       ).toBe(TEST_SESSION_VALUE);
       expect(
-        await anyStorageInstance.getItem(TEST_KEY, { session: true })
+        await anyStorageInstance.getItem(TEST_KEY, { session: true }),
       ).toBe(TEST_SESSION_VALUE);
       expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(
-        TEST_SESSION_VALUE
+        TEST_SESSION_VALUE,
       );
 
       // temp
       await anyStorageInstance.setItem(TEST_KEY, TEST_TEMP_VALUE);
       expect(
-        await anyStorageInstance.backends[STORAGE_TYPES.temp].getItem(TEST_KEY)
+        await anyStorageInstance.backends[STORAGE_TYPES.temp].getItem(TEST_KEY),
       ).toBe(TEST_TEMP_VALUE);
       expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(TEST_TEMP_VALUE);
 
       // remove
       await anyStorageInstance.removeItem(TEST_KEY);
       expect(
-        await anyStorageInstance.backends[STORAGE_TYPES.temp].getItem(TEST_KEY)
+        await anyStorageInstance.backends[STORAGE_TYPES.temp].getItem(TEST_KEY),
       ).toBe(null);
       expect(
         await anyStorageInstance.backends[STORAGE_TYPES.session].getItem(
-          TEST_KEY
-        )
+          TEST_KEY,
+        ),
       ).toBe(null);
       expect(
         await anyStorageInstance.backends[STORAGE_TYPES.persist].getItem(
-          TEST_KEY
-        )
+          TEST_KEY,
+        ),
       ).toBe(null);
     });
   }

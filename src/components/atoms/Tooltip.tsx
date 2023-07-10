@@ -1,5 +1,7 @@
 import {
   FloatingPortal,
+  OffsetOptions,
+  Padding,
   Placement,
   arrow,
   autoPlacement,
@@ -15,7 +17,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import React, { ReactNode, useRef, useState } from "react";
+import React, { CSSProperties, ReactNode, useRef, useState } from "react";
 
 import styles from "./tooltip.module.css";
 
@@ -23,11 +25,14 @@ export interface TooltipProps {
   children?: ReactNode;
   className?: string;
   innerClassNames?: Record<string, string>;
-  options?: Record<string, any>;
+  options?: {
+    offset?: OffsetOptions;
+    padding?: Padding;
+  };
   placement?: Placement;
   popover?: boolean;
   portal?: boolean;
-  style?: Record<string, any>;
+  style?: CSSProperties;
   title: ReactNode;
   trigger?: string[];
   visible?: boolean;
@@ -84,7 +89,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         styles.floating,
         { [styles.isVisible]: open },
         { [styles.isPlain]: !popover },
-        innerClassNames.floating
+        innerClassNames.floating,
       )}
       {...getFloatingProps({
         ref: refs.setFloating,

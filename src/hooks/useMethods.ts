@@ -1,3 +1,4 @@
+// eslint-disable @typescript-eslint/no-explicit-any
 import { Reducer, useMemo, useReducer } from "react";
 
 type Action = {
@@ -15,19 +16,19 @@ export type WrappedMethods<M extends FunctionRecord> = {
 
 export default function useMethods<
   M extends Record<string, (...args: any[]) => T>,
-  T
+  T,
 >(createMethods: CreateMethods<M, T>, initialState: T): [T, WrappedMethods<M>] {
   const reducer = useMemo<Reducer<T, Action>>(
     () => (reducerState: T, action: Action) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       return createMethods(reducerState)[action.type](...action.payload);
     },
-    [createMethods]
+    [createMethods],
   );
 
   const [state, dispatch] = useReducer<Reducer<T, Action>>(
     reducer,
-    initialState
+    initialState,
   );
 
   const wrappedMethods: WrappedMethods<M> = useMemo(() => {

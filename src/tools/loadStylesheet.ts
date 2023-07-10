@@ -9,7 +9,7 @@ export default function loadStylesheet(source: string) {
       style.type = "text/css";
       style.href = source;
       const nonceMeta: HTMLMetaElement = document.head.querySelector(
-        "[property~=csp-nonce][content]"
+        "[property~=csp-nonce][content]",
       );
       if (nonceMeta) {
         style.setAttribute("nonce", nonceMeta.content);

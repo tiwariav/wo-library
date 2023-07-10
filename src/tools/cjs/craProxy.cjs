@@ -10,7 +10,7 @@ module.exports = function (app, apiEndpoint, apiProxy) {
           [apiEndpoint]: "",
         },
         target: apiProxy,
-      })
+      }),
     );
   }
 };

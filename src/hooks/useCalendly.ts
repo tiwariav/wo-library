@@ -5,10 +5,10 @@ import { loadScript, loadStylesheet } from "../tools/index.js";
 
 async function loadCalendlyAssets() {
   const calendlyScript = await loadScript(
-    "https://assets.calendly.com/assets/external/widget.js"
+    "https://assets.calendly.com/assets/external/widget.js",
   );
   const calendlyStlyesheet = await loadStylesheet(
-    "https://assets.calendly.com/assets/external/widget.css"
+    "https://assets.calendly.com/assets/external/widget.css",
   );
 
   if (!(calendlyScript && calendlyStlyesheet)) {

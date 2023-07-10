@@ -9,7 +9,7 @@ export default function createChartMethods(state: ChartState) {
     },
     setSymbolImages: (
       symbolsRef: React.MutableRefObject<HTMLDivElement>,
-      symbolsData: React.Component<{ seriesName: string }>[]
+      symbolsData: React.Component<{ seriesName: string }>[],
     ): ChartState => {
       const childNodes = symbolsRef.current.childNodes;
       const symbolImages = {};
@@ -17,7 +17,7 @@ export default function createChartMethods(state: ChartState) {
         symbolImages[item.props.seriesName] = pushOrCreate(
           symbolImages,
           item.props.seriesName,
-          svgNodeToData(childNodes[index])
+          svgNodeToData(childNodes[index]),
         );
       }
       return { ...state, symbolImages };
@@ -25,14 +25,14 @@ export default function createChartMethods(state: ChartState) {
     symbolImageReady: (
       seriesName: string,
       seriesIndex: number | string,
-      node: Node
+      node: Node,
     ): ChartState => {
       const symbolImages = { ...state.symbolImages };
       symbolImages[seriesName] = pushOrCreate(
         symbolImages,
         seriesName,
         svgNodeToData(node),
-        seriesIndex
+        seriesIndex,
       );
       return { ...state, symbolImages };
     },
