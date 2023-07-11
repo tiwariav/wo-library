@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/tiwariav/wo-library/compare/v2.0.0...v2.0.1) (2023-07-11)
+
+
+### Bug Fixes
+
+* change rollup copy and del plugin order ([d815291](https://github.com/tiwariav/wo-library/commit/d8152912052694eaf8c9c6c4d275be9af66696d5))
+
 # [2.0.0](https://github.com/tiwariav/wo-library/compare/v1.14.17...v2.0.0) (2023-07-10)
 
 
