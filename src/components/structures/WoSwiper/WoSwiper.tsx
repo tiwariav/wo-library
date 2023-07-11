@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
-const variants = ["basic", "coverflow"] as const;
+const variants = ["basic", "coverflow"];
 const modules = [
   EffectCoverflow,
   FreeMode,

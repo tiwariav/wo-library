@@ -104,11 +104,11 @@ export const devPlugins = isDev
 
 export function getBuildPlugins(buildPath = "dist") {
   return [
+    del({ runOnce: isDev, targets: "dist/**/*" }),
+    del({ targets: "dist/chunks/*" }),
     copy({
       targets: [{ dest: buildPath, src: ["package.json", "README.md"] }],
     }),
-    del({ runOnce: isDev, targets: "dist/**/*" }),
-    del({ targets: "dist/chunks/*" }),
   ];
 }
 

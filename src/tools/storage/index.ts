@@ -9,13 +9,13 @@ export const STORAGE_ENVIRONMENTS = {
   mobile: "mobile",
   server: "server",
   web: "web",
-} as const;
+};
 
 export const STORAGE_TYPES = {
   persist: "persist",
   session: "session",
   temp: "temp",
-} as const;
+};
 
 export let memoryStorageItems: Record<string, string> = {};
 

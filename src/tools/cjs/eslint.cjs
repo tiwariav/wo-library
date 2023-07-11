@@ -74,6 +74,7 @@ const rulesTs = {
       "ts-ignore": { descriptionFormat: "^: TS\\d+ because .+$" },
     },
   ],
+  "@typescript-eslint/no-unused-vars": "error",
   "etc/no-deprecated": "off",
   "etc/no-internal": "off",
 };
