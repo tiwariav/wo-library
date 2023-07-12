@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/tiwariav/wo-library/compare/v2.0.1...v2.0.2) (2023-07-12)
+
+
+### Bug Fixes
+
+* fetch response types ([021b9a2](https://github.com/tiwariav/wo-library/commit/021b9a2e76eae47b2260a4a256e0c33e8ab8065a))
+
 ## [2.0.1](https://github.com/tiwariav/wo-library/compare/v2.0.0...v2.0.1) (2023-07-11)
 
 
