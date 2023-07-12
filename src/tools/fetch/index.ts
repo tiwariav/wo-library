@@ -8,7 +8,7 @@ export type WoRequestQuery = Record<
   string,
   WoRequestQueryValue | WoRequestQueryValue[]
 >;
-export type WoRequestData = FormData | JSON;
+export type WoRequestData = FormData | object;
 
 export type XHREventListener = (
   this: XMLHttpRequestUpload,
@@ -45,6 +45,7 @@ export type FetchURLOptionsQuery<
 > = FetchURLOptions<DataType, QueryType>;
 
 type FetchURLArgs = [path: string, options?: FetchURLOptions];
+export type FetchResponse = Response | string | void;
 
 const CONTENT_TYPE_HEADER = "content-type";
 const ACCESS_TOKEN_KEY = "wo:authToken";
