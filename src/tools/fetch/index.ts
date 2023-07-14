@@ -1,59 +1,23 @@
 import { merge } from "lodash-es";
 
-import { WoNetworkError, WoResponseError } from "../error/index.js";
 import { anyStorageInstance } from "../storage/index.js";
-
-export type WoRequestQueryValue = boolean | number | string;
-export type WoRequestQuery = Record<
-  string,
-  WoRequestQueryValue | WoRequestQueryValue[]
->;
-export type WoRequestData = FormData | object;
-
-export type XHREventListener = (
-  this: XMLHttpRequestUpload,
-  event: ProgressEvent<XMLHttpRequestEventTarget>,
-) => void;
-export type XHRStateChange = (
-  state: XMLHttpRequest["readyState"],
-  xhrObject: XMLHttpRequest,
-) => void;
-
-export interface FetchURLOptions<
-  DataType = WoRequestData,
-  QueryType = WoRequestQuery,
-> {
-  credentials?: RequestCredentials;
-  data?: DataType;
-  errorHandler?: typeof defaultErrorHandler;
-  headers?: Record<string, string>;
-  id?: string;
-  noProxy?: boolean;
-  query?: QueryType;
-  requireAuth?: boolean;
-  token?: string;
-  trailingSlash?: boolean;
-}
-
-export type FetchURLOptionsData<
-  DataType,
-  QueryType = WoRequestQuery,
-> = FetchURLOptions<DataType, QueryType>;
-export type FetchURLOptionsQuery<
-  QueryType,
-  DataType = WoRequestData,
-> = FetchURLOptions<DataType, QueryType>;
-
-type FetchURLArgs = [path: string, options?: FetchURLOptions];
-export type FetchResponse = Response | string | void;
-
-const CONTENT_TYPE_HEADER = "content-type";
-const ACCESS_TOKEN_KEY = "wo:authToken";
-const CONTENT_TYPE_FORM = "multipart/form-data";
-const CONTENT_TYPE_JSON = "application/json";
-const defaultHeaders = {
-  [CONTENT_TYPE_HEADER]: CONTENT_TYPE_JSON,
-};
+import {
+  ACCESS_TOKEN_KEY,
+  CONTENT_TYPE_FORM,
+  CONTENT_TYPE_HEADER,
+  defaultHeaders,
+} from "./constants.js";
+import { defaultErrorHandler } from "./errorHandlers.js";
+import { jsonResponseHandler } from "./responseHandlers.js";
+import {
+  FetchOptions,
+  WoFetchOptions,
+  WoRequestMethod,
+  WoRequestQuery,
+  XHREventListener,
+  XHRStateChange,
+} from "./types.js";
+export * from "./types.js";
 
 function getFormData(data?: Record<string, string>, file?: Blob): FormData {
   const formData = new FormData();
@@ -64,61 +28,6 @@ function getFormData(data?: Record<string, string>, file?: Blob): FormData {
   }
   formData.append("file", file);
   return formData;
-}
-
-async function getResponseData<TResponseData>(
-  response: Response,
-): Promise<TResponseData | string> {
-  const contentType = response.headers.get(CONTENT_TYPE_HEADER);
-  if (contentType && contentType.includes(CONTENT_TYPE_JSON)) {
-    try {
-      return (await response.json()) as TResponseData;
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        return await response.text();
-      } else {
-        throw error;
-      }
-    }
-  }
-  return response.text();
-}
-
-export async function defaultErrorHandler<TResponseData>(
-  response: Response,
-  error?: unknown,
-): Promise<void> {
-  if (error) {
-    throw new WoNetworkError("Network Error!");
-  }
-  // handle error depending on http response status codes
-  const responseData = await getResponseData<TResponseData>(response);
-  switch (response.status) {
-    case 400: {
-      throw new WoResponseError(responseData, "Invalid Data!");
-    }
-    case 401: {
-      throw new WoResponseError(responseData, "You session has expired!");
-    }
-    case 403: {
-      throw new WoResponseError(
-        responseData,
-        "You are not authorized to access this page!",
-      );
-    }
-    case 404: {
-      throw new WoResponseError(responseData, "Endpoint not found!");
-    }
-    case 429: {
-      throw new WoResponseError(responseData, "Too many requests!");
-    }
-    case 500: {
-      throw new WoResponseError(responseData, "Internal server error!");
-    }
-    default: {
-      break;
-    }
-  }
 }
 
 export function combineURLs(baseURL: string, relativeURL?: string): string {
@@ -172,25 +81,14 @@ export function createURL(
   return resourceURL;
 }
 
-interface WoFetchOptions<TErrorHandler = typeof defaultErrorHandler> {
-  authHeader?: string;
-  authTokenPrefix?: string;
-  credentials?: RequestCredentials;
-  devProxy?: string;
-  endpoint?: string;
-  errorHandler?: TErrorHandler;
-  tokenName?: string;
-  trailingSlash?: boolean;
-}
-
 export interface WoFetch extends WoFetchOptions {
   endpoint: string;
 }
 
 export class WoFetch {
-  deleteUrl = async (...rest: FetchURLArgs) => this.fetchURL("DELETE", ...rest);
+  deleteUrl = getFetch(this, "DELETE");
 
-  fetchURL = async <TResponseData = Response>(
+  fetchURL = async <TResponseData>(
     method: string,
     path: string,
     {
@@ -202,10 +100,11 @@ export class WoFetch {
       noProxy,
       query = {},
       requireAuth,
+      responseHandler = this.responseHandler,
       token,
       trailingSlash = this.trailingSlash,
-    }: FetchURLOptions = {},
-  ): Promise<Response | TResponseData | string | void> => {
+    }: FetchOptions,
+  ): Promise<TResponseData> => {
     if (!this.endpoint) {
       throw new Error("API endpoint is not defined");
     }
@@ -234,7 +133,7 @@ export class WoFetch {
         headers: Object.fromEntries(requestHeaders),
         method,
       });
-      return this.handleResponse(response, errorHandler);
+      return responseHandler<TResponseData>(response, errorHandler);
     } catch (error) {
       await errorHandler(undefined, error);
     }
@@ -268,41 +167,10 @@ export class WoFetch {
     return headersInstance;
   };
 
-  getUrl = async (...rest: FetchURLArgs) => this.fetchURL("GET", ...rest);
-
-  /**
-   * @param response the fetch Response object
-   * @param {errorHandler} errorHandler
-   * @returns
-   */
-  handleResponse = async <TResponseData>(
-    response: Response,
-    errorHandler = this.errorHandler,
-  ): Promise<Response | TResponseData | string | void> => {
-    if (response.ok) {
-      if (response.status === 204) {
-        // success, but no response content, return empty string
-        return response.text();
-      }
-      const contentType = response.headers.get(CONTENT_TYPE_HEADER);
-      if (contentType && contentType.includes(CONTENT_TYPE_JSON)) {
-        // success, and response type json, return the json content
-        return response.json() as TResponseData;
-      }
-      // success, and response type unknown, return the entire response
-      return response;
-    }
-    // request not successful, call errorHandler with request param
-    // since the function awaits, if it throws any error, that will
-    // be passed on to the catch block.
-    await errorHandler(response);
-  };
-
-  patchUrl = async (...rest: FetchURLArgs) => this.fetchURL("PATCH", ...rest);
-
-  postUrl = async (...rest: FetchURLArgs) => this.fetchURL("POST", ...rest);
-
-  putUrl = async (...rest: FetchURLArgs) => this.fetchURL("PUT", ...rest);
+  getUrl = getFetch(this, "GET");
+  patchUrl = getFetch(this, "PATCH");
+  postUrl = getFetch(this, "POST");
+  putUrl = getFetch(this, "PUT");
 
   uploadFileXHR = async (
     path: string,
@@ -389,16 +257,25 @@ export class WoFetch {
     devProxy,
     endpoint,
     errorHandler = defaultErrorHandler,
+    responseHandler = jsonResponseHandler,
     tokenName = ACCESS_TOKEN_KEY,
     trailingSlash = false,
   }: WoFetchOptions = {}) {
-    this.endpoint = endpoint;
-    this.tokenName = tokenName;
-    this.errorHandler = errorHandler;
     this.authHeader = authHeader;
     this.authTokenPrefix = authTokenPrefix;
-    this.trailingSlash = trailingSlash;
-    this.devProxy = devProxy;
     this.credentials = credentials;
+    this.devProxy = devProxy;
+    this.endpoint = endpoint;
+    this.tokenName = tokenName;
+    this.trailingSlash = trailingSlash;
+    this.errorHandler = errorHandler;
+    this.responseHandler = responseHandler;
   }
 }
+
+const getFetch =
+  (cls: WoFetch, method: WoRequestMethod) =>
+  <TFetchOptions extends FetchOptions>(
+    ...rest: [path: string, options?: TFetchOptions]
+  ) =>
+    cls.fetchURL(method, ...rest);
