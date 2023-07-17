@@ -45,14 +45,13 @@
       opacity: 1;
     }
 
-    &.swiper-button-disabled {
+    &:global(.swiper-button-disabled) {
       display: none;
     }
   }
 
   & :global .swiper-container-3d {
-    & .swiper-slide-shadow-left,
-    & .swiper-slide-shadow-right {
+    &:global(.swiper-slide-shadow-left, .swiper-slide-shadow-right) {
       display: none;
     }
   }

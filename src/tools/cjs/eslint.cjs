@@ -1,7 +1,6 @@
 const EXTEND_RECOMMENDED = "eslint:recommended";
 const extendJs = [
   "plugin:compat/recommended",
-  "plugin:css-modules/recommended",
   "plugin:eslint-comments/recommended",
   "plugin:import/recommended",
   "plugin:lodash/recommended",
@@ -23,14 +22,14 @@ const extendTs = [
 ];
 
 const rulesJs = {
-  "css-modules/no-undef-class": ["error", { camelCase: true }],
-  "css-modules/no-unused-class": ["error", { camelCase: true }],
   "eslint-comments/disable-enable-pair": ["error", { allowWholeFile: true }],
   "import/no-unresolved": "off",
   "jest/valid-describe": "off",
   "jest/valid-describe-callback": "warn",
   "lodash/import-scope": ["error", "member"],
   "lodash/prefer-lodash-method": "off",
+  "postcss-modules/no-undef-class": "error",
+  "postcss-modules/no-unused-class": "error",
   "sonarjs/cognitive-complexity": "warn",
   "unicorn/filename-case": [
     "warn",
@@ -79,7 +78,7 @@ const rulesTs = {
   "etc/no-internal": "off",
 };
 
-const plugins = ["css-modules", "formatjs", "lodash", "sonarjs"];
+const plugins = ["formatjs", "lodash", "postcss-modules", "sonarjs"];
 
 const nextOverride = {
   extends: [
@@ -112,6 +111,10 @@ const config = {
   rules: rulesJs,
   settings: {
     lintAllEsApis: true,
+    "postcss-modules": {
+      camelCase: true,
+      exclude: ["**/node_modules/**/*", "**/dist/**/*"],
+    },
   },
 };
 
