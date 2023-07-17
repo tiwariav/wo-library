@@ -1,4 +1,5 @@
 import { merge } from "lodash-es";
+import { SetRequired } from "type-fest";
 
 import { anyStorageInstance } from "../storage/index.js";
 import {
@@ -11,7 +12,6 @@ import { defaultErrorHandler } from "./errorHandlers.js";
 import { jsonResponseHandler } from "./responseHandlers.js";
 import {
   FetchOptions,
-  WoFetchOptions,
   WoRequestMethod,
   WoRequestQuery,
   XHREventListener,
@@ -19,7 +19,7 @@ import {
 } from "./types.js";
 export * from "./types.js";
 
-function getFormData(data?: Record<string, string>, file?: Blob): FormData {
+function getFormData(file: Blob, data?: Record<string, string>): FormData {
   const formData = new FormData();
   if (data) {
     for (const [key, value] of Object.entries(data)) {
@@ -81,17 +81,20 @@ export function createURL(
   return resourceURL;
 }
 
-export interface WoFetch extends WoFetchOptions {
-  endpoint: string;
-}
-
 export class WoFetch {
+  authHeader = "Authorization";
+  authTokenPrefix = "Bearer";
+  credentials?: RequestCredentials;
   deleteUrl = getFetch(this, "DELETE");
-
+  devProxy?: string;
+  endpoint: string;
+  errorHandler = defaultErrorHandler;
   fetchURL = async <TResponseData>(
     method: string,
     path: string,
-    {
+    options: FetchOptions = {},
+  ): Promise<TResponseData> => {
+    const {
       credentials,
       data,
       errorHandler = this.errorHandler,
@@ -103,8 +106,7 @@ export class WoFetch {
       responseHandler = this.responseHandler,
       token,
       trailingSlash = this.trailingSlash,
-    }: FetchOptions,
-  ): Promise<TResponseData> => {
+    } = options;
     if (!this.endpoint) {
       throw new Error("API endpoint is not defined");
     }
@@ -137,8 +139,8 @@ export class WoFetch {
     } catch (error) {
       await errorHandler(undefined, error);
     }
+    return new Response() as TResponseData;
   };
-
   getHeaders = async ({
     headers = {},
     requireAuth = true,
@@ -151,13 +153,17 @@ export class WoFetch {
     xhr?: boolean;
   } = {}): Promise<Headers | Map<string, string>> => {
     const headersInstance = xhr ? new Map() : new Headers();
-    const allHeaders = merge({}, defaultHeaders, headers);
+    const allHeaders: Record<string, string> = merge(
+      {},
+      defaultHeaders,
+      headers,
+    );
     if (allHeaders[CONTENT_TYPE_HEADER] === CONTENT_TYPE_FORM) {
       delete allHeaders[CONTENT_TYPE_HEADER];
     }
     if (requireAuth && this.tokenName) {
       const accessToken =
-        token || (await anyStorageInstance.getItem(this.tokenName));
+        token || (await anyStorageInstance.getItem(this.tokenName)) || "";
       allHeaders[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
     }
     for (const key in allHeaders) {
@@ -168,9 +174,15 @@ export class WoFetch {
   };
 
   getUrl = getFetch(this, "GET");
+
   patchUrl = getFetch(this, "PATCH");
+
   postUrl = getFetch(this, "POST");
+
   putUrl = getFetch(this, "PUT");
+  responseHandler = jsonResponseHandler;
+  tokenName = ACCESS_TOKEN_KEY;
+  trailingSlash?: boolean;
 
   uploadFileXHR = async (
     path: string,
@@ -191,8 +203,7 @@ export class WoFetch {
       transferCompleteFunction?: XHREventListener;
     },
   ): Promise<void> => {
-    const formData = getFormData(data, file);
-
+    const formData = getFormData(file, data);
     const headers = await this.getHeaders({
       headers: { CONTENT_TYPE_HEADER: CONTENT_TYPE_FORM },
       requireAuth,
@@ -244,32 +255,18 @@ export class WoFetch {
         true,
       );
       for (const key of Object.keys(headers)) {
-        xhrObject.setRequestHeader(key, headers[key] as string);
+        xhrObject.setRequestHeader(key, headers.get(key) || "");
       }
       xhrObject.send(formData);
     });
   };
 
   constructor({
-    authHeader = "Authorization",
-    authTokenPrefix = "Bearer",
-    credentials,
-    devProxy,
     endpoint,
-    errorHandler = defaultErrorHandler,
-    responseHandler = jsonResponseHandler,
-    tokenName = ACCESS_TOKEN_KEY,
-    trailingSlash = false,
-  }: WoFetchOptions = {}) {
-    this.authHeader = authHeader;
-    this.authTokenPrefix = authTokenPrefix;
-    this.credentials = credentials;
-    this.devProxy = devProxy;
+    ...options
+  }: SetRequired<Partial<WoFetch>, "endpoint">) {
     this.endpoint = endpoint;
-    this.tokenName = tokenName;
-    this.trailingSlash = trailingSlash;
-    this.errorHandler = errorHandler;
-    this.responseHandler = responseHandler;
+    Object.assign(this, options);
   }
 }
 

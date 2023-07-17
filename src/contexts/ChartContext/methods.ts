@@ -12,7 +12,7 @@ export default function createChartMethods(state: ChartState) {
       symbolsData: React.Component<{ seriesName: string }>[],
     ): ChartState => {
       const childNodes = symbolsRef.current.childNodes;
-      const symbolImages = {};
+      const symbolImages: Record<string, string[]> = {};
       for (const [index, item] of symbolsData.entries()) {
         symbolImages[item.props.seriesName] = pushOrCreate(
           symbolImages,
@@ -24,10 +24,10 @@ export default function createChartMethods(state: ChartState) {
     },
     symbolImageReady: (
       seriesName: string,
-      seriesIndex: number | string,
+      seriesIndex: number,
       node: Node,
     ): ChartState => {
-      const symbolImages = { ...state.symbolImages };
+      const symbolImages: Record<string, string[]> = { ...state.symbolImages };
       symbolImages[seriesName] = pushOrCreate(
         symbolImages,
         seriesName,

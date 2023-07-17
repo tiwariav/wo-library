@@ -1,9 +1,13 @@
+import { StoryObj } from "@storybook/react";
+
 import Dropdown from "./Dropdown.js";
 
 const metadata = {
   component: Dropdown,
 };
 export default metadata;
+
+type Story = StoryObj<typeof Dropdown>;
 
 const Template = ({ ...args }) => {
   return (
@@ -13,6 +17,6 @@ const Template = ({ ...args }) => {
   );
 };
 
-export const Basic = {
+export const Basic: Story = {
   render: (args) => <Template {...args} />,
 };

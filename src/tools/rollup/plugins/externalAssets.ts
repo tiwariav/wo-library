@@ -22,7 +22,7 @@ export default function externalAssets({
 }) {
   return {
     name: "rollup-plugin-external-asset",
-    renderChunk(code: string, chunk) {
+    renderChunk(code: string) {
       if (!replaceImports) return null;
       return code.replace(replaceImports[0], replaceImports[1]);
     },

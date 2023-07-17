@@ -10,7 +10,7 @@ type ObserveInViewProps = {
   className?: string;
   dynamicClasses?: Record<string, string>;
   observeOptions: IntersectionOptions;
-  onViewChange: (boolean) => void;
+  onViewChange: (inView: boolean) => void;
 };
 
 export default function ObserveInView({

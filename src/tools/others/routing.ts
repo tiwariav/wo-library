@@ -14,7 +14,7 @@ export function redirectToLogout({
     return;
   }
   const currentPath = pathname + search + hash;
-  const redirectPath = `${considerHash && "/#"}/${logoutPath}`;
+  const redirectPath = `${considerHash ? "/#" : ""}/${logoutPath}`;
   const newSearch = new URLSearchParams();
   if (message) {
     newSearch.append("message", message);

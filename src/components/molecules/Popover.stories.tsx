@@ -1,9 +1,13 @@
+import { StoryObj } from "@storybook/react";
+
 import Popover from "./Popover.js";
 
 const metadata = {
   component: Popover,
 };
 export default metadata;
+
+type Story = StoryObj<typeof Popover>;
 
 const Template = ({ ...args }) => {
   return (
@@ -18,6 +22,6 @@ const Template = ({ ...args }) => {
   );
 };
 
-export const Basic = {
+export const Basic: Story = {
   render: (args) => <Template {...args} />,
 };

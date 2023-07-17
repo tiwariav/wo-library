@@ -1,9 +1,13 @@
+import { StoryObj } from "@storybook/react";
+
 import Tooltip from "./Tooltip.js";
 
 const metadata = {
   component: Tooltip,
 };
 export default metadata;
+
+type Story = StoryObj<typeof Tooltip>;
 
 const Template = ({ ...args }) => {
   return (
@@ -13,6 +17,6 @@ const Template = ({ ...args }) => {
   );
 };
 
-export const Basic = {
+export const Basic: Story = {
   render: (args) => <Template {...args} />,
 };

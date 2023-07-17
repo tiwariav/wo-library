@@ -4,12 +4,12 @@ declare global {
     name?: string;
   }
   interface CalendlyPopupWidgetOptions {
-    prefill: CalendlyPopupWidgetOptionsPrefill;
+    prefill?: CalendlyPopupWidgetOptionsPrefill;
     url: string;
   }
   interface RazorpayOptions {
     currency: string;
-    description: string;
+    description?: string;
     handler: CallableFunction;
     key: string;
     modal: {

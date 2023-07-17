@@ -1,10 +1,10 @@
-import { isObject } from "lodash-es";
+import { isArray, isObject } from "lodash-es";
 
 export function pushOrCreate<TValue, TKey extends number | string>(
   object: Record<TKey, TValue[]>,
   key: TKey,
   value: TValue,
-  index?: number | string,
+  index?: number,
 ) {
   if (!object[key]) {
     return [value];
@@ -17,25 +17,23 @@ export function pushOrCreate<TValue, TKey extends number | string>(
   }
   return newValue;
 }
-interface RecInterface {
-  [name: string]: RecInterface | object;
-}
 
-export function getNestedValue(
-  data: RecInterface | object,
+export function getNestedValue<TResponse = string>(
+  data: Record<string, any>,
   key: string,
-): RecInterface | RecInterface[] {
+): TResponse | TResponse[] {
   const keys = Object.keys(data);
-  let response: RecInterface[] = [];
+  let response: TResponse[] = [];
   if (keys && !keys.includes(key)) {
     for (const value of Object.values(data)) {
       if (!isObject(value)) continue;
-      const child_response = getNestedValue(value, key);
-      response = Array.isArray(child_response)
+      const child_response = getNestedValue<TResponse>(value, key);
+      response = isArray(child_response)
         ? [...response, ...child_response]
         : [...response, child_response];
     }
     return response;
   }
-  return data[key] as RecInterface;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return data[key];
 }

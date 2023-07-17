@@ -95,18 +95,14 @@ export const commonPlugins = [
   // use svgr when import svg as react component
   // svgr({ icon: true }),
 ];
-export const devPlugins = isDev
-  ? [beep(), visualizer()]
-  : [
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      terser(),
-    ];
+export const devPlugins = isDev ? [beep(), visualizer()] : [terser()];
 
 export function getBuildPlugins(buildPath = "dist") {
   return [
     del({ runOnce: isDev, targets: "dist/**/*" }),
     del({ targets: "dist/chunks/*" }),
     copy({
+      hook: "writeBundle",
       targets: [{ dest: buildPath, src: ["package.json", "README.md"] }],
     }),
   ];

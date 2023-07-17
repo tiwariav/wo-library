@@ -44,15 +44,3 @@ export type FetchQuery<QueryType, DataType = WoRequestData> = FetchOptions<
   DataType,
   QueryType
 >;
-
-export interface WoFetchOptions {
-  authHeader?: string;
-  authTokenPrefix?: string;
-  credentials?: RequestCredentials;
-  devProxy?: string;
-  endpoint?: string;
-  errorHandler?: typeof defaultErrorHandler;
-  responseHandler?: typeof jsonResponseHandler;
-  tokenName?: string;
-  trailingSlash?: boolean;
-}

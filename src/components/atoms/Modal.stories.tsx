@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import Modal from "./Modal.js";
@@ -6,6 +7,8 @@ const metadata = {
   component: Modal,
 };
 export default metadata;
+
+type Story = StoryObj<typeof Modal>;
 
 const Template = ({ open = false, ...args }) => {
   const [show, setShow] = useState(open);
@@ -20,11 +23,11 @@ const Template = ({ open = false, ...args }) => {
   );
 };
 
-export const Basic = {
+export const Basic: Story = {
   render: (args) => <Template {...args} />,
 };
 
-export const Open = {
+export const Open: Story = {
   args: {
     open: true,
   },

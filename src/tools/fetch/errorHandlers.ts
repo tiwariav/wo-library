@@ -20,10 +20,10 @@ async function getResponseData<TResponseData>(
 }
 
 export async function defaultErrorHandler<TResponseData>(
-  response: Response,
+  response?: Response,
   error?: unknown,
 ): Promise<void> {
-  if (error) {
+  if (!response || error) {
     throw new WoNetworkError("Network Error!");
   }
   // handle error depending on http response status codes

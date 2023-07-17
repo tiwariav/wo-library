@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   A11y,
   Autoplay,
@@ -14,7 +14,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
-const variants = ["basic", "coverflow"];
+const variants = ["basic", "coverflow"] as const;
 const modules = [
   EffectCoverflow,
   FreeMode,
@@ -26,14 +26,14 @@ const modules = [
 if (process.env.JEST_WORKER_ID) {
   modules.push(A11y);
 }
-interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
+export interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
   children: JSX.Element | JSX.Element[];
   className?: string;
   fade?: { left: number; right: number };
   freeMode?: object;
   hasSeparator?: boolean;
-  moreLink?: string;
-  moreLinkVertical?: string;
+  moreLink?: ReactNode;
+  moreLinkVertical?: ReactNode;
   navigation?: boolean;
   pagination?: boolean;
   subtitle?: string;
@@ -60,10 +60,7 @@ export default function WoSwiper({
   if (variant === "coverflow") {
     derivedProps = {
       coverflowEffect: { depth: 200, modifier: 1, rotate: 5, stretch: 10 },
-      // effects
       effect: "coverflow",
-      // loop
-      // loop: true,
     };
   }
 
@@ -71,7 +68,6 @@ export default function WoSwiper({
     <div
       className={clsx(
         styles.container,
-        styles[`is-${variant}`],
         {
           [styles.hasPagination]: pagination,
           [styles.hasSeparator]: hasSeparator,
@@ -91,7 +87,6 @@ export default function WoSwiper({
       <Swiper
         // modules
         // freemode
-        // @ts-ignore: TS2322 because library definition is wrong
         freeMode={
           pagination
             ? false
@@ -110,16 +105,9 @@ export default function WoSwiper({
             : false
         }
         className={styles.swiper}
-        // swiper params
-        // slides grid
-        // @ts-ignore: TS2322 because library definition is wrong
         modules={modules}
-        // slidesPerView={pagination ? 1 : "auto"}
-        // mousewheel
         mousewheel={{ forceToAxis: true }}
-        // navigation
         navigation={navigation}
-        // centeredSlides={variant === "coverflow"}
         spaceBetween={variant === "coverflow" ? 64 : 32}
         {...derivedProps}
         {...props}

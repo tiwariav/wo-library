@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import {
   IconCircleChevronDown,
   IconCircleChevronRight,
@@ -12,12 +13,12 @@ const moreLinkMap = {
   SeeMore: <button>See more</button>,
 };
 
-type MoreLinkOptions = keyof typeof moreLinkMap;
-
 const metadata = {
   argTypes: {
-    moreLink: {
-      control: { options: Object.keys(moreLinkMap), type: "select" },
+    moreLink: { mapping: moreLinkMap, options: Object.keys(moreLinkMap) },
+    moreLinkVertical: {
+      mapping: moreLinkMap,
+      options: Object.keys(moreLinkMap),
     },
   },
   component: WoSwiper,
@@ -25,60 +26,49 @@ const metadata = {
 
 export default metadata;
 
-const Template = ({
-  moreLink,
-  moreLinkVertical,
-  ...args
-}: {
-  moreLink: MoreLinkOptions;
-  moreLinkVertical: MoreLinkOptions;
-}) => {
+type Story = StoryObj<typeof WoSwiper>;
+
+const Template: Story["render"] = (args) => {
   return (
-    <WoSwiper
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      moreLink={moreLinkMap[moreLink]}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      moreLinkVertical={moreLinkMap[moreLinkVertical]}
-      {...args}
-    >
-      {/* {Array.from({ length: 11 }).map((_, index) => ( */}
-      <p>Content ...</p>
-      {/* ))} */}
+    <WoSwiper {...args}>
+      {Array.from({ length: 11 }).map((_, index) => (
+        <p>Content ...</p>
+      ))}
     </WoSwiper>
   );
 };
 
-export const Basic = {
+export const Basic: Story = {
   args: {
     subtitle: "Horizontally scrollable elements",
     title: "A swiper section",
   },
-  render: (args) => <Template {...args} />,
+  render: Template,
 };
 
-export const Coverflow = {
+export const Coverflow: Story = {
   args: {
     ...Basic.args,
     variant: "coverflow",
   },
-  render: (args) => <Template {...args} />,
+  render: Template,
 };
 
-export const WithLinks = {
+export const WithLinks: Story = {
   args: {
     ...Basic.args,
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render: (args) => <Template {...args} />,
+  render: Template,
 };
 
-export const WithSeparator = {
+export const WithSeparator: Story = {
   args: {
     ...Basic.args,
     hasSeparator: true,
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render: (args) => <Template {...args} />,
+  render: Template,
 };
