@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/tiwariav/wo-library/compare/v2.0.4...v2.0.5) (2023-07-17)
+
+
+### Bug Fixes
+
+* replace eslint-plugin-css-modules with eslint-plugin-postcss-modules ([3afa01a](https://github.com/tiwariav/wo-library/commit/3afa01a3c9fabdb3badeecc5a63345bbf1bd0085))
+
 ## [2.0.4](https://github.com/tiwariav/wo-library/compare/v2.0.3...v2.0.4) (2023-07-17)
 
 ## [2.0.3](https://github.com/tiwariav/wo-library/compare/v2.0.2...v2.0.3) (2023-07-14)
