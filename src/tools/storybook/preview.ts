@@ -16,17 +16,8 @@ export const globalTypes = {
         { right: "🇪🇸", title: "Español", value: "es" },
         { right: "🇨🇳", title: "中文", value: "zh" },
         { right: "🇰🇷", title: "한국어", value: "kr" },
+        { right: "🇮🇳", title: "हिन्दी", value: "hi" },
       ],
-    },
-  },
-  theme: {
-    defaultValue: "default",
-    description: "Global theme for components",
-    name: "Theme",
-    toolbar: {
-      icon: "circlehollow",
-      // array of plain string values or MenuItem shape (see below)
-      items: ["default"],
     },
   },
 };

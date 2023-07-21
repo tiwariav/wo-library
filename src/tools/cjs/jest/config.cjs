@@ -60,7 +60,7 @@ const config = {
   testEnvironment: "jsdom",
   testPathIgnorePatterns: ["/node_modules/", "/dist/", "/reports/"],
   transform: {
-    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.m?jsx?$": "babel-jest",
     "^.+\\.mdx?$": "@storybook/addon-docs/jest-transform-mdx",
     "^.+\\.tsx?$": "ts-jest",
   },

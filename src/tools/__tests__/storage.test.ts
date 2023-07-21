@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   AnyStorage,
   StorageEnvironment,
-  memoryStorage,
+  StorageType,
 } from "../storage/index.js";
 
 describe("storage in web", () => {
@@ -18,7 +18,7 @@ describe("storage in mobile", () => {
   anyStorageInstance.setBackend({
     // @ts-ignore: TS2739 because AsyncStorage type is not read
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    persist: AsyncStorage,
+    [StorageType.PERSIST]: AsyncStorage,
   });
   test("env should be mobile", () => {
     expect(anyStorageInstance.env).toBe(StorageEnvironment.MOBILE);
@@ -44,7 +44,7 @@ function envTest(key: StorageEnvironment) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       anyStorageInstance.setBackend({ PERSIST: AsyncStorage });
     } else if (key === StorageEnvironment.WEB) {
-      anyStorageInstance.setBackend({ PERSIST: memoryStorage });
+      anyStorageInstance.setBackend({ PERSIST: localStorage });
     }
 
     // persist

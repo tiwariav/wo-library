@@ -3,12 +3,12 @@
   margin: auto;
   padding: var(--ye-spacing-rem-normal);
   overflow: hidden;
-  background: var(--ye-color-white);
+  background: var(--ye-color-background);
   border-radius: var(--ye-radius-normal);
 }
 
 .overlay {
-  z-index: var(--z-index-modal);
+  z-index: var(--ye-z-modal);
   display: grid;
   background: rgb(25 25 25 / 0.8);
   backdrop-filter: blur(12px);

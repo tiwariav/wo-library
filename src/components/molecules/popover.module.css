@@ -1,4 +1,4 @@
 .root {
-  background-color: var(--ye-color-white);
+  background-color: var(--ye-color-background);
   box-shadow: var(--ye-shadow-floating-highest);
 }

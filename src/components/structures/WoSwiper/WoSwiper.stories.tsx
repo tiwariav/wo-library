@@ -28,30 +28,44 @@ export default metadata;
 
 type Story = StoryObj<typeof WoSwiper>;
 
-const Template: Story["render"] = (args) => {
+const render: Story["render"] = (args) => {
   return (
-    <WoSwiper {...args}>
-      {Array.from({ length: 11 }).map((_, index) => (
-        <p>Content ...</p>
-      ))}
-    </WoSwiper>
+    <div style={{ overflow: "hidden", padding: 4 }}>
+      <WoSwiper {...args}>
+        {Array.from({ length: 11 }).map((_, index) => (
+          <div className="story-card" key={index} style={{ maxWidth: 200 }}>
+            Content ...
+          </div>
+        ))}
+      </WoSwiper>
+    </div>
   );
 };
 
 export const Basic: Story = {
   args: {
+    slidesPerView: "auto",
     subtitle: "Horizontally scrollable elements",
     title: "A swiper section",
   },
-  render: Template,
+  render,
+};
+export const Single: Story = {
+  args: {
+    slidesPerView: 1,
+    subtitle: "Horizontally scrollable elements",
+    title: "A swiper section",
+  },
+  render,
 };
 
 export const Coverflow: Story = {
   args: {
     ...Basic.args,
+    slidesPerView: 3,
     variant: "coverflow",
   },
-  render: Template,
+  render,
 };
 
 export const WithLinks: Story = {
@@ -60,7 +74,7 @@ export const WithLinks: Story = {
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render: Template,
+  render,
 };
 
 export const WithSeparator: Story = {
@@ -70,5 +84,5 @@ export const WithSeparator: Story = {
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render: Template,
+  render,
 };

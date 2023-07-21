@@ -1,4 +1,5 @@
 import {
+  FloatingArrow,
   FloatingPortal,
   OffsetOptions,
   Padding,
@@ -15,16 +16,36 @@ import {
   useHover,
   useInteractions,
   useRole,
+  useTransitionStyles,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import React, { CSSProperties, ReactNode, useRef, useState } from "react";
+import {
+  CSSProperties,
+  ReactNode,
+  RefObject,
+  cloneElement,
+  isValidElement,
+  useMemo,
+  useRef,
+} from "react";
 
+import usePropOrState from "../../hooks/usePropOrState.js";
 import styles from "./tooltip.module.css";
 
+const TRIGGER_OPTIONS = ["click", "hover"] as const;
+const ARROW_WIDTH = 16;
+const ARROW_HEIGHT = 8;
+
 export interface TooltipProps {
+  animate?: boolean;
   children?: ReactNode;
   className?: string;
-  innerClassNames?: Record<string, string>;
+  innerClassNames?: {
+    arrow?: string;
+    floating?: string;
+    reference?: string;
+  };
+  isOpen?: boolean;
   options?: {
     offset?: OffsetOptions;
     padding?: Padding;
@@ -32,40 +53,41 @@ export interface TooltipProps {
   placement?: Placement;
   popover?: boolean;
   portal?: boolean;
+  showArrow?: boolean;
   style?: CSSProperties;
   title: ReactNode;
-  trigger?: string[];
-  visible?: boolean;
+  triggers?: (typeof TRIGGER_OPTIONS)[number][];
 }
 
 const defaultOptions = { offset: 8, padding: 8 };
 
-const Tooltip: React.FC<TooltipProps> = ({
+export default function Tooltip({
+  animate,
   children,
   innerClassNames = {},
+  isOpen,
   options: propsOptions,
   placement,
   popover,
   portal,
+  showArrow,
   style,
   title,
-  trigger = ["click"],
-  visible,
-}) => {
+  triggers = ["click"],
+}: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
-  const [show, setShow] = useState(visible);
-  const open = visible || show;
+  const [open, setOpen] = usePropOrState(isOpen);
   const options = { ...defaultOptions, ...propsOptions };
-  const { context, refs, strategy, x, y } = useFloating({
-    ...(placement ? { placement } : {}),
+  const { context, floatingStyles, middlewareData, refs } = useFloating({
     middleware: [
-      ...(arrowRef?.current ? [arrow({ element: arrowRef.current })] : []),
+      ...(placement ? [] : [autoPlacement()]),
       offset(options.offset),
       shift({ padding: options.padding }),
-      ...(placement ? [] : [autoPlacement()]),
+      ...(showArrow ? [arrow({ element: arrowRef.current })] : []),
     ],
-    onOpenChange: setShow,
+    onOpenChange: setOpen,
     open,
+    ...(placement ? { placement } : {}),
     whileElementsMounted: autoUpdate,
   });
 
@@ -75,7 +97,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         close: 250,
         open: 0,
       },
-      enabled: trigger.includes("hover"),
+      enabled: triggers.includes("hover"),
     }),
     useClick(context),
     useFocus(context),
@@ -83,39 +105,80 @@ const Tooltip: React.FC<TooltipProps> = ({
     useDismiss(context),
   ]);
 
-  const body = (
+  const arrowX = middlewareData.arrow?.x ?? 0;
+  const arrowY = middlewareData.arrow?.y ?? 0;
+  const transformX = arrowX + ARROW_WIDTH / 2;
+  const transformY = arrowY + ARROW_HEIGHT;
+
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    common: ({ side }) => ({
+      transformOrigin: {
+        bottom: `${transformX}px ${-ARROW_HEIGHT}px`,
+        left: `calc(100% + ${ARROW_HEIGHT}px) ${transformY}px`,
+        right: `${-ARROW_HEIGHT}px ${transformY}px`,
+        top: `${transformX}px calc(100% + ${ARROW_HEIGHT}px)`,
+      }[side],
+    }),
+    duration: 100,
+    initial: {
+      transform: "scale(0)",
+    },
+  });
+
+  const body = isMounted && (
     <div
-      className={clsx(
-        styles.floating,
-        { [styles.isVisible]: open },
-        { [styles.isPlain]: !popover },
-        innerClassNames.floating,
-      )}
       {...getFloatingProps({
         ref: refs.setFloating,
-        style: {
-          left: x ?? "",
-          position: strategy,
-          top: y ?? "",
-        },
+        style: floatingStyles,
       })}
     >
-      {title}
+      <div
+        className={clsx(styles.floating, innerClassNames.floating, {
+          [styles.isPlain]: !popover,
+        })}
+        style={animate ? transitionStyles : {}}
+      >
+        {title}
+      </div>
+      {showArrow && (
+        <FloatingArrow
+          className={clsx(styles.arrow, innerClassNames.arrow)}
+          context={context}
+          height={ARROW_HEIGHT}
+          ref={arrowRef as unknown as RefObject<SVGSVGElement>}
+          width={ARROW_WIDTH}
+        />
+      )}
     </div>
   );
 
-  return (
-    <>
-      <div
+  const triggerElement = useMemo<ReactNode>(() => {
+    if (isValidElement(children)) {
+      return cloneElement(children, {
+        ...getReferenceProps({ ref: refs.setReference }),
+      });
+    }
+    return (
+      <button
         className={clsx(styles.reference, innerClassNames.reference)}
         style={style}
         {...getReferenceProps({ ref: refs.setReference })}
       >
         {children}
-      </div>
+      </button>
+    );
+  }, [
+    children,
+    getReferenceProps,
+    innerClassNames.reference,
+    refs.setReference,
+    style,
+  ]);
+
+  return (
+    <>
+      {triggerElement}
       {portal ? <FloatingPortal>{open && body}</FloatingPortal> : open && body}
     </>
   );
-};
-
-export default Tooltip;
+}

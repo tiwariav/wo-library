@@ -11,12 +11,7 @@ type Story = StoryObj<typeof Popover>;
 
 const Template = ({ ...args }) => {
   return (
-    <Popover
-      content={
-        <div style={{ background: "#eee", padding: 16 }}>In popover</div>
-      }
-      {...args}
-    >
+    <Popover content="Content in popover" {...args}>
       Click Me
     </Popover>
   );

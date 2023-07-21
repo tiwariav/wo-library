@@ -1,21 +1,20 @@
 .reference {
   position: relative;
-  display: flex;
+  display: inline-block;
 }
 
 .floating {
-  z-index: var(--z-index-base);
-  display: none;
+  z-index: var(--ye-z-base);
   padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
   font-size: var(--ye-font-size-small);
   border-radius: var(--ye-radius-normal);
 }
 
-.is-visible {
-  display: block;
+.is-plain {
+  color: var(--ye-color-text-inverse);
+  background-color: var(--ye-color-background-inverse-light);
 }
 
-.is-plain {
-  color: var(--ye-color-white-90);
-  background-color: var(--ye-color-black-75);
+.arrow {
+  fill: var(--ye-color-background-inverse-light);
 }

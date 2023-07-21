@@ -1,0 +1,61 @@
+:root {
+  /* colors */
+  --ye-color-background: #fff;
+  --ye-color-background-inverse: #000;
+  --ye-color-background-inverse-light: color-mix(
+    in srgb,
+    var(--ye-color-background-inverse) 50%,
+    var(--ye-color-background)
+  );
+  --ye-color-background-inverse-lighter: color-mix(
+    in srgb,
+    var(--ye-color-background-inverse) 10%,
+    var(--ye-color-background)
+  );
+  --ye-color-shadow: color-mix(
+    in srgb,
+    var(--ye-color-background-inverse) 10%,
+    var(--ye-color-background)
+  );
+  --ye-color-shadow-inset: color-mix(
+    in srgb,
+    var(--ye-color-background-inverse) 5%,
+    var(--ye-color-background)
+  );
+  --ye-color-text: #000;
+  --ye-color-text-inverse: #fff;
+
+  /* z-index */
+  --ye-z-base: 1;
+  --ye-z-modal: 100;
+
+  /* spacing-units */
+  --ye-em-base: 1em;
+  --ye-rem-base: 1rem;
+  --ye-rem-unit: 0.125rem;
+
+  /* spacing */
+  --ye-spacing-rem-xsmall: calc(4 * var(--ye-rem-unit));
+  --ye-spacing-rem-small: calc(6 * var(--ye-rem-unit));
+  --ye-spacing-rem-normal: var(--ye-rem-base);
+
+  /* radius */
+  --ye-radius-normal: var(--ye-spacing-rem-xsmall);
+  --ye-radius-circle: 100%;
+
+  /* font-size */
+  --ye-font-size-small: 0.833rem;
+  --ye-font-size-normal: 1rem;
+  --ye-font-size-large: 1.2rem;
+  --ye-font-size-huge: 1.728rem;
+  --ye-font-weight-semibold: 500;
+  --ye-font-weight-thin: 200;
+
+  /* shadow */
+  --ye-shadow-floating-highest: 0 2px 30px var(--ye-color-shadow);
+  --ye-shadow-floating-low: 0 1px 4px var(--ye-color-shadow);
+  --ye-shadow-inset: inset 0 2px 4px var(--ye-color-shadow-inset);
+  --ye-shadow-outer-none: 0 0 0 var(--ye-color-shadow-inset);
+  --ye-shadow-pressable: var(--ye-shadow-floating-low);
+  --ye-shadow-pressed: var(--ye-shadow-inset), var(--ye-shadow-outer-none);
+}

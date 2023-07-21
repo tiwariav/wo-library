@@ -1,14 +1,23 @@
 import { clsx } from "clsx";
-import { isObject } from "lodash-es";
 import { useEffect, useState } from "react";
 import { IntersectionOptions, useInView } from "react-intersection-observer";
+import { Entries } from "type-fest";
 
 import styles from "./observeInView.module.css";
+
+const DYNAMIC_CLASSNAMES = [
+  "animate",
+  "inView",
+  "outBottom",
+  "outTop",
+] as const;
 
 type ObserveInViewProps = {
   animate: boolean;
   className?: string;
-  dynamicClasses?: Record<string, string>;
+  dynamicClasses?: {
+    [key in (typeof DYNAMIC_CLASSNAMES)[number]]?: string;
+  };
   observeOptions: IntersectionOptions;
   onViewChange: (inView: boolean) => void;
 };
@@ -32,8 +41,11 @@ export default function ObserveInView({
         [styles.outBottom]: !inView && rootEntry.boundingClientRect.top > 0,
         [styles.outTop]: !inView && rootEntry.boundingClientRect.top < 0,
       };
-      if (dynamicClasses && isObject(dynamicClasses)) {
-        for (const [key, value] of Object.entries(dynamicClasses)) {
+      if (dynamicClasses) {
+        for (const [key, value] of Object.entries(dynamicClasses) as Entries<
+          ObserveInViewProps["dynamicClasses"]
+        >) {
+          if (value === undefined) continue;
           classNameProps[value] = classNameProps[styles[key]];
         }
       }

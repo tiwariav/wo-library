@@ -114,7 +114,6 @@ export const postcssConfig = {
   extract: "dist.css",
   modules: { localsConvention: "camelCase" },
   plugins: [
-    cssnano({ preset: "default" }),
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     postcssImport(),
     postcssFlexbugsFixes(),
@@ -135,6 +134,7 @@ export const postcssConfig = {
     // which in turn let's users customize the target behavior as per their needs.
     postcssNormalize(),
     /* eslint-enable @typescript-eslint/no-unsafe-call */
+    cssnano({ preset: "default" }),
   ],
   sourceMap: isDev,
 };
