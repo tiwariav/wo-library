@@ -1,3 +1,5 @@
+## [2.0.7](https://github.com/tiwariav/wo-library/compare/v2.0.6...v2.0.7) (2023-07-21)
+
 ## [2.0.6](https://github.com/tiwariav/wo-library/compare/v2.0.5...v2.0.6) (2023-07-17)
 
 
