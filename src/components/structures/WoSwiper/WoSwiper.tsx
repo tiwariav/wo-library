@@ -14,10 +14,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "./woSwiper.css";
 import styles from "./woSwiper.module.css";
 
-export enum WoSwiperVariant {
-  BASIC = "basic",
-  COVERFLOW = "coverflow",
-}
+export const WO_SWIPER_VARIANTS = ["coverflow"] as const;
+
 const modules = [
   EffectCoverflow,
   FreeMode,
@@ -41,7 +39,7 @@ export interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
   pagination?: boolean;
   subtitle?: string;
   title?: string;
-  variant?: `${WoSwiperVariant}` | WoSwiperVariant;
+  variant?: (typeof WO_SWIPER_VARIANTS)[number];
 }
 
 export default function WoSwiper({
@@ -56,7 +54,7 @@ export default function WoSwiper({
   pagination,
   subtitle,
   title,
-  variant = WoSwiperVariant.BASIC,
+  variant,
   ...props
 }: WoSwiperProps) {
   let derivedProps = {};

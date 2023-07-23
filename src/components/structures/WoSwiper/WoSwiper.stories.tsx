@@ -4,7 +4,7 @@ import {
   IconCircleChevronRight,
 } from "@tabler/icons-react";
 
-import WoSwiper, { WoSwiperProps, WoSwiperVariant } from "./WoSwiper.js";
+import WoSwiper, { WO_SWIPER_VARIANTS, WoSwiperProps } from "./WoSwiper.js";
 
 const moreLinkMap = {
   ArrowHorizontal: <IconCircleChevronRight />,
@@ -66,7 +66,7 @@ export const Variants: Story = {
   },
   render: ({ title, ...args }) => (
     <div className="story-list">
-      {Object.values(WoSwiperVariant).map((variant) => (
+      {WO_SWIPER_VARIANTS.map((variant) => (
         <Template
           title={title || `A '${variant}' swiper section`}
           variant={variant}

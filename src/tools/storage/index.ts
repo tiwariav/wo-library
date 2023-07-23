@@ -5,17 +5,8 @@ interface StorageBackend {
   setItem: (key: string, value: string) => void;
 }
 
-export enum StorageEnvironment {
-  MOBILE = "MOBILE",
-  SERVER = "SERVER",
-  WEB = "WEB",
-}
-
-export enum StorageType {
-  PERSIST = "PERSIST",
-  SESSION = "SESSION",
-  TEMP = "TEMP",
-}
+export const STORAGE_ENVIRONMENTS = ["mobile", "server", "web"] as const;
+export const STORAGE_TYPES = ["persist", "session", "temp"] as const;
 
 export let memoryStorageItems: Record<string, null | string> = {};
 
@@ -29,31 +20,31 @@ export const memoryStorage = {
 };
 
 type StorageBackendOptions = {
-  [key in StorageType]: StorageBackend;
+  [key in (typeof STORAGE_TYPES)[number]]: StorageBackend;
 };
 export class AnyStorage {
   backends: StorageBackendOptions;
   clear = () => {
-    this.backends[StorageType.TEMP].clear();
+    this.backends["temp"].clear();
     if (this.prefix) {
-      for (const key of Object.keys(this.backends[StorageType.SESSION])) {
-        this.backends[StorageType.SESSION].removeItem(key);
+      for (const key of Object.keys(this.backends["session"])) {
+        this.backends["session"].removeItem(key);
       }
-      for (const key of Object.keys(this.backends[StorageType.PERSIST])) {
-        this.backends[StorageType.PERSIST].removeItem(key);
+      for (const key of Object.keys(this.backends["persist"])) {
+        this.backends["persist"].removeItem(key);
       }
     }
   };
-  env: StorageEnvironment;
+  env: (typeof STORAGE_ENVIRONMENTS)[number];
   formKey = (key: string) => (this.prefix ? `${this.prefix}.${key}` : key);
   getBackend = (persist: boolean, session: boolean) => {
     if (persist) {
-      return this.backends[StorageType.PERSIST];
+      return this.backends["persist"];
     }
     if (session) {
-      return this.backends[StorageType.SESSION];
+      return this.backends["session"];
     }
-    return this.backends[StorageType.TEMP];
+    return this.backends["temp"];
   };
 
   getItem = async <TResponse extends null | string = null | string>(
@@ -65,8 +56,8 @@ export class AnyStorage {
     let response = await backend.getItem(storageKey);
     if (response === null && !persist) {
       response = await (session
-        ? this.backends[StorageType.PERSIST].getItem(storageKey)
-        : this.backends[StorageType.SESSION].getItem(storageKey));
+        ? this.backends["persist"].getItem(storageKey)
+        : this.backends["session"].getItem(storageKey));
     }
     if (json && response) {
       try {
@@ -87,9 +78,9 @@ export class AnyStorage {
   removeItem = async (key: string) => {
     // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
-    this.backends[StorageType.TEMP].removeItem(storageKey);
-    this.backends[StorageType.SESSION].removeItem(storageKey);
-    return this.backends[StorageType.PERSIST].removeItem(storageKey);
+    this.backends["temp"].removeItem(storageKey);
+    this.backends["session"].removeItem(storageKey);
+    return this.backends["persist"].removeItem(storageKey);
   };
 
   setBackend = (storageBackends: Partial<StorageBackendOptions>) => {
@@ -116,22 +107,21 @@ export class AnyStorage {
 
   version: number = 1;
 
-  constructor(env?: StorageEnvironment) {
+  constructor(env?: (typeof STORAGE_ENVIRONMENTS)[number]) {
     const noBrowser =
       typeof localStorage === "undefined" ||
       typeof sessionStorage === "undefined";
-    this.env =
-      env || noBrowser ? StorageEnvironment.MOBILE : StorageEnvironment.WEB;
+    this.env = env || noBrowser ? "mobile" : "web";
     this.backends = noBrowser
       ? {
-          [StorageType.PERSIST]: memoryStorage,
-          [StorageType.SESSION]: memoryStorage,
-          [StorageType.TEMP]: memoryStorage,
+          persist: memoryStorage,
+          session: memoryStorage,
+          temp: memoryStorage,
         }
       : {
-          [StorageType.PERSIST]: localStorage,
-          [StorageType.SESSION]: sessionStorage,
-          [StorageType.TEMP]: memoryStorage,
+          persist: localStorage,
+          session: sessionStorage,
+          temp: memoryStorage,
         };
   }
 }
