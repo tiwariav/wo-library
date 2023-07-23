@@ -1,11 +1,14 @@
+import { Placement } from "@floating-ui/react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { playFloatingBasic } from "../../tools/storybook/play.js";
-import Tooltip from "./Tooltip.js";
+import Tooltip, { TooltipProps } from "./Tooltip.js";
 
 const metadata: Meta<typeof Tooltip> = {
   component: Tooltip,
+  render: (args) => <Tooltip {...args} />,
 };
+
 export default metadata;
 
 type Story = StoryObj<typeof Tooltip>;
@@ -20,35 +23,160 @@ export const Basic: Story = {
   play: async ({ canvasElement }) => {
     await playFloatingBasic(canvasElement, TOOLTIP_TEXT);
   },
-  render: (args) => <Tooltip {...args} />,
 };
-export const Open: Story = {
-  args: {
-    ...Basic.args,
-    isOpen: true,
-  },
-  render: Basic.render,
-};
+
 export const Animated: Story = {
   args: {
     ...Basic.args,
     animate: true,
   },
-  render: Basic.render,
 };
-export const WithArrow: Story = {
+
+export const IsOpen: Story = {
+  args: {
+    ...Basic.args,
+    isOpen: true,
+  },
+};
+
+export const IsPopover: Story = {
+  args: {
+    ...Basic.args,
+    isOpen: true,
+    isPopover: true,
+  },
+};
+
+export const ShowArrow: Story = {
   args: {
     ...Basic.args,
     animate: true,
     showArrow: true,
   },
-  render: Basic.render,
 };
-export const OnHover: Story = {
+
+export const Options: StoryObj<
+  TooltipProps & { offset: number; padding: number }
+> = {
+  argTypes: {
+    offset: { control: { max: 32, min: 0, type: "range" } },
+    padding: { control: { max: 32, min: 0, type: "range" } },
+  },
   args: {
     ...Basic.args,
-    children: "Hover for Tooltip!",
-    triggers: ["hover"],
+    isOpen: true,
+    offset: 16,
+    padding: 16,
+    showArrow: true,
   },
-  render: Basic.render,
+  render: ({ offset, padding, ...args }) => (
+    <Tooltip options={{ offset, padding }} {...args} />
+  ),
+};
+
+const ALL_ALIGNMENTS = ["start", "end"];
+const PlacementCell = ({
+  placement,
+  ...args
+}: Omit<TooltipProps, "placement"> & { placement: string }) => (
+  <>
+    <div>
+      <Tooltip placement={placement as Placement} {...args}>
+        Tooltip at {placement}!
+      </Tooltip>
+    </div>
+    {ALL_ALIGNMENTS.map((alignment) => (
+      <div>
+        <Tooltip placement={`${placement}-${alignment}` as Placement} {...args}>
+          Tooltip at {placement}-{alignment}!
+        </Tooltip>
+      </div>
+    ))}
+  </>
+);
+
+export const Placements: Story = {
+  args: {
+    ...Basic.args,
+    isOpen: true,
+    showArrow: true,
+  },
+  render: (args) => (
+    <div className="story-flex">
+      <div>
+        <div className="story-title">Leftdiv</div>
+        <div
+          style={{
+            gap: "1.5rem",
+            paddingLeft: 120,
+          }}
+          className="story-list"
+        >
+          <PlacementCell placement="left" {...args} />
+        </div>
+      </div>
+      <div>
+        <div className="story-title">Right</div>
+        <div
+          style={{
+            gap: "1.5rem",
+            paddingRight: 120,
+          }}
+          className="story-list"
+        >
+          <PlacementCell placement="right" {...args} />
+        </div>
+      </div>
+      <div>
+        <div className="story-title">Top</div>
+        <div
+          style={{
+            gap: "3rem",
+            paddingTop: 32,
+          }}
+          className="story-list"
+        >
+          <PlacementCell placement="top" style={{ minWidth: 160 }} {...args} />
+        </div>
+      </div>
+      <div>
+        <div className="story-title">Bottom</div>
+        <div
+          style={{
+            gap: "3rem",
+            paddingBottom: 32,
+          }}
+          className="story-list"
+        >
+          <PlacementCell
+            placement="bottom"
+            style={{ minWidth: 160 }}
+            {...args}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const Triggers: Story = {
+  args: {
+    ...Basic.args,
+    placement: "bottom",
+    showArrow: true,
+  },
+  render: (args) => (
+    <div className="story-grid">
+      <div>
+        <Tooltip trigger={"click"} {...args}>
+          Click for Tooltip!
+        </Tooltip>
+      </div>
+      <div>
+        <Tooltip trigger={"hover"} {...args}>
+          Hover for Tooltip!
+        </Tooltip>
+      </div>
+    </div>
+  ),
 };

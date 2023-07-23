@@ -33,7 +33,7 @@ import usePropOrState from "../../hooks/usePropOrState.js";
 import styles from "./tooltip.module.css";
 
 const TRIGGER_OPTIONS = ["click", "hover"] as const;
-const ARROW_WIDTH = 16;
+const ARROW_WIDTH = 12;
 const ARROW_HEIGHT = 8;
 
 export interface TooltipProps {
@@ -44,19 +44,20 @@ export interface TooltipProps {
     arrow?: string;
     floating?: string;
     reference?: string;
+    title?: string;
   };
   isOpen?: boolean;
+  isPopover?: boolean;
   options?: {
     offset?: OffsetOptions;
     padding?: Padding;
   };
   placement?: Placement;
-  popover?: boolean;
   portal?: boolean;
   showArrow?: boolean;
   style?: CSSProperties;
   title: ReactNode;
-  triggers?: (typeof TRIGGER_OPTIONS)[number][];
+  trigger?: (typeof TRIGGER_OPTIONS)[number];
 }
 
 const defaultOptions = { offset: 8, padding: 8 };
@@ -66,14 +67,14 @@ export default function Tooltip({
   children,
   innerClassNames = {},
   isOpen,
+  isPopover,
   options: propsOptions,
   placement,
-  popover,
   portal,
   showArrow,
   style,
   title,
-  triggers = ["click"],
+  trigger = "click",
 }: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
   const [open, setOpen] = usePropOrState(isOpen);
@@ -97,7 +98,7 @@ export default function Tooltip({
         close: 250,
         open: 0,
       },
-      enabled: triggers.includes("hover"),
+      enabled: trigger === "hover",
     }),
     useClick(context),
     useFocus(context),
@@ -127,14 +128,15 @@ export default function Tooltip({
 
   const body = isMounted && (
     <div
+      className={clsx(styles.floating, innerClassNames.floating)}
       {...getFloatingProps({
         ref: refs.setFloating,
         style: floatingStyles,
       })}
     >
       <div
-        className={clsx(styles.floating, innerClassNames.floating, {
-          [styles.isPlain]: !popover,
+        className={clsx(styles.title, innerClassNames.title, {
+          [styles.isPlain]: !isPopover,
         })}
         style={animate ? transitionStyles : {}}
       >

@@ -50,11 +50,9 @@ export const Open: Story = {
   render: Basic.render,
 };
 
-export const WithScroll: Story = {
+export const OnClose: Story = {
   args: {
-    className: "story-container",
+    onClose: () => alert("Modal closed!"),
   },
-  render: (args) => (
-    <Template modalContent={`${MODAL_TEXT} `.repeat(1000)} {...args} />
-  ),
+  render: Basic.render,
 };

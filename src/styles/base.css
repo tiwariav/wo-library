@@ -38,6 +38,8 @@
   --ye-spacing-rem-xsmall: calc(4 * var(--ye-rem-unit));
   --ye-spacing-rem-small: calc(6 * var(--ye-rem-unit));
   --ye-spacing-rem-normal: var(--ye-rem-base);
+  --ye-spacing-rem-large: calc(10 * var(--ye-rem-unit));
+  --ye-spacing-rem-xlarge: calc(12 * var(--ye-rem-unit));
 
   /* radius */
   --ye-radius-normal: var(--ye-spacing-rem-xsmall);

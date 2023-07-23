@@ -1,10 +1,10 @@
-import { StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import {
   IconCircleChevronDown,
   IconCircleChevronRight,
 } from "@tabler/icons-react";
 
-import WoSwiper from "./WoSwiper.js";
+import WoSwiper, { WoSwiperProps, WoSwiperVariant } from "./WoSwiper.js";
 
 const moreLinkMap = {
   ArrowHorizontal: <IconCircleChevronRight />,
@@ -13,22 +13,7 @@ const moreLinkMap = {
   SeeMore: <button>See more</button>,
 };
 
-const metadata = {
-  argTypes: {
-    moreLink: { mapping: moreLinkMap, options: Object.keys(moreLinkMap) },
-    moreLinkVertical: {
-      mapping: moreLinkMap,
-      options: Object.keys(moreLinkMap),
-    },
-  },
-  component: WoSwiper,
-};
-
-export default metadata;
-
-type Story = StoryObj<typeof WoSwiper>;
-
-const render: Story["render"] = (args) => {
+function Template(args: WoSwiperProps) {
   return (
     <div style={{ overflow: "hidden", padding: 4 }}>
       <WoSwiper {...args}>
@@ -40,7 +25,23 @@ const render: Story["render"] = (args) => {
       </WoSwiper>
     </div>
   );
+}
+
+const metadata: Meta<typeof WoSwiper> = {
+  argTypes: {
+    moreLink: { mapping: moreLinkMap, options: Object.keys(moreLinkMap) },
+    moreLinkVertical: {
+      mapping: moreLinkMap,
+      options: Object.keys(moreLinkMap),
+    },
+  },
+  component: WoSwiper,
+  render: (args) => <Template {...args} />,
 };
+
+export default metadata;
+
+type Story = StoryObj<typeof WoSwiper>;
 
 export const Basic: Story = {
   args: {
@@ -48,24 +49,32 @@ export const Basic: Story = {
     subtitle: "Horizontally scrollable elements",
     title: "A swiper section",
   },
-  render,
 };
+
 export const Single: Story = {
   args: {
     slidesPerView: 1,
-    subtitle: "Horizontally scrollable elements",
+    subtitle: Basic.args?.subtitle,
     title: "A swiper section",
   },
-  render,
 };
 
-export const Coverflow: Story = {
+export const Variants: Story = {
   args: {
-    ...Basic.args,
     slidesPerView: 3,
-    variant: "coverflow",
+    subtitle: Basic.args?.subtitle,
   },
-  render,
+  render: ({ title, ...args }) => (
+    <div className="story-list">
+      {Object.values(WoSwiperVariant).map((variant) => (
+        <Template
+          title={title || `A '${variant}' swiper section`}
+          variant={variant}
+          {...args}
+        />
+      ))}
+    </div>
+  ),
 };
 
 export const WithLinks: Story = {
@@ -74,7 +83,6 @@ export const WithLinks: Story = {
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render,
 };
 
 export const WithSeparator: Story = {
@@ -84,5 +92,18 @@ export const WithSeparator: Story = {
     moreLink: "SeeMore",
     moreLinkVertical: "ArrowVertical",
   },
-  render,
+};
+
+export const Pagination: Story = {
+  args: {
+    ...Basic.args,
+    pagination: true,
+  },
+};
+
+export const NoNavigation: Story = {
+  args: {
+    ...Basic.args,
+    navigation: false,
+  },
 };

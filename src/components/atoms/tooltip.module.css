@@ -5,9 +5,11 @@
 
 .floating {
   z-index: var(--ye-z-base);
+}
+
+.title {
   padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
   font-size: var(--ye-font-size-small);
-  border-radius: var(--ye-radius-normal);
 }
 
 .is-plain {

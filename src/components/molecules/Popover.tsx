@@ -7,7 +7,6 @@ import styles from "./popover.module.css";
 
 type PopoverTooltipProps = TooltipProps & {
   content: React.ReactNode;
-  innerClassNames?: object;
   title?: ReactNode;
 };
 
@@ -22,9 +21,10 @@ export default function Popover({
     <Tooltip
       innerClassNames={{
         ...innerClassNames,
-        floating: clsx(styles.root, innerClassNames.floating),
+        arrow: clsx(styles.arrow, innerClassNames.arrow),
+        title: clsx(styles.root, innerClassNames.title),
       }}
-      popover
+      isPopover
       title={content}
       {...props}
     />
