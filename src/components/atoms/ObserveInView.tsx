@@ -5,18 +5,14 @@ import { Entries } from "type-fest";
 
 import styles from "./observeInView.module.css";
 
-const DYNAMIC_CLASSNAMES = [
-  "animate",
-  "inView",
-  "outBottom",
-  "outTop",
-] as const;
-
 type ObserveInViewProps = {
   animate: boolean;
   className?: string;
   dynamicClasses?: {
-    [key in (typeof DYNAMIC_CLASSNAMES)[number]]?: string;
+    animate?: string;
+    inView?: string;
+    outBottom?: string;
+    outTop?: string;
   };
   observeOptions: IntersectionOptions;
   onViewChange: (inView: boolean) => void;

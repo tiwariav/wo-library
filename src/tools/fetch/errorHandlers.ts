@@ -30,25 +30,42 @@ export async function defaultErrorHandler<TResponseData>(
   const responseData = await getResponseData<TResponseData>(response);
   switch (response.status) {
     case 400: {
-      throw new WoResponseError(responseData, "Invalid Data!");
+      throw new WoResponseError(responseData, response.status, "Invalid Data!");
     }
     case 401: {
-      throw new WoResponseError(responseData, "You session has expired!");
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "You session has expired!",
+      );
     }
     case 403: {
       throw new WoResponseError(
         responseData,
+        response.status,
         "You are not authorized to access this page!",
       );
     }
     case 404: {
-      throw new WoResponseError(responseData, "Endpoint not found!");
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Endpoint not found!",
+      );
     }
     case 429: {
-      throw new WoResponseError(responseData, "Too many requests!");
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Too many requests!",
+      );
     }
     case 500: {
-      throw new WoResponseError(responseData, "Internal server error!");
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Internal server error!",
+      );
     }
     default: {
       break;

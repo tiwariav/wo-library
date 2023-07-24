@@ -21,10 +21,12 @@ export class WoNetworkError extends WoError {
 
 export class WoResponseError<TData> extends WoError {
   data: TData;
+  status: number;
 
-  constructor(data: TData, message = "Response Error!") {
+  constructor(data: TData, status: number, message = "Response Error!") {
     super(message);
     this.name = "WoResponseError";
     this.data = data;
+    this.status = status;
   }
 }
