@@ -1,3 +1,5 @@
+import { SetRequired } from "type-fest";
+
 import { defaultErrorHandler } from "./errorHandlers.js";
 import { jsonResponseHandler } from "./responseHandlers.js";
 
@@ -19,28 +21,25 @@ export type XHRStateChange = (
   xhrObject: XMLHttpRequest,
 ) => void;
 
-export interface FetchOptions<
-  DataType = WoRequestData,
-  QueryType = WoRequestQuery,
-> {
+export interface FetchOptions<TData = WoRequestData, TQuery = WoRequestQuery> {
   credentials?: RequestCredentials;
-  data?: DataType;
+  data?: TData;
   errorHandler?: typeof defaultErrorHandler;
   headers?: Record<string, string>;
   id?: string;
   noProxy?: boolean;
-  query?: QueryType;
+  query?: TQuery;
   requireAuth?: boolean;
   responseHandler?: typeof jsonResponseHandler;
   token?: string;
   trailingSlash?: boolean;
 }
 
-export type FetchData<DataType, QueryType = WoRequestQuery> = FetchOptions<
-  DataType,
-  QueryType
+export type FetchData<TData, TQuery = WoRequestQuery> = SetRequired<
+  FetchOptions<TData, TQuery>,
+  "data"
 >;
-export type FetchQuery<QueryType, DataType = WoRequestData> = FetchOptions<
-  DataType,
-  QueryType
+export type FetchQuery<TQuery, TData = WoRequestData> = SetRequired<
+  FetchOptions<TData, TQuery>,
+  "query"
 >;

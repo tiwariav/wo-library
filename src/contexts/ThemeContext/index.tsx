@@ -1,8 +1,8 @@
 import { ReactNode, useMemo } from "react";
 
 import useMethods from "../../hooks/useMethods.js";
-import { Dispatch, createAndUseContext } from "../utils.js";
-import createThemeMethods from "./methods.js";
+import { ContextDispatch, createAndUseContext } from "../utils.js";
+import createThemeMethods, { ThemeMethods } from "./methods.js";
 import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state.js";
 
 interface ThemeProviderProps {
@@ -12,10 +12,7 @@ interface ThemeProviderProps {
 }
 
 const { Context, DispatchContext, useContextDispatch, useContextState } =
-  createAndUseContext<
-    ThemeState,
-    Dispatch<ReturnType<typeof createThemeMethods>>
-  >();
+  createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
 
 export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   const memoizedInitialState = useMemo(

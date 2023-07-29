@@ -1,41 +1,50 @@
-// eslint-disable @typescript-eslint/no-explicit-any
 import { Reducer, useMemo, useReducer } from "react";
 
-type Action = {
-  payload: any[];
+export type Action = {
+  payload: unknown[];
   type: string;
 };
 
-type CreateMethods<M, T> = (state: T) => M;
+export type CreateMethods<TRecord extends ActionRecord, TState> = (
+  state: TState,
+) => TRecord;
 
-export type FunctionRecord = Record<string, (...args: any[]) => any>;
+export type ActionRecord<TState = any> = Record<
+  Action["type"],
+  (...args: any[]) => TState
+>;
 
-export type WrappedMethods<M extends FunctionRecord> = {
-  [P in keyof M]: (...payload: Parameters<M[P]>) => void;
+export type WrappedMethods<TRecord extends ActionRecord> = {
+  [key in keyof TRecord]: (...payload: Parameters<TRecord[key]>) => void;
 };
 
 export default function useMethods<
-  M extends Record<string, (...args: any[]) => T>,
-  T,
->(createMethods: CreateMethods<M, T>, initialState: T): [T, WrappedMethods<M>] {
-  const reducer = useMemo<Reducer<T, Action>>(
-    () => (reducerState: T, action: Action) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  TRecord extends ActionRecord<TState>,
+  TState,
+>(
+  createMethods: CreateMethods<TRecord, TState>,
+  initialState: TState,
+): [TState, WrappedMethods<TRecord>] {
+  const reducer = useMemo<Reducer<TState, Action>>(
+    () => (reducerState: TState, action: Action) => {
       return createMethods(reducerState)[action.type](...action.payload);
     },
     [createMethods],
   );
 
-  const [state, dispatch] = useReducer<Reducer<T, Action>>(
+  const [state, dispatch] = useReducer<Reducer<TState, Action>>(
     reducer,
     initialState,
   );
 
-  const wrappedMethods: WrappedMethods<M> = useMemo(() => {
-    const actionTypes = Object.keys(createMethods(initialState));
-    const response = {} as WrappedMethods<M>;
+  const wrappedMethods: WrappedMethods<TRecord> = useMemo(() => {
+    const actionTypes = Object.keys(
+      createMethods(initialState),
+    ) as (keyof TRecord)[];
+    const response = {} as WrappedMethods<TRecord>;
     for (const type of actionTypes) {
-      response[type as keyof M] = (...payload) => dispatch({ payload, type });
+      response[type] = (...payload) =>
+        dispatch({ payload, type: type as string });
     }
     return response;
   }, [createMethods, initialState]);

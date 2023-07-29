@@ -21,3 +21,5 @@ export default function createThemeMethods(state: ThemeState) {
     },
   };
 }
+
+export type ThemeMethods = ReturnType<typeof createThemeMethods>;

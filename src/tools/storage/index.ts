@@ -1,7 +1,7 @@
 interface StorageBackend {
   clear: () => void;
   getItem: (key: string) => Promise<null | string> | null | string;
-  removeItem: (key: string) => void;
+  removeItem: (key: string) => Promise<void> | void;
   setItem: (key: string, value: string) => void;
 }
 
@@ -15,7 +15,9 @@ export const memoryStorage = {
   // eslint-disable-next-line @typescript-eslint/require-await
   getItem: async (key: string): Promise<null | string> =>
     memoryStorageItems[key] || null,
-  removeItem: (key: string) => (memoryStorageItems[key] = null),
+  removeItem: (key: string) => {
+    memoryStorageItems[key] = null;
+  },
   setItem: (key: string, value: string) => (memoryStorageItems[key] = value),
 };
 
@@ -24,14 +26,14 @@ type StorageBackendOptions = {
 };
 export class AnyStorage {
   backends: StorageBackendOptions;
-  clear = () => {
+  clear = async () => {
     this.backends["temp"].clear();
     if (this.prefix) {
       for (const key of Object.keys(this.backends["session"])) {
-        this.backends["session"].removeItem(key);
+        await this.backends["session"].removeItem(key);
       }
       for (const key of Object.keys(this.backends["persist"])) {
-        this.backends["persist"].removeItem(key);
+        await this.backends["persist"].removeItem(key);
       }
     }
   };
@@ -47,10 +49,10 @@ export class AnyStorage {
     return this.backends["temp"];
   };
 
-  getItem = async <TResponse extends null | string = null | string>(
+  getItem = async <TResponse extends null | string>(
     key: string,
-    { json = this.json, persist = false, session = false } = {},
-  ): Promise<TResponse> => {
+    { json = this.json, noNull = false, persist = false, session = false } = {},
+  ): Promise<TResponse | null | string | undefined> => {
     const storageKey = this.formKey(key);
     const backend = this.getBackend(persist, session);
     let response = await backend.getItem(storageKey);
@@ -66,7 +68,7 @@ export class AnyStorage {
         // do nothing, return the string
       }
     }
-    // @ts-ignore: TS2322 because response can be null
+    if (undefined && response === null) return undefined;
     return response;
   };
 
@@ -78,8 +80,8 @@ export class AnyStorage {
   removeItem = async (key: string) => {
     // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
-    this.backends["temp"].removeItem(storageKey);
-    this.backends["session"].removeItem(storageKey);
+    await this.backends["temp"].removeItem(storageKey);
+    await this.backends["session"].removeItem(storageKey);
     return this.backends["persist"].removeItem(storageKey);
   };
 
@@ -105,7 +107,7 @@ export class AnyStorage {
     return backend.setItem(storageKey, saveValue as string);
   };
 
-  version: number = 1;
+  version: number | string = 1;
 
   constructor(env?: (typeof STORAGE_ENVIRONMENTS)[number]) {
     const noBrowser =

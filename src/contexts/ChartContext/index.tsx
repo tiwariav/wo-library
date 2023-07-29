@@ -1,7 +1,7 @@
 import { ReactNode, useMemo } from "react";
 
 import useMethods from "../../hooks/useMethods.js";
-import { Dispatch, createAndUseContext } from "../utils.js";
+import { ContextDispatch, createAndUseContext } from "../utils.js";
 import createChartMethods from "./methods.js";
 import INITIAL_CHART_STATE, { ChartState } from "./state.js";
 
@@ -12,7 +12,7 @@ interface ChartProviderProps {
 const { Context, DispatchContext, useContextDispatch, useContextState } =
   createAndUseContext<
     ChartState,
-    Dispatch<ReturnType<typeof createChartMethods>>
+    ContextDispatch<ReturnType<typeof createChartMethods>>
   >();
 
 export function ChartProvider({ children }: ChartProviderProps) {
