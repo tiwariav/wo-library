@@ -1,17 +1,19 @@
-.modal {
+.dialog {
   position: relative;
   max-width: calc(100vw - var(--ye-spacing-rem-normal) * 2);
   margin: auto;
   padding: var(--ye-spacing-rem-normal);
   overflow: hidden;
   background: var(--ye-color-background);
+  border: none;
   border-radius: var(--ye-radius-normal);
-}
 
-.overlay {
-  z-index: var(--ye-z-modal);
-  display: grid;
-  background: rgb(25 25 25 / 0.8);
-  backdrop-filter: blur(12px);
-  place-items: center;
+
+  &::backdrop {
+    z-index: var(--ye-z-modal);
+    display: grid;
+    place-items: center;
+    background-color: rgb(25 25 25 / 0.8);
+    backdrop-filter: blur(12px);
+  }
 }

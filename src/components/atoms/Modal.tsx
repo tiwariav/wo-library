@@ -1,77 +1,76 @@
-import {
-  FloatingFocusManager,
-  FloatingOverlay,
-  FloatingPortal,
-  useClick,
-  useDismiss,
-  useFloating,
-  useId,
-  useInteractions,
-  useRole,
-} from "@floating-ui/react";
-import { clsx } from "clsx";
-import { ReactNode, useCallback } from "react";
+import type React from "react";
 
-import usePropOrState from "../../hooks/usePropOrState.js";
+import { clsx } from "clsx";
+import { useCallback, useEffect, useRef } from "react";
+import { useEvent } from "react-use";
+
 import styles from "./modal.module.css";
 
 export interface ModalProps {
-  children: ReactNode;
+  children: JSX.Element | JSX.Element[];
   className?: string;
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-export default function Modal({
+const Modal: React.FC<ModalProps> = ({
   children,
   className,
-  isOpen = false,
+  isOpen,
   onClose,
-}: ModalProps) {
-  const [open, setOpen] = usePropOrState(isOpen);
-  const handleOpenChange = useCallback(
-    (value: boolean) => {
-      setOpen(value);
-      onClose?.();
+}) => {
+  const modalRef = useRef<HTMLDialogElement | null>(null);
+
+  const showModal = useCallback(() => {
+    if (!modalRef.current) return;
+    modalRef.current.showModal();
+  }, [modalRef]);
+
+  const hideModal = useCallback(() => {
+    if (!modalRef.current) return;
+    modalRef.current.close();
+  }, [modalRef]);
+
+  const closeOnBackdropClick = useCallback(
+    ({ target }: React.MouseEvent<HTMLDialogElement>) => {
+      if (target === modalRef.current) modalRef.current.close();
     },
-    [onClose, setOpen],
+    [modalRef],
   );
 
-  const { context, refs } = useFloating({
-    onOpenChange: handleOpenChange,
-    open,
-  });
+  const closeOnOutsideClick = useCallback(
+    ({ target }: Event) => {
+      // close if clicked element is not inside the modal
+      if (
+        (target instanceof Node && !modalRef.current?.contains(target)) ||
+        target === modalRef.current
+      ) {
+        modalRef.current?.close();
+      }
+    },
+    [modalRef],
+  );
 
-  const id = useId();
-  const labelId = `${id}-label`;
-  const descriptionId = `${id}-description`;
+  useEvent("mousedown", closeOnOutsideClick, window);
 
-  const { getFloatingProps, getReferenceProps } = useInteractions([
-    useClick(context),
-    useRole(context),
-    useDismiss(context, { outsidePressEvent: "mousedown" }),
-  ]);
+  useEffect(() => {
+    if (isOpen) {
+      showModal();
+      return;
+    }
+    hideModal();
+  }, [isOpen, showModal, hideModal]);
 
   return (
-    <>
-      <div {...getReferenceProps({ ref: refs.setReference })} />
-      <FloatingPortal>
-        {open && (
-          <FloatingOverlay className={styles.overlay} lockScroll>
-            <FloatingFocusManager context={context}>
-              <div
-                aria-describedby={descriptionId}
-                aria-labelledby={labelId}
-                className={clsx(styles.modal, className)}
-                ref={refs.setFloating}
-                {...getFloatingProps()}
-              >
-                {children}
-              </div>
-            </FloatingFocusManager>
-          </FloatingOverlay>
-        )}
-      </FloatingPortal>
-    </>
+    <dialog
+      className={clsx(styles.dialog, styles.modal, className)}
+      onClick={closeOnBackdropClick}
+      onClose={onClose}
+      ref={modalRef}
+    >
+      {isOpen && children}
+    </dialog>
   );
-}
+};
+
+export default Modal;
