@@ -7,7 +7,7 @@ import { useEvent } from "react-use";
 import styles from "./modal.module.css";
 
 export interface ModalProps {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
   className?: string;
   isOpen?: boolean;
   onClose?: () => void;
