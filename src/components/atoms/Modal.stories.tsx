@@ -1,10 +1,21 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { ReactNode, useEffect, useState } from "react";
 
 import { playFloatingBasic } from "../../tools/storybook/play.js";
 import Modal, { ModalProps } from "./Modal.js";
 
-const Template = ({ isOpen = false, modalContent = "", ...args }) => {
+interface TemplateProps extends ModalProps {
+  modalContent?: ReactNode | string;
+}
+
+const Template = ({
+  children,
+  isOpen = false,
+  modalContent = MODAL_TEXT,
+  onClose,
+  ...args
+}: TemplateProps) => {
   const [open, setOpen] = useState(isOpen);
 
   useEffect(() => {
@@ -16,8 +27,15 @@ const Template = ({ isOpen = false, modalContent = "", ...args }) => {
       <button id="showButton" onClick={() => setOpen(true)}>
         Show Modal
       </button>
-      <Modal isOpen={open} onClose={() => setOpen(false)} {...args}>
-        <div className="story-box">{modalContent || MODAL_TEXT}</div>
+      <Modal
+        onClose={(event) => {
+          setOpen(false);
+          onClose?.(event);
+        }}
+        isOpen={open}
+        {...args}
+      >
+        <div className="story-box">{children ?? modalContent}</div>
       </Modal>
     </div>
   );
@@ -85,5 +103,26 @@ export const MaxWidth: Story = {
         <input placeholder="Placeholder" />
       </div>
     ),
+  },
+};
+
+export const Nested: Story = {
+  args: {
+    className: "parent-modal",
+    modalContent: (
+      <div style={{ margin: "20px", padding: "20px" }}>
+        <Template
+          className="child-modal"
+          isOpen={true}
+          onClose={() => alert("Nested modal closed!")}
+        >
+          <div>
+            Nested Modal Content!
+            <input placeholder="Placeholder" />
+          </div>
+        </Template>
+      </div>
+    ),
+    onClose: () => alert("Parent Modal closed!"),
   },
 };
