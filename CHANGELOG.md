@@ -1,3 +1,10 @@
+## [2.0.12](https://github.com/tiwariav/wo-library/compare/v2.0.11...v2.0.12) (2023-08-06)
+
+
+### Bug Fixes
+
+* prevent modal from overflowing the screen ([1e40d42](https://github.com/tiwariav/wo-library/commit/1e40d425f54d6d6bc594205c1cf286ec5bc314db))
+
 ## [2.0.11](https://github.com/tiwariav/wo-library/compare/v2.0.10...v2.0.11) (2023-07-29)
 
 ## [2.0.10](https://github.com/tiwariav/wo-library/compare/v2.0.9...v2.0.10) (2023-07-24)
