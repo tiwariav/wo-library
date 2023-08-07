@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function usePropOrState<TState>(
+export default function useStateWithProp<TState>(
   value: TState,
 ): [TState, React.Dispatch<React.SetStateAction<TState>>] {
   const [state, setState] = useState<TState>(value);

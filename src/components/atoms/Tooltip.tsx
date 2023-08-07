@@ -29,7 +29,7 @@ import {
   useRef,
 } from "react";
 
-import usePropOrState from "../../hooks/usePropOrState.js";
+import useStateWithProp from "../../hooks/useStateWithProp.js";
 import styles from "./tooltip.module.css";
 
 const TRIGGER_OPTIONS = ["click", "hover"] as const;
@@ -77,7 +77,7 @@ export default function Tooltip({
   trigger = "click",
 }: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
-  const [open, setOpen] = usePropOrState(isOpen);
+  const [open, setOpen] = useStateWithProp(isOpen);
   const options = { ...defaultOptions, ...propsOptions };
   const { context, floatingStyles, middlewareData, refs } = useFloating({
     middleware: [

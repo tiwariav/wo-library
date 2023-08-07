@@ -12,7 +12,7 @@ import {
 import { clsx } from "clsx";
 import { ReactNode, useCallback } from "react";
 
-import usePropOrState from "../../hooks/usePropOrState.js";
+import useStateWithProp from "../../hooks/useStateWithProp.js";
 import styles from "./modal.module.css";
 
 export interface ModalProps {
@@ -32,7 +32,7 @@ export default function Modal({
   isOpen = false,
   onClose,
 }: ModalProps) {
-  const [open, setOpen] = usePropOrState(isOpen);
+  const [open, setOpen] = useStateWithProp(isOpen);
   const handleOpenChange = useCallback(
     (value: boolean) => {
       setOpen(value);
