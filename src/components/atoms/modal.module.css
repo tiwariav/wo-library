@@ -3,7 +3,7 @@
   max-width: calc(100vw - var(--ye-spacing-rem-normal) * 2);
   margin: auto;
   padding: var(--ye-spacing-rem-normal);
-  overflow: hidden;
+  overflow: auto;
   background: var(--ye-color-background);
   border: none;
   border-radius: var(--ye-radius-normal);

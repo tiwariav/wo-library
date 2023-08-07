@@ -1,8 +1,8 @@
 import type React from "react";
 
 import { clsx } from "clsx";
-import { useCallback, useEffect, useRef } from "react";
-import { useEvent } from "react-use";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useEvent, useLatest } from "react-use";
 
 import styles from "./modal.module.css";
 
@@ -10,7 +10,7 @@ export interface ModalProps {
   children: React.ReactNode;
   className?: string;
   isOpen?: boolean;
-  onClose?: () => void;
+  onClose?: (event?: Event) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -19,41 +19,44 @@ const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [open, setOpen] = useState(false);
+  const openRef = useLatest(open);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const showModal = useCallback(() => {
-    if (!modalRef.current) return;
+    if (!modalRef.current || modalRef.current.open) return;
     modalRef.current.showModal();
-  }, [modalRef]);
+    if (!openRef.current) setOpen(true);
+  }, [openRef, setOpen]);
 
   const hideModal = useCallback(() => {
     if (!modalRef.current) return;
     modalRef.current.close();
-  }, [modalRef]);
+    if (openRef.current) setOpen(false);
+  }, [openRef, setOpen]);
 
   const closeOnBackdropClick = useCallback(
     ({ target }: React.MouseEvent<HTMLDialogElement>) => {
-      if (target === modalRef.current) modalRef.current.close();
+      if (target === modalRef.current) hideModal();
     },
-    [modalRef],
+    [hideModal],
   );
 
   const closeOnOutsideClick = useCallback(
     ({ target }: Event) => {
-      // close if clicked element is not inside the modal
       if (
         (target instanceof Node && !modalRef.current?.contains(target)) ||
         target === modalRef.current
       ) {
-        modalRef.current?.close();
+        hideModal();
       }
     },
-    [modalRef],
+    [hideModal],
   );
 
   useEvent("mousedown", closeOnOutsideClick, window);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isOpen) {
       showModal();
       return;
@@ -62,14 +65,24 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen, showModal, hideModal]);
 
   return (
-    <dialog
-      className={clsx(styles.dialog, styles.modal, className)}
-      onClick={closeOnBackdropClick}
-      onClose={onClose}
-      ref={modalRef}
-    >
-      {isOpen && children}
-    </dialog>
+    <div>
+      <h4>New Modal</h4>
+      <dialog
+        onClick={(event) => {
+          closeOnBackdropClick(event);
+        }}
+        onClose={(event) => {
+          event.stopPropagation();
+          event.preventDefault();
+          onClose?.();
+          if (open) setOpen(false);
+        }}
+        className={clsx(styles.dialog, className)}
+        ref={modalRef}
+      >
+        {open && children}
+      </dialog>
+    </div>
   );
 };
 
