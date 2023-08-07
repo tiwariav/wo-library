@@ -1,3 +1,5 @@
+import { MutableRefObject, ReactElement } from "react";
+
 import { pushOrCreate } from "../../tools/others/objects.js";
 import { svgNodeToData } from "../../tools/svg.js";
 import { ChartState } from "./state.js";
@@ -8,10 +10,11 @@ export default function createChartMethods(state: ChartState) {
       return { ...state, isLoading };
     },
     setSymbolImages: (
-      symbolsRef: React.MutableRefObject<HTMLDivElement>,
-      symbolsData: React.Component<{ seriesName: string }>[],
+      symbolsRef: MutableRefObject<HTMLDivElement | null>,
+      symbolsData: ReactElement<{ seriesName: string }>[],
     ): ChartState => {
-      const childNodes = symbolsRef.current.childNodes;
+      const childNodes = symbolsRef.current?.childNodes;
+      if (!childNodes) return state;
       const symbolImages: Record<string, string[]> = {};
       for (const [index, item] of symbolsData.entries()) {
         symbolImages[item.props.seriesName] = pushOrCreate(

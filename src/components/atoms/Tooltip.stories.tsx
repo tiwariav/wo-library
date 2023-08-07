@@ -168,12 +168,12 @@ export const Triggers: Story = {
   render: (args) => (
     <div className="story-grid">
       <div>
-        <Tooltip trigger={"click"} {...args}>
+        <Tooltip trigger="click" {...args}>
           Click for Tooltip!
         </Tooltip>
       </div>
       <div>
-        <Tooltip trigger={"hover"} {...args}>
+        <Tooltip trigger="hover" {...args}>
           Hover for Tooltip!
         </Tooltip>
       </div>

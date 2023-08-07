@@ -18,6 +18,9 @@ import styles from "./modal.module.css";
 export interface ModalProps {
   children: ReactNode;
   className?: string;
+  innerClassNames?: {
+    overlay?: string;
+  };
   isOpen?: boolean;
   onClose?: () => void;
 }
@@ -25,6 +28,7 @@ export interface ModalProps {
 export default function Modal({
   children,
   className,
+  innerClassNames = {},
   isOpen = false,
   onClose,
 }: ModalProps) {
@@ -57,7 +61,10 @@ export default function Modal({
       <div {...getReferenceProps({ ref: refs.setReference })} />
       <FloatingPortal>
         {open && (
-          <FloatingOverlay className={styles.overlay} lockScroll>
+          <FloatingOverlay
+            className={clsx(styles.overlay, innerClassNames.overlay)}
+            lockScroll
+          >
             <FloatingFocusManager context={context}>
               <div
                 aria-describedby={descriptionId}
