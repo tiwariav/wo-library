@@ -1,3 +1,10 @@
+## [2.0.16](https://github.com/tiwariav/wo-library/compare/v2.0.15...v2.0.16) (2023-08-09)
+
+
+### Bug Fixes
+
+* overrideStyleProperty argument types ([1f4b4b1](https://github.com/tiwariav/wo-library/commit/1f4b4b15c07aa729ca476125632d05885435a523))
+
 ## [2.0.15](https://github.com/tiwariav/wo-library/compare/v2.0.14...v2.0.15) (2023-08-08)
 
 ## [2.0.14](https://github.com/tiwariav/wo-library/compare/v2.0.13...v2.0.14) (2023-08-07)
