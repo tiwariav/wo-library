@@ -7,7 +7,7 @@ export function cssVariable(
 
 export function overrideStyleProperty(
   name: string,
-  value: string,
+  value?: string,
   node = document.body,
 ) {
   if (value) {
