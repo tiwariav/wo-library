@@ -4,11 +4,11 @@ import postcss from "postcss";
 const config: Omit<StorybookConfig, "stories"> = {
   addons: [
     "@storybook/addon-a11y",
-    "@storybook/addon-actions",
     "@storybook/addon-backgrounds",
     "@storybook/addon-controls",
     "@storybook/addon-coverage",
     "@storybook/addon-docs",
+    "@storybook/addon-actions",
     "@storybook/addon-interactions",
     "@storybook/addon-links",
     "@storybook/addon-measure",
