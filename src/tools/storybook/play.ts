@@ -10,7 +10,7 @@ export async function playFloatingBasic(
   await userEvent.click(canvas.getByRole("button"));
   // 👇 Assert DOM structure
   const modalBody = screen.getByText(floatingText);
-  expect(modalBody).toBeInTheDocument();
+  await expect(modalBody).toBeInTheDocument();
   await userEvent.click(document.body);
-  expect(modalBody).not.toBeInTheDocument();
+  await expect(modalBody).not.toBeInTheDocument();
 }
