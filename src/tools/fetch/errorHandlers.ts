@@ -9,9 +9,7 @@ async function getResponseData<TResponseData>(
     try {
       return (await response.json()) as TResponseData;
     } catch (error) {
-      if (error instanceof SyntaxError) {
-        return await response.text();
-      } else {
+      if (!(error instanceof SyntaxError)) {
         throw error;
       }
     }
@@ -68,7 +66,11 @@ export async function defaultErrorHandler<TResponseData>(
       );
     }
     default: {
-      break;
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Unhandled error!",
+      );
     }
   }
 }

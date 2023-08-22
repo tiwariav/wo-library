@@ -51,11 +51,11 @@ export class AnyStorage {
 
   getItem = async <TResponse extends null | string>(
     key: string,
-    { json = this.json, noNull = false, persist = false, session = false } = {},
-  ): Promise<TResponse | null | string | undefined> => {
+    { json = this.json, persist = false, session = false } = {},
+  ): Promise<TResponse | null | string> => {
     const storageKey = this.formKey(key);
     const backend = this.getBackend(persist, session);
-    let response = await backend.getItem(storageKey);
+    let response: TResponse | null | string = await backend.getItem(storageKey);
     if (response === null && !persist) {
       response = await (session
         ? this.backends["persist"].getItem(storageKey)
@@ -64,11 +64,13 @@ export class AnyStorage {
     if (json && response) {
       try {
         response = JSON.parse(response) as TResponse;
-      } catch {
+      } catch (error) {
+        if (!(error instanceof SyntaxError)) {
+          throw error;
+        }
         // do nothing, return the string
       }
     }
-    if (undefined && response === null) return undefined;
     return response;
   };
 

@@ -6,7 +6,7 @@ export async function jsonResponseHandler<TResponseData = object>(
 ): Promise<TResponseData> {
   if (!response.ok) {
     // request not successful, call errorHandler with request param
-    await errorHandler(response);
+    await errorHandler<TResponseData>(response);
   }
   if (response.status === 204) {
     // no content
