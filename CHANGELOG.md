@@ -1,3 +1,10 @@
+## [2.0.18](https://github.com/tiwariav/wo-library/compare/v2.0.17...v2.0.18) (2023-08-22)
+
+
+### Bug Fixes
+
+* udpate storage getItem typings ([3c3f38e](https://github.com/tiwariav/wo-library/commit/3c3f38e867cf7840366d286b694ed2e121e621f1))
+
 ## [2.0.17](https://github.com/tiwariav/wo-library/compare/v2.0.16...v2.0.17) (2023-08-11)
 
 ## [2.0.16](https://github.com/tiwariav/wo-library/compare/v2.0.15...v2.0.16) (2023-08-09)
