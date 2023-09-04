@@ -14,7 +14,28 @@
         ]
       }
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "types": [
+            { "type": "feat", "section": "✨ Features" },
+            { "type": "fix", "section": "🐛 Bug Fixes" },
+            { "type": "perf", "section": "⚡️ Performance Improvements" },
+            { "type": "revert", "section": "Reverts" },
+            { "type": "docs", "section": "📚 Documentation", "hidden": false },
+            { "type": "style", "section": "🎨 Styles", "hidden": false },
+            {
+              "type": "refactor",
+              "section": "♻️ Code Refactors",
+              "hidden": false
+            },
+            { "type": "test", "section": "🚦 Tests", "hidden": false }
+          ]
+        }
+      }
+    ],
     "@semantic-release/github",
     "@semantic-release/changelog",
     [
