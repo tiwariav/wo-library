@@ -40,7 +40,8 @@ export function rollupInputMap(
   {
     excludeDirectories = [],
     extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
-  } = {}
+    sourceDirectory = "src",
+  } = {},
 ) {
   const pattern = `${directory}/**/${extension}`;
   const response = [];
@@ -52,11 +53,11 @@ export function rollupInputMap(
       continue;
     }
     response.push([
-      // This remove `src/` as well as the file extension from each
+      // This remove `sourceDirectory` as well as the file extension from each
       // file, so e.g. src/nested/foo.js becomes nested/foo
       path.relative(
-        directory,
-        file.slice(0, file.length - path.extname(file).length)
+        sourceDirectory,
+        file.slice(0, file.length - path.extname(file).length),
       ),
       // This expands the relative paths to absolute paths, so e.g.
       // src/nested/foo becomes /project/src/nested/foo.js
@@ -75,7 +76,7 @@ export function bundleCss(root, directory, options) {
         ...postcssConfig,
         extract: key + ".css",
         include: value,
-      })
+      }),
     );
   }
   return config;
