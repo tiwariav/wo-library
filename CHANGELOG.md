@@ -1,3 +1,12 @@
+## [2.0.20](https://github.com/tiwariav/wo-library/compare/v2.0.19...v2.0.20) (2023-09-04)
+
+
+### 🐛 Bug Fixes
+
+* add missing commit messages to changelog ([78a58c6](https://github.com/tiwariav/wo-library/commit/78a58c63e9d8815f9992c63a72701d896ba5554d))
+* configure semantic release to include refactor commits ([d6688d0](https://github.com/tiwariav/wo-library/commit/d6688d01931e191747722921433723efd0eabf8e))
+* update rollupInputMap to form correct path for nested src directories ([7dd3623](https://github.com/tiwariav/wo-library/commit/7dd3623f2b401143ab40ffda5957359c9cc0931e))
+
 <!-- markdownlint-disable MD001 -->
 
 ## [1.14.19](https://github.com/tiwariav/wo-library/compare/v1.14.18...v1.14.19) (2023-09-04)
