@@ -87,6 +87,7 @@ export default function WoSwiper({
       )}
       <Swiper
         // modules
+        className={styles.swiper}
         // freemode
         freeMode={
           pagination
@@ -97,6 +98,9 @@ export default function WoSwiper({
                 ...freeMode,
               }
         }
+        modules={modules}
+        mousewheel={{ forceToAxis: true }}
+        navigation={navigation}
         pagination={
           pagination
             ? {
@@ -105,10 +109,6 @@ export default function WoSwiper({
               }
             : false
         }
-        className={styles.swiper}
-        modules={modules}
-        mousewheel={{ forceToAxis: true }}
-        navigation={navigation}
         spaceBetween={variant === "coverflow" ? 64 : 32}
         {...derivedProps}
         {...props}

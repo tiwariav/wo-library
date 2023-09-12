@@ -22,6 +22,7 @@ const extendTs = [
 ];
 
 const rulesJs = {
+  "css-modules/no-undef-class": ["error", { camelCase: true }],
   "css-modules/no-unused-class": ["error", { camelCase: true }],
   "eslint-comments/disable-enable-pair": ["error", { allowWholeFile: true }],
   "import/no-unresolved": "off",

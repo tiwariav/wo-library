@@ -106,11 +106,11 @@ export const Placements: Story = {
       <div>
         <div className="story-title">Leftdiv</div>
         <div
+          className="story-list"
           style={{
             gap: "1.5rem",
             paddingLeft: 120,
           }}
-          className="story-list"
         >
           <PlacementCell placement="left" {...args} />
         </div>
@@ -118,11 +118,11 @@ export const Placements: Story = {
       <div>
         <div className="story-title">Right</div>
         <div
+          className="story-list"
           style={{
             gap: "1.5rem",
             paddingRight: 120,
           }}
-          className="story-list"
         >
           <PlacementCell placement="right" {...args} />
         </div>
@@ -130,11 +130,11 @@ export const Placements: Story = {
       <div>
         <div className="story-title">Top</div>
         <div
+          className="story-list"
           style={{
             gap: "3rem",
             paddingTop: 32,
           }}
-          className="story-list"
         >
           <PlacementCell placement="top" style={{ minWidth: 160 }} {...args} />
         </div>
@@ -142,11 +142,11 @@ export const Placements: Story = {
       <div>
         <div className="story-title">Bottom</div>
         <div
+          className="story-list"
           style={{
             gap: "3rem",
             paddingBottom: 32,
           }}
-          className="story-list"
         >
           <PlacementCell
             placement="bottom"
