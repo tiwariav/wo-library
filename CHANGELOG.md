@@ -1,3 +1,10 @@
+## [2.0.23](https://github.com/tiwariav/wo-library/compare/v2.0.22...v2.0.23) (2023-09-12)
+
+
+### 🐛 Bug Fixes
+
+* add eslint rule `"css-modules/no-unused-class` in default eslint config ([cca4a2d](https://github.com/tiwariav/wo-library/commit/cca4a2d6cccc72f9f1cda055c3179b95fdd4f8cb))
+
 ## [2.0.22](https://github.com/tiwariav/wo-library/compare/v2.0.21...v2.0.22) (2023-09-11)
 
 
