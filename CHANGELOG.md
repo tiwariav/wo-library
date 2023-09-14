@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/tiwariav/wo-library/compare/v2.1.0...v2.1.1) (2023-09-14)
+
+
+### ♻️ Code Refactors
+
+* update stylelint shared config ([6b051f7](https://github.com/tiwariav/wo-library/commit/6b051f71a79a5ad7d9bd656f85202f5a55177183))
+
 ## [2.1.0](https://github.com/tiwariav/wo-library/compare/v2.0.23...v2.1.0) (2023-09-14)
 
 
