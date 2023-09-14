@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/tiwariav/wo-library/compare/v2.0.23...v2.1.0) (2023-09-14)
+
+
+### ✨ Features
+
+* add shared config for linters ([1874ed7](https://github.com/tiwariav/wo-library/commit/1874ed7ed6e3556e11568dcacccb20d7d6c67839))
+
 ## [2.0.23](https://github.com/tiwariav/wo-library/compare/v2.0.22...v2.0.23) (2023-09-12)
 
 
