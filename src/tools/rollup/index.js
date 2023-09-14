@@ -19,6 +19,8 @@ import _postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
 import _visualizer from "rollup-plugin-visualizer";
 
+import { presetEnvOptions } from "../cjs/postcss.cjs";
+
 const commonjs = defaultImport(_commonjs);
 const postcss = defaultImport(_postcss);
 const copy = defaultImport(_copy);
@@ -118,18 +120,7 @@ export const postcssConfig = {
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     postcssImport(),
     postcssFlexbugsFixes(),
-    postcssPresetEnv({
-      autoprefixer: {
-        flexbox: "no-2009",
-      },
-      features: {
-        "custom-media-queries": { preserve: true },
-        "custom-properties": true,
-        "gap-properties": true,
-        "nesting-rules": true,
-      },
-      stage: 1,
-    }),
+    postcssPresetEnv(presetEnvOptions),
     // Adds PostCSS Normalize as the reset css with default options,
     // so that it honors browserslist config in package.json
     // which in turn let's users customize the target behavior as per their needs.
@@ -139,6 +130,10 @@ export const postcssConfig = {
   ],
   sourceMap: isDev,
 };
+
+if (!isDev) {
+  postcssConfig.modules.generateScopedName = "[hash:base64:8]";
+}
 
 export const esOutputOptions = {
   chunkFileNames: "chunks/[name]-[hash].js",
