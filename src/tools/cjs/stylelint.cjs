@@ -19,10 +19,26 @@ const config = {
     "max-nesting-depth": 4,
     "plugin/declaration-block-no-ignored-properties": true,
     "scale-unlimited/declaration-strict-value": [
-      ["/color$/", "background", "border-radius", "font-size", "z-index"],
+      [
+        "/color$/",
+        "background",
+        "border-radius",
+        "box-shadow",
+        "font-size",
+        "z-index",
+        "/margin/",
+        "/padding/",
+      ],
       {
         disableFix: true,
-        ignoreValues: ["currentColor", "inherit", "transparent", 0],
+        ignoreValues: [
+          "auto",
+          "currentColor",
+          "inherit",
+          "none",
+          "transparent",
+          0,
+        ],
       },
     ],
   },

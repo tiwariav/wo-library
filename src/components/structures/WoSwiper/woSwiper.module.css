@@ -91,7 +91,7 @@
 }
 
 .bottom {
-  margin-top: 1em;
+  margin-top: var(--ye-spacing-rem-normal);
   text-align: center;
   opacity: 0.25;
 }
