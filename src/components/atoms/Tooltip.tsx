@@ -155,8 +155,10 @@ export default function Tooltip({
   );
 
   const triggerElement = useMemo<ReactNode>(() => {
-    if (isValidElement(children)) {
+    if (isValidElement<{ className: string; style: CSSProperties }>(children)) {
       return cloneElement(children, {
+        className: clsx(styles.reference, innerClassNames.reference),
+        style,
         ...getReferenceProps({ ref: refs.setReference }),
       });
     }
