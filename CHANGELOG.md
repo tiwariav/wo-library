@@ -1,3 +1,11 @@
+## [2.1.3](https://github.com/tiwariav/wo-library/compare/v2.1.2...v2.1.3) (2023-09-20)
+
+
+### 🐛 Bug Fixes
+
+* add props to tooltip trigger element in all cases ([114777c](https://github.com/tiwariav/wo-library/commit/114777c2612110ee4edc84e00643cf53e291cc2e))
+* update postcss config ([1b6f4b1](https://github.com/tiwariav/wo-library/commit/1b6f4b12d5a01ced2a606fe777060b176832d105))
+
 ## [2.1.2](https://github.com/tiwariav/wo-library/compare/v2.1.1...v2.1.2) (2023-09-16)
 
 
