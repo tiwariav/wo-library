@@ -11,15 +11,14 @@ const presetEnvOptions = {
   stage: 1,
 };
 
-const config = {
+const getFinalConfig = (env) => ({
   plugins: [
     "postcss-import",
-    "postcss-flexbugs-fixes",
-    ["postcss-preset-env", presetEnvOptions],
+    ["postcss-preset-env", { ...presetEnvOptions, env }],
     "postcss-normalize",
     ["cssnano", { preset: "advanced" }],
   ],
   sourceMap: true,
-};
+});
 
-module.exports = { config, presetEnvOptions };
+module.exports = { getFinalConfig, presetEnvOptions };

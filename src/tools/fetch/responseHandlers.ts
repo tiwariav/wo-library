@@ -15,13 +15,13 @@ export async function jsonResponseHandler<TResponseData = object>(
   return (await response.json()) as TResponseData;
 }
 
-export async function textResponseHandler(
+export async function textResponseHandler<TResponseData = string>(
   response: Response,
   errorHandler: typeof defaultErrorHandler,
-): Promise<string> {
+): Promise<TResponseData> {
   if (!response.ok) {
     // request not successful, call errorHandler with request param
     await errorHandler(response);
   }
-  return await response.text();
+  return (await response.text()) as TResponseData;
 }

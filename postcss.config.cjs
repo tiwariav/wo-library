@@ -1,3 +1,5 @@
 /* eslint-disable unicorn/prefer-module */
-const { config } = require("./src/tools/cjs/postcss.cjs");
-module.exports = config;
+/* used only by storybook */
+
+const { getFinalConfig } = require("./src/tools/cjs/postcss.cjs");
+module.exports = getFinalConfig("development");

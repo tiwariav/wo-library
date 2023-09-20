@@ -1,7 +1,6 @@
 import { SetRequired } from "type-fest";
 
 import { defaultErrorHandler } from "./errorHandlers.js";
-import { jsonResponseHandler } from "./responseHandlers.js";
 
 export type WoRequestMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 
@@ -30,7 +29,10 @@ export interface FetchOptions<TData = WoRequestData, TQuery = WoRequestQuery> {
   noProxy?: boolean;
   query?: TQuery;
   requireAuth?: boolean;
-  responseHandler?: typeof jsonResponseHandler;
+  responseHandler?: <TData>(
+    response: Response,
+    errorHandler: typeof defaultErrorHandler,
+  ) => Promise<TData>;
   token?: string;
   trailingSlash?: boolean;
 }
