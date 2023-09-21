@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/tiwariav/wo-library/compare/v3.0.0...v3.0.1) (2023-09-21)
+
+
+### ♻️ Code Refactors
+
+* update packages ([a6b7661](https://github.com/tiwariav/wo-library/commit/a6b76612bb240a85be8ed1f43c8a268bcb402efd))
+
 ## [3.0.0](https://github.com/tiwariav/wo-library/compare/v2.1.3...v3.0.0) (2023-09-21)
 
 
