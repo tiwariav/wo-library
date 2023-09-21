@@ -1,6 +1,5 @@
 ## [2.1.3](https://github.com/tiwariav/wo-library/compare/v2.1.2...v2.1.3) (2023-09-20)
 
-
 ### 🐛 Bug Fixes
 
 * add props to tooltip trigger element in all cases ([114777c](https://github.com/tiwariav/wo-library/commit/114777c2612110ee4edc84e00643cf53e291cc2e))
@@ -8,13 +7,11 @@
 
 ## [2.1.2](https://github.com/tiwariav/wo-library/compare/v2.1.1...v2.1.2) (2023-09-16)
 
-
 ### 🐛 Bug Fixes
 
 * preserve custom media queries ([bda54a5](https://github.com/tiwariav/wo-library/commit/bda54a5ee3da135ac59d6cd0657e948f8d7eaabf))
 
 ## [2.1.1](https://github.com/tiwariav/wo-library/compare/v2.1.0...v2.1.1) (2023-09-14)
-
 
 ### ♻️ Code Refactors
 
@@ -22,13 +19,11 @@
 
 ## [2.1.0](https://github.com/tiwariav/wo-library/compare/v2.0.23...v2.1.0) (2023-09-14)
 
-
 ### ✨ Features
 
 * add shared config for linters ([1874ed7](https://github.com/tiwariav/wo-library/commit/1874ed7ed6e3556e11568dcacccb20d7d6c67839))
 
 ## [2.0.23](https://github.com/tiwariav/wo-library/compare/v2.0.22...v2.0.23) (2023-09-12)
-
 
 ### 🐛 Bug Fixes
 
@@ -36,20 +31,17 @@
 
 ## [2.0.22](https://github.com/tiwariav/wo-library/compare/v2.0.21...v2.0.22) (2023-09-11)
 
-
 ### ♻️ Code Refactors
 
 * update dependencies ([8c5abf4](https://github.com/tiwariav/wo-library/commit/8c5abf4cd34d74b8ae8ae78bedc6cd54875a2f1c))
 
 ## [2.0.21](https://github.com/tiwariav/wo-library/compare/v2.0.20...v2.0.21) (2023-09-04)
 
-
 ### ♻️ Code Refactors
 
 * update dependencies ([f6dc3e6](https://github.com/tiwariav/wo-library/commit/f6dc3e68c599d5961c3c52194cb69178434ee44d))
 
 ## [2.0.20](https://github.com/tiwariav/wo-library/compare/v2.0.19...v2.0.20) (2023-09-04)
-
 
 ### 🐛 Bug Fixes
 
