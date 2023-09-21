@@ -1,3 +1,18 @@
+## [3.0.0](https://github.com/tiwariav/wo-library/compare/v2.1.3...v3.0.0) (2023-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* `dist.css` has been removed from the final bundle.
+Now each component imports its own styles to reduce the final bundle size of css.
+* `dist.css` has been removed from the final bundle.
+Now each component imports its own styles to reduce the final bundle size of css.
+
+### ✨ Features
+
+* add css cascade layers ([030de48](https://github.com/tiwariav/wo-library/commit/030de480936b12abcdf965687ea653e0a7fb515e))
+* add css cascade layers ([d8092fd](https://github.com/tiwariav/wo-library/commit/d8092fdbafb52ac363cd306e306e2f4bedc0c71d))
+
 ## [2.1.3](https://github.com/tiwariav/wo-library/compare/v2.1.2...v2.1.3) (2023-09-20)
 
 ### 🐛 Bug Fixes
