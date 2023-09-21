@@ -109,6 +109,9 @@ export function getBuildPlugins(buildPath = "dist") {
 export const postcssConfig = {
   config: false,
   extensions: [".css"],
+  inject(cssVariableName) {
+    return `import styleInject from 'style-inject';\nstyleInject(${cssVariableName});`;
+  },
   modules: { localsConvention: "camelCase" },
   plugins: [
     /* eslint-disable @typescript-eslint/no-unsafe-call */
