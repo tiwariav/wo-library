@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/tiwariav/wo-library/compare/v3.0.1...v3.0.2) (2023-09-21)
+
+
+### 🐛 Bug Fixes
+
+* update rollup postcss config for style-inject ([4abfde9](https://github.com/tiwariav/wo-library/commit/4abfde916d8a8f167f1b0fb5253cc0aaee0b27ba))
+
 ## [3.0.1](https://github.com/tiwariav/wo-library/compare/v3.0.0...v3.0.1) (2023-09-21)
 
 
