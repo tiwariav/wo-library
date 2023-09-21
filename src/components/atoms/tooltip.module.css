@@ -1,22 +1,24 @@
-.reference {
-  position: relative;
-  display: inline-block;
-}
+@layer wo-components {
+  .reference {
+    position: relative;
+    display: inline-block;
+  }
 
-.floating {
-  z-index: var(--ye-z-base);
-}
+  .floating {
+    z-index: var(--ye-z-base);
+  }
 
-.title {
-  padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
-  font-size: var(--ye-font-size-small);
-}
+  .title {
+    padding: var(--ye-spacing-rem-xsmall) var(--ye-spacing-rem-small);
+    font-size: var(--ye-font-size-small);
+  }
 
-.is-plain {
-  color: var(--ye-color-text-inverse);
-  background-color: var(--ye-color-background-inverse-light);
-}
+  .is-plain {
+    color: var(--ye-color-text-inverse);
+    background-color: var(--ye-color-background-inverse-light);
+  }
 
-.arrow {
-  fill: var(--ye-color-background-inverse-light);
+  .arrow {
+    fill: var(--ye-color-background-inverse-light);
+  }
 }
