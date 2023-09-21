@@ -109,7 +109,6 @@ export function getBuildPlugins(buildPath = "dist") {
 export const postcssConfig = {
   config: false,
   extensions: [".css"],
-  extract: "dist.css",
   modules: { localsConvention: "camelCase" },
   plugins: [
     /* eslint-disable @typescript-eslint/no-unsafe-call */

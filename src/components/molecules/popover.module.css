@@ -1,8 +1,10 @@
-.root {
-  background-color: var(--ye-color-background);
-  box-shadow: var(--ye-shadow-floating-highest);
-}
+@layer wo-components {
+  .root {
+    background-color: var(--ye-color-background);
+    box-shadow: var(--ye-shadow-floating-highest);
+  }
 
-.arrow {
-  fill: var(--ye-color-background);
+  .arrow {
+    fill: var(--ye-color-background);
+  }
 }
