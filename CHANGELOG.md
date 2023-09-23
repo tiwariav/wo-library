@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/tiwariav/wo-library/compare/v3.0.2...v3.0.3) (2023-09-23)
+
+
+### 🐛 Bug Fixes
+
+* add postcss-preset-env config to shared postcss config ([43738b6](https://github.com/tiwariav/wo-library/commit/43738b6400e26339a72196f63100171f505e73b2))
+
 ## [3.0.2](https://github.com/tiwariav/wo-library/compare/v3.0.1...v3.0.2) (2023-09-21)
 
 
