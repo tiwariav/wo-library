@@ -3,6 +3,7 @@ const presetEnvOptions = {
     flexbox: "no-2009",
   },
   features: {
+    "cascade-layers": false,
     "custom-media-queries": { preserve: true },
     "custom-properties": true,
     "gap-properties": true,

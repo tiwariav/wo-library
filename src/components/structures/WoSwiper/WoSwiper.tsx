@@ -17,6 +17,7 @@ import styles from "./woSwiper.module.css";
 export const WO_SWIPER_VARIANTS = ["coverflow"] as const;
 
 const modules = [
+  A11y,
   EffectCoverflow,
   FreeMode,
   Mousewheel,
@@ -24,9 +25,7 @@ const modules = [
   Autoplay,
   Pagination,
 ];
-if (process.env.JEST_WORKER_ID) {
-  modules.push(A11y);
-}
+
 export interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
   children: JSX.Element | JSX.Element[];
   className?: string;

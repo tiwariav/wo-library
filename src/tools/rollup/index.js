@@ -10,12 +10,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcssImport from "postcss-import";
 import postcssNormalize from "postcss-normalize";
+import _postcssPresetEnv from "postcss-preset-env";
 import _copy from "rollup-plugin-copy";
 import _del from "rollup-plugin-delete";
 import _externals from "rollup-plugin-node-externals";
 import _postcss from "rollup-plugin-postcss";
 import progress from "rollup-plugin-progress";
 import _visualizer from "rollup-plugin-visualizer";
+
+import { presetEnvOptions } from "../cjs/postcss.cjs";
 
 const commonjs = defaultImport(_commonjs);
 const postcss = defaultImport(_postcss);
@@ -25,6 +28,7 @@ const beep = defaultImport(_beep);
 const visualizer = defaultImport(_visualizer);
 const externals = defaultImport(_externals);
 const terser = defaultImport(_terser);
+const postcssPresetEnv = defaultImport(_postcssPresetEnv);
 const eslint = defaultImport(_eslint);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const json = defaultImport(_json);
@@ -116,6 +120,7 @@ export const postcssConfig = {
   plugins: [
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     postcssImport(),
+    postcssPresetEnv(presetEnvOptions),
     // Adds PostCSS Normalize as the reset css with default options,
     // so that it honors browserslist config in package.json
     // which in turn let's users customize the target behavior as per their needs.
