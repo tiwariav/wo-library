@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/tiwariav/wo-library/compare/v3.0.3...v3.0.4) (2023-09-24)
+
+
+### 🐛 Bug Fixes
+
+* remove postcss-normalize ([099e2e4](https://github.com/tiwariav/wo-library/commit/099e2e4e12093703e51648474690ef4d41721139))
+
 ## [3.0.3](https://github.com/tiwariav/wo-library/compare/v3.0.2...v3.0.3) (2023-09-23)
 
 
