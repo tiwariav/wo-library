@@ -9,7 +9,6 @@ import { globSync } from "glob";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import postcssImport from "postcss-import";
-import postcssNormalize from "postcss-normalize";
 import _postcssPresetEnv from "postcss-preset-env";
 import _copy from "rollup-plugin-copy";
 import _del from "rollup-plugin-delete";
@@ -121,10 +120,6 @@ export const postcssConfig = {
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     postcssImport(),
     postcssPresetEnv(presetEnvOptions),
-    // Adds PostCSS Normalize as the reset css with default options,
-    // so that it honors browserslist config in package.json
-    // which in turn let's users customize the target behavior as per their needs.
-    postcssNormalize(),
     /* eslint-enable @typescript-eslint/no-unsafe-call */
     cssnano({ preset: "default" }),
   ],

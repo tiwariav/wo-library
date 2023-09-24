@@ -16,7 +16,6 @@ const getFinalConfig = (env) => ({
   plugins: [
     "postcss-import",
     ["postcss-preset-env", { ...presetEnvOptions, env }],
-    "postcss-normalize",
     ["cssnano", { preset: "advanced" }],
   ],
   sourceMap: true,
