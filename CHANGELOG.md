@@ -1,3 +1,10 @@
+## [3.0.6](https://github.com/tiwariav/wo-library/compare/v3.0.5...v3.0.6) (2023-09-25)
+
+
+### 🐛 Bug Fixes
+
+* add base.css to build output ([9cb1cde](https://github.com/tiwariav/wo-library/commit/9cb1cde9b9707c88ddbc38b738fb4547da625540))
+
 ## [3.0.5](https://github.com/tiwariav/wo-library/compare/v3.0.4...v3.0.5) (2023-09-25)
 
 
