@@ -1,3 +1,10 @@
+## [3.0.7](https://github.com/tiwariav/wo-library/compare/v3.0.6...v3.0.7) (2023-09-25)
+
+
+### 🐛 Bug Fixes
+
+* preserve custom media queries ([d94247d](https://github.com/tiwariav/wo-library/commit/d94247df5641f267ad023b52b2d42e378c9c4a1c))
+
 ## [3.0.6](https://github.com/tiwariav/wo-library/compare/v3.0.5...v3.0.6) (2023-09-25)
 
 
