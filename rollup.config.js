@@ -7,11 +7,13 @@ import { defaultImport } from "default-import";
 import _postcss from "rollup-plugin-postcss";
 
 import {
+  bundleCss,
   cjsOutputOptions,
   commonPlugins,
   devPlugins,
   esOutputOptions,
   getBuildPlugins,
+  getCssOutputOptions,
   postcssConfig,
   rollupInputMap,
 } from "./src/tools/rollup/index.js";
@@ -20,6 +22,7 @@ const postcss = defaultImport(_postcss);
 const typescript = defaultImport(_typescript);
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
+const STYLES_DIR = "src/styles";
 
 const config = [
   {
@@ -39,6 +42,17 @@ const config = [
     output: cjsOutputOptions,
     perf: isDev,
     plugins: [...commonPlugins, ...devPlugins],
+  },
+  {
+    input: rollupInputMap(import.meta.url, STYLES_DIR, {
+      extension: "!(*.module).css",
+    }),
+    output: getCssOutputOptions("./dist"),
+    perf: isDev,
+    plugins: [
+      ...bundleCss(import.meta.url, STYLES_DIR, { extension: "*.css" }),
+      ...devPlugins,
+    ],
   },
 ];
 
