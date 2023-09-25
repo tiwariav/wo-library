@@ -4,7 +4,7 @@ const presetEnvOptions = {
   },
   features: {
     "cascade-layers": false,
-    "custom-media-queries": true,
+    "custom-media-queries": { preserve: true },
     "custom-properties": true,
     "gap-properties": true,
     "nesting-rules": true,
