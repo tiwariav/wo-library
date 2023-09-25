@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/tiwariav/wo-library/compare/v3.0.4...v3.0.5) (2023-09-25)
+
+
+### 🐛 Bug Fixes
+
+* add swiper css to defaults layer ([8b3c53a](https://github.com/tiwariav/wo-library/commit/8b3c53a23e2b151327de3bb241d1467e21e7b57c))
+
 ## [3.0.4](https://github.com/tiwariav/wo-library/compare/v3.0.3...v3.0.4) (2023-09-24)
 
 
