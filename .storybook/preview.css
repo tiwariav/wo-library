@@ -53,3 +53,7 @@
   font-weight: 500;
   font-size: 20px;
 }
+
+.swiper-slide {
+  padding: 0.25rem;
+}

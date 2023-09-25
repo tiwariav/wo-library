@@ -17,7 +17,7 @@ function Template(args: WoSwiperProps) {
   return (
     <div style={{ overflow: "hidden", padding: 4 }}>
       <WoSwiper {...args}>
-        {Array.from({ length: 11 }).map((_, index) => (
+        {Array.from({ length: 11 }, (_, index) => (
           <div className="story-card" key={index} style={{ maxWidth: 200 }}>
             Content ...
           </div>

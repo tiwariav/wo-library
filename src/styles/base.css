@@ -1,5 +1,5 @@
 /* https://css-tricks.com/css-cascade-layers */
-@layer wo-reset, wo-components;
+@layer wo-reset, wo-defaults, wo-components;
 
 :root {
   /* colors */
