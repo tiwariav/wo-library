@@ -1,0 +1,7 @@
+@import url("swiper/swiper.min.css") layer(wo-defaults);
+@import url("swiper/modules/a11y.min.css") layer(wo-defaults);
+@import url("swiper/modules/effect-coverflow.min.css") layer(wo-defaults);
+@import url("swiper/modules/free-mode.min.css") layer(wo-defaults);
+@import url("swiper/modules/mousewheel.min.css") layer(wo-defaults);
+@import url("swiper/modules/navigation.min.css") layer(wo-defaults);
+@import url("swiper/modules/pagination.min.css") layer(wo-defaults);
