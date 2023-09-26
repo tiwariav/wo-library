@@ -1,3 +1,10 @@
+## [3.0.8](https://github.com/tiwariav/wo-library/compare/v3.0.7...v3.0.8) (2023-09-26)
+
+
+### 🐛 Bug Fixes
+
+* re-export swiper css ([da9472e](https://github.com/tiwariav/wo-library/commit/da9472e9220d38579e99b96340073f3aea3662f1))
+
 ## [3.0.7](https://github.com/tiwariav/wo-library/compare/v3.0.6...v3.0.7) (2023-09-25)
 
 
