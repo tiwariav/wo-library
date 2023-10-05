@@ -21,6 +21,7 @@ import {
 import { clsx } from "clsx";
 import {
   CSSProperties,
+  MouseEventHandler,
   ReactNode,
   RefObject,
   cloneElement,
@@ -48,6 +49,8 @@ export interface TooltipProps {
   };
   isOpen?: boolean;
   isPopover?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClose?: () => void;
   options?: {
     offset?: OffsetOptions;
     padding?: Padding;
@@ -68,6 +71,8 @@ export default function Tooltip({
   innerClassNames = {},
   isOpen,
   isPopover,
+  onClick,
+  onClose,
   options: propsOptions,
   placement,
   portal,
@@ -79,6 +84,14 @@ export default function Tooltip({
   const arrowRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useStateWithProp(isOpen);
   const options = { ...defaultOptions, ...propsOptions };
+
+  console.log({ isOpen, open });
+
+  const handleOpenChange = (value: boolean) => {
+    setOpen(value);
+    onClose?.();
+  };
+
   const { context, floatingStyles, middlewareData, refs } = useFloating({
     middleware: [
       ...(placement ? [] : [autoPlacement()]),
@@ -86,7 +99,7 @@ export default function Tooltip({
       shift({ padding: options.padding }),
       ...(showArrow ? [arrow({ element: arrowRef.current })] : []),
     ],
-    onOpenChange: setOpen,
+    onOpenChange: handleOpenChange,
     open,
     ...(placement ? { placement } : {}),
     whileElementsMounted: autoUpdate,
@@ -166,7 +179,10 @@ export default function Tooltip({
       <button
         className={clsx(styles.reference, innerClassNames.reference)}
         style={style}
-        {...getReferenceProps({ ref: refs.setReference })}
+        {...getReferenceProps({
+          onClick,
+          ref: refs.setReference,
+        })}
       >
         {children}
       </button>
@@ -175,6 +191,7 @@ export default function Tooltip({
     children,
     getReferenceProps,
     innerClassNames.reference,
+    onClick,
     refs.setReference,
     style,
   ]);

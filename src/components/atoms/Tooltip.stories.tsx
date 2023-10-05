@@ -1,5 +1,6 @@
 import { Placement } from "@floating-ui/react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import { playFloatingBasic } from "../../tools/storybook/play.js";
 import Tooltip, { TooltipProps } from "./Tooltip.js";
@@ -179,4 +180,37 @@ export const Triggers: Story = {
       </div>
     </div>
   ),
+};
+
+const WithButton = () => {
+  const [open, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Tooltip
+        isOpen={open}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+        onClose={() => setIsOpen(false)}
+        title={
+          <div>
+            Content in Tooltip!
+            <button
+              onClick={() => setIsOpen(false)}
+              style={{ marginLeft: "auto" }}
+            >
+              Close
+            </button>
+          </div>
+        }
+      >
+        Content in Tooltip!
+      </Tooltip>
+    </>
+  );
+};
+
+export const withButton: Story = {
+  render: () => <WithButton />,
 };

@@ -33,6 +33,7 @@ export default function Modal({
   onClose,
 }: ModalProps) {
   const [open, setOpen] = useStateWithProp(isOpen);
+
   const handleOpenChange = useCallback(
     (value: boolean) => {
       setOpen(value);
