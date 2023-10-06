@@ -83,14 +83,13 @@ export default function Tooltip({
 }: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useStateWithProp(isOpen);
-  const options = { ...defaultOptions, ...propsOptions };
-
-  console.log({ isOpen, open });
 
   const handleOpenChange = (value: boolean) => {
     setOpen(value);
     onClose?.();
   };
+
+  const options = { ...defaultOptions, ...propsOptions };
 
   const { context, floatingStyles, middlewareData, refs } = useFloating({
     middleware: [
