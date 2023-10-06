@@ -1,0 +1,15 @@
+{
+  "absolute": true,
+  "format": ["css", "javascript", "typescript"],
+  "gitignore": true,
+  "ignore": ["**/.next", "**/out", "**/analyze"],
+  "maxLines": 5000,
+  "minTokens": 60,
+  "minLines": 3,
+  "mode": "strict",
+  "noSymlinks": false,
+  "output": "./reports/jscpd/",
+  "reporters": ["html", "json"],
+  "silent": true,
+  "threshold": 0
+}
