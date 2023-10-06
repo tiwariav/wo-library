@@ -4,7 +4,7 @@ name: "Lint Checks"
 on: pull_request
 
 jobs:
-  build-and-release:
+  lint-checks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
