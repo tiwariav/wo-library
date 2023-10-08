@@ -85,8 +85,6 @@ export default function Tooltip({
   const [open, setOpen] = useStateWithProp(isOpen);
   const options = { ...defaultOptions, ...propsOptions };
 
-  console.log({ isOpen, open });
-
   const handleOpenChange = (value: boolean) => {
     setOpen(value);
     onClose?.();
