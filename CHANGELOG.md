@@ -1,3 +1,15 @@
+## [3.0.9](https://github.com/tiwariav/wo-library/compare/v3.0.8...v3.0.9) (2023-10-06)
+
+
+### 🐛 Bug Fixes
+
+* close toltip from inside title content ([2cf0ee1](https://github.com/tiwariav/wo-library/commit/2cf0ee116ab62d891d47aee968ba7259120e09c5))
+
+
+### ♻️ Code Refactors
+
+* add lint check actions ([22d6e3d](https://github.com/tiwariav/wo-library/commit/22d6e3dc72c279e763e53002feeaecda15203acf))
+
 ## [3.0.8](https://github.com/tiwariav/wo-library/compare/v3.0.7...v3.0.8) (2023-09-26)
 
 

@@ -10,7 +10,7 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import { ReactNode, useCallback } from "react";
+import { ReactNode } from "react";
 
 import useStateWithProp from "../../hooks/useStateWithProp.js";
 import styles from "./modal.module.css";
@@ -34,13 +34,10 @@ export default function Modal({
 }: ModalProps) {
   const [open, setOpen] = useStateWithProp(isOpen);
 
-  const handleOpenChange = useCallback(
-    (value: boolean) => {
-      setOpen(value);
-      onClose?.();
-    },
-    [onClose, setOpen],
-  );
+  const handleOpenChange = (value: boolean) => {
+    setOpen(value);
+    onClose?.();
+  };
 
   const { context, refs } = useFloating({
     onOpenChange: handleOpenChange,
