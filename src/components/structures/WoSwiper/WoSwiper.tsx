@@ -11,7 +11,6 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "../../../styles/woSwiper.css";
 import styles from "./woSwiper.module.css";
 
 export const WO_SWIPER_VARIANTS = ["coverflow"] as const;
