@@ -1,3 +1,15 @@
+## [3.1.0](https://github.com/tiwariav/wo-library/compare/v3.0.9...v3.1.0) (2023-10-10)
+
+
+### ✨ Features
+
+* enable individual css extraction for modules ([a6c9239](https://github.com/tiwariav/wo-library/commit/a6c92396b3db35e0c743ac88c20a437555bda775))
+
+
+### 🐛 Bug Fixes
+
+* add postcss global import plugin for swiper ([ec5e470](https://github.com/tiwariav/wo-library/commit/ec5e47077bf1ce80f5b2573748274d36b73a1fec))
+
 ## [3.0.9](https://github.com/tiwariav/wo-library/compare/v3.0.8...v3.0.9) (2023-10-06)
 
 
