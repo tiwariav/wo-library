@@ -1,0 +1,17 @@
+diff --git a/node_modules/rollup-plugin-postcss/dist/index.js b/node_modules/rollup-plugin-postcss/dist/index.js
+index 8ca4cf3..9175792 100644
+--- a/node_modules/rollup-plugin-postcss/dist/index.js
++++ b/node_modules/rollup-plugin-postcss/dist/index.js
+@@ -945,6 +945,12 @@ var index = ((options = {}) => {
+               map.file = fileName;
+             }
+ 
++            const cssPath = normalizePath(result.id.replace(options_.preserveModulesRoot + "/", "").replace(".module.", "."));
++            _this2.emitFile({
++              fileName: cssPath,
++              type: 'asset',
++              source: result.code
++            });
+             concat.add(relative, result.code, map);
+           }
+ 

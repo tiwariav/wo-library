@@ -18,7 +18,7 @@ const getFinalConfig = (env) => ({
     ["postcss-preset-env", { ...presetEnvOptions, env }],
     ["cssnano", { preset: "advanced" }],
   ],
-  sourceMap: true,
+  sourceMap: env === "development",
 });
 
 module.exports = { getFinalConfig, presetEnvOptions };

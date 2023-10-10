@@ -7,6 +7,7 @@ import { defaultImport } from "default-import";
 import _postcss from "rollup-plugin-postcss";
 
 import {
+  addCssImportBanner,
   bundleCss,
   cjsOutputOptions,
   commonPlugins,
@@ -26,8 +27,13 @@ const STYLES_DIR = "src/styles";
 
 const config = [
   {
-    input: rollupInputMap(import.meta.url, "src"),
-    output: esOutputOptions,
+    input: rollupInputMap(import.meta.url, "src", {
+      excludeDirectories: ["styles"],
+    }),
+    output: {
+      ...esOutputOptions,
+      banner: addCssImportBanner,
+    },
     perf: isDev,
     plugins: [
       ...commonPlugins,
@@ -44,9 +50,7 @@ const config = [
     plugins: [...commonPlugins, ...devPlugins],
   },
   {
-    input: rollupInputMap(import.meta.url, STYLES_DIR, {
-      extension: "!(*.module).css",
-    }),
+    input: rollupInputMap(import.meta.url, STYLES_DIR, { extension: "*.css" }),
     output: getCssOutputOptions("./dist"),
     perf: isDev,
     plugins: [

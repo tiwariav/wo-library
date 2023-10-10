@@ -40,7 +40,7 @@ export function cssModules(
                     ? "[name]__[local]"
                     : "[hash:base64]",
               },
-              sourceMap: true,
+              sourceMap: configType === "DEVELOPMENT",
             },
           };
         }

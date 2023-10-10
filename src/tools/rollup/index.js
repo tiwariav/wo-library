@@ -112,9 +112,7 @@ export function getBuildPlugins(buildPath = "dist") {
 export const postcssConfig = {
   config: false,
   extensions: [".css"],
-  inject(cssVariableName) {
-    return `import styleInject from 'style-inject';\nstyleInject(${cssVariableName});`;
-  },
+  extract: "dist.css",
   modules: { localsConvention: "camelCase" },
   plugins: [
     /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -161,5 +159,14 @@ export function getCssOutputOptions(directory = "./dist") {
 export function addScriptBanner(chunk, directory = "scripts/") {
   if (chunk.fileName.startsWith(directory)) {
     return "#!/usr/bin/env node";
+  }
+}
+
+export function addCssImportBanner(chunk) {
+  if (chunk.fileName.includes(".module.css")) {
+    return `import "./${chunk.fileName
+      .split("/")
+      .pop()
+      .replace(".module.css.js", ".css")}";\n`;
   }
 }
