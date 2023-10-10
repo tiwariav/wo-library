@@ -8,6 +8,7 @@ import { defaultImport } from "default-import";
 import { globSync } from "glob";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import _postcssGlobalImport from "postcss-global-import";
 import postcssImport from "postcss-import";
 import _postcssPresetEnv from "postcss-preset-env";
 import _copy from "rollup-plugin-copy";
@@ -28,6 +29,7 @@ const visualizer = defaultImport(_visualizer);
 const externals = defaultImport(_externals);
 const terser = defaultImport(_terser);
 const postcssPresetEnv = defaultImport(_postcssPresetEnv);
+const postcssGlobalImport = defaultImport(_postcssGlobalImport);
 const eslint = defaultImport(_eslint);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const json = defaultImport(_json);
@@ -116,6 +118,7 @@ export const postcssConfig = {
   modules: { localsConvention: "camelCase" },
   plugins: [
     /* eslint-disable @typescript-eslint/no-unsafe-call */
+    postcssGlobalImport(),
     postcssImport(),
     postcssPresetEnv(presetEnvOptions),
     /* eslint-enable @typescript-eslint/no-unsafe-call */
