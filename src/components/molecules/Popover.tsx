@@ -10,7 +10,7 @@ type PopoverTooltipProps = TooltipProps & {
   title?: ReactNode;
 };
 
-type PopoverProps = SetOptional<PopoverTooltipProps, "title">;
+export type PopoverProps = SetOptional<PopoverTooltipProps, "title">;
 
 export default function Popover({
   content,
