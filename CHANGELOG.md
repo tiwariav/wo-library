@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/tiwariav/wo-library/compare/v3.2.1...v3.2.2) (2023-10-12)
+
+
+### ♻️ Code Refactors
+
+* update react global type for forwardRef ([f803369](https://github.com/tiwariav/wo-library/commit/f80336968bb07129060bbee1aaf2552c15759b85))
+
 ## [3.2.1](https://github.com/tiwariav/wo-library/compare/v3.2.0...v3.2.1) (2023-10-12)
 
 
