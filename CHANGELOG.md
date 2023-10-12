@@ -1,3 +1,15 @@
+## [3.2.0](https://github.com/tiwariav/wo-library/compare/v3.1.1...v3.2.0) (2023-10-12)
+
+
+### ✨ Features
+
+* add shared global types ([4f83d52](https://github.com/tiwariav/wo-library/commit/4f83d52410a5fad916f5bbf0b0f1038d5d148d71))
+
+
+### ♻️ Code Refactors
+
+* move type interfaces to types dir ([77a40e4](https://github.com/tiwariav/wo-library/commit/77a40e4038c94f180771733db77bb474c1e6743a))
+
 ## [3.1.1](https://github.com/tiwariav/wo-library/compare/v3.1.0...v3.1.1) (2023-10-12)
 
 
