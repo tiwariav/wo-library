@@ -4,6 +4,7 @@
 
 import _typescript from "@rollup/plugin-typescript";
 import { defaultImport } from "default-import";
+import _copy from "rollup-plugin-copy";
 import _postcss from "rollup-plugin-postcss";
 
 import {
@@ -21,6 +22,7 @@ import {
 
 const postcss = defaultImport(_postcss);
 const typescript = defaultImport(_typescript);
+const copy = defaultImport(_copy);
 
 const isDev = Boolean(process.env.ROLLUP_WATCH);
 const STYLES_DIR = "src/styles";
@@ -37,6 +39,7 @@ const config = [
     perf: isDev,
     plugins: [
       ...commonPlugins,
+      copy({ targets: [{ dest: "dist", src: "types" }] }),
       postcss(postcssConfig),
       typescript({ tsconfig: "./tsconfig.rollup.json" }),
       ...getBuildPlugins(),

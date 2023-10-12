@@ -41,7 +41,7 @@ export function rollupInputMap(
   directory,
   {
     excludeDirectories = [],
-    extension = "!(*.d|*.test|*.stories).{js,jsx,ts,tsx}",
+    extension = "!(*.test|*.stories).{js,jsx,ts,tsx}",
     sourceDirectory = "src",
   } = {},
 ) {
@@ -124,7 +124,7 @@ export const postcssConfig = {
     /* eslint-enable @typescript-eslint/no-unsafe-call */
     cssnano({ preset: "default" }),
   ],
-  sourceMap: isDev,
+  sourcemap: isDev,
 };
 
 if (!isDev) {
