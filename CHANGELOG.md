@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/tiwariav/wo-library/compare/v3.1.0...v3.1.1) (2023-10-12)
+
+
+### 🐛 Bug Fixes
+
+* follow rules in popover story ([989ede0](https://github.com/tiwariav/wo-library/commit/989ede0ba1e19452d67073f4625e84b9e6af8e15))
+
 ## [3.1.0](https://github.com/tiwariav/wo-library/compare/v3.0.9...v3.1.0) (2023-10-10)
 
 
