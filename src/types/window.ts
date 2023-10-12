@@ -1,5 +1,5 @@
-import { Calendly } from "./calendly.js";
-import { Razorpay } from "./razorpay.js";
+import { Calendly } from "./interfaces/calendly.js";
+import { Razorpay } from "./interfaces/razorpay.js";
 
 declare global {
   interface Window {
