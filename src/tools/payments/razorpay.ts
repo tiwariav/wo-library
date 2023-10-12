@@ -1,4 +1,4 @@
-import { RazorpayOptions } from "../../interfaces/razorpay.js";
+import { RazorpayOptions } from "../../../types/interfaces/razorpay.js";
 import { WoLoadScriptError } from "../error/index.js";
 import loadScript from "../loadScript.js";
 

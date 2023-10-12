@@ -1,6 +1,6 @@
 import { useEffectOnce } from "react-use";
 
-import { CalendlyPopupWidgetOptionsPrefill } from "../interfaces/calendly.js";
+import { CalendlyPopupWidgetOptionsPrefill } from "../../types/interfaces/calendly.js";
 import { WoLoadScriptError } from "../tools/error/index.js";
 import { loadScript, loadStylesheet } from "../tools/index.js";
 
