@@ -1,3 +1,10 @@
+## [3.2.3](https://github.com/tiwariav/wo-library/compare/v3.2.2...v3.2.3) (2023-10-12)
+
+
+### ♻️ Code Refactors
+
+* move global type interfaces into subdirectory ([78bb586](https://github.com/tiwariav/wo-library/commit/78bb586b12a432ea3a3422d65a7e0eb4c3fe33bb))
+
 ## [3.2.2](https://github.com/tiwariav/wo-library/compare/v3.2.1...v3.2.2) (2023-10-12)
 
 
