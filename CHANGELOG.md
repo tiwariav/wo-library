@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/tiwariav/wo-library/compare/v3.2.0...v3.2.1) (2023-10-12)
+
+
+### 🐛 Bug Fixes
+
+* export global d.ts to dist directory ([4d7e36b](https://github.com/tiwariav/wo-library/commit/4d7e36ba7a572e9fa8c2a90a5b2bbc9dcdbf749a))
+
 ## [3.2.0](https://github.com/tiwariav/wo-library/compare/v3.1.1...v3.2.0) (2023-10-12)
 
 
