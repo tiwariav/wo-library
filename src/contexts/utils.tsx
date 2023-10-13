@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { createContext, useContext } from "react";
 
 import { ActionRecord } from "../hooks/useMethods.js";
@@ -34,3 +35,11 @@ export function dispatchLoading<
   dispatch.setLoading(true);
   return response;
 }
+
+export const getUpdateStateMethod =
+  <TState extends {}>(state: TState) =>
+  (data: Partial<TState>) => {
+    return produce(state, (draft) => {
+      Object.assign(draft, data);
+    });
+  };
