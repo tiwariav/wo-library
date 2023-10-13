@@ -1,3 +1,10 @@
+## [3.3.0](https://github.com/tiwariav/wo-library/compare/v3.2.3...v3.3.0) (2023-10-13)
+
+
+### ✨ Features
+
+* add updateState function for simple context state updates ([8120a25](https://github.com/tiwariav/wo-library/commit/8120a2504ccc08922dea54b3d494483049de5003))
+
 ## [3.2.3](https://github.com/tiwariav/wo-library/compare/v3.2.2...v3.2.3) (2023-10-12)
 
 
