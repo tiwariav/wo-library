@@ -1,22 +1,30 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { playFloatingBasic } from "../../tools/storybook/play.js";
 import Modal, { ModalProps } from "./Modal.js";
 
-const Template = ({ isOpen = false, modalContent = "", ...args }) => {
-  const [open, setOpen] = useState(isOpen);
-
-  useEffect(() => {
-    setOpen(isOpen);
-  }, [isOpen]);
-
+const Template = ({
+  initiallyOpen,
+  modalContent = "",
+  onClose,
+  ...args
+}: ModalProps & { initiallyOpen?: boolean; modalContent?: ReactNode }) => {
+  const [open, setOpen] = useState<boolean>(!!initiallyOpen);
+  console.log(open);
   return (
     <div>
       <button id="showButton" onClick={() => setOpen(true)}>
         Show Modal
       </button>
-      <Modal isOpen={open} onClose={() => setOpen(false)} {...args}>
+      <Modal
+        isOpen={open}
+        onClose={() => {
+          setOpen(false);
+          onClose?.();
+        }}
+        {...args}
+      >
         <div className="story-box">{modalContent || MODAL_TEXT}</div>
       </Modal>
     </div>
