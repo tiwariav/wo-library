@@ -1,3 +1,10 @@
+## [3.4.0](https://github.com/tiwariav/wo-library/compare/v3.3.0...v3.4.0) (2023-10-17)
+
+
+### ✨ Features
+
+* add generic element wrapper AsElement ([2bc3c77](https://github.com/tiwariav/wo-library/commit/2bc3c77f04d93d12c6193f6faafb90c2035ef199))
+
 ## [3.3.0](https://github.com/tiwariav/wo-library/compare/v3.2.3...v3.3.0) (2023-10-13)
 
 
