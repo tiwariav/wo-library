@@ -26,6 +26,7 @@ const config = {
         "box-shadow",
         "font-size",
         "z-index",
+        "/gap/",
         "/margin/",
         "/padding/",
       ],

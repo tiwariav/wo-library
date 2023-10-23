@@ -14,6 +14,7 @@ const presetEnvOptions = {
 
 const getFinalConfig = (env) => ({
   plugins: [
+    "postcss-global-import",
     "postcss-import",
     ["postcss-preset-env", { ...presetEnvOptions, env }],
     ["cssnano", { preset: "advanced" }],

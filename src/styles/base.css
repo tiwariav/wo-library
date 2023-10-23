@@ -38,13 +38,16 @@
   --ye-rem-unit: 0.125rem;
 
   /* spacing */
+  --ye-spacing-rem-tiny: calc(4 * var(--ye-rem-unit));
   --ye-spacing-rem-xsmall: calc(4 * var(--ye-rem-unit));
   --ye-spacing-rem-small: calc(6 * var(--ye-rem-unit));
   --ye-spacing-rem-normal: var(--ye-rem-base);
   --ye-spacing-rem-large: calc(10 * var(--ye-rem-unit));
   --ye-spacing-rem-xlarge: calc(12 * var(--ye-rem-unit));
+  --ye-spacing-rem-huge: calc(16 * var(--ye-rem-unit));
 
   /* radius */
+  --ye-radius-small: var(--ye-spacing-rem-tiny);
   --ye-radius-normal: var(--ye-spacing-rem-xsmall);
   --ye-radius-circle: 100%;
 

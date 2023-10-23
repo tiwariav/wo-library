@@ -1,0 +1,52 @@
+@import url("./base.css");
+
+.story-box {
+  padding: var(--ye-spacing-rem-normal);
+  background-color: var(--ye-color-background);
+}
+
+.story-container {
+  width: calc(100% - 2 * var(--ye-spacing-rem-huge));
+  margin-right: var(--ye-spacing-rem-huge);
+  margin-left: var(--ye-spacing-rem-huge);
+}
+
+.story-card {
+  padding: var(--ye-spacing-rem-normal);
+  background-color: var(--ye-color-background);
+  border-radius: var(--ye-radius-small);
+  box-shadow: var(--ye-shadow-floating-low);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ye-spacing-rem-normal);
+}
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ye-spacing-rem-normal);
+}
+
+.story-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ye-spacing-rem-normal);
+}
+
+.story-flex-grow {
+  flex-grow: 1;
+}
+
+.story-title {
+  margin-top: var(--ye-spacing-rem-normal);
+  margin-bottom: var(--ye-spacing-rem-normal);
+  font-weight: 500;
+  font-size: var(--ye-font-size-large);
+}
+
+.swiper-slide {
+  padding: var(--ye-spacing-rem-tiny);
+}

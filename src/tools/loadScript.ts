@@ -1,4 +1,9 @@
-export default function loadScript(source: string) {
+import { HTMLProps } from "react";
+
+export default function loadScript(
+  source: string,
+  props: HTMLProps<HTMLScriptElement> = {},
+) {
   return new Promise((resolve) => {
     const existingScript = document.querySelector(`script[src="${source}"]`);
     if (existingScript) {
@@ -11,6 +16,9 @@ export default function loadScript(source: string) {
       );
       if (nonceMeta) {
         script.setAttribute("nonce", nonceMeta.content);
+      }
+      for (const [key, value] of Object.entries(props)) {
+        script.setAttribute(key, value as string);
       }
       script.addEventListener("load", () => {
         resolve(true);

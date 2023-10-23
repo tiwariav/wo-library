@@ -103,8 +103,8 @@ export const Placements: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-flex">
-      <div>
+    <div className="story-flex-grow">
+      <div className="story-flex-grow">
         <div className="story-title">Leftdiv</div>
         <div
           className="story-list"
@@ -116,7 +116,7 @@ export const Placements: Story = {
           <PlacementCell placement="left" {...args} />
         </div>
       </div>
-      <div>
+      <div className="story-flex-grow">
         <div className="story-title">Right</div>
         <div
           className="story-list"
@@ -128,7 +128,7 @@ export const Placements: Story = {
           <PlacementCell placement="right" {...args} />
         </div>
       </div>
-      <div>
+      <div className="story-flex-grow">
         <div className="story-title">Top</div>
         <div
           className="story-list"
@@ -140,7 +140,7 @@ export const Placements: Story = {
           <PlacementCell placement="top" style={{ minWidth: 160 }} {...args} />
         </div>
       </div>
-      <div>
+      <div className="story-flex-grow">
         <div className="story-title">Bottom</div>
         <div
           className="story-list"
