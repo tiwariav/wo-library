@@ -1,3 +1,11 @@
+## [3.5.0](https://github.com/tiwariav/wo-library/compare/v3.4.0...v3.5.0) (2023-10-23)
+
+
+### ✨ Features
+
+* add color utils ([9c9c09e](https://github.com/tiwariav/wo-library/commit/9c9c09e5457075cf6ffb19426567a8e71b0f439a))
+* update useScrollDirection to include x,y ([051e025](https://github.com/tiwariav/wo-library/commit/051e0254f34ad0c34fb8710c6e8d3b740f5977c5))
+
 ## [3.4.0](https://github.com/tiwariav/wo-library/compare/v3.3.0...v3.4.0) (2023-10-17)
 
 
