@@ -1,5 +1,5 @@
-.pnp.js
-.yarn/*
+.yalc/
 node_modules/
+coverage/
 dist/
 reports/

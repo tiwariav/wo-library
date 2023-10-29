@@ -6,7 +6,7 @@
 }
 
 .story-container {
-  width: calc(100% - 2 * var(--ye-spacing-rem-huge));
+  width: calc(100% - var(--ye-spacing-rem-huge));
   margin-right: var(--ye-spacing-rem-huge);
   margin-left: var(--ye-spacing-rem-huge);
 }
@@ -32,8 +32,11 @@
 
 .story-flex {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--ye-spacing-rem-normal);
+
+  @media (width < 768px) {
+    flex-wrap: wrap;
+  }
 }
 
 .story-flex-grow {
