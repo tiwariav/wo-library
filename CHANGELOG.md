@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/tiwariav/wo-library/compare/v3.5.0...v3.5.1) (2023-10-29)
+
+
+### 🐛 Bug Fixes
+
+* fix storybook autodocs failing to load ([3893aa6](https://github.com/tiwariav/wo-library/commit/3893aa635233787a17d238bc4d8bf90b37b47bb6))
+
 ## [3.5.0](https://github.com/tiwariav/wo-library/compare/v3.4.0...v3.5.0) (2023-10-23)
 
 
