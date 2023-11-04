@@ -16,8 +16,9 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
           cache: yarn
+          corepack-enable: true
+          node-version: 18
       - run: yarn
       - run: yarn build
       - name: Semantic Release
