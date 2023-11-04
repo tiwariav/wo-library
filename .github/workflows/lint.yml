@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npx eslint --quiet src
-      - run: npx stylelint ./src/**/*.css
-      - run: npx prettier --check src
-      - run: npx jscpd src
+      - run: yarn
+      - run: yarn eslint --quiet src
+      - run: yarn stylelint ./src/**/*.css
+      - run: yarn prettier --check src
+      - run: yarn jscpd src
