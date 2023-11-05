@@ -11,9 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
-      - uses: actions/checkout@v1
       - name: Install dependencies
-        run: yarn
+        uses: actions/checkout@v4
+        with:
+          cache: yarn
+          corepack-enable: true
+          fetch-depth: 0
+          node-version: 18
+      - run: yarn set version berry
+      - run: yarn
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v1
