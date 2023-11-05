@@ -16,7 +16,7 @@
     "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
     "build": "rollup --config rollup.config.js",
     "dev": "rollup -w --config rollup.config.js --watch.onEnd 'yalc push dist'",
-    "postinstall": "husky install",
+    "_postinstall": "husky install",
     "postversion": "cp -r package.json ..",
     "precommit": "lint-staged",
     "prepare": "(test -d '.git' && husky install) || true",
