@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-05)
+
+
+### 🐛 Bug Fixes
+
+* add additional packages to semantic-release action config ([d1d3079](https://github.com/tiwariav/wo-library/commit/d1d3079fa3cfe030422b884a22a1986c30f9bf84))
+
 ## [3.5.2](https://github.com/tiwariav/wo-library/compare/v3.5.1...v3.5.2) (2023-11-05)
 
 

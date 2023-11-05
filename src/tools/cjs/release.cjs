@@ -39,7 +39,7 @@ const config = {
     "@semantic-release/github",
     "@semantic-release/changelog",
     [
-      "semantic-release-yarn",
+      "@semantic-release/npm",
       {
         pkgRoot: "dist",
       },
