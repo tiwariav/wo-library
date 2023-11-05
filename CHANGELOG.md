@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/tiwariav/wo-library/compare/v3.5.1...v3.5.2) (2023-11-05)
+
+
+### ♻️ Code Refactors
+
+* use yarn in place of npm ([e156ac2](https://github.com/tiwariav/wo-library/commit/e156ac2a1eeb783d3c52263c0c4aa3e28ffb7898))
+
 ## [3.5.1](https://github.com/tiwariav/wo-library/compare/v3.5.0...v3.5.1) (2023-10-29)
 
 
