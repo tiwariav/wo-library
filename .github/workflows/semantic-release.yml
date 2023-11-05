@@ -30,6 +30,7 @@ jobs:
             @semantic-release/git
             conventional-changelog-conventionalcommits
             pinst
+            semantic-release-yarn
         env:
           HUSKY: 0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
