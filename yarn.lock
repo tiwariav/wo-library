@@ -6558,7 +6558,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.2.34":
+"@types/react@npm:*, @types/react@npm:>=16":
   version: 18.2.34
   resolution: "@types/react@npm:18.2.34"
   dependencies:
@@ -6566,6 +6566,17 @@ __metadata:
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 42a357e3ec8943fe433f647e60e1506ec7657e12a72847ca801f97a128778dff6011e57ae2eb53f6363cf4515cab60f6a47eca2f916bab27a85bd88c94ab72d3
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.35":
+  version: 18.2.35
+  resolution: "@types/react@npm:18.2.35"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: dbc19612ab404f06c3c9f150954a377ab223db5724905d39e3468a61e2be0a9fd9240e935af5c13cb5b3307a13bbaf2e8c09a810d720118120a8d0ac5aa9ff10
   languageName: node
   linkType: hard
 
@@ -20527,12 +20538,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.47.0":
-  version: 7.47.0
-  resolution: "react-hook-form@npm:7.47.0"
+"react-hook-form@npm:^7.48.2":
+  version: 7.48.2
+  resolution: "react-hook-form@npm:7.48.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: f3ab5544ed255fac685e06b7ae7a2d691370ece4dfa45a6d1f5d1a1e3783af7c3599dd3f5306cf9eb255ca6895e3286555ff3cb895a306ba92d8ef2ed474a98e
+  checksum: 77663276288d3e240da76c469612fec2bfb2dd34ed0512adb8554b8567e89a316c3df62266e51639f66a9a9d50ce175e8dc965f94bc31afecb460ed48333dafa
   languageName: node
   linkType: hard
 
@@ -24907,7 +24918,7 @@ __metadata:
     "@types/jest": "npm:^29.5.7"
     "@types/lodash-es": "npm:^4.17.10"
     "@types/node": "npm:^20.8.10"
-    "@types/react": "npm:^18.2.34"
+    "@types/react": "npm:^18.2.35"
     "@types/react-dom": "npm:^18.2.14"
     "@typescript-eslint/eslint-plugin": "npm:~5.62.0"
     "@typescript-eslint/parser": "npm:~5.62.0"
@@ -24964,7 +24975,7 @@ __metadata:
     prettier: "npm:3.0.3"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    react-hook-form: "npm:^7.47.0"
+    react-hook-form: "npm:^7.48.2"
     react-intersection-observer: "npm:^9.5.2"
     react-use: "npm:^17.4.0"
     rollup: "npm:^4.3.0"
