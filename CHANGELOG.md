@@ -1,3 +1,14 @@
+## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-06)
+
+
+### 🐛 Bug Fixes
+
+* add additional packages to semantic-release action config ([d1d3079](https://github.com/tiwariav/wo-library/commit/d1d3079fa3cfe030422b884a22a1986c30f9bf84))
+* remove semantic-release-yarn ([4b3173c](https://github.com/tiwariav/wo-library/commit/4b3173c35bb4a8cd3bdb5489f0c3d04f58ab8c87))
+* update pre and post pack scripts ([2acd059](https://github.com/tiwariav/wo-library/commit/2acd05938b95ec8399b1583cd42badafae3617d9))
+* update prepack scripts pinst command ([aaf63e4](https://github.com/tiwariav/wo-library/commit/aaf63e40ed165041a90522c2c1c399a14cf0f62c))
+* use semantic-release-yarn ([2df3c6d](https://github.com/tiwariav/wo-library/commit/2df3c6d5787518611a776f0068b36343d6162b28))
+
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-05)
 
 
