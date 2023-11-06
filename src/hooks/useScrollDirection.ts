@@ -1,20 +1,24 @@
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 import { useRafState } from "react-use";
 import { isBrowser, off, on } from "react-use/lib/misc/util.js";
 
+type DirectionState = {
+  direction: "" | "down" | "up";
+  x: number;
+  y: number;
+};
+
 export default function useScrollDirection(ref?: RefObject<HTMLElement>) {
-  const [state, setState] = useRafState(() => ({
+  const [state, setState] = useRafState<DirectionState>(() => ({
     direction: "",
     x: isBrowser && !ref ? window.scrollX : 0,
     y: isBrowser && !ref ? window.scrollY : 0,
   }));
 
-  const scrollRef = useRef(0);
-
   useEffect(() => {
     const current = ref?.current;
     const handler = () => {
-      setState((state) => {
+      setState((previousState) => {
         let x = 0,
           y = 0;
         if (current) {
@@ -24,12 +28,11 @@ export default function useScrollDirection(ref?: RefObject<HTMLElement>) {
           x = window.scrollX;
           y = window.scrollY;
         }
-        if (state.x !== x || state.y !== y) {
-          const direction = y - scrollRef.current > 0 ? "down" : "up";
-          scrollRef.current = y;
-          return { direction, x, y };
-        }
-        return state;
+
+        const diff = y - previousState.y;
+        const direction =
+          diff > 0 ? "down" : diff < 0 ? "up" : previousState.direction;
+        return { direction, x, y };
       });
     };
 
