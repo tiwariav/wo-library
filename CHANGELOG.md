@@ -1,3 +1,10 @@
+## [3.5.4](https://github.com/tiwariav/wo-library/compare/v3.5.3...v3.5.4) (2023-11-06)
+
+
+### 🐛 Bug Fixes
+
+* fix useScroll direction value for strict mode ([609593f](https://github.com/tiwariav/wo-library/commit/609593fb8acc151b4133b2d8c14243555e107bef))
+
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-06)
 
 
