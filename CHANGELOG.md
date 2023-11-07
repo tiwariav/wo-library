@@ -1,3 +1,10 @@
+## [3.5.5](https://github.com/tiwariav/wo-library/compare/v3.5.4...v3.5.5) (2023-11-07)
+
+
+### 🐛 Bug Fixes
+
+* prevent direction change in `useScrollDirection` when content height changes ([8ee5177](https://github.com/tiwariav/wo-library/commit/8ee5177810c64164bb3a3665b8761d09a6845170))
+
 ## [3.5.4](https://github.com/tiwariav/wo-library/compare/v3.5.3...v3.5.4) (2023-11-06)
 
 
