@@ -18,7 +18,7 @@ export function hexToRgb(hex: string) {
     : null;
 }
 
-function getRandomRgb(opacity: number = 100) {
+function getRandomRgb(opacity = 100) {
   const number_ = Math.round(0xff_ff_ff * Math.random());
   const r = number_ >> 16;
   const g = (number_ >> 8) & 255;

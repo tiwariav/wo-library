@@ -62,7 +62,7 @@ const NestedButtonTemplate = (args: PopoverProps) => {
   );
 };
 
-export const withNestedButton: Story = {
+export const WithNestedButton: Story = {
   args: {
     isPopover: true,
   },

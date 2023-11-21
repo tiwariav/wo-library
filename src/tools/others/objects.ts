@@ -19,6 +19,7 @@ export function pushOrCreate<TValue, TKey extends number | string>(
 }
 
 export function getNestedValue<TResponse = string>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Record<string, any>,
   key: string,
 ): TResponse | TResponse[] {

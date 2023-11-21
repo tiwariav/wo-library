@@ -68,14 +68,14 @@ export function createURL(
     }
     resourceURL = new URL(combineURLs(baseURL, resourcePath));
   }
-  if (id && resourceURL.pathname.slice(-1) !== "/") {
+  if (id && !resourceURL.pathname.endsWith("/")) {
     resourceURL.pathname += `/${id}`;
   }
   if (query) {
     const searchParams = new URLSearchParams(query as Record<string, string>);
     resourceURL.search = searchParams.toString();
   }
-  if (trailingSlash && resourceURL.pathname.slice(-1) !== "/") {
+  if (trailingSlash && !resourceURL.pathname.endsWith("/")) {
     resourceURL.pathname += "/";
   }
   return resourceURL;
@@ -163,7 +163,7 @@ export class WoFetch {
     }
     if (requireAuth && this.tokenName) {
       const accessToken =
-        token || (await anyStorageInstance.getItem(this.tokenName)) || "";
+        token ?? (await anyStorageInstance.getItem(this.tokenName)) ?? "";
       allHeaders[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
     }
     for (const key in allHeaders) {
@@ -255,7 +255,7 @@ export class WoFetch {
         true,
       );
       for (const key of Object.keys(headers)) {
-        xhrObject.setRequestHeader(key, headers.get(key) || "");
+        xhrObject.setRequestHeader(key, headers.get(key) ?? "");
       }
       xhrObject.send(formData);
     });

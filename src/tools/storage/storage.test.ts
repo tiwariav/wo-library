@@ -12,7 +12,7 @@ describe("storage in web", () => {
 describe("storage in mobile", () => {
   const anyStorageInstance = new AnyStorage("mobile");
   anyStorageInstance.setBackend({
-    // @ts-ignore: TS2739 because AsyncStorage type is not read
+    // @ts-expect-error: TS2739 because AsyncStorage type is not read
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     persist: AsyncStorage,
   });
@@ -36,7 +36,7 @@ function envTest(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
   return async () => {
     const anyStorageInstance = new AnyStorage(key);
     if (key === "mobile") {
-      // @ts-ignore: TS2739 because AsyncStorage type is not read
+      // @ts-expect-error: TS2739 because AsyncStorage type is not read
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       anyStorageInstance.setBackend({ persist: AsyncStorage });
     } else if (key === "web") {

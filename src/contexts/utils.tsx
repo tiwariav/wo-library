@@ -5,7 +5,7 @@ import { ActionRecord } from "../hooks/useMethods.js";
 
 export interface ContextDispatch<
   TRecord extends ActionRecord<TState>,
-  TState = any,
+  TState = unknown,
 > {
   dispatch: {
     [key in keyof TRecord]: (...payload: Parameters<TRecord[key]>) => void;
@@ -23,7 +23,7 @@ export function createAndUseContext<TState, TDispatch>() {
 }
 
 export function dispatchLoading<
-  TDispatch extends ContextDispatch<any>,
+  TDispatch extends ContextDispatch<ActionRecord>,
   TMethod extends TDispatch["dispatch"][keyof TDispatch["dispatch"]],
 >(
   dispatch: TDispatch["dispatch"],
@@ -37,7 +37,7 @@ export function dispatchLoading<
 }
 
 export const getUpdateStateMethod =
-  <TState extends {}>(state: TState) =>
+  <TState extends object>(state: TState) =>
   (data: Partial<TState>) => {
     return produce(state, (draft) => {
       Object.assign(draft, data);

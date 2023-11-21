@@ -24,10 +24,10 @@ export function cssModules(
     {
       ...cssRule,
       test: /\.module\.css$/,
-      // @ts-ignore: TS18048 because of the use of `map`
+      // @ts-expect-error: TS18048 because of the use of `map`
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-      use: cssRule.use.map((rule: { loader: string; options: any }) => {
-        if (rule && rule.loader && /\Wcss-loader/g.test(rule.loader)) {
+      use: cssRule.use.map((rule: { loader: string; options: object }) => {
+        if (rule?.loader && /\Wcss-loader/g.test(rule.loader)) {
           return {
             ...rule,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

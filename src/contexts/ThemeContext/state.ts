@@ -1,10 +1,6 @@
-export interface ThemeVariants {
-  [name: string]: string;
-}
+export type ThemeVariants = Record<string, string>;
 
-export interface SectionThemes {
-  [sectionName: string]: string;
-}
+export type SectionThemes = Record<string, string>;
 
 export interface ThemeState {
   activeThemeName: string;

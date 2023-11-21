@@ -5,7 +5,7 @@ import { Entries } from "type-fest";
 
 import styles from "./observeInView.module.css";
 
-type ObserveInViewProps = {
+interface ObserveInViewProps {
   animate: boolean;
   className?: string;
   dynamicClasses?: {
@@ -16,7 +16,7 @@ type ObserveInViewProps = {
   };
   observeOptions: IntersectionOptions;
   onViewChange: (inView: boolean) => void;
-};
+}
 
 export default function ObserveInView({
   animate,

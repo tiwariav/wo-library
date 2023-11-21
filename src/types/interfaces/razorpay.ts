@@ -15,6 +15,4 @@ interface RazorpayClass {
   open: () => void;
 }
 
-export interface Razorpay {
-  new (options: RazorpayOptions): RazorpayClass;
-}
+export type Razorpay = new (options: RazorpayOptions) => RazorpayClass;

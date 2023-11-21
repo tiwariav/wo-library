@@ -28,7 +28,7 @@ export default function externalAssets({
     },
     resolveId(source: string) {
       if (!isMatch(include, source)) return null;
-      copyTargets && copyTargets.push({ dest: assetTargetDir, src: source });
+      copyTargets?.push({ dest: assetTargetDir, src: source });
       return { external: true, id: source };
     },
   };

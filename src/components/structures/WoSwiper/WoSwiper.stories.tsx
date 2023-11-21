@@ -68,7 +68,8 @@ export const Variants: Story = {
     <div className="story-list">
       {WO_SWIPER_VARIANTS.map((variant) => (
         <Template
-          title={title || `A '${variant}' swiper section`}
+          key={variant}
+          title={title ?? `A '${variant}' swiper section`}
           variant={variant}
           {...args}
         />

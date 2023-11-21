@@ -54,7 +54,7 @@ const config = {
       are completely different reporters, evaluating both right now
     */
     "default",
-    // @ts-ignore: TS2322 because ReporterConfig is not exported from jest
+    // @ts-expect-error: TS2322 because ReporterConfig is not exported from jest
     ...reporters,
   ],
   testEnvironment: "jsdom",

@@ -8,6 +8,6 @@ export default function AsElement<TElement extends ElementType = "div">({
   as,
   ...props
 }: AsElementProps<TElement> & ComponentPropsWithoutRef<TElement>) {
-  const Element = as || "div";
+  const Element = as ?? "div";
   return <Element {...props} />;
 }

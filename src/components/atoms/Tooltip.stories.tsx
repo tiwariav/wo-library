@@ -87,7 +87,7 @@ const PlacementCell = ({
       </Tooltip>
     </div>
     {ALL_ALIGNMENTS.map((alignment) => (
-      <div>
+      <div key={alignment}>
         <Tooltip placement={`${placement}-${alignment}` as Placement} {...args}>
           Tooltip at {placement}-{alignment}!
         </Tooltip>
@@ -182,7 +182,7 @@ export const Triggers: Story = {
   ),
 };
 
-const WithButton = () => {
+const WithButtonComponent = () => {
   const [open, setIsOpen] = useState(false);
 
   return (
@@ -211,6 +211,6 @@ const WithButton = () => {
   );
 };
 
-export const withButton: Story = {
-  render: () => <WithButton />,
+export const WithButton: Story = {
+  render: () => <WithButtonComponent />,
 };

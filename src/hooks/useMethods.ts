@@ -1,17 +1,17 @@
 import { Reducer, useMemo, useReducer } from "react";
 
-export type Action = {
+export interface Action {
   payload: unknown[];
   type: string;
-};
+}
 
 export type CreateMethods<TRecord extends ActionRecord, TState> = (
   state: TState,
 ) => TRecord;
 
-export type ActionRecord<TState = any> = Record<
+export type ActionRecord<TState = unknown> = Record<
   Action["type"],
-  (...args: any[]) => TState
+  (...args: unknown[]) => TState
 >;
 
 export type WrappedMethods<TRecord extends ActionRecord> = {

@@ -6955,9 +6955,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/eslint-config@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@tiwariav/eslint-config@npm:1.0.1"
+"@tiwariav/eslint-config@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@tiwariav/eslint-config@npm:1.0.4"
   dependencies:
     "@babel/eslint-parser": "npm:^7.23.3"
     "@typescript-eslint/eslint-plugin": "npm:^6.12.0"
@@ -6979,7 +6979,7 @@ __metadata:
     eslint-plugin-sonarjs: "npm:^0.23.0"
     eslint-plugin-storybook: "npm:^0.6.15"
     eslint-plugin-unicorn: "npm:^49.0.0"
-  checksum: 7329e95f61e87420df3aca0755f0632f6a0d996185543959e538208a64e43184ed1604dd06d17aeb72b2e583fc357d27a0666eb934fa4b0eaec8e66a74d294cf
+  checksum: 994ba2ad0e64796a87dca4a21185689773d26a6e67082fb41ba205eddec02ecd45dd0c95db244d3daf666743a6136c39a5925252ad8e6ff87a69dbbbf8600304
   languageName: node
   linkType: hard
 
@@ -26199,7 +26199,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.1.4"
     "@testing-library/react": "npm:^14.1.2"
     "@tiwariav/browserslist-config": "npm:^1.3.0"
-    "@tiwariav/eslint-config": "npm:^1.0.1"
+    "@tiwariav/eslint-config": "npm:1.0.4"
     "@types/jest": "npm:^29.5.8"
     "@types/lodash-es": "npm:^4.17.11"
     "@types/node": "npm:^20.9.2"

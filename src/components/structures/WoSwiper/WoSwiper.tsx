@@ -74,7 +74,7 @@ export default function WoSwiper({
         className,
       )}
     >
-      {(title || subtitle || moreLink) && (
+      {(title ?? subtitle ?? moreLink) && (
         <div className={styles.top}>
           <div className={styles.topLeft}>
             {title && <h2 className={styles.title}>{title}</h2>}

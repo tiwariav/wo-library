@@ -14,7 +14,7 @@ export const memoryStorage = {
   clear: () => (memoryStorageItems = {}),
   // eslint-disable-next-line @typescript-eslint/require-await
   getItem: async (key: string): Promise<null | string> =>
-    memoryStorageItems[key] || null,
+    memoryStorageItems[key] ?? null,
   removeItem: (key: string) => {
     memoryStorageItems[key] = null;
   },
@@ -27,13 +27,13 @@ type StorageBackendOptions = {
 export class AnyStorage {
   backends: StorageBackendOptions;
   clear = async () => {
-    this.backends["temp"].clear();
+    this.backends.temp.clear();
     if (this.prefix) {
-      for (const key of Object.keys(this.backends["session"])) {
-        await this.backends["session"].removeItem(key);
+      for (const key of Object.keys(this.backends.session)) {
+        await this.backends.session.removeItem(key);
       }
-      for (const key of Object.keys(this.backends["persist"])) {
-        await this.backends["persist"].removeItem(key);
+      for (const key of Object.keys(this.backends.persist)) {
+        await this.backends.persist.removeItem(key);
       }
     }
   };
@@ -41,12 +41,12 @@ export class AnyStorage {
   formKey = (key: string) => (this.prefix ? `${this.prefix}.${key}` : key);
   getBackend = (persist: boolean, session: boolean) => {
     if (persist) {
-      return this.backends["persist"];
+      return this.backends.persist;
     }
     if (session) {
-      return this.backends["session"];
+      return this.backends.session;
     }
-    return this.backends["temp"];
+    return this.backends.temp;
   };
 
   getItem = async <TResponse extends null | string>(
@@ -58,8 +58,8 @@ export class AnyStorage {
     let response: TResponse | null | string = await backend.getItem(storageKey);
     if (response === null && !persist) {
       response = await (session
-        ? this.backends["persist"].getItem(storageKey)
-        : this.backends["session"].getItem(storageKey));
+        ? this.backends.persist.getItem(storageKey)
+        : this.backends.session.getItem(storageKey));
     }
     if (json && response) {
       try {
@@ -76,15 +76,15 @@ export class AnyStorage {
 
   json = false;
 
-  prefix: string = "";
+  prefix = "";
 
   // eslint-disable-next-line @typescript-eslint/require-await
   removeItem = async (key: string) => {
     // remove the key from temp, session and persist storage
     const storageKey = this.formKey(key);
-    await this.backends["temp"].removeItem(storageKey);
-    await this.backends["session"].removeItem(storageKey);
-    return this.backends["persist"].removeItem(storageKey);
+    await this.backends.temp.removeItem(storageKey);
+    await this.backends.session.removeItem(storageKey);
+    return this.backends.persist.removeItem(storageKey);
   };
 
   setBackend = (storageBackends: Partial<StorageBackendOptions>) => {
@@ -96,7 +96,7 @@ export class AnyStorage {
 
   setItem = async (
     key: string,
-    value: any,
+    value: unknown,
     { json = this.json, persist = false, session = false } = {},
     // eslint-disable-next-line @typescript-eslint/require-await
   ) => {
@@ -115,7 +115,7 @@ export class AnyStorage {
     const noBrowser =
       typeof localStorage === "undefined" ||
       typeof sessionStorage === "undefined";
-    this.env = env || noBrowser ? "mobile" : "web";
+    this.env = env ?? noBrowser ? "mobile" : "web";
     this.backends = noBrowser
       ? {
           persist: memoryStorage,
