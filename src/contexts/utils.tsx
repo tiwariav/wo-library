@@ -31,6 +31,7 @@ export function dispatchLoading<
   ...args: Parameters<TMethod>
 ) {
   dispatch.setLoading(true);
+  // @ts-expect-error: TS2488 because this is a hack to get the return type of the method
   const response = method(...args);
   dispatch.setLoading(true);
   return response;

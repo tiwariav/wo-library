@@ -1,4 +1,4 @@
-interface StorageBackend {
+export interface StorageBackend {
   clear: () => void;
   getItem: (key: string) => Promise<null | string> | null | string;
   removeItem: (key: string) => Promise<void> | void;

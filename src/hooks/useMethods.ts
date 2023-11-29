@@ -11,7 +11,8 @@ export type CreateMethods<TRecord extends ActionRecord, TState> = (
 
 export type ActionRecord<TState = unknown> = Record<
   Action["type"],
-  (...args: unknown[]) => TState
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (...args: any) => TState
 >;
 
 export type WrappedMethods<TRecord extends ActionRecord> = {

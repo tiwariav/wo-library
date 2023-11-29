@@ -100,13 +100,25 @@ export const commonPlugins = [
 ];
 export const devPlugins = isDev ? [beep(), visualizer()] : [terser()];
 
-export function getBuildPlugins(buildPath = "dist") {
+export function getBuildPlugins(options = {}) {
+  const { buildPath = "dist", removePostInstall } = options;
   return [
     del({ runOnce: isDev, targets: "dist/**/*" }),
     del({ targets: "dist/chunks/*" }),
     copy({
       hook: "writeBundle",
-      targets: [{ dest: buildPath, src: ["package.json", "README.md"] }],
+      targets: [
+        {
+          dest: buildPath,
+          src: ["package.json", "README.md"],
+          transform: (contents) =>
+            removePostInstall
+              ? contents
+                  .toString()
+                  .replace(/\n*\s*"postinstall": "[^"]*",?/, "")
+              : contents,
+        },
+      ],
     }),
   ];
 }

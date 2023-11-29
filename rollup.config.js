@@ -1,7 +1,6 @@
 /**
  * Due to unknown reason ts config file is not working
  */
-
 import _typescript from "@rollup/plugin-typescript";
 import { defaultImport } from "default-import";
 import _copy from "rollup-plugin-copy";
@@ -42,7 +41,7 @@ const config = [
       copy({ targets: [{ dest: "dist", src: "types" }] }),
       postcss(postcssConfig),
       typescript({ tsconfig: "./tsconfig.rollup.json" }),
-      ...getBuildPlugins(),
+      ...getBuildPlugins({ removePostInstall: true }),
       ...devPlugins,
     ],
   },

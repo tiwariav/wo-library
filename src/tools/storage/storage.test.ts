@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { AnyStorage, STORAGE_ENVIRONMENTS } from "./index.js";
+import { AnyStorage, STORAGE_ENVIRONMENTS, StorageBackend } from "./index.js";
 
 describe("storage in web", () => {
   const anyStorageInstance = new AnyStorage();
@@ -12,9 +12,8 @@ describe("storage in web", () => {
 describe("storage in mobile", () => {
   const anyStorageInstance = new AnyStorage("mobile");
   anyStorageInstance.setBackend({
-    // @ts-expect-error: TS2739 because AsyncStorage type is not read
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    persist: AsyncStorage,
+    persist: AsyncStorage as unknown as StorageBackend,
   });
   test("env should be mobile", () => {
     expect(anyStorageInstance.env).toBe("mobile");
@@ -36,9 +35,10 @@ function envTest(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
   return async () => {
     const anyStorageInstance = new AnyStorage(key);
     if (key === "mobile") {
-      // @ts-expect-error: TS2739 because AsyncStorage type is not read
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      anyStorageInstance.setBackend({ persist: AsyncStorage });
+      anyStorageInstance.setBackend({
+        persist: AsyncStorage as unknown as StorageBackend,
+      });
     } else if (key === "web") {
       anyStorageInstance.setBackend({ persist: localStorage });
     }
