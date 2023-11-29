@@ -1,3 +1,10 @@
+## [3.5.8](https://github.com/tiwariav/wo-library/compare/v3.5.7...v3.5.8) (2023-11-29)
+
+
+### ♻️ Code Refactors
+
+* fix "lint" workflow ([411d538](https://github.com/tiwariav/wo-library/commit/411d53892b92cac927329707c010dd4ec7786e47))
+
 ## [3.5.7](https://github.com/tiwariav/wo-library/compare/v3.5.6...v3.5.7) (2023-11-29)
 
 
