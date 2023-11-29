@@ -1,29 +1,13 @@
-# Workflow name
 name: "Chromatic"
 
-# Event for the workflow
 on: push
 
-# List of jobs
 jobs:
   chromatic-deployment:
-    # Operating System
     runs-on: ubuntu-latest
-    # Job steps
     steps:
-      - name: Install dependencies
-        uses: actions/checkout@v4
-        with:
-          cache: yarn
-          fetch-depth: 0
-          node-version: 18
-      - run: yarn set version berry
-      - run: yarn
-        # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        # Chromatic GitHub Action options
+      - uses: tiwariav/github-actions/setup-yarn@main
+      - uses: chromaui/action@v1
         with:
           onlyChanged: true
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

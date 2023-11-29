@@ -19702,15 +19702,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pinst@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "pinst@npm:3.0.0"
-  bin:
-    pinst: bin.js
-  checksum: abb1ed62ea2acb2207a7a860715bdb26ecbde74ede8fad5f6200194f3e22db25e2b7a49af05e5cc7fc05384709c651e0000323f0077d7239060c4b68c8acd428
-  languageName: node
-  linkType: hard
-
 "pirates@npm:^4.0.4, pirates@npm:^4.0.5":
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
@@ -26171,7 +26162,6 @@ __metadata:
     lint-staged: "npm:^15.1.0"
     lodash-es: "npm:^4.17.21"
     patch-package: "npm:^8.0.0"
-    pinst: "npm:^3.0.0"
     postcss: "npm:^8.4.31"
     postcss-global-import: "npm:^1.0.6"
     postcss-import: "npm:^15.1.0"

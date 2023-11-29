@@ -21,9 +21,7 @@
     "release": "cd dist && yarn npm publish",
     "storybook": "sb dev -p 9001",
     "build-storybook": "sb build",
-    "test": "jest --coverage --json --outputFile=./reports/test-report.json",
-    "prepack": "npx pinst --disable",
-    "postpack": "npx pinst --enable"
+    "test": "jest --coverage --json --outputFile=./reports/test-report.json"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.3",
@@ -138,7 +136,6 @@
     "jest-transform-stub": "^2.0.0",
     "jscpd": "^3.5.10",
     "lint-staged": "^15.1.0",
-    "pinst": "^3.0.0",
     "postcss": "^8.4.31",
     "postcss-global-import": "^1.0.6",
     "postcss-import": "^15.1.0",
