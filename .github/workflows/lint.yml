@@ -1,5 +1,4 @@
-# Workflow name
-name: "Lint Checks"
+name: "Lint"
 
 on:
   pull_request:
@@ -9,19 +8,12 @@ on:
       - 1.x
       - 2.x
 
-
 jobs:
   lint-checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          cache: yarn
-          node-version: 18
-      - run: yarn set version berry
-      - run: yarn
+      - uses: actions/checkout@v4
+      - uses: tiwariav/github-actions/setup-yarn@main
       - run: yarn eslint --quiet src
       - run: yarn stylelint ./src/**/*.css
       - run: yarn prettier --check src
