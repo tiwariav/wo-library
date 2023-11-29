@@ -1,3 +1,10 @@
+## [3.5.9](https://github.com/tiwariav/wo-library/compare/v3.5.8...v3.5.9) (2023-11-29)
+
+
+### ♻️ Code Refactors
+
+* fix "chromatic" workflow ([8f274cf](https://github.com/tiwariav/wo-library/commit/8f274cf5f721546112f3d7ccb68202700c4e8f87))
+
 ## [3.5.8](https://github.com/tiwariav/wo-library/compare/v3.5.7...v3.5.8) (2023-11-29)
 
 
