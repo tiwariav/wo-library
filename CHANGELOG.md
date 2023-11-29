@@ -1,3 +1,15 @@
+## [3.5.7](https://github.com/tiwariav/wo-library/compare/v3.5.6...v3.5.7) (2023-11-29)
+
+
+### 🐛 Bug Fixes
+
+* remove postinstall from built package.json ([7b738e0](https://github.com/tiwariav/wo-library/commit/7b738e0fc17aee53a014685c8d94fa55aec07553))
+
+
+### ♻️ Code Refactors
+
+* modify code for new eslint config ([1c43786](https://github.com/tiwariav/wo-library/commit/1c437860617d0bd3d4604a70621c4a1f8630ad64))
+
 ## [3.5.6](https://github.com/tiwariav/wo-library/compare/v3.5.5...v3.5.6) (2023-11-07)
 
 
