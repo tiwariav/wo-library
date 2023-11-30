@@ -1,16 +1,8 @@
 ## [3.5.10](https://github.com/tiwariav/wo-library/compare/v3.5.9...v3.5.10) (2023-11-30)
 
-
 ### ♻️ Code Refactors
 
 * fix "chromatic" workflow ([167a9d5](https://github.com/tiwariav/wo-library/commit/167a9d52f1ed6313dbc0bd62b44a55381baf6b46))
-
-## [3.5.10](https://github.com/tiwariav/wo-library/compare/v3.5.9...v3.5.10) (2023-11-30)
-
-### ♻️ Code Refactors
-
-* fix "chromatic" workflow ([2d17222](https://github.com/tiwariav/wo-library/commit/2d172228cf9228324e8e4238fc98a140995e199c))
-* remove config tools for which separate package exists ([3af98e9](https://github.com/tiwariav/wo-library/commit/3af98e905f3703327ae8e5c9bf98a641f0dd939a))
 
 ## [3.5.9](https://github.com/tiwariav/wo-library/compare/v3.5.8...v3.5.9) (2023-11-29)
 
