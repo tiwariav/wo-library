@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: tiwariav/github-actions/setup-yarn@main
-        with:
-          cache: yarn
-          node-version: 20
       - run: yarn build
       - uses: tiwariav/github-actions/semantic-release@main
         with:

@@ -1,5 +1,11 @@
-## [3.5.9](https://github.com/tiwariav/wo-library/compare/v3.5.8...v3.5.9) (2023-11-29)
+## [3.5.10](https://github.com/tiwariav/wo-library/compare/v3.5.9...v3.5.10) (2023-11-30)
 
+### ♻️ Code Refactors
+
+* fix "chromatic" workflow ([2d17222](https://github.com/tiwariav/wo-library/commit/2d172228cf9228324e8e4238fc98a140995e199c))
+* remove config tools for which separate package exists ([3af98e9](https://github.com/tiwariav/wo-library/commit/3af98e905f3703327ae8e5c9bf98a641f0dd939a))
+
+## [3.5.9](https://github.com/tiwariav/wo-library/compare/v3.5.8...v3.5.9) (2023-11-29)
 
 ### ♻️ Code Refactors
 
@@ -7,18 +13,15 @@
 
 ## [3.5.8](https://github.com/tiwariav/wo-library/compare/v3.5.7...v3.5.8) (2023-11-29)
 
-
 ### ♻️ Code Refactors
 
 * fix "lint" workflow ([411d538](https://github.com/tiwariav/wo-library/commit/411d53892b92cac927329707c010dd4ec7786e47))
 
 ## [3.5.7](https://github.com/tiwariav/wo-library/compare/v3.5.6...v3.5.7) (2023-11-29)
 
-
 ### 🐛 Bug Fixes
 
 * remove postinstall from built package.json ([7b738e0](https://github.com/tiwariav/wo-library/commit/7b738e0fc17aee53a014685c8d94fa55aec07553))
-
 
 ### ♻️ Code Refactors
 
@@ -26,13 +29,11 @@
 
 ## [3.5.6](https://github.com/tiwariav/wo-library/compare/v3.5.5...v3.5.6) (2023-11-07)
 
-
 ### ♻️ Code Refactors
 
 * update packages ([b1a37a0](https://github.com/tiwariav/wo-library/commit/b1a37a03c09a6c7f0c946510d7fce3cb265dc2d1))
 
 ## [3.5.5](https://github.com/tiwariav/wo-library/compare/v3.5.4...v3.5.5) (2023-11-07)
-
 
 ### 🐛 Bug Fixes
 
@@ -40,13 +41,11 @@
 
 ## [3.5.4](https://github.com/tiwariav/wo-library/compare/v3.5.3...v3.5.4) (2023-11-06)
 
-
 ### 🐛 Bug Fixes
 
 * fix useScroll direction value for strict mode ([609593f](https://github.com/tiwariav/wo-library/commit/609593fb8acc151b4133b2d8c14243555e107bef))
 
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-06)
-
 
 ### 🐛 Bug Fixes
 
@@ -58,7 +57,6 @@
 
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-05)
 
-
 ### 🐛 Bug Fixes
 
 * add additional packages to semantic-release action config ([d1d3079](https://github.com/tiwariav/wo-library/commit/d1d3079fa3cfe030422b884a22a1986c30f9bf84))
@@ -68,7 +66,6 @@
 
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-05)
 
-
 ### 🐛 Bug Fixes
 
 * add additional packages to semantic-release action config ([d1d3079](https://github.com/tiwariav/wo-library/commit/d1d3079fa3cfe030422b884a22a1986c30f9bf84))
@@ -77,13 +74,11 @@
 
 ## [3.5.3](https://github.com/tiwariav/wo-library/compare/v3.5.2...v3.5.3) (2023-11-05)
 
-
 ### 🐛 Bug Fixes
 
 * add additional packages to semantic-release action config ([d1d3079](https://github.com/tiwariav/wo-library/commit/d1d3079fa3cfe030422b884a22a1986c30f9bf84))
 
 ## [3.5.2](https://github.com/tiwariav/wo-library/compare/v3.5.1...v3.5.2) (2023-11-05)
-
 
 ### ♻️ Code Refactors
 
@@ -91,13 +86,11 @@
 
 ## [3.5.1](https://github.com/tiwariav/wo-library/compare/v3.5.0...v3.5.1) (2023-10-29)
 
-
 ### 🐛 Bug Fixes
 
 * fix storybook autodocs failing to load ([3893aa6](https://github.com/tiwariav/wo-library/commit/3893aa635233787a17d238bc4d8bf90b37b47bb6))
 
 ## [3.5.0](https://github.com/tiwariav/wo-library/compare/v3.4.0...v3.5.0) (2023-10-23)
-
 
 ### ✨ Features
 
@@ -106,13 +99,11 @@
 
 ## [3.4.0](https://github.com/tiwariav/wo-library/compare/v3.3.0...v3.4.0) (2023-10-17)
 
-
 ### ✨ Features
 
 * add generic element wrapper AsElement ([2bc3c77](https://github.com/tiwariav/wo-library/commit/2bc3c77f04d93d12c6193f6faafb90c2035ef199))
 
 ## [3.3.0](https://github.com/tiwariav/wo-library/compare/v3.2.3...v3.3.0) (2023-10-13)
-
 
 ### ✨ Features
 
@@ -120,13 +111,11 @@
 
 ## [3.2.3](https://github.com/tiwariav/wo-library/compare/v3.2.2...v3.2.3) (2023-10-12)
 
-
 ### ♻️ Code Refactors
 
 * move global type interfaces into subdirectory ([78bb586](https://github.com/tiwariav/wo-library/commit/78bb586b12a432ea3a3422d65a7e0eb4c3fe33bb))
 
 ## [3.2.2](https://github.com/tiwariav/wo-library/compare/v3.2.1...v3.2.2) (2023-10-12)
-
 
 ### ♻️ Code Refactors
 
@@ -134,18 +123,15 @@
 
 ## [3.2.1](https://github.com/tiwariav/wo-library/compare/v3.2.0...v3.2.1) (2023-10-12)
 
-
 ### 🐛 Bug Fixes
 
 * export global d.ts to dist directory ([4d7e36b](https://github.com/tiwariav/wo-library/commit/4d7e36ba7a572e9fa8c2a90a5b2bbc9dcdbf749a))
 
 ## [3.2.0](https://github.com/tiwariav/wo-library/compare/v3.1.1...v3.2.0) (2023-10-12)
 
-
 ### ✨ Features
 
 * add shared global types ([4f83d52](https://github.com/tiwariav/wo-library/commit/4f83d52410a5fad916f5bbf0b0f1038d5d148d71))
-
 
 ### ♻️ Code Refactors
 
@@ -153,18 +139,15 @@
 
 ## [3.1.1](https://github.com/tiwariav/wo-library/compare/v3.1.0...v3.1.1) (2023-10-12)
 
-
 ### 🐛 Bug Fixes
 
 * follow rules in popover story ([989ede0](https://github.com/tiwariav/wo-library/commit/989ede0ba1e19452d67073f4625e84b9e6af8e15))
 
 ## [3.1.0](https://github.com/tiwariav/wo-library/compare/v3.0.9...v3.1.0) (2023-10-10)
 
-
 ### ✨ Features
 
 * enable individual css extraction for modules ([a6c9239](https://github.com/tiwariav/wo-library/commit/a6c92396b3db35e0c743ac88c20a437555bda775))
-
 
 ### 🐛 Bug Fixes
 
@@ -172,11 +155,9 @@
 
 ## [3.0.9](https://github.com/tiwariav/wo-library/compare/v3.0.8...v3.0.9) (2023-10-06)
 
-
 ### 🐛 Bug Fixes
 
 * close toltip from inside title content ([2cf0ee1](https://github.com/tiwariav/wo-library/commit/2cf0ee116ab62d891d47aee968ba7259120e09c5))
-
 
 ### ♻️ Code Refactors
 
@@ -184,13 +165,11 @@
 
 ## [3.0.8](https://github.com/tiwariav/wo-library/compare/v3.0.7...v3.0.8) (2023-09-26)
 
-
 ### 🐛 Bug Fixes
 
 * re-export swiper css ([da9472e](https://github.com/tiwariav/wo-library/commit/da9472e9220d38579e99b96340073f3aea3662f1))
 
 ## [3.0.7](https://github.com/tiwariav/wo-library/compare/v3.0.6...v3.0.7) (2023-09-25)
-
 
 ### 🐛 Bug Fixes
 
@@ -198,13 +177,11 @@
 
 ## [3.0.6](https://github.com/tiwariav/wo-library/compare/v3.0.5...v3.0.6) (2023-09-25)
 
-
 ### 🐛 Bug Fixes
 
 * add base.css to build output ([9cb1cde](https://github.com/tiwariav/wo-library/commit/9cb1cde9b9707c88ddbc38b738fb4547da625540))
 
 ## [3.0.5](https://github.com/tiwariav/wo-library/compare/v3.0.4...v3.0.5) (2023-09-25)
-
 
 ### 🐛 Bug Fixes
 
@@ -212,13 +189,11 @@
 
 ## [3.0.4](https://github.com/tiwariav/wo-library/compare/v3.0.3...v3.0.4) (2023-09-24)
 
-
 ### 🐛 Bug Fixes
 
 * remove postcss-normalize ([099e2e4](https://github.com/tiwariav/wo-library/commit/099e2e4e12093703e51648474690ef4d41721139))
 
 ## [3.0.3](https://github.com/tiwariav/wo-library/compare/v3.0.2...v3.0.3) (2023-09-23)
-
 
 ### 🐛 Bug Fixes
 
@@ -226,20 +201,17 @@
 
 ## [3.0.2](https://github.com/tiwariav/wo-library/compare/v3.0.1...v3.0.2) (2023-09-21)
 
-
 ### 🐛 Bug Fixes
 
 * update rollup postcss config for style-inject ([4abfde9](https://github.com/tiwariav/wo-library/commit/4abfde916d8a8f167f1b0fb5253cc0aaee0b27ba))
 
 ## [3.0.1](https://github.com/tiwariav/wo-library/compare/v3.0.0...v3.0.1) (2023-09-21)
 
-
 ### ♻️ Code Refactors
 
 * update packages ([a6b7661](https://github.com/tiwariav/wo-library/commit/a6b76612bb240a85be8ed1f43c8a268bcb402efd))
 
 ## [3.0.0](https://github.com/tiwariav/wo-library/compare/v2.1.3...v3.0.0) (2023-09-21)
-
 
 ### ⚠ BREAKING CHANGES
 
