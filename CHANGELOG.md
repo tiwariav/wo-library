@@ -1,3 +1,10 @@
+## [3.5.11](https://github.com/tiwariav/wo-library/compare/v3.5.10...v3.5.11) (2023-11-30)
+
+
+### 🐛 Bug Fixes
+
+* fix package versioning ([19db870](https://github.com/tiwariav/wo-library/commit/19db870fc955d09311297916305f829de1854999))
+
 ## [3.5.10](https://github.com/tiwariav/wo-library/compare/v3.5.9...v3.5.10) (2023-11-30)
 
 ### ♻️ Code Refactors
