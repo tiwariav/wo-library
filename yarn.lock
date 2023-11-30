@@ -5836,9 +5836,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/stylelint-config@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@tiwariav/stylelint-config@npm:1.0.2"
+"@tiwariav/stylelint-config@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@tiwariav/stylelint-config@npm:1.0.3"
   dependencies:
     stylelint: "npm:^15.11.0"
     stylelint-a11y: "npm:^1.2.3"
@@ -5848,7 +5848,7 @@ __metadata:
     stylelint-declaration-block-no-ignored-properties: "npm:^2.7.0"
     stylelint-declaration-strict-value: "npm:^1.9.2"
     stylelint-use-nesting: "npm:^4.1.0"
-  checksum: 6bd52c49379c93fe7c0cbaab448ee12aaae4cbd889b5859e7088e9c5c6a6860d9999c9b7cf97aeee2785667142de80ed5a7187989a23f1bcfeb58812b9ce62c6
+  checksum: 2b6fbd79885b22b0d9b925f44ae12f583663cfa3ebb2fc6aeb1191abcf8ed0a7b4b749a1ca67f822234acf2962462e644fca984a58ac3b2606f35051a84fd0e0
   languageName: node
   linkType: hard
 
@@ -24809,7 +24809,7 @@ __metadata:
     "@testing-library/react": "npm:^14.1.2"
     "@tiwariav/browserslist-config": "npm:^1.3.0"
     "@tiwariav/eslint-config": "npm:^1.0.5"
-    "@tiwariav/stylelint-config": "npm:^1.0.2"
+    "@tiwariav/stylelint-config": "npm:^1.0.3"
     "@types/jest": "npm:^29.5.10"
     "@types/lodash-es": "npm:^4.17.12"
     "@types/node": "npm:^20.10.1"
