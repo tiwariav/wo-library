@@ -1,3 +1,10 @@
+## [3.5.12](https://github.com/tiwariav/wo-library/compare/v3.5.11...v3.5.12) (2023-12-01)
+
+
+### 🐛 Bug Fixes
+
+* remove overflow style from WoSwiper container ([20b4eb3](https://github.com/tiwariav/wo-library/commit/20b4eb31d76808de64e79039302077b8e48bbaa1))
+
 ## [3.5.11](https://github.com/tiwariav/wo-library/compare/v3.5.10...v3.5.11) (2023-11-30)
 
 
