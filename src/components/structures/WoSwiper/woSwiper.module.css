@@ -84,7 +84,6 @@
 
   .swiper {
     height: 100%;
-    overflow: visible;
 
     .title + & {
       margin-top: var(--ye-em-base);
