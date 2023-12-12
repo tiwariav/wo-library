@@ -17,7 +17,6 @@ import {
   XHREventListener,
   XHRStateChange,
 } from "./types.js";
-export * from "./types.js";
 
 function getFormData(file: Blob, data?: Record<string, string>): FormData {
   const formData = new FormData();

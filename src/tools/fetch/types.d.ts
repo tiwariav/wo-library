@@ -1,6 +1,6 @@
 import { SetRequired } from "type-fest";
 
-import { defaultErrorHandler } from "./errorHandlers.js";
+import { defaultErrorHandler } from "./errorHandlers.ts";
 
 export type WoRequestMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 

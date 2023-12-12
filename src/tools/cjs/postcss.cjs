@@ -1,3 +1,8 @@
+const cssnano = require("cssnano");
+const postcssGlobalImport = require("postcss-global-import");
+const postcssImport = require("postcss-import");
+const postcssPresetEnv = require("postcss-preset-env");
+
 const presetEnvOptions = {
   autoprefixer: {
     flexbox: "no-2009",
@@ -12,14 +17,14 @@ const presetEnvOptions = {
   stage: 1,
 };
 
-const getFinalConfig = (env) => ({
+const getConfig = (env = "production") => ({
   plugins: [
-    "postcss-global-import",
-    "postcss-import",
-    ["postcss-preset-env", { ...presetEnvOptions, env }],
-    ["cssnano", { preset: "advanced" }],
+    postcssGlobalImport(),
+    postcssImport(),
+    postcssPresetEnv({ ...presetEnvOptions, env }),
+    cssnano({ preset: "advanced" }),
   ],
   sourceMap: env === "development",
 });
 
-module.exports = { getFinalConfig, presetEnvOptions };
+module.exports = { getConfig, presetEnvOptions };

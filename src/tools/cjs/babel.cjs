@@ -1,23 +1,33 @@
-const config = {
-  plugins: [
-    "@babel/plugin-proposal-class-properties",
-    [
-      "@simbathesailor/babel-plugin-use-what-changed",
-      {
-        active: process.env.NODE_ENV === "development",
-      },
+const getConfig = ({ isDev = false } = {}) =>
+  // used by storybook to add typescript support
+  ({
+    plugins: [
+      "@babel/plugin-transform-runtime",
+      [
+        "@simbathesailor/babel-plugin-use-what-changed",
+        {
+          active: isDev,
+        },
+      ],
     ],
-  ],
-  presets: [
-    "@babel/preset-env",
-    [
-      "@babel/preset-react",
-      {
-        runtime: "automatic",
-      },
+    presets: [
+      [
+        "@babel/preset-env",
+        {
+          modules: false,
+        },
+      ],
+      [
+        "@babel/preset-react",
+        {
+          runtime: "automatic",
+        },
+      ],
+      "@babel/preset-typescript",
     ],
-    "@babel/preset-typescript",
-  ],
-};
+    targets: {
+      esmodules: true,
+    },
+  });
 
-module.exports = { config };
+module.exports = { getConfig };

@@ -2,11 +2,10 @@
 **/dist/**
 **/storybook-static/**
 **/coverage/**
-**/dist/**
 **/.git/**
 **/public/**
 .pnp.js
 **/*.snap.js
 **/*.snap.ts
-reports
-*.d.ts
+reports/**
+**/.yarn/**

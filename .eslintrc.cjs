@@ -4,6 +4,6 @@ module.exports = {
   extends: ["@tiwariav"],
   parserOptions: {
     project: ["./tsconfig.json"],
-    tsconfigRootDir: __dirname,
+    tsconfigRootDir: process.cwd(),
   },
 };

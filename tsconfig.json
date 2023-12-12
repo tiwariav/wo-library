@@ -2,16 +2,18 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
     "declaration": true,
-    "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "nodenext",
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
+    "rootDir": "src",
     "outDir": "dist",
     "plugins": [
       {
@@ -24,6 +26,5 @@
     "strict": true,
     "target": "es2017"
   },
-  "include": ["src", "types"],
-  "exclude": ["**/__snapshots__", "node_modules"]
+  "include": ["./src/**/*", "./src/**/*.json"]
 }
