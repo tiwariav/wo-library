@@ -55,6 +55,7 @@ export function getJsPlugins({
   enableEslint = false,
   extensions = DEFAULT_JS_EXTENSIONS,
   isDev = false,
+  transforms = [],
 } = {}) {
   const response = [
     autoExternal(),
@@ -62,6 +63,7 @@ export function getJsPlugins({
     nodeResolve({ extensions }),
     commonjs(),
     json(),
+    ...transforms,
   ];
   if (isDev && enableEslint) {
     response.push(
@@ -81,24 +83,31 @@ export function getJsPlugins({
 export const getTsPlugins = ({
   extensions = DEFAULT_JS_EXTENSIONS,
   isDev = false,
-} = {}) => [
-  postcss({
-    extract: "dist.css",
-    modules: { localsConvention: "camelCase" },
-    sourceMap: isDev,
-  }),
-  babel({
-    babelHelpers: "runtime",
+  ...options
+} = {}) =>
+  getJsPlugins({
     extensions,
-    include: "src/**/*",
-    skipPreflightCheck: true,
-  }),
-  typescript({
-    cacheDir: "node_modules/.cache/rollup-plugin-typescript",
-    noForceEmit: true,
-    tsconfig: "./tsconfig.build.json",
-  }),
-];
+    isDev,
+    ...options,
+    transforms: [
+      postcss({
+        extract: "dist.css",
+        modules: { localsConvention: "camelCase" },
+        sourceMap: isDev,
+      }),
+      babel({
+        babelHelpers: "runtime",
+        extensions,
+        include: "src/**/*",
+        skipPreflightCheck: true,
+      }),
+      typescript({
+        cacheDir: "node_modules/.cache/rollup-plugin-typescript",
+        noForceEmit: true,
+        tsconfig: "./tsconfig.build.json",
+      }),
+    ],
+  });
 
 export const getPublishPlugins = ({
   buildPath = "dist",

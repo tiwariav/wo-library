@@ -8,7 +8,11 @@ import { getInput } from "./utils.js";
 
 const getBaseConfig = ({ isDev = false } = {}) => {
   return {
+    // enable to find out sideEffects and reduce bundle size
+    // experimentalLogSideEffects: true,
     external: [/node_modules/],
+    // enable to view time taken by each plugin
+    // perf: !isDev,
     treeshake: !isDev,
     watch: {
       clearScreen: false,
@@ -23,19 +27,16 @@ export const getCjsConfig = ({ isDev = false } = {}) => ({
     extension: "*.cjs",
   }),
   output: getCjsOutput({ isDev }),
-  plugins: getJsPlugins({ enableEslint: true }),
+  plugins: getJsPlugins({ enableEslint: true, isDev }),
 });
 
-export const getEsConfig = ({ isDev = false } = {}) => ({
+export const getTsConfig = ({ isDev = false } = {}) => ({
   ...getBaseConfig({ isDev }),
   input: getInput("src", {
     excludeDirectories: ["styles", "assets", "stories", "mocks"],
   }),
   output: getEsOutput({ isDev }),
-  plugins: [
-    ...getJsPlugins({ enableEslint: true, isDev }),
-    ...getTsPlugins({ isDev }),
-  ],
+  plugins: getTsPlugins({ enableEslint: true, isDev }),
 });
 
 export const getCssConfig = ({ isDev = false } = {}) => ({

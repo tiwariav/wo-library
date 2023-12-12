@@ -15,7 +15,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
     "build": "rollup --config rollup.config.js",
-    "dev": "rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
+    "dev": "NODE_ENV=development rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
     "postversion": "cp -r package.json ..",
     "release": "cd dist && yarn npm publish",
     "storybook": "sb dev -p 9001",

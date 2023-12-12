@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import {
   getCjsConfig,
   getCssConfig,
-  getEsConfig,
+  getTsConfig,
 } from "./src/tools/rollup/configs.js";
 import { getPublishPlugins } from "./src/tools/rollup/pluginSets.js";
 
@@ -16,7 +16,7 @@ cjsConfig.plugins.push(...getPublishPlugins({ removePostInstall: true }));
 
 const config = [
   cjsConfig,
-  getEsConfig(process.cwd(), { isDev }),
+  getTsConfig(process.cwd(), { isDev }),
   getCssConfig(process.cwd(), { isDev }),
 ];
 
