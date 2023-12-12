@@ -5397,19 +5397,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/stylelint-config@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@tiwariav/stylelint-config@npm:1.0.4"
+"@tiwariav/stylelint-config@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "@tiwariav/stylelint-config@npm:1.0.6"
   dependencies:
     stylelint: "npm:^16.0.2"
-    stylelint-a11y: "npm:^1.2.3"
     stylelint-config-css-modules: "npm:^4.3.0"
     stylelint-config-rational-order: "npm:^0.1.2"
     stylelint-config-standard: "npm:^35.0.0"
     stylelint-declaration-block-no-ignored-properties: "npm:^2.7.0"
-    stylelint-declaration-strict-value: "npm:^1.9.2"
-    stylelint-use-nesting: "npm:^4.1.0"
-  checksum: 5949b95fa5ed197504b4105de18acf29f74b9d62ceb9ca358997c48044ef3cc21848f27b2288112cfd706e91a7d73209aacd360bd57bc2b428baf4fe088b7a56
+  checksum: 8873b24681944d6502fbdaad66cdc5fb10799aa03ec7d8618233285e71797442900f64226f39bac1c39b8f6c731706d47e12dddf9787588a9e0842259d927623
   languageName: node
   linkType: hard
 
@@ -5993,7 +5990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.2.43":
+"@types/react@npm:*, @types/react@npm:>=16":
   version: 18.2.43
   resolution: "@types/react@npm:18.2.43"
   dependencies:
@@ -6001,6 +5998,17 @@ __metadata:
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10477a50fbd3c0cc5b8a2ade679f442717f68fb27c8460b2aa1d3256cd18c48f742bbe5b9ee37a8c4c5f832ffa37b3a23c09fd96dd880a8e3182d8929c05e803
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.44":
+  version: 18.2.44
+  resolution: "@types/react@npm:18.2.44"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 3e12247fdb2c97549528889cd0afec293a9f421f553d9671f85187c5595f450a998498295640a8eb67161f4b951d1ad190ae60852aae4f72184dcecbccf280fc
   languageName: node
   linkType: hard
 
@@ -18899,12 +18907,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.49.0":
-  version: 7.49.0
-  resolution: "react-hook-form@npm:7.49.0"
+"react-hook-form@npm:^7.49.1":
+  version: 7.49.1
+  resolution: "react-hook-form@npm:7.49.1"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 0f05a8f9e8400ff0012214b5af60e2195e52ca67d615dfd1d183b1446a021ec49074dc38653251ad2c47dd6585bff84eb1ff75f369a84676701403a4a2f90033
+  checksum: 9496155273220a432f897fbe1c393f11b273cd1c9c2ede70e301df95190e2cac6479bdaed7479612c027954b0da35b01c4eec7a428c0dfafcd04b915a170fc8c
   languageName: node
   linkType: hard
 
@@ -22932,12 +22940,12 @@ __metadata:
     "@testing-library/react": "npm:^14.1.2"
     "@tiwariav/browserslist-config": "npm:^1.3.0"
     "@tiwariav/eslint-config": "npm:^1.0.6"
-    "@tiwariav/stylelint-config": "npm:^1.0.4"
+    "@tiwariav/stylelint-config": "npm:^1.0.6"
     "@types/babel__plugin-transform-runtime": "npm:^7.9.5"
     "@types/jest": "npm:^29.5.11"
     "@types/lodash-es": "npm:^4.17.12"
     "@types/node": "npm:^20.10.4"
-    "@types/react": "npm:^18.2.43"
+    "@types/react": "npm:^18.2.44"
     "@types/react-dom": "npm:^18.2.17"
     "@typescript-eslint/eslint-plugin": "npm:~6.14.0"
     "@typescript-eslint/parser": "npm:~6.14.0"
@@ -22996,7 +23004,7 @@ __metadata:
     prettier: "npm:3.1.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    react-hook-form: "npm:^7.49.0"
+    react-hook-form: "npm:^7.49.1"
     react-intersection-observer: "npm:^9.5.3"
     react-use: "npm:^17.4.2"
     rollup: "npm:^4.8.0"
