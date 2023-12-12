@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/tiwariav/wo-library/compare/v4.0.0...v4.0.1) (2023-12-12)
+
+
+### 🐛 Bug Fixes
+
+* export babel config as esm ([09e582f](https://github.com/tiwariav/wo-library/commit/09e582fe8712d9729885ef868e3d42b3ed38a75f))
+
 ## [4.0.0](https://github.com/tiwariav/wo-library/compare/v3.5.12...v4.0.0) (2023-12-12)
 
 
