@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/tiwariav/wo-library/compare/v4.0.1...v4.0.2) (2023-12-12)
+
+
+### 🐛 Bug Fixes
+
+* fix named cjs exports rollup config ([9a837a4](https://github.com/tiwariav/wo-library/commit/9a837a4aeb891d3cc9fe66eb5d6de8fcdad97c0a))
+
 ## [4.0.1](https://github.com/tiwariav/wo-library/compare/v4.0.0...v4.0.1) (2023-12-12)
 
 
