@@ -1,3 +1,14 @@
+## [4.0.0](https://github.com/tiwariav/wo-library/compare/v3.5.12...v4.0.0) (2023-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* new rollup config options for a faster build using babel
+
+### ✨ Features
+
+* new rollup config ([7725368](https://github.com/tiwariav/wo-library/commit/7725368a6ca8930e44114b276a3eabbee4c83548))
+
 ## [3.5.12](https://github.com/tiwariav/wo-library/compare/v3.5.11...v3.5.12) (2023-12-01)
 
 
