@@ -80,19 +80,30 @@ export function createURL(
   return resourceURL;
 }
 
-export class WoFetch {
+export class WoFetchBase {
   authHeader = "Authorization";
   authTokenPrefix = "Bearer";
   credentials?: RequestCredentials;
-  deleteUrl = getFetch(this, "DELETE");
   devProxy?: string;
   endpoint: string;
   errorHandler = defaultErrorHandler;
-  fetchURL = async <TResponseData>(
+  responseHandler = jsonResponseHandler;
+  tokenName = ACCESS_TOKEN_KEY;
+  trailingSlash?: boolean;
+
+  constructor({
+    endpoint,
+    ...options
+  }: SetRequired<Partial<WoFetchBase>, "endpoint">) {
+    this.endpoint = endpoint;
+    Object.assign(this, options);
+  }
+
+  async fetchURL<TResponseData>(
     method: string,
     path: string,
     options: FetchOptions = {},
-  ): Promise<TResponseData> => {
+  ): Promise<TResponseData> {
     const {
       credentials,
       data,
@@ -139,8 +150,19 @@ export class WoFetch {
       await errorHandler(undefined, error);
     }
     return new Response() as TResponseData;
-  };
-  getHeaders = async ({
+  }
+
+  generateFetchMethod(method: WoRequestMethod) {
+    return <
+      TData extends object,
+      TFetchOptions extends FetchOptions = FetchOptions,
+    >(
+      path: string,
+      options?: TFetchOptions,
+    ) => this.fetchURL<TData>(method, path, options);
+  }
+
+  async getHeaders({
     headers = {},
     requireAuth = true,
     token,
@@ -150,7 +172,7 @@ export class WoFetch {
     requireAuth?: boolean;
     token?: string;
     xhr?: boolean;
-  } = {}): Promise<Headers | Map<string, string>> => {
+  } = {}): Promise<Headers | Map<string, string>> {
     const headersInstance = xhr ? new Map() : new Headers();
     const allHeaders: Record<string, string> = merge(
       {},
@@ -170,20 +192,9 @@ export class WoFetch {
       headersInstance.set(key, element);
     }
     return headersInstance;
-  };
+  }
 
-  getUrl = getFetch(this, "GET");
-
-  patchUrl = getFetch(this, "PATCH");
-
-  postUrl = getFetch(this, "POST");
-
-  putUrl = getFetch(this, "PUT");
-  responseHandler = jsonResponseHandler;
-  tokenName = ACCESS_TOKEN_KEY;
-  trailingSlash?: boolean;
-
-  uploadFileXHR = async (
+  async uploadFileXHR(
     path: string,
     file: Blob,
     {
@@ -201,7 +212,7 @@ export class WoFetch {
       requireAuth: boolean;
       transferCompleteFunction?: XHREventListener;
     },
-  ): Promise<void> => {
+  ): Promise<void> {
     const formData = getFormData(file, data);
     const headers = await this.getHeaders({
       headers: { CONTENT_TYPE_HEADER: CONTENT_TYPE_FORM },
@@ -258,20 +269,13 @@ export class WoFetch {
       }
       xhrObject.send(formData);
     });
-  };
-
-  constructor({
-    endpoint,
-    ...options
-  }: SetRequired<Partial<WoFetch>, "endpoint">) {
-    this.endpoint = endpoint;
-    Object.assign(this, options);
   }
 }
 
-const getFetch =
-  (cls: WoFetch, method: WoRequestMethod) =>
-  <TFetchOptions extends FetchOptions>(
-    ...rest: [path: string, options?: TFetchOptions]
-  ) =>
-    cls.fetchURL(method, ...rest);
+export class WoFetch extends WoFetchBase {
+  deleteUrl = this.generateFetchMethod("DELETE");
+  getUrl = this.generateFetchMethod("GET");
+  patchUrl = this.generateFetchMethod("PATCH");
+  postUrl = this.generateFetchMethod("POST");
+  putUrl = this.generateFetchMethod("PUT");
+}
