@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/tiwariav/wo-library/compare/v4.0.2...v4.0.3) (2023-12-13)
+
+
+### 🐛 Bug Fixes
+
+* improve tools/fetch types ([6a1ec70](https://github.com/tiwariav/wo-library/commit/6a1ec70c5b57df9ed9c24562aacb3f7915a7c475))
+
 ## [4.0.2](https://github.com/tiwariav/wo-library/compare/v4.0.1...v4.0.2) (2023-12-12)
 
 
