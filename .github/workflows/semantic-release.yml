@@ -16,7 +16,6 @@ jobs:
       - run: yarn prettier --check src
       - run: yarn jscpd src
       - run: yarn build
-      - run: yarn tsc
       - uses: tiwariav/github-actions/semantic-release@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

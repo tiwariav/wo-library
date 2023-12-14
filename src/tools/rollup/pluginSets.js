@@ -81,8 +81,8 @@ export function getJsPlugins({
 }
 
 export const getBuildPlugins = ({
-  enableTsc = false,
   extensions = DEFAULT_JS_EXTENSIONS,
+  includeTsc = true,
   isDev = false,
   ...options
 } = {}) => {
@@ -99,7 +99,7 @@ export const getBuildPlugins = ({
       skipPreflightCheck: true,
     }),
   ];
-  if (enableTsc) {
+  if (includeTsc) {
     plugins.push(
       typescript({
         cacheDir: "node_modules/.cache/rollup-plugin-typescript",

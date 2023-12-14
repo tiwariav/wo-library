@@ -30,13 +30,13 @@ export const getCjsConfig = ({ isDev = false } = {}) => ({
   plugins: getJsPlugins({ enableEslint: true, isDev }),
 });
 
-export const getTsConfig = ({ isDev = false } = {}) => ({
+export const getEsConfig = ({ includeTsc, isDev = false } = {}) => ({
   ...getBaseConfig({ isDev }),
   input: getInput("src", {
     excludeDirectories: ["styles", "assets", "stories", "mocks"],
   }),
   output: getEsOutput({ isDev }),
-  plugins: getBuildPlugins({ enableEslint: true, isDev }),
+  plugins: getBuildPlugins({ enableEslint: true, includeTsc, isDev }),
 });
 
 export const getCssConfig = ({ isDev = false } = {}) => ({
