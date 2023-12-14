@@ -1,8 +1,8 @@
 import { cssOutput, getCjsOutput, getEsOutput } from "./outputs.js";
 import {
+  getBuildPlugins,
   getCssBundlePlugins,
   getJsPlugins,
-  getTsPlugins,
 } from "./pluginSets.js";
 import { getInput } from "./utils.js";
 
@@ -36,7 +36,7 @@ export const getTsConfig = ({ isDev = false } = {}) => ({
     excludeDirectories: ["styles", "assets", "stories", "mocks"],
   }),
   output: getEsOutput({ isDev }),
-  plugins: getTsPlugins({ enableEslint: true, isDev }),
+  plugins: getBuildPlugins({ enableEslint: true, isDev }),
 });
 
 export const getCssConfig = ({ isDev = false } = {}) => ({

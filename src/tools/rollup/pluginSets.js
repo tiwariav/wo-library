@@ -52,10 +52,10 @@ export function getCssBundlePlugins(
 }
 
 export function getJsPlugins({
+  buildPlugins = [],
   enableEslint = false,
   extensions = DEFAULT_JS_EXTENSIONS,
   isDev = false,
-  transforms = [],
 } = {}) {
   const response = [
     autoExternal(),
@@ -63,7 +63,7 @@ export function getJsPlugins({
     nodeResolve({ extensions }),
     commonjs(),
     json(),
-    ...transforms,
+    ...buildPlugins,
   ];
   if (isDev && enableEslint) {
     response.push(
@@ -80,40 +80,47 @@ export function getJsPlugins({
   return response;
 }
 
-export const getTsPlugins = ({
+export const getBuildPlugins = ({
+  enableTsc = false,
   extensions = DEFAULT_JS_EXTENSIONS,
   isDev = false,
   ...options
-} = {}) =>
-  getJsPlugins({
-    extensions,
-    isDev,
-    ...options,
-    transforms: [
-      postcss({
-        extract: "dist.css",
-        modules: { localsConvention: "camelCase" },
-        sourceMap: isDev,
-      }),
-      babel({
-        babelHelpers: "runtime",
-        extensions,
-        include: "src/**/*",
-        skipPreflightCheck: true,
-      }),
+} = {}) => {
+  const plugins = [
+    postcss({
+      extract: "dist.css",
+      modules: { localsConvention: "camelCase" },
+      sourceMap: isDev,
+    }),
+    babel({
+      babelHelpers: "runtime",
+      extensions,
+      include: "src/**/*",
+      skipPreflightCheck: true,
+    }),
+  ];
+  if (enableTsc) {
+    plugins.push(
       typescript({
         cacheDir: "node_modules/.cache/rollup-plugin-typescript",
         noForceEmit: true,
         tsconfig: "./tsconfig.build.json",
       }),
-    ],
+    );
+  }
+  return getJsPlugins({
+    buildPlugins: plugins,
+    extensions,
+    isDev,
+    ...options,
   });
+};
 
 export const getPublishPlugins = ({
   buildPath = "dist",
   removePostInstall = false,
 } = {}) => [
-  del({ runOnce: true, targets: [`${buildPath}/**/*`, "*..tsbuildinfo"] }),
+  del({ runOnce: true, targets: [`${buildPath}/**/*`, "*.tsbuildinfo"] }),
   copy({
     copyOnce: true,
     flatten: false,
