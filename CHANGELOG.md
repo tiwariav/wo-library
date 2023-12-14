@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/tiwariav/wo-library/compare/v4.0.3...v4.0.4) (2023-12-14)
+
+
+### ♻️ Code Refactors
+
+* separate tsc from rollup ([4d0dafb](https://github.com/tiwariav/wo-library/commit/4d0dafbabfa4e4285e93c339ec9f4c7cfa0d8e43))
+
 ## [4.0.3](https://github.com/tiwariav/wo-library/compare/v4.0.2...v4.0.3) (2023-12-13)
 
 
