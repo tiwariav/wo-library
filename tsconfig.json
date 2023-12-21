@@ -2,8 +2,8 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -11,20 +11,27 @@
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "nodenext",
-    "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
-    "rootDir": "src",
+    "noFallthroughCasesInSwitch": true,
     "outDir": "dist",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
-        "options": { "classnameTransform": "camelCase" }
+        "options": {
+          "classnameTransform": "camelCase"
+        }
       }
     ],
     "resolveJsonModule": true,
+    "rootDir": "src",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2017"
+    "strictNullChecks": true,
+    "target": "es2022"
   },
-  "include": ["./src/**/*", "./src/**/*.json"]
+  "include": ["./src/**/*", "./src/**/*.json"],
+  "watchOptions": {
+    "excludeDirectories": ["**/.yarn", "**/node_modules"],
+    "watchFile": "useFsEventsOnParentDirectory"
+  }
 }
