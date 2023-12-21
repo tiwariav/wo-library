@@ -1,3 +1,10 @@
+## [4.0.6](https://github.com/tiwariav/wo-library/compare/v4.0.5...v4.0.6) (2023-12-21)
+
+
+### ♻️ Code Refactors
+
+* udpate packages ([36a845b](https://github.com/tiwariav/wo-library/commit/36a845b65099f92d45ffe2466ae7cac98ae52389))
+
 ## [4.0.5](https://github.com/tiwariav/wo-library/compare/v4.0.4...v4.0.5) (2023-12-14)
 
 
