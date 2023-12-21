@@ -5404,16 +5404,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/stylelint-config@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "@tiwariav/stylelint-config@npm:1.0.8"
+"@tiwariav/stylelint-config@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "@tiwariav/stylelint-config@npm:1.0.9"
   dependencies:
     stylelint: "npm:^16.0.2"
-    stylelint-config-css-modules: "npm:^4.3.0"
+    stylelint-config-css-modules: "npm:^4.4.0"
     stylelint-config-rational-order: "npm:^0.1.2"
     stylelint-config-standard: "npm:^35.0.0"
     stylelint-declaration-block-no-ignored-properties: "npm:^2.7.0"
-  checksum: a26d6cba6479cc9b92ca76abf96b1d7af0d37f3941ff0091acfa6c8d5682df6fb4b658f7b4d462eae8faee7ce18e88c693956add4358052b168ba1dfb6057d14
+  checksum: 51c8d8eb03556f52bd6f683ee232f5a611cdff241929130c495fb07c294d92cc98d13a55a20d0e7763f15afcd9d2ad1104740702c7497b064fe04b5f6762d3f9
   languageName: node
   linkType: hard
 
@@ -11125,6 +11125,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-unicorn@npm:^50.0.1":
+  version: 50.0.1
+  resolution: "eslint-plugin-unicorn@npm:50.0.1"
+  dependencies:
+    "@babel/helper-validator-identifier": "npm:^7.22.20"
+    "@eslint-community/eslint-utils": "npm:^4.4.0"
+    "@eslint/eslintrc": "npm:^2.1.4"
+    ci-info: "npm:^4.0.0"
+    clean-regexp: "npm:^1.0.0"
+    core-js-compat: "npm:^3.34.0"
+    esquery: "npm:^1.5.0"
+    indent-string: "npm:^4.0.0"
+    is-builtin-module: "npm:^3.2.1"
+    jsesc: "npm:^3.0.2"
+    pluralize: "npm:^8.0.0"
+    read-pkg-up: "npm:^7.0.1"
+    regexp-tree: "npm:^0.1.27"
+    regjsparser: "npm:^0.10.0"
+    semver: "npm:^7.5.4"
+    strip-indent: "npm:^3.0.0"
+  peerDependencies:
+    eslint: ">=8.56.0"
+  checksum: 645992a210066810bae4fc7557606a1f23b89a2b300c7a32d390c600a12a3283013a201a035a0943da605a38c4b7a5556086962b9ec785d45cf8c65c6a50cbcd
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:5.1.1, eslint-scope@npm:^5.1.1":
   version: 5.1.1
   resolution: "eslint-scope@npm:5.1.1"
@@ -15389,7 +15415,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:*, lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.2, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
+"lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.2, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -21171,20 +21197,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-css-modules@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "stylelint-config-css-modules@npm:4.3.0"
-  dependencies:
-    stylelint-scss: "npm:^5.0.0 || ^6.0.0"
-  peerDependencies:
-    stylelint: ^14.5.1 || ^15.0.0
-  dependenciesMeta:
-    stylelint-scss:
-      optional: true
-  checksum: c8ec0070ef1905ba0e26f410d43df9510e90a018736ddb1e6ee6e9b9ee956f9110d81cd487f6079b2c197866d105c293fe473ca47b68b87e34a2a9549eea9540
-  languageName: node
-  linkType: hard
-
 "stylelint-config-css-modules@npm:^4.4.0":
   version: 4.4.0
   resolution: "stylelint-config-css-modules@npm:4.4.0"
@@ -21263,7 +21275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-scss@npm:^5.0.0 || ^6.0.0, stylelint-scss@npm:^6.0.0":
+"stylelint-scss@npm:^6.0.0":
   version: 6.0.0
   resolution: "stylelint-scss@npm:6.0.0"
   dependencies:
@@ -23146,7 +23158,7 @@ __metadata:
     "@testing-library/react": "npm:^14.1.2"
     "@tiwariav/browserslist-config": "npm:^1.3.0"
     "@tiwariav/eslint-config": "npm:^1.0.7"
-    "@tiwariav/stylelint-config": "npm:^1.0.8"
+    "@tiwariav/stylelint-config": "npm:^1.0.9"
     "@types/babel__plugin-transform-runtime": "npm:^7.9.5"
     "@types/jest": "npm:^29.5.11"
     "@types/lodash-es": "npm:^4.17.12"
@@ -23186,7 +23198,7 @@ __metadata:
     eslint-plugin-sonarjs: "npm:^0.23.0"
     eslint-plugin-storybook: "npm:^0.6.15"
     eslint-plugin-testing-library: "npm:^6.2.0"
-    eslint-plugin-unicorn: "npm:^50.0.0"
+    eslint-plugin-unicorn: "npm:^50.0.1"
     glob: "npm:^10.3.10"
     http-proxy-middleware: "npm:^2.0.6"
     husky: "npm:^8.0.3"
