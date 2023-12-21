@@ -1,3 +1,10 @@
+## [4.0.5](https://github.com/tiwariav/wo-library/compare/v4.0.4...v4.0.5) (2023-12-14)
+
+
+### ♻️ Code Refactors
+
+* include tsc back into rollup ([9124e60](https://github.com/tiwariav/wo-library/commit/9124e6075053be85c2a6c4990fcfcd5626a493dd))
+
 ## [4.0.4](https://github.com/tiwariav/wo-library/compare/v4.0.3...v4.0.4) (2023-12-14)
 
 
