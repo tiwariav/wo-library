@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/tiwariav/wo-library/compare/v4.0.6...v4.0.7) (2023-12-22)
+
+
+### 🐛 Bug Fixes
+
+* add options to additionaly copy assets ([4abe7be](https://github.com/tiwariav/wo-library/commit/4abe7beed61416250b95ebd22fde3fb4397c68e0))
+
 ## [4.0.6](https://github.com/tiwariav/wo-library/compare/v4.0.5...v4.0.6) (2023-12-21)
 
 
