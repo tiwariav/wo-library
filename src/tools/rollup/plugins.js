@@ -2,16 +2,17 @@ import path from "node:path";
 
 import { copyToDestination } from "../files.js";
 
-export const autoExternal = ({ assets = /assets/ } = {}) => ({
+export const autoExternal = ({ assets = /assets/, copy = false } = {}) => ({
   name: "wo-library/ignore-assets",
   resolveId(source, importer) {
-    if (assets.test(source)) {
+    if (!assets.test(source)) return;
+    if (copy) {
       copyToDestination(path.resolve(path.dirname(importer), source));
-      return {
-        external: true,
-        id: source,
-      };
     }
+    return {
+      external: true,
+      id: source,
+    };
   },
 });
 

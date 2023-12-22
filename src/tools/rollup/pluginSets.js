@@ -53,12 +53,13 @@ export function getCssBundlePlugins(
 
 export function getJsPlugins({
   buildPlugins = [],
+  copyAssets = false,
   enableEslint = false,
   extensions = DEFAULT_JS_EXTENSIONS,
   isDev = false,
 } = {}) {
   const response = [
-    autoExternal(),
+    autoExternal({ copy: copyAssets }),
     progress(),
     nodeResolve({ extensions }),
     commonjs(),
@@ -102,7 +103,7 @@ export const getBuildPlugins = ({
   if (includeTsc) {
     plugins.push(
       typescript({
-        cacheDir: "node_modules/.cache/rollup-plugin-typescript",
+        cacheDir: "node_modules/.cache/@rollup-plugin/typescript",
         noForceEmit: true,
         tsconfig: "./tsconfig.build.json",
       }),
@@ -117,6 +118,7 @@ export const getBuildPlugins = ({
 };
 
 export const getPublishPlugins = ({
+  assetDirectories,
   buildPath = "dist",
   removePostInstall = false,
 } = {}) => [
@@ -138,6 +140,7 @@ export const getPublishPlugins = ({
         dest: buildPath,
         src: ["src/**/*.d.ts"],
       },
+      ...(assetDirectories || []),
     ],
   }),
 ];
