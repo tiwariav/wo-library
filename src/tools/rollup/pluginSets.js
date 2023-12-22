@@ -140,7 +140,14 @@ export const getPublishPlugins = ({
         dest: buildPath,
         src: ["src/**/*.d.ts"],
       },
-      ...(assetDirectories || []),
+      ...(assetDirectories
+        ? [
+            {
+              dest: buildPath,
+              src: assetDirectories,
+            },
+          ]
+        : []),
     ],
   }),
 ];
