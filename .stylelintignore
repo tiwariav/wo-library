@@ -1,11 +1,7 @@
-**/node_modules/**
-**/dist/**
-**/storybook-static/**
-**/coverage/**
-**/build/**
-**/.git/**
-**/public/**
-.pnp.js
-**/*.snap.js
-**/*.snap.ts
+.yarn
+
+coverage
+dist
+node_modules
 reports
+storybook-static

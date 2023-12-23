@@ -122,7 +122,7 @@ export const getPublishPlugins = ({
   buildPath = "dist",
   removePostInstall = false,
 } = {}) => [
-  del({ runOnce: true, targets: [`${buildPath}/**/*`, "*.tsbuildinfo"] }),
+  del({ runOnce: true, targets: [`${buildPath}/**/*`] }),
   copy({
     copyOnce: true,
     flatten: false,

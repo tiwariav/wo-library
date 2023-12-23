@@ -1,6 +1,3 @@
-.yalc/
+# ignores all files in .gitignore by default
+
 .yarn/
-node_modules/
-coverage/
-dist/
-reports/
