@@ -11,8 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: tiwariav/github-actions/setup-yarn@main
-        with:
-          lint-cache-key: false
+      - uses: tiwariav/github-actions/cache-js-linters@main
       - run: yarn eslint --cache --cache-strategy=content --quiet --debug src
       - run: yarn stylelint --cache ./src/**/*.css
       - run: yarn prettier --cache --check src
