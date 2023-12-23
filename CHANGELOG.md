@@ -1,3 +1,10 @@
+## [4.0.13](https://github.com/tiwariav/wo-library/compare/v4.0.12...v4.0.13) (2023-12-23)
+
+
+### 🐛 Bug Fixes
+
+* remove tsbuildinfo before build ([7d8f22a](https://github.com/tiwariav/wo-library/commit/7d8f22a1de6ab826292baf52e5d010762112dbf5))
+
 ## [4.0.12](https://github.com/tiwariav/wo-library/compare/v4.0.11...v4.0.12) (2023-12-23)
 
 
