@@ -1,3 +1,10 @@
+## [4.0.8](https://github.com/tiwariav/wo-library/compare/v4.0.7...v4.0.8) (2023-12-22)
+
+
+### 🐛 Bug Fixes
+
+* fix options for rollup copy plugin ([6db5654](https://github.com/tiwariav/wo-library/commit/6db5654930eb7e16d24827c10413bcd12f831b9c))
+
 ## [4.0.7](https://github.com/tiwariav/wo-library/compare/v4.0.6...v4.0.7) (2023-12-22)
 
 
