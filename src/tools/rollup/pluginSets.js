@@ -94,7 +94,7 @@ export const getBuildPlugins = ({
       sourceMap: isDev,
     }),
     babel({
-      babelHelpers: "runtime",
+      babelHelpers: "bundled",
       extensions,
       include: "src/**/*",
       skipPreflightCheck: true,
