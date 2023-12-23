@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: tiwariav/github-actions/setup-yarn@main
       - name: Cache
         uses: actions/cache@v3
         with:
@@ -18,8 +19,10 @@ jobs:
             .stylelintcache
             node_modules/.cache/prettier/.prettier-cache
             tsconfig.build.tsbuildinfo
-          key: ${{ runner.os }}-lint-cache
-      - uses: tiwariav/github-actions/setup-yarn@main
+          key: ${{ runner.os }}-lint-cache-${{ hashFiles('yarn.lock', 'package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lint-cache-
+      - run: ls -al
       - run: yarn eslint --cache --quiet src
       - run: yarn stylelint --cache ./src/**/*.css
       - run: yarn prettier --cache --check src
