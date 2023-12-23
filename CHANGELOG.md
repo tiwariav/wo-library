@@ -1,3 +1,10 @@
+## [4.0.9](https://github.com/tiwariav/wo-library/compare/v4.0.8...v4.0.9) (2023-12-23)
+
+
+### 🐛 Bug Fixes
+
+* set babelHelpers option to bundled ([a42ed55](https://github.com/tiwariav/wo-library/commit/a42ed553460c768bfeb00274a585ae7823e20fec))
+
 ## [4.0.8](https://github.com/tiwariav/wo-library/compare/v4.0.7...v4.0.8) (2023-12-22)
 
 
