@@ -11,13 +11,9 @@ dotenv.config();
 
 const isDev = process.env.NODE_ENV === "development";
 
-const cjsConfig = getCjsConfig(process.cwd(), { isDev });
+const cjsConfig = getCjsConfig({ isDev });
 cjsConfig.plugins.push(...getPublishPlugins({ removePostInstall: true }));
 
-const config = [
-  cjsConfig,
-  getEsConfig(process.cwd(), { isDev }),
-  getCssConfig(process.cwd(), { isDev }),
-];
+const config = [cjsConfig, getEsConfig({ isDev }), getCssConfig({ isDev })];
 
 export default config;

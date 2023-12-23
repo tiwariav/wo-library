@@ -69,8 +69,9 @@ export function getJsPlugins({
   if (isDev && enableEslint) {
     response.push(
       eslint({
+        cache: true,
         fix: true,
-        include: "src/**/*.{ts,tsx}",
+        include: "src/**/*.{js,jsx,ts,tsx}",
         throwOnError: true,
       }),
     );
