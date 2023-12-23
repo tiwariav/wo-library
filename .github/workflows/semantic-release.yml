@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-lint-cache-
       - run: ls -al
-      - run: yarn eslint --cache --quiet src
+      - run: yarn eslint --cache --quiet --debug src
       - run: yarn stylelint --cache ./src/**/*.css
       - run: yarn prettier --cache --check src
       - run: yarn jscpd src
