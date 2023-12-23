@@ -123,7 +123,9 @@ export const getPublishPlugins = ({
   buildPath = "dist",
   removePostInstall = false,
 } = {}) => [
-  del({ runOnce: true, targets: [`${buildPath}/**/*`] }),
+  // not removing the `*.tsbuildinfo` file updating config leads
+  // to empty output from typescript plugin
+  del({ runOnce: true, targets: [`${buildPath}/**/*`, "*.tsbuildinfo"] }),
   copy({
     copyOnce: true,
     flatten: false,
