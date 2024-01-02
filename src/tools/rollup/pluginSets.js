@@ -60,7 +60,6 @@ export function getJsPlugins({
 } = {}) {
   const response = [
     autoExternal({ copy: copyAssets }),
-    progress(),
     nodeResolve({ extensions }),
     commonjs(),
     json(),
@@ -76,7 +75,9 @@ export function getJsPlugins({
       }),
     );
   }
-  if (!isDev) {
+  if (isDev) {
+    response.push(progress());
+  } else {
     response.push(terser());
   }
   return response;
