@@ -1,3 +1,10 @@
+## [4.0.14](https://github.com/tiwariav/wo-library/compare/v4.0.13...v4.0.14) (2024-01-02)
+
+
+### 🐛 Bug Fixes
+
+* remove rollup progress plugin for production ([ad27f7d](https://github.com/tiwariav/wo-library/commit/ad27f7d5ec54dacafffc563288187ca40f803948))
+
 ## [4.0.13](https://github.com/tiwariav/wo-library/compare/v4.0.12...v4.0.13) (2023-12-23)
 
 
