@@ -169,7 +169,11 @@ export default function Tooltip({
   const triggerElement = useMemo<ReactNode>(() => {
     if (isValidElement<{ className: string; style: CSSProperties }>(children)) {
       return cloneElement(children, {
-        className: clsx(styles.reference, innerClassNames.reference),
+        className: clsx(
+          styles.reference,
+          innerClassNames.reference,
+          children.props.className,
+        ),
         style,
         ...getReferenceProps({ ref: refs.setReference }),
       });
