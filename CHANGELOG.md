@@ -1,3 +1,10 @@
+## [4.0.16](https://github.com/tiwariav/wo-library/compare/v4.0.15...v4.0.16) (2024-01-06)
+
+
+### 🐛 Bug Fixes
+
+* retain classname for Tooltip children ([386d7ad](https://github.com/tiwariav/wo-library/commit/386d7ad030b3119e477392074def99f75f7cce8a))
+
 ## [4.0.15](https://github.com/tiwariav/wo-library/compare/v4.0.14...v4.0.15) (2024-01-04)
 
 
