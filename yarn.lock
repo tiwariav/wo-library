@@ -6204,7 +6204,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.17.0, @typescript-eslint/eslint-plugin@npm:^6.18.1":
+"@typescript-eslint/eslint-plugin@npm:^6.17.0":
   version: 6.18.1
   resolution: "@typescript-eslint/eslint-plugin@npm:6.18.1"
   dependencies:
@@ -6257,7 +6257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.17.0, @typescript-eslint/parser@npm:^6.18.1":
+"@typescript-eslint/parser@npm:^6.17.0":
   version: 6.18.1
   resolution: "@typescript-eslint/parser@npm:6.18.1"
   dependencies:
@@ -10654,18 +10654,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-formatter-gitlab@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "eslint-formatter-gitlab@npm:5.1.0"
-  dependencies:
-    chalk: "npm:^4.0.0"
-    yaml: "npm:^2.0.0"
-  peerDependencies:
-    eslint: ">=5"
-  checksum: 4e8ba861ceaa83bd2018f3571f1d12d51a200669cee5ae9501177e0af7bc3ae1d530266abe9e9729c14abf7b2cf7a16505b0990c19f2e1f080d7e1184c5c1c64
-  languageName: node
-  linkType: hard
-
 "eslint-import-resolver-node@npm:^0.3.9":
   version: 0.3.9
   resolution: "eslint-import-resolver-node@npm:0.3.9"
@@ -10715,18 +10703,6 @@ __metadata:
   peerDependencies:
     eslint: ">=2.0.0"
   checksum: 557c4c1ad6f483c0616852a7fcf07f0d90d1e988a7fe81b877e3175c748ef9244a75ba3f04c7f2ae6d0b4c4e7a42186d8b0847629d60c2bde2157ae8dc758f01
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-css-modules@npm:~2.12.0":
-  version: 2.12.0
-  resolution: "eslint-plugin-css-modules@npm:2.12.0"
-  dependencies:
-    gonzales-pe: "npm:^4.3.0"
-    lodash: "npm:^4.17.2"
-  peerDependencies:
-    eslint: ">=2.0.0"
-  checksum: 91b462e13439822de24b6b7c9eff366cbe444d2cb755f77187a5ff87fc5bcade8060e924ec22e3cba043384f694919a0f1bb863d2b12f2e36a9a4cf8f8b1b2cc
   languageName: node
   linkType: hard
 
@@ -12367,7 +12343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gonzales-pe@npm:^4.0.3, gonzales-pe@npm:^4.2.3, gonzales-pe@npm:^4.3.0":
+"gonzales-pe@npm:^4.0.3, gonzales-pe@npm:^4.2.3":
   version: 4.3.0
   resolution: "gonzales-pe@npm:4.3.0"
   dependencies:
@@ -23045,8 +23021,6 @@ __metadata:
     "@types/node": "npm:^20.10.7"
     "@types/react": "npm:^18.2.47"
     "@types/react-dom": "npm:^18.2.18"
-    "@typescript-eslint/eslint-plugin": "npm:^6.18.1"
-    "@typescript-eslint/parser": "npm:^6.18.1"
     "@yarnpkg/sdks": "npm:^3.1.0"
     autoprefixer: "npm:^10.4.16"
     babel-jest: "npm:^29.7.0"
@@ -23059,25 +23033,6 @@ __metadata:
     default-import: "npm:^1.1.5"
     dotenv: "npm:^16.3.1"
     eslint: "npm:^8.56.0"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-config-react-app: "npm:^7.0.1"
-    eslint-formatter-gitlab: "npm:^5.1.0"
-    eslint-plugin-compat: "npm:^4.2.0"
-    eslint-plugin-css-modules: "npm:~2.12.0"
-    eslint-plugin-eslint-comments: "npm:^3.2.0"
-    eslint-plugin-etc: "npm:^2.0.3"
-    eslint-plugin-formatjs: "npm:^4.11.3"
-    eslint-plugin-import: "npm:^2.29.1"
-    eslint-plugin-jest: "npm:^27.6.1"
-    eslint-plugin-jsx-a11y: "npm:^6.8.0"
-    eslint-plugin-lodash: "npm:^7.4.0"
-    eslint-plugin-perfectionist: "npm:^2.5.0"
-    eslint-plugin-react: "npm:^7.33.2"
-    eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-sonarjs: "npm:^0.23.0"
-    eslint-plugin-storybook: "npm:^0.6.15"
-    eslint-plugin-testing-library: "npm:^6.2.0"
-    eslint-plugin-unicorn: "npm:^50.0.1"
     glob: "npm:^10.3.10"
     husky: "npm:^8.0.3"
     identity-obj-proxy: "npm:^3.0.0"
@@ -23310,7 +23265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:2.3.4, yaml@npm:^2.0.0":
+"yaml@npm:2.3.4":
   version: 2.3.4
   resolution: "yaml@npm:2.3.4"
   checksum: cf03b68f8fef5e8516b0f0b54edaf2459f1648317fc6210391cf606d247e678b449382f4bd01f77392538429e306c7cba8ff46ff6b37cac4de9a76aff33bd9e1
