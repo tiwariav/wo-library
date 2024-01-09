@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: tiwariav/github-actions/setup-yarn@main
       - uses: tiwariav/github-actions/cache-js-linters@main
-      - run: yarn eslint --cache --cache-strategy=content --quiet --debug src
+      - run: yarn eslint --cache --cache-strategy=content --quiet src
       - run: yarn stylelint --cache ./src/**/*.css
       - run: yarn prettier --cache --check src
       - run: yarn jscpd src

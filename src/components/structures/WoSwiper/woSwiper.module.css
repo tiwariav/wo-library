@@ -51,7 +51,15 @@
       box-shadow: var(--ye-shadow-pressable);
       opacity: 0.75;
 
-      &:hover,
+      @media (hover: hover) {
+        &:hover,
+        &:focus {
+          outline: none;
+          box-shadow: var(--ye-shadow-pressed);
+          opacity: 1;
+        }
+      }
+
       &:focus {
         outline: none;
         box-shadow: var(--ye-shadow-pressed);

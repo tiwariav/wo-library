@@ -78,13 +78,13 @@ function envTest(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
 
     // remove
     await anyStorageInstance.removeItem(TEST_KEY);
-    expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBe(null);
-    expect(await anyStorageInstance.backends.session.getItem(TEST_KEY)).toBe(
-      null,
-    );
-    expect(await anyStorageInstance.backends.persist.getItem(TEST_KEY)).toBe(
-      null,
-    );
+    expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBeNull();
+    expect(
+      await anyStorageInstance.backends.session.getItem(TEST_KEY),
+    ).toBeNull();
+    expect(
+      await anyStorageInstance.backends.persist.getItem(TEST_KEY),
+    ).toBeNull();
   };
 }
 
