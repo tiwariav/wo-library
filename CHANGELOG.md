@@ -1,3 +1,10 @@
+## [4.0.17](https://github.com/tiwariav/wo-library/compare/v4.0.16...v4.0.17) (2024-01-09)
+
+
+### ♻️ Code Refactors
+
+* update lint config ([d9a2d26](https://github.com/tiwariav/wo-library/commit/d9a2d26be50be8f358c4fed473248b7234238570))
+
 ## [4.0.16](https://github.com/tiwariav/wo-library/compare/v4.0.15...v4.0.16) (2024-01-06)
 
 
