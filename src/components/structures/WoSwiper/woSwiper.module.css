@@ -8,6 +8,12 @@
   @global-import "swiper/modules/pagination.min.css";
 }
 
+@define-mixin containerFocus {
+  outline: none;
+  box-shadow: var(--ye-shadow-pressed);
+  opacity: 1;
+}
+
 @layer wo-components {
   .container {
     --module-z-arrow: calc(var(--ye-z-base) + 1);
@@ -51,23 +57,18 @@
       box-shadow: var(--ye-shadow-pressable);
       opacity: 0.75;
 
-      @media (hover: hover) {
-        &:hover,
-        &:focus {
-          outline: none;
-          box-shadow: var(--ye-shadow-pressed);
-          opacity: 1;
-        }
-      }
-
       &:focus {
-        outline: none;
-        box-shadow: var(--ye-shadow-pressed);
-        opacity: 1;
+        @mixin containerFocus;
       }
 
       &:global(.swiper-button-disabled) {
         display: none;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          @mixin containerFocus;
+        }
       }
     }
 

@@ -5432,9 +5432,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/stylelint-config@npm:^1.0.19":
-  version: 1.0.19
-  resolution: "@tiwariav/stylelint-config@npm:1.0.19"
+"@tiwariav/postcss-config@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@tiwariav/postcss-config@npm:1.0.0"
+  dependencies:
+    postcss: "npm:^8.4.33"
+    postcss-global-import: "npm:^1.0.6"
+    postcss-import: "npm:^16.0.0"
+    postcss-mixins: "npm:^9.0.4"
+    postcss-modules: "npm:^6.0.0"
+    postcss-preset-env: "npm:^9.3.0"
+  checksum: 71b22bf5e2680dbad606650f05d0266e8b6b83bd47a290fc2e712d68942c614a2796ad69358a911f2d73f98ff5690d94223ca7d5e7f347c104d4f7accba3a146
+  languageName: node
+  linkType: hard
+
+"@tiwariav/stylelint-config@npm:^1.0.20":
+  version: 1.0.20
+  resolution: "@tiwariav/stylelint-config@npm:1.0.20"
   dependencies:
     "@ronilaukkarinen/stylelint-a11y": "npm:^1.2.9"
     stylelint-config-rational-order: "npm:^0.1.2"
@@ -5448,7 +5462,7 @@ __metadata:
     stylelint-value-no-unknown-custom-properties: "npm:^5.0.0"
   peerDependencies:
     stylelint: 15
-  checksum: e682ee84cda9657faf53007104c5ebb96d3a52421014c8d3f56d43e96d5d8ab733d0a156dfbdc273fab65927037fef92af9967030e8b8c57bf88fef90fe4a968
+  checksum: f9a8125e6510ea2664bce3e1d4c8a6a11157b803dea5d109df01ac8bddf443784d28e65487d67fc239bfdea9bb28a2071a06aac8b39d34435269efad0cc76660
   languageName: node
   linkType: hard
 
@@ -5965,6 +5979,15 @@ __metadata:
   version: 2.3.3
   resolution: "@types/picomatch@npm:2.3.3"
   checksum: 5ad7f891eb3e16e8eb1f51615f0b755bc44ac5dff5a1e2513229f307f72e226c917c6b9a829a97134cedbec727036f885890a55b1975b6e3f381b6545b962c4d
+  languageName: node
+  linkType: hard
+
+"@types/postcss-mixins@npm:^9":
+  version: 9.0.5
+  resolution: "@types/postcss-mixins@npm:9.0.5"
+  dependencies:
+    postcss: "npm:^8.2.14"
+  checksum: 072942a71e5a8f81c2a3c24d09d7945a95a5aefd1b5cfe9b328a0e5806ada1963b02efdb56d00cc6c4bdd5478c3131634adcf5a6f1eb72c647e6eb627193a125
   languageName: node
   linkType: hard
 
@@ -8132,6 +8155,13 @@ __metadata:
     pascal-case: "npm:^3.1.2"
     tslib: "npm:^2.0.3"
   checksum: bf9eefaee1f20edbed2e9a442a226793bc72336e2b99e5e48c6b7252b6f70b080fc46d8246ab91939e2af91c36cdd422e0af35161e58dd089590f302f8f64c8a
+  languageName: node
+  linkType: hard
+
+"camelcase-css@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "camelcase-css@npm:2.0.1"
+  checksum: 1a1a3137e8a781e6cbeaeab75634c60ffd8e27850de410c162cce222ea331cd1ba5364e8fb21c95e5ca76f52ac34b81a090925ca00a87221355746d049c6e273
   languageName: node
   linkType: hard
 
@@ -11403,7 +11433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.0.3, fast-glob@npm:^3.2.2, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.1":
+"fast-glob@npm:^3.0.3, fast-glob@npm:^3.2.11, fast-glob@npm:^3.2.2, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.1":
   version: 3.3.2
   resolution: "fast-glob@npm:3.3.2"
   dependencies:
@@ -17375,6 +17405,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-js@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "postcss-js@npm:4.0.1"
+  dependencies:
+    camelcase-css: "npm:^2.0.1"
+  peerDependencies:
+    postcss: ^8.4.21
+  checksum: af35d55cb873b0797d3b42529514f5318f447b134541844285c9ac31a17497297eb72296902967911bb737a75163441695737300ce2794e3bd8c70c13a3b106e
+  languageName: node
+  linkType: hard
+
 "postcss-jsx@npm:^0.36.0":
   version: 0.36.4
   resolution: "postcss-jsx@npm:0.36.4"
@@ -17632,6 +17673,20 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.31
   checksum: 5437b586c1237fc442e7e6078d4f23c987efc456366368b07a0da67332b04bd55821cedf0441e73e1209689f63139e272d930508e2963ba6e27c46561a661128
+  languageName: node
+  linkType: hard
+
+"postcss-mixins@npm:^9.0.4":
+  version: 9.0.4
+  resolution: "postcss-mixins@npm:9.0.4"
+  dependencies:
+    fast-glob: "npm:^3.2.11"
+    postcss-js: "npm:^4.0.0"
+    postcss-simple-vars: "npm:^7.0.0"
+    sugarss: "npm:^4.0.1"
+  peerDependencies:
+    postcss: ^8.2.14
+  checksum: 6bb90bd15bb4a06e8f50b36b38f24bba8350cdb9f1d9690e97a9610619da9fc22cdccfc81aa628bef60490cce35f76ceac7602062f5895b30d72123684016a93
   languageName: node
   linkType: hard
 
@@ -18276,6 +18331,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-simple-vars@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "postcss-simple-vars@npm:7.0.1"
+  peerDependencies:
+    postcss: ^8.2.1
+  checksum: b59c750b2f406a18b133184144b5ffefbd21a2179c5bf5d54651269c0b6bb0110c2bbed33a9161d8b93f8a11cf7725da0a65653e7c2786c8a59f937591115a33
+  languageName: node
+  linkType: hard
+
 "postcss-sorting@npm:^4.1.0":
   version: 4.1.0
   resolution: "postcss-sorting@npm:4.1.0"
@@ -18397,7 +18461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.0.0, postcss@npm:^8.4.21, postcss@npm:^8.4.28, postcss@npm:^8.4.33":
+"postcss@npm:^8.0.0, postcss@npm:^8.2.14, postcss@npm:^8.4.21, postcss@npm:^8.4.28, postcss@npm:^8.4.33":
   version: 8.4.33
   resolution: "postcss@npm:8.4.33"
   dependencies:
@@ -21283,6 +21347,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sugarss@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "sugarss@npm:4.0.1"
+  peerDependencies:
+    postcss: ^8.3.3
+  checksum: 18b78c8839ab9eea9681366223277e10adf6b1dd54e7b64fbdae3a1234eedcc16a772bb62c8f3dc9665acc07496981e24bf773c8c362b5f294b9b1e12fbe58aa
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^2.0.0":
   version: 2.0.0
   resolution: "supports-color@npm:2.0.0"
@@ -23014,11 +23087,13 @@ __metadata:
     "@testing-library/react": "npm:^14.1.2"
     "@tiwariav/browserslist-config": "npm:^1.3.0"
     "@tiwariav/eslint-config": "npm:^1.1.1"
-    "@tiwariav/stylelint-config": "npm:^1.0.19"
+    "@tiwariav/postcss-config": "npm:^1.0.0"
+    "@tiwariav/stylelint-config": "npm:^1.0.20"
     "@types/babel__plugin-transform-runtime": "npm:^7.9.5"
     "@types/jest": "npm:^29.5.11"
     "@types/lodash-es": "npm:^4.17.12"
     "@types/node": "npm:^20.10.7"
+    "@types/postcss-mixins": "npm:^9"
     "@types/react": "npm:^18.2.47"
     "@types/react-dom": "npm:^18.2.18"
     "@yarnpkg/sdks": "npm:^3.1.0"
@@ -23047,10 +23122,6 @@ __metadata:
     lint-staged: "npm:^15.2.0"
     lodash-es: "npm:^4.17.21"
     postcss: "npm:^8.4.33"
-    postcss-global-import: "npm:^1.0.6"
-    postcss-import: "npm:^16.0.0"
-    postcss-modules: "npm:^6.0.0"
-    postcss-preset-env: "npm:^9.3.0"
     prettier: "npm:3.1.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
