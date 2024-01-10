@@ -1,3 +1,10 @@
+## [4.0.18](https://github.com/tiwariav/wo-library/compare/v4.0.17...v4.0.18) (2024-01-09)
+
+
+### ♻️ Code Refactors
+
+* remove eslint dev dependencies ([f7ea1d9](https://github.com/tiwariav/wo-library/commit/f7ea1d90c1ab6fe2a1aece81eab6c4cc6fe8b8cc))
+
 ## [4.0.17](https://github.com/tiwariav/wo-library/compare/v4.0.16...v4.0.17) (2024-01-09)
 
 
