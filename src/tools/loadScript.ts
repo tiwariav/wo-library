@@ -5,6 +5,9 @@ export default function loadScript(
   props: HTMLProps<HTMLScriptElement> = {},
 ) {
   return new Promise((resolve) => {
+    if (typeof document === "undefined") {
+      return;
+    }
     const existingScript = document.querySelector(`script[src="${source}"]`);
     if (existingScript) {
       resolve(true);
