@@ -1,3 +1,10 @@
+## [4.0.20](https://github.com/tiwariav/wo-library/compare/v4.0.19...v4.0.20) (2024-01-16)
+
+
+### 🐛 Bug Fixes
+
+* prevent error in loadScript on server side ([ced31c5](https://github.com/tiwariav/wo-library/commit/ced31c58f8c452a4e4086a31d3b31815914b446a))
+
 ## [4.0.19](https://github.com/tiwariav/wo-library/compare/v4.0.18...v4.0.19) (2024-01-10)
 
 
