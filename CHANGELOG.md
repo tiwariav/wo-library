@@ -1,3 +1,10 @@
+## [4.0.19](https://github.com/tiwariav/wo-library/compare/v4.0.18...v4.0.19) (2024-01-10)
+
+
+### ♻️ Code Refactors
+
+* use shared postcss config ([59f9214](https://github.com/tiwariav/wo-library/commit/59f9214bc8abbf3f2cdda4f579649a22ef87152d))
+
 ## [4.0.18](https://github.com/tiwariav/wo-library/compare/v4.0.17...v4.0.18) (2024-01-09)
 
 
