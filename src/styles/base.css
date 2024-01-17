@@ -26,8 +26,8 @@
     var(--ye-color-background)
   );
   --ye-color-overlay: rgb(25 25 25 / 0.8);
-  --ye-color-text: #000;
-  --ye-color-text-inverse: #fff;
+  --ye-color-text: var(--ye-color-background-inverse);
+  --ye-color-text-inverse: var(--ye-color-background);
 
   /* z-index */
   --ye-z-base: 1;
