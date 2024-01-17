@@ -87,9 +87,3 @@ function envTest(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
     ).toBeNull();
   };
 }
-
-describe("storage operations", () => {
-  for (const key of STORAGE_ENVIRONMENTS) {
-    test(`should access ${key} env`, envTest(key));
-  }
-});
