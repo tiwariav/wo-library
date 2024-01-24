@@ -1,4 +1,4 @@
-export const getConfig = ({ isDev = false } = {}) => ({
+const getConfig = ({ isDev = false } = {}) => ({
   plugins: [
     "@babel/plugin-transform-runtime",
     [
@@ -27,3 +27,7 @@ export const getConfig = ({ isDev = false } = {}) => ({
     esmodules: true,
   },
 });
+
+module.exports = {
+  getConfig,
+};
