@@ -27,7 +27,7 @@ const DEFAULT_JS_EXTENSIONS = [".js", ".jsx", ".ts", ".tsx"];
 
 export function getCssBundlePlugins(
   directory,
-  { extension = "*.css", ...options } = {},
+  { extension = "*.css", isDev, ...options } = {},
 ) {
   const config = [];
   const files = getInput(directory, { extension, ...options });
@@ -45,6 +45,7 @@ export function getCssBundlePlugins(
           }
           return exists;
         },
+        sourceMap: isDev,
       }),
     );
   }
