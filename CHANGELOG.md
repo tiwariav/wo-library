@@ -1,3 +1,10 @@
+## [4.0.23](https://github.com/tiwariav/wo-library/compare/v4.0.22...v4.0.23) (2024-01-24)
+
+
+### ♻️ Code Refactors
+
+* use jest esm flag ([aa886af](https://github.com/tiwariav/wo-library/commit/aa886afaad7de9a18080ba3291065f0273133bc4))
+
 ## [4.0.22](https://github.com/tiwariav/wo-library/compare/v4.0.21...v4.0.22) (2024-01-24)
 
 
