@@ -1,3 +1,10 @@
+## [4.0.22](https://github.com/tiwariav/wo-library/compare/v4.0.21...v4.0.22) (2024-01-24)
+
+
+### 🐛 Bug Fixes
+
+* export babel config as cjs ([8a78acc](https://github.com/tiwariav/wo-library/commit/8a78accbdc24d98f04aeedf488f795e0fd5052da))
+
 ## [4.0.21](https://github.com/tiwariav/wo-library/compare/v4.0.20...v4.0.21) (2024-01-17)
 
 
