@@ -20,7 +20,7 @@
     "release": "cd dist && yarn npm publish",
     "storybook": "sb dev -p 9001",
     "build-storybook": "sb build",
-    "test": "jest --coverage --json --outputFile=./reports/test-report.json"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.6",
@@ -40,6 +40,7 @@
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@babel/runtime": "^7.23.8",
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
     "@jest/globals": "^29.7.0",
@@ -130,7 +131,6 @@
     "source-map-explorer": "^2.5.3",
     "stylelint": "^15.11.0",
     "swiper": "^11.0.5",
-    "ts-jest": "^29.1.1",
     "tslib": "^2.6.2",
     "type-fest": "^4.9.0",
     "typescript": "^5.3.3",

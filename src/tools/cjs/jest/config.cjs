@@ -62,7 +62,7 @@ const config = {
   transform: {
     "^.+\\.m?jsx?$": "babel-jest",
     "^.+\\.mdx?$": "@storybook/addon-docs/jest-transform-mdx",
-    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.tsx?$": "babel-jest",
   },
 };
 
