@@ -20,7 +20,8 @@
     "release": "cd dist && yarn npm publish",
     "storybook": "sb dev -p 9001",
     "build-storybook": "sb build",
-    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json",
+    "prepare": "husky"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.6",
