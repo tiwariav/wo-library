@@ -1,3 +1,10 @@
+## [4.0.27](https://github.com/tiwariav/wo-library/compare/v4.0.26...v4.0.27) (2024-01-25)
+
+
+### 🐛 Bug Fixes
+
+* remove husky prepare script ([34fc39c](https://github.com/tiwariav/wo-library/commit/34fc39c13f6703451eda10c3a862a928eaba742d))
+
 ## [4.0.26](https://github.com/tiwariav/wo-library/compare/v4.0.25...v4.0.26) (2024-01-25)
 
 
