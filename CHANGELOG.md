@@ -1,3 +1,10 @@
+## [4.0.26](https://github.com/tiwariav/wo-library/compare/v4.0.25...v4.0.26) (2024-01-25)
+
+
+### ♻️ Code Refactors
+
+* update husky ([93c8bf5](https://github.com/tiwariav/wo-library/commit/93c8bf521e4160174042ad45c01efbeaeac5e7ca))
+
 ## [4.0.25](https://github.com/tiwariav/wo-library/compare/v4.0.24...v4.0.25) (2024-01-25)
 
 
