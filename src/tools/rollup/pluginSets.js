@@ -90,7 +90,7 @@ export const getBuildPlugins = ({
   isDev = false,
   ...options
 } = {}) => {
-  const plugins = [
+  const buildPlugins = [
     postcss({
       extract: "dist.css",
       modules: { localsConvention: "camelCase" },
@@ -104,7 +104,7 @@ export const getBuildPlugins = ({
     }),
   ];
   if (includeTsc) {
-    plugins.push(
+    buildPlugins.push(
       typescript({
         cacheDir: "node_modules/.cache/@rollup-plugin/typescript",
         noForceEmit: true,
@@ -113,7 +113,7 @@ export const getBuildPlugins = ({
     );
   }
   return getJsPlugins({
-    buildPlugins: plugins,
+    buildPlugins,
     extensions,
     isDev,
     ...options,
