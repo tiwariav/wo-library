@@ -34,7 +34,7 @@ export async function defaultErrorHandler<TResponseData>(
       throw new WoResponseError(
         responseData,
         response.status,
-        "You session has expired!",
+        "Your session has expired!",
       );
     }
     case 403: {

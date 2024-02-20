@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: tiwariav/github-actions/setup-yarn@main
       - uses: tiwariav/github-actions/cache-js-linters@main
       - run: yarn eslint --cache --cache-strategy=content --quiet src
       - run: yarn stylelint --cache ./src/**/*.css
