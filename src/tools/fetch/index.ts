@@ -1,4 +1,4 @@
-import { merge } from "lodash-es";
+import { merge, pickBy } from "lodash-es";
 import { SetRequired } from "type-fest";
 
 import { anyStorageInstance } from "../storage/index.js";
@@ -71,7 +71,10 @@ export function createURL(
     resourceURL.pathname += `/${id}`;
   }
   if (query) {
-    const searchParams = new URLSearchParams(query as Record<string, string>);
+    const cleanQuery = pickBy(query, (value) => value !== undefined);
+    const searchParams = new URLSearchParams(
+      cleanQuery as Record<string, string>,
+    );
     resourceURL.search = searchParams.toString();
   }
   if (trailingSlash && !resourceURL.pathname.endsWith("/")) {

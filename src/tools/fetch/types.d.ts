@@ -4,7 +4,7 @@ import { defaultErrorHandler } from "./errorHandlers.ts";
 
 export type WoRequestMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 
-export type WoRequestQueryValue = boolean | number | string;
+export type WoRequestQueryValue = boolean | number | string | undefined;
 export type WoRequestQuery = Record<
   string,
   WoRequestQueryValue | WoRequestQueryValue[]
