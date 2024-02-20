@@ -5,8 +5,8 @@ import {
   Padding,
   Placement,
   arrow,
-  autoPlacement,
   autoUpdate,
+  flip,
   offset,
   shift,
   useClick,
@@ -93,7 +93,7 @@ export default function Tooltip({
 
   const { context, floatingStyles, middlewareData, refs } = useFloating({
     middleware: [
-      ...(placement ? [] : [autoPlacement()]),
+      flip(),
       offset(options.offset),
       shift({ padding: options.padding }),
       ...(showArrow ? [arrow({ element: arrowRef.current })] : []),
