@@ -1,3 +1,15 @@
+## [4.0.28](https://github.com/tiwariav/wo-library/compare/v4.0.27...v4.0.28) (2024-02-20)
+
+
+### 🐛 Bug Fixes
+
+* tooltip placement dynamic ([4ba5f41](https://github.com/tiwariav/wo-library/commit/4ba5f4165a3d84d7e925fa19325d111a710b2ad7))
+
+
+### ♻️ Code Refactors
+
+* update dependencies ([3daed69](https://github.com/tiwariav/wo-library/commit/3daed6918b7849936752406dc19972e83cc1606a))
+
 ## [4.0.27](https://github.com/tiwariav/wo-library/compare/v4.0.26...v4.0.27) (2024-01-25)
 
 
