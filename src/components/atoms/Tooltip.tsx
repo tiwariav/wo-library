@@ -49,7 +49,7 @@ export interface TooltipProps {
   };
   isOpen?: boolean;
   isPopover?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<Element>;
   onClose?: () => void;
   options?: {
     offset?: OffsetOptions;
@@ -167,7 +167,14 @@ export default function Tooltip({
   );
 
   const triggerElement = useMemo<ReactNode>(() => {
-    if (isValidElement<{ className: string; style: CSSProperties }>(children)) {
+    if (
+      isValidElement<{
+        className: string;
+        onClick?: MouseEventHandler<Element>;
+        style: CSSProperties;
+      }>(children)
+    ) {
+      const childProps = children.props;
       return cloneElement(children, {
         className: clsx(
           styles.reference,
@@ -175,7 +182,13 @@ export default function Tooltip({
           children.props.className,
         ),
         style,
-        ...getReferenceProps({ ref: refs.setReference }),
+        ...getReferenceProps({
+          onClick: (event) => {
+            childProps.onClick?.(event);
+            onClick?.(event);
+          },
+          ref: refs.setReference,
+        }),
       });
     }
     return (
