@@ -1,3 +1,10 @@
+## [4.0.30](https://github.com/tiwariav/wo-library/compare/v4.0.29...v4.0.30) (2024-03-08)
+
+
+### 🐛 Bug Fixes
+
+* tooltip valid element onclick ([72b8234](https://github.com/tiwariav/wo-library/commit/72b82347b54560866ec9459e4c58630478ba38c8))
+
 ## [4.0.29](https://github.com/tiwariav/wo-library/compare/v4.0.28...v4.0.29) (2024-02-20)
 
 
