@@ -62,3 +62,5 @@ reports
 !.yarn/sdks
 !.yarn/versions
 .pnp.cjs
+
+*storybook.log

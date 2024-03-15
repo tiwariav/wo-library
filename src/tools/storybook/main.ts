@@ -3,6 +3,7 @@ import postcss from "postcss";
 
 const config: Omit<StorybookConfig, "stories"> = {
   addons: [
+    "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-a11y",
     "@storybook/addon-backgrounds",
     "@storybook/addon-controls",
@@ -24,6 +25,7 @@ const config: Omit<StorybookConfig, "stories"> = {
     },
     "@storybook/addon-toolbars",
     "@storybook/addon-viewport",
+    "@chromatic-com/storybook",
   ],
   core: {
     disableTelemetry: true, // 👈 Disables telemetry
@@ -34,18 +36,24 @@ const config: Omit<StorybookConfig, "stories"> = {
   },
   features: {
     argTypeTargetsV7: true,
-    buildStoriesJson: true,
-    storyStoreV7: !global.navigator?.userAgent?.match?.("jsdom"),
   },
   framework: {
     name: "@storybook/react-webpack5",
     options: {
       builder: {
-        fsCache: true,
-        lazyCompilation: true,
+        useSWC: true,
       },
     },
   },
+  swc: () => ({
+    jsc: {
+      transform: {
+        react: {
+          runtime: "automatic",
+        },
+      },
+    },
+  }),
 };
 
 export default config;

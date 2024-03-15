@@ -1,5 +1,5 @@
 import { expect } from "@storybook/jest";
-import { screen, userEvent, within } from "@storybook/testing-library";
+import { screen, userEvent, within } from "@storybook/test";
 
 export async function playFloatingBasic(
   canvasElement: HTMLElement,

@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { loremIpsum } from "lorem-ipsum";
 import { ReactNode, useEffect, useState } from "react";
 
 import { playFloatingBasic } from "../../tools/storybook/play.js";
@@ -16,6 +17,15 @@ const Template = ({ isOpen = false, modalContent = "", ...args }) => {
       <button id="showButton" onClick={() => setOpen(true)}>
         Show Modal
       </button>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: loremIpsum({
+            count: 16,
+            format: "html",
+            units: "paragraphs",
+          }),
+        }}
+      />
       <Modal isOpen={open} onClose={() => setOpen(false)} {...args}>
         <div className="story-box">{modalContent || MODAL_TEXT}</div>
       </Modal>
@@ -58,30 +68,15 @@ export const MaxWidth: Story = {
   args: {
     modalContent: (
       <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolorum
-        numquam id voluptatum labore, veniam, aspernatur accusamus maxime odio
-        hic sed est dicta voluptatibus nisi. Dolor temporibus facere omnis
-        culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Accusamus, officia? Sequi, corporis repellat, tenetur itaque eius
-        accusamus explicabo ex laboriosam dolore, nam dicta debitis maxime
-        excepturi! Sequi commodi quis cumque obcaecati. Rerum molestias saepe
-        quia minima earum quis cumque error expedita aliquid quod optio repellat
-        voluptate voluptatibus officia, eligendi tempora neque illo sit hic
-        ullam deleniti in vel consequuntur. Hic veniam nihil sed esse. Officiis
-        saepe veniam dicta quaerat quam quasi omnis illum. Mollitia doloribus,
-        voluptas tempora numquam doloremque voluptatem deleniti blanditiis nisi
-        ad, velit ipsum modi cupiditate. In sint, unde delectus, laudantium
-        tenetur placeat tempora provident officia pariatur sapiente fuga tempore
-        quia odit, deserunt porro illum voluptatibus facere quam. Eum iste porro
-        harum rerum magnam. Vero magnam laborum accusantium nisi, nihil
-        exercitationem quas dolorum nostrum, sunt nobis neque aperiam, numquam
-        repellendus unde accusamus rem dolore alias minima eos impedit odit
-        quisquam quod. Necessitatibus, distinctio quisquam tempora enim rem nam
-        optio nostrum quae ipsum corporis, earum aperiam, nemo a ex magnam modi
-        praesentium excepturi hic dicta inventore id consequatur totam nesciunt.
-        Perspiciatis corporis alias, odit officiis nostrum rem fugiat, excepturi
-        autem animi quos cumque ipsa ullam, eos illo. Officia ab harum quis
-        nulla pariatur neque optio? Modi culpa sed ipsam?
+        <div
+          dangerouslySetInnerHTML={{
+            __html: loremIpsum({
+              count: 16,
+              format: "html",
+              units: "paragraphs",
+            }),
+          }}
+        />
         <input placeholder="Placeholder" />
       </div>
     ),
