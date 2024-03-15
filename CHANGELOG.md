@@ -1,3 +1,10 @@
+## [4.1.0](https://github.com/tiwariav/wo-library/compare/v4.0.30...v4.1.0) (2024-03-15)
+
+
+### ✨ Features
+
+* update storybook tool to support v8 ([649c09b](https://github.com/tiwariav/wo-library/commit/649c09b2e75e116af7c8deb518128c6dc1b5dd20))
+
 ## [4.0.30](https://github.com/tiwariav/wo-library/compare/v4.0.29...v4.0.30) (2024-03-08)
 
 
