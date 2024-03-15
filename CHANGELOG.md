@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/tiwariav/wo-library/compare/v4.1.0...v4.1.1) (2024-03-15)
+
+
+### ♻️ Code Refactors
+
+* remove optional peer dependencies ([014b941](https://github.com/tiwariav/wo-library/commit/014b941bda2f6869c8d24887221ead8d3e36f918))
+
 ## [4.1.0](https://github.com/tiwariav/wo-library/compare/v4.0.30...v4.1.0) (2024-03-15)
 
 
