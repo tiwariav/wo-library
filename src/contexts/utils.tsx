@@ -31,7 +31,6 @@ export function dispatchLoading<
   ...args: Parameters<TMethod>
 ) {
   dispatch.setLoading(true);
-  // @ts-expect-error: TS2488 because this is a hack to get the return type of the method
   const response = method(...args);
   dispatch.setLoading(true);
   return response;
@@ -41,6 +40,6 @@ export const getUpdateStateMethod =
   <TState extends object>(state: TState) =>
   (data: Partial<TState>) => {
     return produce(state, (draft) => {
-      Object.assign(draft, data);
+      void Object.assign(draft, data);
     });
   };

@@ -1,7 +1,7 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import Popover, { PopoverProps } from "./Popover.js";
+import Popover from "./Popover.js";
 
 const metadata = {
   component: Popover,
@@ -22,7 +22,7 @@ export const Basic: Story = {
   render: (args) => <Template {...args} />,
 };
 
-const NestedButtonTemplate = (args: PopoverProps) => {
+const NestedButtonTemplate = () => {
   const [open, setIsOpen] = useState(false);
 
   return (
