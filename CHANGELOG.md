@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/tiwariav/wo-library/compare/v4.1.1...v4.1.2) (2024-03-16)
+
+
+### 🐛 Bug Fixes
+
+* fix config for storybook v8 ([74378a6](https://github.com/tiwariav/wo-library/commit/74378a601e5ee5f6c6edf5951a2efe2c480214fd))
+
 ## [4.1.1](https://github.com/tiwariav/wo-library/compare/v4.1.0...v4.1.1) (2024-03-15)
 
 
