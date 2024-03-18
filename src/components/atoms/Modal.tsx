@@ -12,7 +12,6 @@ import {
 import { clsx } from "clsx";
 import { ReactNode } from "react";
 
-import useStateWithProp from "../../hooks/useStateWithProp.js";
 import styles from "./modal.module.css";
 
 export interface ModalProps {
@@ -29,19 +28,16 @@ export default function Modal({
   children,
   className,
   innerClassNames = {},
-  isOpen = false,
+  isOpen,
   onClose,
 }: ModalProps) {
-  const [open, setOpen] = useStateWithProp(isOpen);
-
-  const handleOpenChange = (value: boolean) => {
-    setOpen(value);
+  const handleOpenChange = () => {
     onClose?.();
   };
 
   const { context, refs } = useFloating({
     onOpenChange: handleOpenChange,
-    open,
+    open: isOpen,
   });
 
   const id = useId();
@@ -58,7 +54,7 @@ export default function Modal({
     <>
       <div {...getReferenceProps({ ref: refs.setReference })} />
       <FloatingPortal>
-        {open && (
+        {isOpen && (
           <FloatingOverlay
             className={clsx(styles.overlay, innerClassNames.overlay)}
             lockScroll

@@ -7,7 +7,7 @@ export default function useStateWithProp<TState>(
   const [state, setState] = useState<TState>(value);
 
   useUpdateEffect(() => {
-    if (value !== undefined) setState(value);
+    setState(value);
   }, [value]);
 
   return [state, setState];

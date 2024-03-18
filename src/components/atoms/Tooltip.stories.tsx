@@ -42,15 +42,14 @@ export const IsOpen: Story = {
 
 export const IsPopover: Story = {
   args: {
-    ...Basic.args,
-    isOpen: true,
+    ...IsOpen.args,
     isPopover: true,
   },
 };
 
 export const ShowArrow: Story = {
   args: {
-    ...Basic.args,
+    ...IsOpen.args,
     animate: true,
     showArrow: true,
   },
@@ -64,8 +63,7 @@ export const Options: StoryObj<
     padding: { control: { max: 32, min: 0, type: "range" } },
   },
   args: {
-    ...Basic.args,
-    isOpen: true,
+    ...IsOpen.args,
     offset: 16,
     padding: 16,
     showArrow: true,
@@ -103,7 +101,7 @@ export const Placements: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-flex-grow">
+    <div className="story-flex">
       <div className="story-flex-grow">
         <div className="story-title">Leftdiv</div>
         <div

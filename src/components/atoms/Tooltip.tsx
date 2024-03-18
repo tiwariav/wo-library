@@ -28,9 +28,9 @@ import {
   isValidElement,
   useMemo,
   useRef,
+  useState,
 } from "react";
 
-import useStateWithProp from "../../hooks/useStateWithProp.js";
 import styles from "./tooltip.module.css";
 
 const TRIGGER_OPTIONS = ["click", "hover"] as const;
@@ -82,10 +82,11 @@ export default function Tooltip({
   trigger = "click",
 }: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
-  const [open, setOpen] = useStateWithProp(isOpen);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isOpen === undefined ? internalOpen : isOpen;
 
   const handleOpenChange = (value: boolean) => {
-    setOpen(value);
+    setInternalOpen(value);
     onClose?.();
   };
 
@@ -211,6 +212,8 @@ export default function Tooltip({
     refs.setReference,
     style,
   ]);
+
+  console.log(isOpen, internalOpen, open);
 
   return (
     <>

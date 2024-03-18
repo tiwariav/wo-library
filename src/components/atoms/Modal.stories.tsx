@@ -1,16 +1,20 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { loremIpsum } from "lorem-ipsum";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
+import useStateWithProp from "../../hooks/useStateWithProp.js";
 import { playFloatingBasic } from "../../tools/storybook/play.js";
 import Modal, { ModalProps } from "./Modal.js";
 
-const Template = ({ isOpen = false, modalContent = "", ...args }) => {
-  const [open, setOpen] = useState(isOpen);
+type TemplateProps = ModalProps & { modalContent: ReactNode };
 
-  useEffect(() => {
-    setOpen(isOpen);
-  }, [isOpen]);
+const Template = ({
+  isOpen,
+  modalContent = "",
+  onClose,
+  ...args
+}: TemplateProps) => {
+  const [open, setOpen] = useStateWithProp(isOpen);
 
   return (
     <div>
@@ -26,14 +30,21 @@ const Template = ({ isOpen = false, modalContent = "", ...args }) => {
           }),
         }}
       />
-      <Modal isOpen={open} onClose={() => setOpen(false)} {...args}>
+      <Modal
+        isOpen={isOpen || open}
+        onClose={() => {
+          setOpen(false);
+          onClose?.();
+        }}
+        {...args}
+      >
         <div className="story-box">{modalContent || MODAL_TEXT}</div>
       </Modal>
     </div>
   );
 };
 
-const metadata: Meta<typeof Modal> = {
+const metadata: Meta<TemplateProps> = {
   component: Modal,
   parameters: {
     docs: { story: { inline: false } },
@@ -42,7 +53,7 @@ const metadata: Meta<typeof Modal> = {
 };
 export default metadata;
 
-type Story = StoryObj<ModalProps & { modalContent: ReactNode }>;
+type Story = StoryObj<TemplateProps>;
 
 const MODAL_TEXT = "Content inside Modal!";
 
