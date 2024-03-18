@@ -1,3 +1,11 @@
+## [4.1.3](https://github.com/tiwariav/wo-library/compare/v4.1.2...v4.1.3) (2024-03-18)
+
+
+### 🐛 Bug Fixes
+
+* fix postcss config for storybook ([cbff99d](https://github.com/tiwariav/wo-library/commit/cbff99de4bba935be4582b8ebbe29e1ebb0135b6))
+* improve open prop for tooltip and modal ([0a97b9a](https://github.com/tiwariav/wo-library/commit/0a97b9a6fdd19b3906ebce520c897ce536efbf85))
+
 ## [4.1.2](https://github.com/tiwariav/wo-library/compare/v4.1.1...v4.1.2) (2024-03-16)
 
 
