@@ -32,6 +32,7 @@ const config: Omit<StorybookConfig, "stories"> = {
         rules: [
           // Replaces existing CSS rules to support CSS Modules
           {
+            sideEffects: true,
             test: /\.css$/,
             use: [
               "style-loader",
@@ -41,7 +42,7 @@ const config: Omit<StorybookConfig, "stories"> = {
                   importLoaders: 1,
                   modules: {
                     auto: true,
-                    exportLocalsConvention: "camelCaseOnly",
+                    exportLocalsConvention: "camelCase",
                     localIdentName: isDev ? "[name]__[local]" : "[hash:base64]",
                   },
                   sourceMap: isDev,
