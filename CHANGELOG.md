@@ -1,3 +1,10 @@
+## [4.1.5](https://github.com/tiwariav/wo-library/compare/v4.1.4...v4.1.5) (2024-03-19)
+
+
+### 🐛 Bug Fixes
+
+* add storybook jest addon to defaults ([6728218](https://github.com/tiwariav/wo-library/commit/6728218bafe100bd8312cd60ef6b61a2079af599))
+
 ## [4.1.4](https://github.com/tiwariav/wo-library/compare/v4.1.3...v4.1.4) (2024-03-19)
 
 
