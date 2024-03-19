@@ -1,3 +1,10 @@
+## [4.1.6](https://github.com/tiwariav/wo-library/compare/v4.1.5...v4.1.6) (2024-03-19)
+
+
+### ♻️ Code Refactors
+
+* remove reduntant storybook addon ([ef22b0b](https://github.com/tiwariav/wo-library/commit/ef22b0bd30295ffc476cee609525b9b33c5d4521))
+
 ## [4.1.5](https://github.com/tiwariav/wo-library/compare/v4.1.4...v4.1.5) (2024-03-19)
 
 
