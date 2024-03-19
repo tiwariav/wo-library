@@ -62,7 +62,6 @@
     "@storybook/addon-coverage": "^1.0.1",
     "@storybook/addon-docs": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
-    "@storybook/addon-jest": "^8.0.1",
     "@storybook/addon-links": "^8.0.0",
     "@storybook/addon-measure": "^8.0.0",
     "@storybook/addon-outline": "^8.0.0",

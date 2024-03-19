@@ -23,7 +23,6 @@ const config: Omit<StorybookConfig, "stories"> = {
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-actions"),
     getAbsolutePath("@storybook/addon-interactions"),
-    getAbsolutePath("@storybook/addon-jest"),
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-measure"),
     getAbsolutePath("@storybook/addon-outline"),
