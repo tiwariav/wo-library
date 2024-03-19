@@ -1,3 +1,10 @@
+## [4.1.7](https://github.com/tiwariav/wo-library/compare/v4.1.6...v4.1.7) (2024-03-19)
+
+
+### ♻️ Code Refactors
+
+* add optional peer dependencies back ([bf9a213](https://github.com/tiwariav/wo-library/commit/bf9a2131c5523cc6bbd7551be281a55558ecd3a6))
+
 ## [4.1.6](https://github.com/tiwariav/wo-library/compare/v4.1.5...v4.1.6) (2024-03-19)
 
 
