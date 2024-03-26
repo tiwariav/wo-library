@@ -213,8 +213,6 @@ export default function Tooltip({
     style,
   ]);
 
-  console.log(isOpen, internalOpen, open);
-
   return (
     <>
       {triggerElement}
