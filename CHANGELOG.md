@@ -1,3 +1,10 @@
+## [4.1.8](https://github.com/tiwariav/wo-library/compare/v4.1.7...v4.1.8) (2024-03-26)
+
+
+### 🐛 Bug Fixes
+
+* remove overflow hidden from modal ([f7971dd](https://github.com/tiwariav/wo-library/commit/f7971dd7d58ce3fd1d5d335c9bbc3e3d0c80d6f7))
+
 ## [4.1.7](https://github.com/tiwariav/wo-library/compare/v4.1.6...v4.1.7) (2024-03-19)
 
 
