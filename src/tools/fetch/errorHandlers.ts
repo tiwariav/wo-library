@@ -1,7 +1,7 @@
 import { WoNetworkError, WoResponseError } from "../error/index.js";
 import { CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON } from "./constants.js";
 
-async function getResponseData<TResponseData>(
+export async function getResponseData<TResponseData>(
   response: Response,
 ): Promise<TResponseData | string> {
   const contentType = response.headers.get(CONTENT_TYPE_HEADER);
