@@ -1,3 +1,10 @@
+## [4.1.9](https://github.com/tiwariav/wo-library/compare/v4.1.8...v4.1.9) (2024-03-28)
+
+
+### ♻️ Code Refactors
+
+* export getResponseData function ([2b73759](https://github.com/tiwariav/wo-library/commit/2b73759e7706b18ddef3d7dcf6f6c6408d3c31e8))
+
 ## [4.1.8](https://github.com/tiwariav/wo-library/compare/v4.1.7...v4.1.8) (2024-03-26)
 
 
