@@ -1,3 +1,10 @@
+## [4.1.10](https://github.com/tiwariav/wo-library/compare/v4.1.9...v4.1.10) (2024-03-29)
+
+
+### ♻️ Code Refactors
+
+* improve storage getItem type based on json option ([475a354](https://github.com/tiwariav/wo-library/commit/475a3540603aae9ea7ec4a685dea43a6d11f1bee))
+
 ## [4.1.9](https://github.com/tiwariav/wo-library/compare/v4.1.8...v4.1.9) (2024-03-28)
 
 
