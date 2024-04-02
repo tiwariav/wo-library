@@ -1,3 +1,10 @@
+## [4.1.11](https://github.com/tiwariav/wo-library/compare/v4.1.10...v4.1.11) (2024-04-02)
+
+
+### 🐛 Bug Fixes
+
+* tooltip valid element props and onClose ([465c8c0](https://github.com/tiwariav/wo-library/commit/465c8c090c9286b1b61def6213f9c3deba5f941a))
+
 ## [4.1.10](https://github.com/tiwariav/wo-library/compare/v4.1.9...v4.1.10) (2024-03-29)
 
 
