@@ -87,7 +87,7 @@ export default function Tooltip({
 
   const handleOpenChange = (value: boolean) => {
     setInternalOpen(value);
-    onClose?.();
+    if (!value) onClose?.();
   };
 
   const options = { ...defaultOptions, ...propsOptions };
@@ -184,6 +184,7 @@ export default function Tooltip({
         ),
         style,
         ...getReferenceProps({
+          ...childProps,
           onClick: (event) => {
             childProps.onClick?.(event);
             onClick?.(event);
