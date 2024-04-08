@@ -1,6 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { AnyStorage, STORAGE_ENVIRONMENTS, StorageBackend } from "./index.js";
+import type { StorageBackend } from "./index.js";
+
+import { AnyStorage, STORAGE_ENVIRONMENTS } from "./index.js";
 
 describe("storage in web", () => {
   const anyStorageInstance = new AnyStorage();

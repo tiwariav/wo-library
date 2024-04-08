@@ -1,5 +1,6 @@
-import { StorybookConfig } from "@storybook/react-webpack5";
-import { dirname, join } from "node:path";
+import type { StorybookConfig } from "@storybook/react-webpack5";
+
+import path from "node:path";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -9,7 +10,7 @@ const isDev = process.env.NODE_ENV === "development";
  */
 export function getAbsolutePath(value: string): string {
   // eslint-disable-next-line unicorn/prefer-module
-  return dirname(require.resolve(join(value, "package.json")));
+  return path.dirname(require.resolve(path.join(value, "package.json")));
 }
 
 const config: Omit<StorybookConfig, "stories"> = {
@@ -63,7 +64,7 @@ const config: Omit<StorybookConfig, "stories"> = {
     getAbsolutePath("@chromatic-com/storybook"),
   ],
   core: {
-    disableTelemetry: true, // 👈 Disables telemetry
+    disableTelemetry: true,
   },
   docs: {
     autodocs: true,
@@ -73,7 +74,7 @@ const config: Omit<StorybookConfig, "stories"> = {
     argTypeTargetsV7: true,
   },
   framework: {
-    // @ts-expect-error 2353
+    // @ts-expect-error 2353 because name does exist
     name: getAbsolutePath("@storybook/react-webpack5"),
     options: {
       builder: {

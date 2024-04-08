@@ -1,9 +1,14 @@
-import { ReactNode, useMemo } from "react";
+import type { ReactNode } from "react";
+
+import { useMemo } from "react";
+
+import type { ContextDispatch } from "../utils.js";
+import type { ChartState } from "./state.js";
 
 import useMethods from "../../hooks/useMethods.js";
-import { ContextDispatch, createAndUseContext } from "../utils.js";
+import { createAndUseContext } from "../utils.js";
 import createChartMethods from "./methods.js";
-import INITIAL_CHART_STATE, { ChartState } from "./state.js";
+import INITIAL_CHART_STATE from "./state.js";
 
 interface ChartProviderProps {
   children: ReactNode;
@@ -22,8 +27,10 @@ export function ChartProvider({ children }: ChartProviderProps) {
     memoizedInitialState,
   );
 
+  const memoDispatch = useMemo(() => ({ dispatch }), [dispatch]);
+
   return (
-    <DispatchContext.Provider value={{ dispatch }}>
+    <DispatchContext.Provider value={memoDispatch}>
       <Context.Provider value={state}>{children}</Context.Provider>
     </DispatchContext.Provider>
   );

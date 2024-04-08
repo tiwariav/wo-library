@@ -1,4 +1,6 @@
-import { defaultErrorHandler } from "./errorHandlers.js";
+import type { defaultErrorHandler } from "./errorHandlers.js";
+
+import { HTTP_STATUS } from "./constants.js";
 
 export async function jsonResponseHandler<TResponseData = object>(
   response: Response,
@@ -8,7 +10,7 @@ export async function jsonResponseHandler<TResponseData = object>(
     // request not successful, call errorHandler with request param
     await errorHandler<TResponseData>(response);
   }
-  if (response.status === 204) {
+  if (response.status === HTTP_STATUS.noContent) {
     // no content
     return {} as TResponseData;
   }

@@ -1,7 +1,7 @@
 import { produce } from "immer";
 import { createContext, useContext } from "react";
 
-import { ActionRecord } from "../hooks/useMethods.js";
+import type { ActionRecord } from "../hooks/useMethods.js";
 
 export interface ContextDispatch<
   TRecord extends ActionRecord<TState>,
@@ -31,9 +31,8 @@ export function dispatchLoading<
   ...args: Parameters<TMethod>
 ) {
   dispatch.setLoading(true);
-  const response = method(...args);
+  method(...args);
   dispatch.setLoading(true);
-  return response;
 }
 
 export const getUpdateStateMethod =

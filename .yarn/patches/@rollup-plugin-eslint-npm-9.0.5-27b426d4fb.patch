@@ -1,0 +1,13 @@
+diff --git a/dist/es/index.js b/dist/es/index.js
+index 2b2c367a1627ea1403c7ef7e7f5573490dd42801..d486fcad392cb9facbc36df0f8968980755f5eeb 100644
+--- a/dist/es/index.js
++++ b/dist/es/index.js
+@@ -1,6 +1,7 @@
+ import { resolve, relative, sep } from 'path';
+ import { createFilter } from '@rollup/pluginutils';
+-import { ESLint } from 'eslint';
++import eslintPkg from 'eslint/use-at-your-own-risk';
++const { FlatESLint: ESLint } = eslintPkg;
+ 
+ function normalizePath(id) {
+     return relative(process.cwd(), id).split(sep).join('/');

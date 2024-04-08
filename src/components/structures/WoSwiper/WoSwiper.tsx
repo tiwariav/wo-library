@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 import { clsx } from "clsx";
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   A11y,
   Autoplay,
@@ -40,6 +42,11 @@ export interface WoSwiperProps extends React.ComponentProps<typeof Swiper> {
   variant?: (typeof WO_SWIPER_VARIANTS)[number];
 }
 
+const SPACE_BETWEEN_OPTIONS = {
+  large: 64,
+  normal: 32,
+};
+
 export default function WoSwiper({
   children,
   className,
@@ -74,13 +81,13 @@ export default function WoSwiper({
         className,
       )}
     >
-      {(title ?? subtitle ?? moreLink) && (
+      {(!!title || !!subtitle || !!moreLink) && (
         <div className={styles.top}>
           <div className={styles.topLeft}>
-            {title && <h2 className={styles.title}>{title}</h2>}
-            {subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
+            {!!title && <h2 className={styles.title}>{title}</h2>}
+            {!!subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
           </div>
-          <div>{moreLink && variant !== "coverflow" && moreLink}</div>
+          <div>{!!moreLink && variant !== "coverflow" && moreLink}</div>
         </div>
       )}
       <Swiper
@@ -107,7 +114,11 @@ export default function WoSwiper({
               }
             : false
         }
-        spaceBetween={variant === "coverflow" ? 64 : 32}
+        spaceBetween={
+          variant === "coverflow"
+            ? SPACE_BETWEEN_OPTIONS.large
+            : SPACE_BETWEEN_OPTIONS.normal
+        }
         {...derivedProps}
         {...props}
       >
@@ -147,7 +158,7 @@ export default function WoSwiper({
           </>
         )}
       </Swiper>
-      {moreLinkVertical && (
+      {!!moreLinkVertical && (
         <div className={styles.bottom}>{moreLinkVertical}</div>
       )}
     </div>

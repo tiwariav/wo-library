@@ -1,22 +1,25 @@
-import { merge, pickBy } from "lodash-es";
-import { SetRequired } from "type-fest";
+import type { SetRequired } from "type-fest";
 
+import { merge, pickBy } from "lodash-es";
+
+import type {
+  FetchOptions,
+  WoRequestMethod,
+  WoRequestQuery,
+  XhrEventListener,
+  XhrStateChange,
+} from "./types.js";
+
+import { WoResponseError } from "../error/index.js";
 import { anyStorageInstance } from "../storage/index.js";
 import {
   ACCESS_TOKEN_KEY,
   CONTENT_TYPE_FORM,
   CONTENT_TYPE_HEADER,
-  defaultHeaders,
+  CONTENT_TYPE_JSON,
 } from "./constants.js";
 import { defaultErrorHandler } from "./errorHandlers.js";
 import { jsonResponseHandler } from "./responseHandlers.js";
-import {
-  FetchOptions,
-  WoRequestMethod,
-  WoRequestQuery,
-  XHREventListener,
-  XHRStateChange,
-} from "./types.js";
 
 function getFormData(file: Blob, data?: Record<string, string>): FormData {
   const formData = new FormData();
@@ -29,14 +32,14 @@ function getFormData(file: Blob, data?: Record<string, string>): FormData {
   return formData;
 }
 
-export function combineURLs(baseURL: string, relativeURL?: string): string {
-  const combinedUrl = relativeURL
-    ? `${baseURL.replace(/\/+$/, "")}/${relativeURL.replace(/^\/+/, "")}`
-    : baseURL;
+export function combineUrls(baseUrl: string, relativeUrl?: string): string {
+  const combinedUrl = relativeUrl
+    ? `${baseUrl.replace(/\/+$/, "")}/${relativeUrl.replace(/^\/+/, "")}`
+    : baseUrl;
   return combinedUrl.replace(/\/+$/, "");
 }
 
-export function createURL(
+export function createUrl(
   apiEndpoint: string,
   path: string,
   {
@@ -52,35 +55,35 @@ export function createURL(
   } = {},
 ): URL {
   let resourcePath = path;
-  let baseURL = apiEndpoint;
+  let baseUrl = apiEndpoint;
   if (devProxy && path.startsWith(devProxy)) {
     resourcePath = path.replace(devProxy, "");
   }
-  let resourceURL: URL;
+  let resourceUrl: URL;
   if (resourcePath.startsWith("http:") || resourcePath.startsWith("https:")) {
-    resourceURL = new URL(combineURLs(resourcePath));
+    resourceUrl = new URL(combineUrls(resourcePath));
   } else {
     if (
       !(apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:"))
     ) {
-      baseURL = combineURLs(window.location.origin, apiEndpoint);
+      baseUrl = combineUrls(window.location.origin, apiEndpoint);
     }
-    resourceURL = new URL(combineURLs(baseURL, resourcePath));
+    resourceUrl = new URL(combineUrls(baseUrl, resourcePath));
   }
-  if (id && !resourceURL.pathname.endsWith("/")) {
-    resourceURL.pathname += `/${id}`;
+  if (id && !resourceUrl.pathname.endsWith("/")) {
+    resourceUrl.pathname += `/${id}`;
   }
   if (query) {
     const cleanQuery = pickBy(query, (value) => value !== undefined);
     const searchParams = new URLSearchParams(
       cleanQuery as Record<string, string>,
     );
-    resourceURL.search = searchParams.toString();
+    resourceUrl.search = searchParams.toString();
   }
-  if (trailingSlash && !resourceURL.pathname.endsWith("/")) {
-    resourceURL.pathname += "/";
+  if (trailingSlash && !resourceUrl.pathname.endsWith("/")) {
+    resourceUrl.pathname += "/";
   }
-  return resourceURL;
+  return resourceUrl;
 }
 
 export class WoFetchBase {
@@ -102,7 +105,7 @@ export class WoFetchBase {
     Object.assign(this, options);
   }
 
-  async fetchURL<TResponseData>(
+  async fetchUrl<TResponseData>(
     method: string,
     path: string,
     options: FetchOptions = {},
@@ -128,7 +131,7 @@ export class WoFetchBase {
       requireAuth,
       token,
     });
-    const url = createURL(this.endpoint, path, {
+    const url = createUrl(this.endpoint, path, {
       devProxy: noProxy ? undefined : this.devProxy,
       id,
       query,
@@ -162,7 +165,7 @@ export class WoFetchBase {
     >(
       path: string,
       options?: TFetchOptions,
-    ) => this.fetchURL<TData>(method, path, options);
+    ) => this.fetchUrl<TData>(method, path, options);
   }
 
   async getHeaders({
@@ -177,13 +180,9 @@ export class WoFetchBase {
     xhr?: boolean;
   } = {}): Promise<Headers | Map<string, string>> {
     const headersInstance = xhr ? new Map() : new Headers();
-    const allHeaders: Record<string, string> = merge(
-      {},
-      defaultHeaders,
-      headers,
-    );
-    if (allHeaders[CONTENT_TYPE_HEADER] === CONTENT_TYPE_FORM) {
-      delete allHeaders[CONTENT_TYPE_HEADER];
+    const allHeaders: Record<string, string> = merge({}, headers);
+    if (!(CONTENT_TYPE_HEADER in allHeaders)) {
+      allHeaders[CONTENT_TYPE_HEADER] = CONTENT_TYPE_JSON;
     }
     if (requireAuth && this.tokenName) {
       const accessToken =
@@ -197,7 +196,7 @@ export class WoFetchBase {
     return headersInstance;
   }
 
-  async uploadFileXHR(
+  async uploadFileXhr(
     path: string,
     file: Blob,
     {
@@ -209,16 +208,16 @@ export class WoFetchBase {
       transferCompleteFunction,
     }: {
       data: Record<string, string>;
-      loadStartFunction?: XHREventListener;
-      onStateChange?: XHRStateChange;
-      progressFunction: XHREventListener;
+      loadStartFunction?: XhrEventListener;
+      onStateChange?: XhrStateChange;
+      progressFunction: XhrEventListener;
       requireAuth: boolean;
-      transferCompleteFunction?: XHREventListener;
+      transferCompleteFunction?: XhrEventListener;
     },
   ): Promise<void> {
     const formData = getFormData(file, data);
     const headers = await this.getHeaders({
-      headers: { CONTENT_TYPE_HEADER: CONTENT_TYPE_FORM },
+      headers: { [CONTENT_TYPE_HEADER]: CONTENT_TYPE_FORM },
       requireAuth,
       xhr: true,
     });
@@ -234,9 +233,8 @@ export class WoFetchBase {
           false,
         );
       }
-      if (progressFunction) {
-        xhrObject.upload.addEventListener("progress", progressFunction, false);
-      }
+
+      xhrObject.upload.addEventListener("progress", progressFunction, false);
       if (transferCompleteFunction) {
         xhrObject.upload.addEventListener(
           "load",
@@ -250,18 +248,20 @@ export class WoFetchBase {
         if (onStateChange) {
           onStateChange(xhrObject.readyState, xhrObject);
         }
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         if (xhrObject.readyState !== 4) {
           return;
         }
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         if (xhrObject.status >= 300 || xhrObject.status < 200) {
-          reject(xhrObject);
+          reject(new WoResponseError(xhrObject.response, xhrObject.status));
         }
         resolve();
       });
 
       xhrObject.open(
         "POST",
-        createURL(this.endpoint, path, {
+        createUrl(this.endpoint, path, {
           devProxy: this.devProxy,
           trailingSlash: this.trailingSlash,
         }),

@@ -1,4 +1,5 @@
-import { RazorpayOptions } from "../../types/interfaces/razorpay.js";
+import type { RazorpayOptions } from "../../types/interfaces/razorpay.js";
+
 import { WoLoadScriptError } from "../error/index.js";
 import loadScript from "../loadScript.js";
 
@@ -10,7 +11,7 @@ interface RazorpayCheckoutOptions {
   handleSuccess: CallableFunction;
   key: string;
   name: string;
-  orderID: string;
+  orderId: string;
   prefill: object;
 }
 
@@ -22,7 +23,7 @@ export async function checkout({
   handleSuccess,
   key,
   name,
-  orderID,
+  orderId,
   prefill,
 }: RazorpayCheckoutOptions) {
   const response = await loadScript(
@@ -39,7 +40,7 @@ export async function checkout({
     key,
     modal: { ondismiss: handleClose },
     name,
-    order_id: orderID,
+    order_id: orderId,
     prefill,
   };
 

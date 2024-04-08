@@ -1,9 +1,14 @@
+import type { OffsetOptions, Padding, Placement } from "@floating-ui/react";
+import type {
+  CSSProperties,
+  MouseEventHandler,
+  ReactNode,
+  RefObject,
+} from "react";
+
 import {
   FloatingArrow,
   FloatingPortal,
-  OffsetOptions,
-  Padding,
-  Placement,
   arrow,
   autoUpdate,
   flip,
@@ -19,17 +24,7 @@ import {
   useTransitionStyles,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import {
-  CSSProperties,
-  MouseEventHandler,
-  ReactNode,
-  RefObject,
-  cloneElement,
-  isValidElement,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { cloneElement, isValidElement, useMemo, useRef, useState } from "react";
 
 import styles from "./tooltip.module.css";
 
@@ -49,7 +44,7 @@ export interface TooltipProps {
   };
   isOpen?: boolean;
   isPopover?: boolean;
-  onClick?: MouseEventHandler<Element>;
+  onClick?: MouseEventHandler;
   onClose?: () => void;
   options?: {
     offset?: OffsetOptions;
@@ -65,10 +60,12 @@ export interface TooltipProps {
 
 const defaultOptions = { offset: 8, padding: 8 };
 
+const ARROW_X_TRANSFORM = 0.5;
+
 export default function Tooltip({
   animate,
   children,
-  innerClassNames = {},
+  innerClassNames,
   isOpen,
   isPopover,
   onClick,
@@ -83,7 +80,7 @@ export default function Tooltip({
 }: TooltipProps) {
   const arrowRef = useRef<HTMLElement>(null);
   const [internalOpen, setInternalOpen] = useState(false);
-  const open = isOpen === undefined ? internalOpen : isOpen;
+  const open = isOpen ?? internalOpen;
 
   const handleOpenChange = (value: boolean) => {
     setInternalOpen(value);
@@ -121,7 +118,7 @@ export default function Tooltip({
 
   const arrowX = middlewareData.arrow?.x ?? 0;
   const arrowY = middlewareData.arrow?.y ?? 0;
-  const transformX = arrowX + ARROW_WIDTH / 2;
+  const transformX = arrowX + ARROW_WIDTH * ARROW_X_TRANSFORM;
   const transformY = arrowY + ARROW_HEIGHT;
 
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
@@ -141,14 +138,14 @@ export default function Tooltip({
 
   const body = isMounted && (
     <div
-      className={clsx(styles.floating, innerClassNames.floating)}
+      className={clsx(styles.floating, innerClassNames?.floating)}
       {...getFloatingProps({
         ref: refs.setFloating,
         style: floatingStyles,
       })}
     >
       <div
-        className={clsx(styles.title, innerClassNames.title, {
+        className={clsx(styles.title, innerClassNames?.title, {
           [styles.isPlain]: !isPopover,
         })}
         style={animate ? transitionStyles : {}}
@@ -157,7 +154,7 @@ export default function Tooltip({
       </div>
       {showArrow && (
         <FloatingArrow
-          className={clsx(styles.arrow, innerClassNames.arrow)}
+          className={clsx(styles.arrow, innerClassNames?.arrow)}
           context={context}
           height={ARROW_HEIGHT}
           ref={arrowRef as unknown as RefObject<SVGSVGElement>}
@@ -171,7 +168,7 @@ export default function Tooltip({
     if (
       isValidElement<{
         className: string;
-        onClick?: MouseEventHandler<Element>;
+        onClick?: MouseEventHandler;
         style: CSSProperties;
       }>(children)
     ) {
@@ -179,7 +176,7 @@ export default function Tooltip({
       return cloneElement(children, {
         className: clsx(
           styles.reference,
-          innerClassNames.reference,
+          innerClassNames?.reference,
           children.props.className,
         ),
         style,
@@ -194,7 +191,7 @@ export default function Tooltip({
     }
     return (
       <button
-        className={clsx(styles.reference, innerClassNames.reference)}
+        className={clsx(styles.reference, innerClassNames?.reference)}
         style={style}
         {...getReferenceProps({
           onClick,
@@ -207,7 +204,7 @@ export default function Tooltip({
   }, [
     children,
     getReferenceProps,
-    innerClassNames.reference,
+    innerClassNames?.reference,
     onClick,
     refs.setReference,
     style,

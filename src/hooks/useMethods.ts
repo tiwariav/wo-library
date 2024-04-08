@@ -1,4 +1,6 @@
-import { Reducer, useMemo, useReducer } from "react";
+import type { Reducer } from "react";
+
+import { useMemo, useReducer } from "react";
 
 export interface Action {
   payload: unknown[];
@@ -44,8 +46,9 @@ export default function useMethods<
     ) as (keyof TRecord)[];
     const response = {} as WrappedMethods<TRecord>;
     for (const type of actionTypes) {
-      response[type] = (...payload) =>
+      response[type] = (...payload) => {
         dispatch({ payload, type: type as string });
+      };
     }
     return response;
   }, [createMethods, initialState]);
