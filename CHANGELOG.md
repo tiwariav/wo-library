@@ -1,3 +1,10 @@
+## [4.1.12](https://github.com/tiwariav/wo-library/compare/v4.1.11...v4.1.12) (2024-04-08)
+
+
+### 🐛 Bug Fixes
+
+* pass children type in observe in view props ([28d28e8](https://github.com/tiwariav/wo-library/commit/28d28e865daf047feb93badf878288d52aa83cc3))
+
 ## [4.1.11](https://github.com/tiwariav/wo-library/compare/v4.1.10...v4.1.11) (2024-04-02)
 
 
