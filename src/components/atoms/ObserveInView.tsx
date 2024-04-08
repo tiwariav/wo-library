@@ -5,8 +5,9 @@ import { Entries } from "type-fest";
 
 import styles from "./observeInView.module.css";
 
-interface ObserveInViewProps {
+interface ObserveInViewProps extends React.HTMLAttributes<HTMLDivElement> {
   animate: boolean;
+  children: React.ReactNode;
   className?: string;
   dynamicClasses?: {
     animate?: string;
@@ -20,6 +21,7 @@ interface ObserveInViewProps {
 
 export default function ObserveInView({
   animate,
+  children,
   className,
   dynamicClasses,
   observeOptions,
@@ -56,6 +58,8 @@ export default function ObserveInView({
   }, [inView, onViewChange]);
 
   return (
-    <div className={clsx(rootClasses, className)} ref={rootRef} {...props} />
+    <div className={clsx(rootClasses, className)} ref={rootRef} {...props}>
+      {children}
+    </div>
   );
 }
