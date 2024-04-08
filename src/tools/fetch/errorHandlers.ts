@@ -21,6 +21,15 @@ export async function getResponseData<TResponseData>(
   return response.text();
 }
 
+const ERROR_MESSAGES = {
+  [HTTP_STATUS.badRequest]: "Invalid Data!",
+  [HTTP_STATUS.forbidden]: "You are not authorized to access this page!",
+  [HTTP_STATUS.internalServerError]: "Internal server error!",
+  [HTTP_STATUS.notFound]: "Endpoint not found!",
+  [HTTP_STATUS.tooManyRequests]: "Too many requests!",
+  [HTTP_STATUS.unauthorized]: "Your session has expired!",
+};
+
 export async function defaultErrorHandler<TResponseData>(
   response?: Response,
   error?: unknown,
@@ -30,51 +39,6 @@ export async function defaultErrorHandler<TResponseData>(
   }
   // handle error depending on http response status codes
   const responseData = await getResponseData<TResponseData>(response);
-  switch (response.status) {
-    case HTTP_STATUS.badRequest: {
-      throw new WoResponseError(responseData, response.status, "Invalid Data!");
-    }
-    case HTTP_STATUS.unauthorized: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "Your session has expired!",
-      );
-    }
-    case HTTP_STATUS.forbidden: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "You are not authorized to access this page!",
-      );
-    }
-    case HTTP_STATUS.notFound: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "Endpoint not found!",
-      );
-    }
-    case HTTP_STATUS.tooManyRequests: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "Too many requests!",
-      );
-    }
-    case HTTP_STATUS.internalServerError: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "Internal server error!",
-      );
-    }
-    default: {
-      throw new WoResponseError(
-        responseData,
-        response.status,
-        "Unhandled error!",
-      );
-    }
-  }
+  const errorMessage = ERROR_MESSAGES[response.status] ?? "Unhandled error!";
+  throw new WoResponseError(responseData, response.status, errorMessage);
 }

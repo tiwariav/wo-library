@@ -1,15 +1,16 @@
 {
   "absolute": true,
-  "format": ["css", "javascript", "typescript"],
+  "blame": true,
+  "format": ["css", "javascript", "json", "tsx", "typescript"],
   "gitignore": true,
-  "ignore": ["**/.next", "**/out", "**/analyze"],
+  "ignoreCase": true,
   "maxLines": 5000,
-  "minTokens": 60,
   "minLines": 3,
   "mode": "strict",
   "noSymlinks": false,
   "output": "./reports/jscpd/",
   "reporters": ["html", "json"],
   "silent": true,
+  "store": "leveldb",
   "threshold": 0
 }

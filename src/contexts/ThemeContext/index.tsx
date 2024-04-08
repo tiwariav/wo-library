@@ -7,7 +7,7 @@ import type { ThemeMethods } from "./methods.js";
 import type { ThemeState, ThemeVariants } from "./state.js";
 
 import useMethods from "../../hooks/useMethods.js";
-import { createAndUseContext } from "../utils.js";
+import { createAndUseContext, useSimpleProvider } from "../utils.js";
 import createThemeMethods from "./methods.js";
 import INITIAL_THEME_STATE from "./state.js";
 
@@ -38,13 +38,11 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
     [state],
   );
 
-  const memoDispatch = useMemo(() => ({ dispatch }), [dispatch]);
-
-  return (
-    <DispatchContext.Provider value={memoDispatch}>
-      <Context.Provider value={contextValue}>{children}</Context.Provider>
-    </DispatchContext.Provider>
-  );
+  return useSimpleProvider(Context, DispatchContext, {
+    children,
+    dispatch,
+    state: contextValue,
+  });
 }
 
 export { useContextDispatch, useContextState };

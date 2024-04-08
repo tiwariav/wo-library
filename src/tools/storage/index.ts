@@ -34,6 +34,18 @@ interface GetItemOptions extends GetBackendOptions {
   json?: boolean;
 }
 
+function getJsonItem<TResponse = object | string>(value: string) {
+  try {
+    return JSON.parse(value) as TResponse;
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) {
+      throw error;
+    }
+    // in case of syntax error return string
+  }
+  return value;
+}
+
 export class AnyStorage {
   backends: StorageBackendOptions;
   env: (typeof STORAGE_ENVIRONMENTS)[number];
@@ -109,14 +121,7 @@ export class AnyStorage {
         : this.backends.session.getItem(storageKey));
     }
     if (json && response) {
-      try {
-        response = JSON.parse(response) as TResponse;
-      } catch (error) {
-        if (!(error instanceof SyntaxError)) {
-          throw error;
-        }
-        // in case of syntax error return string
-      }
+      response = getJsonItem<TResponse>(response);
     }
     return response;
   }

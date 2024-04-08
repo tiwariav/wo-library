@@ -3,10 +3,8 @@ import type { SetOptional } from "type-fest";
 
 import { clsx } from "clsx";
 
-import type { TooltipProps } from "../atoms/Tooltip.js";
-
-import Tooltip from "../atoms/Tooltip.js";
-import styles from "./popover.module.css";
+import Tooltip, { type TooltipProps } from "../atoms/Tooltip/Tooltip.js";
+import * as styles from "./popover.module.css";
 
 type PopoverTooltipProps = TooltipProps & {
   content: React.ReactNode;

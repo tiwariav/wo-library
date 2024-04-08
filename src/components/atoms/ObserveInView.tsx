@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import styles from "./observeInView.module.css";
+import * as styles from "./observeInView.module.css";
 
 interface ObserveInViewProps {
   animate: boolean;

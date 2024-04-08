@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 import { produce } from "immer";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
 
 import type { ActionRecord } from "../hooks/useMethods.js";
 
@@ -42,3 +44,28 @@ export const getUpdateStateMethod =
       void Object.assign(draft, data);
     });
   };
+
+export function useSimpleProvider<TState, TDispatch>(
+  context: React.Context<TState>,
+  dispatchContext: React.Context<{ dispatch: TDispatch }>,
+  {
+    children,
+    dispatch,
+    state,
+  }: {
+    children: ReactNode;
+    dispatch: TDispatch;
+    state: TState;
+  },
+) {
+  const memoDispatch = useMemo(() => ({ dispatch }), [dispatch]);
+
+  const Context = context;
+  const DispatchContext = dispatchContext;
+
+  return (
+    <DispatchContext.Provider value={memoDispatch}>
+      <Context.Provider value={state}>{children}</Context.Provider>
+    </DispatchContext.Provider>
+  );
+}

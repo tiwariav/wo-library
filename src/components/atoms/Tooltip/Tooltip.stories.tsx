@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import type { TooltipProps } from "./Tooltip.js";
 
-import { playFloatingBasic } from "../../tools/storybook/play.js";
+import { playFloatingBasic } from "../../../tools/storybook/play.js";
 import Tooltip from "./Tooltip.js";
 
 const metadata: Meta<typeof Tooltip> = {

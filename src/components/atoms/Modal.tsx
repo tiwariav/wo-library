@@ -13,7 +13,7 @@ import {
 } from "@floating-ui/react";
 import { clsx } from "clsx";
 
-import styles from "./modal.module.css";
+import * as styles from "./modal.module.css";
 
 export interface ModalProps {
   children: ReactNode;
