@@ -1,3 +1,24 @@
+## [4.1.12](https://github.com/tiwariav/wo-library/compare/v4.1.11...v4.1.12) (2024-04-08)
+
+
+### 🐛 Bug Fixes
+
+* pass children type in observe in view props ([28d28e8](https://github.com/tiwariav/wo-library/commit/28d28e865daf047feb93badf878288d52aa83cc3))
+
+## [4.1.11](https://github.com/tiwariav/wo-library/compare/v4.1.10...v4.1.11) (2024-04-02)
+
+
+### 🐛 Bug Fixes
+
+* tooltip valid element props and onClose ([465c8c0](https://github.com/tiwariav/wo-library/commit/465c8c090c9286b1b61def6213f9c3deba5f941a))
+
+## [4.1.10](https://github.com/tiwariav/wo-library/compare/v4.1.9...v4.1.10) (2024-03-29)
+
+
+### ♻️ Code Refactors
+
+* improve storage getItem type based on json option ([475a354](https://github.com/tiwariav/wo-library/commit/475a3540603aae9ea7ec4a685dea43a6d11f1bee))
+
 ## [4.1.9](https://github.com/tiwariav/wo-library/compare/v4.1.8...v4.1.9) (2024-03-28)
 
 

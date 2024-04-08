@@ -226,17 +226,16 @@ export const WithButton: Story = {
 function ValidElementChildTemplate(args: Partial<TooltipProps>) {
   const [open, setIsOpen] = useState(false);
   const [tooltipCount, setTooltipCount] = useState(0);
-  const [buttonCount, setButtonCount] = useState(0);
+  const [inputFocusCount, setInputFocusCount] = useState(0);
 
   return (
     <>
-      <div>Tooltip clicked: {tooltipCount} times</div>
-      <div>Button clicked: {buttonCount} times</div>
+      <div>tooltip clicked: {tooltipCount} times</div>
+      <div>input focus count: {inputFocusCount} times</div>
       <Tooltip
         isOpen={open}
         onClick={() => {
           setTooltipCount((previous) => previous + 1);
-          setIsOpen(true);
         }}
         onClose={() => {
           setIsOpen(false);
@@ -244,14 +243,13 @@ function ValidElementChildTemplate(args: Partial<TooltipProps>) {
         title={<div>Content in Tooltip!</div>}
         {...args}
       >
-        <button
-          onClick={() => {
-            setButtonCount((previous) => previous + 1);
+        <input
+          onFocus={() => {
+            setInputFocusCount((previous) => previous + 1);
             setIsOpen(true);
           }}
-        >
-          Content in Tooltip!
-        </button>
+          placeholder="Click for Tooltip!"
+        />
       </Tooltip>
     </>
   );

@@ -90,7 +90,9 @@ export function useTooltipProps({
 
   const handleOpenChange = (value: boolean) => {
     setInternalOpen(value);
-    onClose?.();
+    if (!value) {
+      onClose?.();
+    }
   };
 
   const options = { ...DEFAULT_TOOLTIP_OPTIONS, ...propsOptions };

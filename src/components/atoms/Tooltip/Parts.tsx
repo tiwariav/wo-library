@@ -44,6 +44,7 @@ export function TooltipTrigger({
     return cloneElement(children, {
       className: clsx(styles.reference, className, children.props.className),
       ...getReferenceProps({
+        ...childProps,
         onClick: (event) => {
           childProps.onClick?.(event);
           onClick?.(event);
