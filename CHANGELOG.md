@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/tiwariav/wo-library/compare/v5.0.0...v5.0.1) (2024-04-15)
+
+
+### 🐛 Bug Fixes
+
+* enable namedExport for rollup postcss plugin ([7d3b4cc](https://github.com/tiwariav/wo-library/commit/7d3b4cc52733c0aaa2c3f850b9bedc4e2a5b5737))
+
 ## [5.0.0](https://github.com/tiwariav/wo-library/compare/v4.1.14...v5.0.0) (2024-04-15)
 
 
