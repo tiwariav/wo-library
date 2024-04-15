@@ -1,8 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import type { StorageBackend } from "./index.js";
-
-import { AnyStorage, STORAGE_ENVIRONMENTS } from "./index.js";
+import { AnyStorage, STORAGE_ENVIRONMENTS, StorageBackend } from "./index.js";
 
 describe("storage in web", () => {
   const anyStorageInstance = new AnyStorage();
@@ -33,77 +31,66 @@ const TEST_TEMP_VALUE = "TEST_TEMP_VALUE";
 const TEST_SESSION_VALUE = "TEST_SESSION_VALUE";
 const TEST_PERSIST_VALUE = "TEST_PERSIST_VALUE";
 
-function setBackend(anyStorageInstance: AnyStorage, key: string) {
-  if (key === "mobile") {
-    anyStorageInstance.setBackend({
-      persist: AsyncStorage as unknown as StorageBackend,
-    });
-  } else if (key === "web") {
-    anyStorageInstance.setBackend({ persist: localStorage });
-  }
-}
-
-async function persistBackend(anyStorageInstance: AnyStorage) {
-  await anyStorageInstance.setItem(TEST_KEY, TEST_PERSIST_VALUE, {
-    persist: true,
-  });
-  expect(await anyStorageInstance.backends.persist.getItem(TEST_KEY)).toBe(
-    TEST_PERSIST_VALUE,
-  );
-  expect(await anyStorageInstance.getItem(TEST_KEY, { persist: true })).toBe(
-    TEST_PERSIST_VALUE,
-  );
-  expect(await anyStorageInstance.getItem(TEST_KEY, { session: true })).toBe(
-    TEST_PERSIST_VALUE,
-  );
-}
-
-async function remove(anyStorageInstance: AnyStorage) {
-  await anyStorageInstance.removeItem(TEST_KEY);
-  expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBeNull();
-  expect(
-    await anyStorageInstance.backends.session.getItem(TEST_KEY),
-  ).toBeNull();
-  expect(
-    await anyStorageInstance.backends.persist.getItem(TEST_KEY),
-  ).toBeNull();
-}
-
-async function tempBackend(anyStorageInstance: AnyStorage) {
-  await anyStorageInstance.setItem(TEST_KEY, TEST_TEMP_VALUE);
-  expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBe(
-    TEST_TEMP_VALUE,
-  );
-  expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(TEST_TEMP_VALUE);
-}
-
-async function sessionBackend(anyStorageInstance: AnyStorage) {
-  await anyStorageInstance.setItem(TEST_KEY, TEST_SESSION_VALUE, {
-    session: true,
-  });
-  expect(await anyStorageInstance.backends.session.getItem(TEST_KEY)).toBe(
-    TEST_SESSION_VALUE,
-  );
-  expect(await anyStorageInstance.getItem(TEST_KEY, { session: true })).toBe(
-    TEST_SESSION_VALUE,
-  );
-  expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(TEST_SESSION_VALUE);
-}
-
-function expectResult(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
-  const anyStorageInstance = new AnyStorage(key);
-
+function envTest(key: (typeof STORAGE_ENVIRONMENTS)[number]) {
   return async () => {
-    setBackend(anyStorageInstance, key);
-    await persistBackend(anyStorageInstance);
-    await sessionBackend(anyStorageInstance);
-    await tempBackend(anyStorageInstance);
-    await remove(anyStorageInstance);
+    const anyStorageInstance = new AnyStorage(key);
+    if (key === "mobile") {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      anyStorageInstance.setBackend({
+        persist: AsyncStorage as unknown as StorageBackend,
+      });
+    } else if (key === "web") {
+      anyStorageInstance.setBackend({ persist: localStorage });
+    }
+
+    // persist
+    await anyStorageInstance.setItem(TEST_KEY, TEST_PERSIST_VALUE, {
+      persist: true,
+    });
+    expect(await anyStorageInstance.backends.persist.getItem(TEST_KEY)).toBe(
+      TEST_PERSIST_VALUE,
+    );
+    expect(await anyStorageInstance.getItem(TEST_KEY, { persist: true })).toBe(
+      TEST_PERSIST_VALUE,
+    );
+    expect(await anyStorageInstance.getItem(TEST_KEY, { session: true })).toBe(
+      TEST_PERSIST_VALUE,
+    );
+
+    // session
+    await anyStorageInstance.setItem(TEST_KEY, TEST_SESSION_VALUE, {
+      session: true,
+    });
+    expect(await anyStorageInstance.backends.session.getItem(TEST_KEY)).toBe(
+      TEST_SESSION_VALUE,
+    );
+    expect(await anyStorageInstance.getItem(TEST_KEY, { session: true })).toBe(
+      TEST_SESSION_VALUE,
+    );
+    expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(TEST_SESSION_VALUE);
+
+    // temp
+    await anyStorageInstance.setItem(TEST_KEY, TEST_TEMP_VALUE);
+    expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBe(
+      TEST_TEMP_VALUE,
+    );
+    expect(await anyStorageInstance.getItem(TEST_KEY)).toBe(TEST_TEMP_VALUE);
+
+    // remove
+    await anyStorageInstance.removeItem(TEST_KEY);
+    expect(await anyStorageInstance.backends.temp.getItem(TEST_KEY)).toBeNull();
+    expect(
+      await anyStorageInstance.backends.session.getItem(TEST_KEY),
+    ).toBeNull();
+    expect(
+      await anyStorageInstance.backends.persist.getItem(TEST_KEY),
+    ).toBeNull();
   };
 }
 
 describe("storage operations", () => {
   for (const key of STORAGE_ENVIRONMENTS) {
-    test(`should access ${key} env`, expectResult(key));
+    // eslint-disable-next-line jest/expect-expect
+    test(`should access ${key} env`, envTest(key));
   }
 });

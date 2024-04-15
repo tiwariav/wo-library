@@ -1,9 +1,8 @@
-import type { MutableRefObject, ReactElement } from "react";
-
-import type { ChartState } from "./state.js";
+import { MutableRefObject, ReactElement } from "react";
 
 import { pushOrCreate } from "../../tools/others/objects.js";
 import { svgNodeToData } from "../../tools/svg.js";
+import { ChartState } from "./state.js";
 
 export default function createChartMethods(state: ChartState) {
   return {
@@ -15,16 +14,14 @@ export default function createChartMethods(state: ChartState) {
       symbolsData: ReactElement<{ seriesName: string }>[],
     ): ChartState => {
       const childNodes = symbolsRef.current?.childNodes;
-      if (!childNodes) {
-        return state;
-      }
+      if (!childNodes) return state;
       const symbolImages: Record<string, string[]> = {};
       for (const [index, item] of symbolsData.entries()) {
-        symbolImages[item.props.seriesName] = pushOrCreate({
-          data: symbolImages,
-          key: item.props.seriesName,
-          value: svgNodeToData(childNodes[index]),
-        });
+        symbolImages[item.props.seriesName] = pushOrCreate(
+          symbolImages,
+          item.props.seriesName,
+          svgNodeToData(childNodes[index]),
+        );
       }
       return { ...state, symbolImages };
     },
@@ -34,12 +31,12 @@ export default function createChartMethods(state: ChartState) {
       node: Node,
     ): ChartState => {
       const symbolImages: Record<string, string[]> = { ...state.symbolImages };
-      symbolImages[seriesName] = pushOrCreate({
-        data: symbolImages,
-        index: seriesIndex,
-        key: seriesName,
-        value: svgNodeToData(node),
-      });
+      symbolImages[seriesName] = pushOrCreate(
+        symbolImages,
+        seriesName,
+        svgNodeToData(node),
+        seriesIndex,
+      );
       return { ...state, symbolImages };
     },
   };

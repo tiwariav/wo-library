@@ -10,8 +10,6 @@ export function copyToDestination(
   );
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.copyFile(filePath, outPath, (error) => {
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
   });
 }

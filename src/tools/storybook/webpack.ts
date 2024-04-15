@@ -1,7 +1,6 @@
-import type { Options } from "@storybook/core-webpack";
-import type { Configuration } from "webpack";
-
+import { Options } from "@storybook/core-webpack";
 import { isObject } from "lodash-es";
+import { Configuration } from "webpack";
 
 const CSS_REGEX = "/\\.css$/";
 
@@ -9,15 +8,11 @@ export function cssModules(
   config: Configuration,
   { configType }: { configType: Options["configType"] },
 ) {
-  if (!config.module?.rules) {
-    return config;
-  }
+  if (!config.module?.rules) return config;
   const cssRule = config.module.rules.find(
     (rule) => isObject(rule) && rule.test?.toString() === CSS_REGEX,
   );
-  if (!isObject(cssRule)) {
-    return config;
-  }
+  if (!isObject(cssRule)) return config;
   config.module.rules = [
     ...config.module.rules.filter(
       (rule) => isObject(rule) && rule.test?.toString() !== CSS_REGEX,
@@ -32,7 +27,7 @@ export function cssModules(
       // @ts-expect-error: TS18048 because of the use of `map`
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       use: cssRule.use.map((rule: { loader: string; options: object }) => {
-        if (rule.loader && /\Wcss-loader/g.test(rule.loader)) {
+        if (rule?.loader && /\Wcss-loader/g.test(rule.loader)) {
           return {
             ...rule,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -57,9 +52,7 @@ export function cssModules(
 }
 
 export function modulesFullySpecified(config: Configuration) {
-  if (!config.module?.rules) {
-    return config;
-  }
+  if (!config.module?.rules) return config;
   for (const rule of config.module.rules) {
     if (isObject(rule) && rule.test?.toString().includes("js")) {
       if (rule.resolve) {
@@ -74,11 +67,8 @@ export function modulesFullySpecified(config: Configuration) {
 }
 
 export function nodeNextExtensionAlias(config: Configuration) {
-  if (!config.resolve) {
-    return config;
-  }
+  if (!config.resolve) return config;
   config.resolve.extensionAlias = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     ".js": [".js", ".jsx", ".ts", ".tsx"],
   };
   return config;

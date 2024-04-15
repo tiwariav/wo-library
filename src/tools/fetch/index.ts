@@ -1,38 +1,86 @@
-import type { SetRequired } from "type-fest";
-
-import { merge } from "lodash-es";
-
-import type {
-  FetchOptions,
-  WoRequestMethod,
-  XhrEventListener,
-  XhrStateChange,
-} from "./types.js";
+import { merge, pickBy } from "lodash-es";
+import { SetRequired } from "type-fest";
 
 import { anyStorageInstance } from "../storage/index.js";
 import {
   ACCESS_TOKEN_KEY,
   CONTENT_TYPE_FORM,
   CONTENT_TYPE_HEADER,
-  CONTENT_TYPE_JSON,
+  defaultHeaders,
 } from "./constants.js";
 import { defaultErrorHandler } from "./errorHandlers.js";
 import { jsonResponseHandler } from "./responseHandlers.js";
 import {
-  createUrl,
-  getFetchBody,
-  getFormData,
-  getHeaderInstance,
-  handleReadyStateChange,
-} from "./utils.js";
+  FetchOptions,
+  WoRequestMethod,
+  WoRequestQuery,
+  XHREventListener,
+  XHRStateChange,
+} from "./types.js";
 
-interface UploadXhrOptions {
-  data: Record<string, string>;
-  loadStartFunction?: XhrEventListener;
-  onStateChange?: XhrStateChange;
-  progressFunction: XhrEventListener;
-  requireAuth: boolean;
-  transferCompleteFunction?: XhrEventListener;
+function getFormData(file: Blob, data?: Record<string, string>): FormData {
+  const formData = new FormData();
+  if (data) {
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
+  }
+  formData.append("file", file);
+  return formData;
+}
+
+export function combineURLs(baseURL: string, relativeURL?: string): string {
+  const combinedUrl = relativeURL
+    ? `${baseURL.replace(/\/+$/, "")}/${relativeURL.replace(/^\/+/, "")}`
+    : baseURL;
+  return combinedUrl.replace(/\/+$/, "");
+}
+
+export function createURL(
+  apiEndpoint: string,
+  path: string,
+  {
+    devProxy,
+    id,
+    query,
+    trailingSlash,
+  }: {
+    devProxy?: string;
+    id?: string;
+    query?: WoRequestQuery;
+    trailingSlash?: boolean;
+  } = {},
+): URL {
+  let resourcePath = path;
+  let baseURL = apiEndpoint;
+  if (devProxy && path.startsWith(devProxy)) {
+    resourcePath = path.replace(devProxy, "");
+  }
+  let resourceURL: URL;
+  if (resourcePath.startsWith("http:") || resourcePath.startsWith("https:")) {
+    resourceURL = new URL(combineURLs(resourcePath));
+  } else {
+    if (
+      !(apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:"))
+    ) {
+      baseURL = combineURLs(window.location.origin, apiEndpoint);
+    }
+    resourceURL = new URL(combineURLs(baseURL, resourcePath));
+  }
+  if (id && !resourceURL.pathname.endsWith("/")) {
+    resourceURL.pathname += `/${id}`;
+  }
+  if (query) {
+    const cleanQuery = pickBy(query, (value) => value !== undefined);
+    const searchParams = new URLSearchParams(
+      cleanQuery as Record<string, string>,
+    );
+    resourceURL.search = searchParams.toString();
+  }
+  if (trailingSlash && !resourceURL.pathname.endsWith("/")) {
+    resourceURL.pathname += "/";
+  }
+  return resourceURL;
 }
 
 export class WoFetchBase {
@@ -54,7 +102,7 @@ export class WoFetchBase {
     Object.assign(this, options);
   }
 
-  async fetchUrl<TResponseData>(
+  async fetchURL<TResponseData>(
     method: string,
     path: string,
     options: FetchOptions = {},
@@ -66,7 +114,7 @@ export class WoFetchBase {
       headers,
       id,
       noProxy,
-      query,
+      query = {},
       requireAuth,
       responseHandler = this.responseHandler,
       token,
@@ -80,15 +128,22 @@ export class WoFetchBase {
       requireAuth,
       token,
     });
-    const url = createUrl(this.endpoint, path, {
+    const url = createURL(this.endpoint, path, {
       devProxy: noProxy ? undefined : this.devProxy,
       id,
       query,
       trailingSlash,
     });
+    let body: FormData | RequestInit["body"];
+    if (data) {
+      body =
+        requestHeaders.get(CONTENT_TYPE_HEADER) === CONTENT_TYPE_FORM
+          ? (data as FormData)
+          : JSON.stringify(data);
+    }
     try {
       const response = await fetch(url.toString(), {
-        body: getFetchBody(requestHeaders, data),
+        body,
         credentials,
         headers: Object.fromEntries(requestHeaders),
         method,
@@ -107,7 +162,7 @@ export class WoFetchBase {
     >(
       path: string,
       options?: TFetchOptions,
-    ) => this.fetchUrl<TData>(method, path, options);
+    ) => this.fetchURL<TData>(method, path, options);
   }
 
   async getHeaders({
@@ -121,19 +176,28 @@ export class WoFetchBase {
     token?: string;
     xhr?: boolean;
   } = {}): Promise<Headers | Map<string, string>> {
-    const allHeaders: Record<string, string> = merge({}, headers);
-    if (!(CONTENT_TYPE_HEADER in allHeaders)) {
-      allHeaders[CONTENT_TYPE_HEADER] = CONTENT_TYPE_JSON;
+    const headersInstance = xhr ? new Map() : new Headers();
+    const allHeaders: Record<string, string> = merge(
+      {},
+      defaultHeaders,
+      headers,
+    );
+    if (allHeaders[CONTENT_TYPE_HEADER] === CONTENT_TYPE_FORM) {
+      delete allHeaders[CONTENT_TYPE_HEADER];
     }
     if (requireAuth && this.tokenName) {
       const accessToken =
         token ?? (await anyStorageInstance.getItem(this.tokenName)) ?? "";
       allHeaders[this.authHeader] = `${this.authTokenPrefix} ${accessToken}`;
     }
-    return getHeaderInstance(xhr, allHeaders);
+    for (const key in allHeaders) {
+      const element = allHeaders[key];
+      headersInstance.set(key, element);
+    }
+    return headersInstance;
   }
 
-  async uploadFileXhr(
+  async uploadFileXHR(
     path: string,
     file: Blob,
     {
@@ -143,11 +207,18 @@ export class WoFetchBase {
       progressFunction,
       requireAuth,
       transferCompleteFunction,
-    }: UploadXhrOptions,
+    }: {
+      data: Record<string, string>;
+      loadStartFunction?: XHREventListener;
+      onStateChange?: XHRStateChange;
+      progressFunction: XHREventListener;
+      requireAuth: boolean;
+      transferCompleteFunction?: XHREventListener;
+    },
   ): Promise<void> {
     const formData = getFormData(file, data);
     const headers = await this.getHeaders({
-      headers: { [CONTENT_TYPE_HEADER]: CONTENT_TYPE_FORM },
+      headers: { CONTENT_TYPE_HEADER: CONTENT_TYPE_FORM },
       requireAuth,
       xhr: true,
     });
@@ -163,8 +234,9 @@ export class WoFetchBase {
           false,
         );
       }
-
-      xhrObject.upload.addEventListener("progress", progressFunction, false);
+      if (progressFunction) {
+        xhrObject.upload.addEventListener("progress", progressFunction, false);
+      }
       if (transferCompleteFunction) {
         xhrObject.upload.addEventListener(
           "load",
@@ -173,14 +245,23 @@ export class WoFetchBase {
         );
       }
 
-      xhrObject.addEventListener(
-        "readystatechange",
-        handleReadyStateChange({ onStateChange, reject, resolve, xhrObject }),
-      );
+      // when an XHR object is opened, add a listener for its readystatechange events
+      xhrObject.addEventListener("readystatechange", () => {
+        if (onStateChange) {
+          onStateChange(xhrObject.readyState, xhrObject);
+        }
+        if (xhrObject.readyState !== 4) {
+          return;
+        }
+        if (xhrObject.status >= 300 || xhrObject.status < 200) {
+          reject(xhrObject);
+        }
+        resolve();
+      });
 
       xhrObject.open(
         "POST",
-        createUrl(this.endpoint, path, {
+        createURL(this.endpoint, path, {
           devProxy: this.devProxy,
           trailingSlash: this.trailingSlash,
         }),

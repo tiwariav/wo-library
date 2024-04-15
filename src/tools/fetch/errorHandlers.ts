@@ -1,15 +1,11 @@
 import { WoNetworkError, WoResponseError } from "../error/index.js";
-import {
-  CONTENT_TYPE_HEADER,
-  CONTENT_TYPE_JSON,
-  HTTP_STATUS,
-} from "./constants.js";
+import { CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON } from "./constants.js";
 
 export async function getResponseData<TResponseData>(
   response: Response,
 ): Promise<TResponseData | string> {
   const contentType = response.headers.get(CONTENT_TYPE_HEADER);
-  if (contentType?.includes(CONTENT_TYPE_JSON)) {
+  if (contentType && contentType.includes(CONTENT_TYPE_JSON)) {
     try {
       return (await response.json()) as TResponseData;
     } catch (error) {
@@ -21,15 +17,6 @@ export async function getResponseData<TResponseData>(
   return response.text();
 }
 
-const ERROR_MESSAGES = {
-  [HTTP_STATUS.badRequest]: "Invalid Data!",
-  [HTTP_STATUS.forbidden]: "You are not authorized to access this page!",
-  [HTTP_STATUS.internalServerError]: "Internal server error!",
-  [HTTP_STATUS.notFound]: "Endpoint not found!",
-  [HTTP_STATUS.tooManyRequests]: "Too many requests!",
-  [HTTP_STATUS.unauthorized]: "Your session has expired!",
-};
-
 export async function defaultErrorHandler<TResponseData>(
   response?: Response,
   error?: unknown,
@@ -39,6 +26,51 @@ export async function defaultErrorHandler<TResponseData>(
   }
   // handle error depending on http response status codes
   const responseData = await getResponseData<TResponseData>(response);
-  const errorMessage = ERROR_MESSAGES[response.status] ?? "Unhandled error!";
-  throw new WoResponseError(responseData, response.status, errorMessage);
+  switch (response.status) {
+    case 400: {
+      throw new WoResponseError(responseData, response.status, "Invalid Data!");
+    }
+    case 401: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Your session has expired!",
+      );
+    }
+    case 403: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "You are not authorized to access this page!",
+      );
+    }
+    case 404: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Endpoint not found!",
+      );
+    }
+    case 429: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Too many requests!",
+      );
+    }
+    case 500: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Internal server error!",
+      );
+    }
+    default: {
+      throw new WoResponseError(
+        responseData,
+        response.status,
+        "Unhandled error!",
+      );
+    }
+  }
 }

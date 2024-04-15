@@ -1,6 +1,4 @@
-import type { RefObject } from "react";
-
-import { useEffect } from "react";
+import { RefObject, useEffect } from "react";
 import { useRafState } from "react-use";
 import { isBrowser, off, on } from "react-use/lib/misc/util.js";
 

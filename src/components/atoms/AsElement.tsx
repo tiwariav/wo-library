@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import { ComponentPropsWithoutRef, ElementType } from "react";
 
 interface AsElementProps<TElement extends ElementType> {
   as?: TElement;

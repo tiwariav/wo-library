@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
-import type { SetOptional } from "type-fest";
-
 import { clsx } from "clsx";
+import { ReactNode } from "react";
+import { SetOptional } from "type-fest";
 
-import Tooltip, { type TooltipProps } from "../atoms/Tooltip/Tooltip.js";
-import * as styles from "./popover.module.css";
+import Tooltip, { TooltipProps } from "../atoms/Tooltip.js";
+import styles from "./popover.module.css";
 
 type PopoverTooltipProps = TooltipProps & {
   content: React.ReactNode;
@@ -15,15 +14,15 @@ export type PopoverProps = SetOptional<PopoverTooltipProps, "title">;
 
 export default function Popover({
   content,
-  innerClassNames,
+  innerClassNames = {},
   ...props
 }: PopoverProps) {
   return (
     <Tooltip
       innerClassNames={{
         ...innerClassNames,
-        arrow: clsx(styles.arrow, innerClassNames?.arrow),
-        title: clsx(styles.root, innerClassNames?.title),
+        arrow: clsx(styles.arrow, innerClassNames.arrow),
+        title: clsx(styles.root, innerClassNames.title),
       }}
       isPopover
       title={content}

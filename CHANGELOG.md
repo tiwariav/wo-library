@@ -1,12 +1,3 @@
-## [4.1.13](https://github.com/tiwariav/wo-library/compare/v4.1.12...v4.1.13) (2024-04-15)
-
-
-### ♻️ Code Refactors
-
-* move tooltip parts in single file ([078e9f7](https://github.com/tiwariav/wo-library/commit/078e9f75a8095394583e74d65664eb5b22c95e62))
-* refactor long functions into shorter ones ([d2c228c](https://github.com/tiwariav/wo-library/commit/d2c228c22340262ea973c4ad8f210a81e2e71fef))
-* update code to new eslint config ([fc63ec1](https://github.com/tiwariav/wo-library/commit/fc63ec14e423d17705640459e5ee43f0a13fe8fc))
-
 ## [4.1.12](https://github.com/tiwariav/wo-library/compare/v4.1.11...v4.1.12) (2024-04-08)
 
 

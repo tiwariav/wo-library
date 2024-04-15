@@ -1,6 +1,6 @@
 import { pickBy } from "lodash-es";
 
-import type { WoRequestData, WoRequestQuery, XhrStateChange } from "./types.js";
+import type { WoRequestData, WoRequestQuery, XHRStateChange } from "./types.js";
 
 import { WoResponseError } from "../error/index.js";
 import { CONTENT_TYPE_FORM, CONTENT_TYPE_HEADER } from "./constants.js";
@@ -111,7 +111,7 @@ export function handleReadyStateChange({
   resolve,
   xhrObject,
 }: {
-  onStateChange?: XhrStateChange;
+  onStateChange?: XHRStateChange;
   reject: (reason?: WoResponseError<object>) => void;
   resolve: (value: PromiseLike<void> | void) => void;
   xhrObject: XMLHttpRequest;

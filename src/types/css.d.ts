@@ -1,4 +1,4 @@
 declare module "*.module.css" {
-  const styles: Record<string, string>;
-  export = styles;
+  const classes: Record<string, string>;
+  export default classes;
 }

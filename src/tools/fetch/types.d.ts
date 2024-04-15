@@ -1,6 +1,6 @@
-import type { SetRequired } from "type-fest";
+import { SetRequired } from "type-fest";
 
-import type { defaultErrorHandler } from "./errorHandlers.ts";
+import { defaultErrorHandler } from "./errorHandlers.ts";
 
 export type WoRequestMethod = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
 
@@ -11,11 +11,11 @@ export type WoRequestQuery = Record<
 >;
 export type WoRequestData = FormData | object;
 
-export type XhrEventListener = (
+export type XHREventListener = (
   this: XMLHttpRequestUpload,
   event: ProgressEvent<XMLHttpRequestEventTarget>,
 ) => void;
-export type XhrStateChange = (
+export type XHRStateChange = (
   state: XMLHttpRequest["readyState"],
   xhrObject: XMLHttpRequest,
 ) => void;
@@ -29,10 +29,10 @@ export interface FetchOptions<TData = WoRequestData, TQuery = WoRequestQuery> {
   noProxy?: boolean;
   query?: TQuery;
   requireAuth?: boolean;
-  responseHandler?: <TResponseData>(
+  responseHandler?: <TData>(
     response: Response,
     errorHandler: typeof defaultErrorHandler,
-  ) => Promise<TResponseData>;
+  ) => Promise<TData>;
   token?: string;
   trailingSlash?: boolean;
 }
