@@ -1,3 +1,14 @@
+## [5.0.0](https://github.com/tiwariav/wo-library/compare/v4.1.14...v5.0.0) (2024-04-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Export names have changed to adhere to new naming rules.
+
+### ♻️ Code Refactors
+
+* update code to new eslint config ([f8f27cb](https://github.com/tiwariav/wo-library/commit/f8f27cb56771620b0fa49e95461b36fd435c5bb1))
+
 ## [4.1.12](https://github.com/tiwariav/wo-library/compare/v4.1.11...v4.1.12) (2024-04-08)
 
 
