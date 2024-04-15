@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/tiwariav/wo-library/compare/v5.0.1...v5.0.2) (2024-04-15)
+
+
+### ♻️ Code Refactors
+
+* add lorem component ([b71bd76](https://github.com/tiwariav/wo-library/commit/b71bd76bce096ef24b4e0590aa7740945ec14a12))
+
 ## [5.0.1](https://github.com/tiwariav/wo-library/compare/v5.0.0...v5.0.1) (2024-04-15)
 
 
