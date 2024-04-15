@@ -15,7 +15,7 @@ jobs:
       - run: yarn eslint --cache --cache-strategy=content --quiet src
       - run: yarn stylelint --cache ./src/**/*.css
       - run: yarn prettier --cache --check src
-      # - run: yarn jscpd src
+      - run: yarn jscpd src
       - run: yarn build
       - uses: tiwariav/github-actions/semantic-release@main
         with:

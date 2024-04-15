@@ -1,10 +1,3 @@
-## [4.1.14](https://github.com/tiwariav/wo-library/compare/v4.1.13...v4.1.14) (2024-04-15)
-
-
-### 🐛 Bug Fixes
-
-* revert 4.1.13 as it contained breaking changes ([aaac82b](https://github.com/tiwariav/wo-library/commit/aaac82bf314bcdc6ec7965e608e05ed169bc8021))
-
 ## [4.1.12](https://github.com/tiwariav/wo-library/compare/v4.1.11...v4.1.12) (2024-04-08)
 
 

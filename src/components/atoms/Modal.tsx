@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -10,9 +12,8 @@ import {
   useRole,
 } from "@floating-ui/react";
 import { clsx } from "clsx";
-import { ReactNode } from "react";
 
-import styles from "./modal.module.css";
+import * as styles from "./modal.module.css";
 
 export interface ModalProps {
   children: ReactNode;
@@ -27,7 +28,7 @@ export interface ModalProps {
 export default function Modal({
   children,
   className,
-  innerClassNames = {},
+  innerClassNames,
   isOpen,
   onClose,
 }: ModalProps) {
@@ -56,7 +57,7 @@ export default function Modal({
       <FloatingPortal>
         {isOpen && (
           <FloatingOverlay
-            className={clsx(styles.overlay, innerClassNames.overlay)}
+            className={clsx(styles.overlay, innerClassNames?.overlay)}
             lockScroll
           >
             <FloatingFocusManager context={context}>

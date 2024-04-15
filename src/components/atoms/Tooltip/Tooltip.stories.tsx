@@ -1,9 +1,12 @@
-import { Placement } from "@floating-ui/react";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Placement } from "@floating-ui/react";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { useState } from "react";
 
-import { playFloatingBasic } from "../../tools/storybook/play.js";
-import Tooltip, { TooltipProps } from "./Tooltip.js";
+import type { TooltipProps } from "./Tooltip.js";
+
+import { playFloatingBasic } from "../../../tools/storybook/play.js";
+import Tooltip from "./Tooltip.js";
 
 const metadata: Meta<typeof Tooltip> = {
   component: Tooltip,
@@ -58,15 +61,15 @@ export const ShowArrow: Story = {
 export const Options: StoryObj<
   TooltipProps & { offset: number; padding: number }
 > = {
-  argTypes: {
-    offset: { control: { max: 32, min: 0, type: "range" } },
-    padding: { control: { max: 32, min: 0, type: "range" } },
-  },
   args: {
     ...IsOpen.args,
     offset: 16,
     padding: 16,
     showArrow: true,
+  },
+  argTypes: {
+    offset: { control: { max: 32, min: 0, type: "range" } },
+    padding: { control: { max: 32, min: 0, type: "range" } },
   },
   render: ({ offset, padding, ...args }) => (
     <Tooltip options={{ offset, padding }} {...args} />
@@ -74,25 +77,30 @@ export const Options: StoryObj<
 };
 
 const ALL_ALIGNMENTS = ["start", "end"];
-const PlacementCell = ({
+function PlacementCell({
   placement,
   ...args
-}: Omit<TooltipProps, "placement"> & { placement: string }) => (
-  <>
-    <div>
-      <Tooltip placement={placement as Placement} {...args}>
-        Tooltip at {placement}!
-      </Tooltip>
-    </div>
-    {ALL_ALIGNMENTS.map((alignment) => (
-      <div key={alignment}>
-        <Tooltip placement={`${placement}-${alignment}` as Placement} {...args}>
-          Tooltip at {placement}-{alignment}!
+}: Omit<TooltipProps, "placement"> & { placement: string }) {
+  return (
+    <>
+      <div>
+        <Tooltip placement={placement as Placement} {...args}>
+          Tooltip at {placement}!
         </Tooltip>
       </div>
-    ))}
-  </>
-);
+      {ALL_ALIGNMENTS.map((alignment) => (
+        <div key={alignment}>
+          <Tooltip
+            placement={`${placement}-${alignment}` as Placement}
+            {...args}
+          >
+            Tooltip at {placement}-{alignment}!
+          </Tooltip>
+        </div>
+      ))}
+    </>
+  );
+}
 
 export const Placements: Story = {
   args: {
@@ -180,40 +188,42 @@ export const Triggers: Story = {
   ),
 };
 
-const ButtonInDropdownTemplate = () => {
+function ButtonInDropdownTemplate() {
   const [open, setIsOpen] = useState(false);
 
   return (
-    <>
-      <Tooltip
-        isOpen={open}
-        onClick={() => {
-          setIsOpen(true);
-        }}
-        onClose={() => setIsOpen(false)}
-        title={
-          <div>
-            Content in Tooltip!
-            <button
-              onClick={() => setIsOpen(false)}
-              style={{ marginLeft: "auto" }}
-            >
-              Close
-            </button>
-          </div>
-        }
-      >
-        Content in Tooltip!
-      </Tooltip>
-    </>
+    <Tooltip
+      isOpen={open}
+      onClick={() => {
+        setIsOpen(true);
+      }}
+      onClose={() => {
+        setIsOpen(false);
+      }}
+      title={
+        <div>
+          Content in Tooltip!
+          <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            style={{ marginLeft: "auto" }}
+          >
+            Close
+          </button>
+        </div>
+      }
+    >
+      Content in Tooltip!
+    </Tooltip>
   );
-};
+}
 
 export const WithButton: Story = {
   render: () => <ButtonInDropdownTemplate />,
 };
 
-const ValidElementChildTemplate = (args: Partial<TooltipProps>) => {
+function ValidElementChildTemplate(args: Partial<TooltipProps>) {
   const [open, setIsOpen] = useState(false);
   const [tooltipCount, setTooltipCount] = useState(0);
   const [inputFocusCount, setInputFocusCount] = useState(0);
@@ -227,7 +237,9 @@ const ValidElementChildTemplate = (args: Partial<TooltipProps>) => {
         onClick={() => {
           setTooltipCount((previous) => previous + 1);
         }}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false);
+        }}
         title={<div>Content in Tooltip!</div>}
         {...args}
       >
@@ -241,7 +253,7 @@ const ValidElementChildTemplate = (args: Partial<TooltipProps>) => {
       </Tooltip>
     </>
   );
-};
+}
 
 export const WithValidElement: Story = {
   args: {},

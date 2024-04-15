@@ -1,15 +1,25 @@
 import { isArray, isObject } from "lodash-es";
 
-export function pushOrCreate<TValue, TKey extends number | string>(
-  object: Record<TKey, TValue[]>,
-  key: TKey,
-  value: TValue,
-  index?: number,
-) {
-  if (!object[key]) {
+const isDataKey = <TKey extends number | string>(
+  key: number | string,
+  data: Record<TKey, unknown>,
+): key is TKey => key in data;
+
+export function pushOrCreate<TValue, TKey extends number | string>({
+  data,
+  index,
+  key,
+  value,
+}: {
+  data: Record<TKey, TValue[]>;
+  index?: number;
+  key: string;
+  value: TValue;
+}) {
+  if (!isDataKey(key, data)) {
     return [value];
   }
-  const newValue = [...object[key]];
+  const newValue = [...data[key]];
   if (index === undefined) {
     newValue.push(value);
   } else {
@@ -25,13 +35,15 @@ export function getNestedValue<TResponse = string>(
 ): TResponse | TResponse[] {
   const keys = Object.keys(data);
   let response: TResponse[] = [];
-  if (keys && !keys.includes(key)) {
+  if (!keys.includes(key)) {
     for (const value of Object.values(data)) {
-      if (!isObject(value)) continue;
-      const child_response = getNestedValue<TResponse>(value, key);
-      response = isArray(child_response)
-        ? [...response, ...child_response]
-        : [...response, child_response];
+      if (!isObject(value)) {
+        continue;
+      }
+      const childResponse = getNestedValue<TResponse>(value, key);
+      response = isArray(childResponse)
+        ? [...response, ...childResponse]
+        : [...response, childResponse];
     }
     return response;
   }

@@ -1,9 +1,15 @@
-import { ReactNode, useMemo } from "react";
+import type { ReactNode } from "react";
+
+import { useMemo } from "react";
+
+import type { ContextDispatch } from "../utils.js";
+import type { ThemeMethods } from "./methods.js";
+import type { ThemeState, ThemeVariants } from "./state.js";
 
 import useMethods from "../../hooks/useMethods.js";
-import { ContextDispatch, createAndUseContext } from "../utils.js";
-import createThemeMethods, { ThemeMethods } from "./methods.js";
-import INITIAL_THEME_STATE, { ThemeState, ThemeVariants } from "./state.js";
+import { createAndUseContext, useSimpleProvider } from "../utils.js";
+import createThemeMethods from "./methods.js";
+import INITIAL_THEME_STATE from "./state.js";
 
 interface ThemeProviderProps {
   activeThemeName?: string;
@@ -32,11 +38,11 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
     [state],
   );
 
-  return (
-    <DispatchContext.Provider value={{ dispatch }}>
-      <Context.Provider value={contextValue}>{children}</Context.Provider>
-    </DispatchContext.Provider>
-  );
+  return useSimpleProvider(Context, DispatchContext, {
+    children,
+    dispatch,
+    state: contextValue,
+  });
 }
 
 export { useContextDispatch, useContextState };

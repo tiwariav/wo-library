@@ -1,28 +1,40 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ReactNode } from "react";
+
+import { noop } from "lodash-es";
 import { loremIpsum } from "lorem-ipsum";
-import { ReactNode } from "react";
+
+import type { ModalProps } from "./Modal.js";
 
 import useStateWithProp from "../../hooks/useStateWithProp.js";
 import { playFloatingBasic } from "../../tools/storybook/play.js";
-import Modal, { ModalProps } from "./Modal.js";
+import Modal from "./Modal.js";
+
+const MODAL_TEXT = "Content inside Modal!";
 
 type TemplateProps = ModalProps & { modalContent: ReactNode };
 
-const Template = ({
+function Template({
   isOpen,
   modalContent = "",
   onClose,
   ...args
-}: TemplateProps) => {
+}: TemplateProps) {
   const [open, setOpen] = useStateWithProp(isOpen);
 
   return (
     <div>
-      <button id="showButton" onClick={() => setOpen(true)}>
+      <button
+        id="showButton"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
         Show Modal
       </button>
       <div
         dangerouslySetInnerHTML={{
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           __html: loremIpsum({
             count: 16,
             format: "html",
@@ -31,18 +43,18 @@ const Template = ({
         }}
       />
       <Modal
-        isOpen={isOpen || open}
+        isOpen={isOpen ?? open}
         onClose={() => {
           setOpen(false);
           onClose?.();
         }}
         {...args}
       >
-        <div className="story-box">{modalContent || MODAL_TEXT}</div>
+        <div className="story-box">{modalContent ?? MODAL_TEXT}</div>
       </Modal>
     </div>
   );
-};
+}
 
 const metadata: Meta<TemplateProps> = {
   component: Modal,
@@ -54,8 +66,6 @@ const metadata: Meta<TemplateProps> = {
 export default metadata;
 
 type Story = StoryObj<TemplateProps>;
-
-const MODAL_TEXT = "Content inside Modal!";
 
 export const Basic: Story = {
   play: async ({ canvasElement }) => {
@@ -71,7 +81,7 @@ export const Open: Story = {
 
 export const OnClose: Story = {
   args: {
-    onClose: () => alert("Modal closed!"),
+    onClose: noop,
   },
 };
 
@@ -81,6 +91,7 @@ export const MaxWidth: Story = {
       <div>
         <div
           dangerouslySetInnerHTML={{
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             __html: loremIpsum({
               count: 16,
               format: "html",

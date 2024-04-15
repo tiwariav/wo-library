@@ -1,10 +1,13 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+
 import {
   IconCircleChevronDown,
   IconCircleChevronRight,
 } from "@tabler/icons-react";
 
-import WoSwiper, { WO_SWIPER_VARIANTS, WoSwiperProps } from "./WoSwiper.js";
+import type { WoSwiperProps } from "./WoSwiper.js";
+
+import WoSwiper, { WO_SWIPER_VARIANTS } from "./WoSwiper.js";
 
 const moreLinkMap = {
   ArrowHorizontal: <IconCircleChevronRight />,

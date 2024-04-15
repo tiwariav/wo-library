@@ -34,6 +34,18 @@ interface GetItemOptions extends GetBackendOptions {
   json?: boolean;
 }
 
+function getJsonItem<TResponse = object | string>(value: string) {
+  try {
+    return JSON.parse(value) as TResponse;
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) {
+      throw error;
+    }
+    // in case of syntax error return string
+  }
+  return value;
+}
+
 export class AnyStorage {
   backends: StorageBackendOptions;
   env: (typeof STORAGE_ENVIRONMENTS)[number];
@@ -63,12 +75,16 @@ export class AnyStorage {
   async clear() {
     this.backends.temp.clear();
     if (this.prefix) {
-      for (const key of Object.keys(this.backends.session)) {
-        await this.backends.session.removeItem(key);
-      }
-      for (const key of Object.keys(this.backends.persist)) {
-        await this.backends.persist.removeItem(key);
-      }
+      await Promise.all(
+        Object.keys(this.backends.session).map((key) =>
+          this.backends.session.removeItem(key),
+        ),
+      );
+      await Promise.all(
+        Object.keys(this.backends.persist).map((key) =>
+          this.backends.persist.removeItem(key),
+        ),
+      );
     }
   }
 
@@ -105,14 +121,7 @@ export class AnyStorage {
         : this.backends.session.getItem(storageKey));
     }
     if (json && response) {
-      try {
-        response = JSON.parse(response) as TResponse;
-      } catch (error) {
-        if (!(error instanceof SyntaxError)) {
-          throw error;
-        }
-        // in case of syntax error return string
-      }
+      response = getJsonItem<TResponse>(response);
     }
     return response;
   }
@@ -136,11 +145,13 @@ export class AnyStorage {
     value: unknown,
     { json = this.json, persist = false, session = false } = {},
   ) {
-    if (value === null) return;
+    if (value === null) {
+      return;
+    }
     const storageKey = this.formKey(key);
     const saveValue = json ? JSON.stringify(value) : value;
     const backend = this.getBackend({ persist, session });
-    return await backend.setItem(storageKey, saveValue as string);
+    await backend.setItem(storageKey, saveValue as string);
   }
 }
 

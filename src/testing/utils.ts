@@ -1,4 +1,5 @@
-import { StoryContext, StoryObj } from "@storybook/react";
+import type { StoryContext, StoryObj } from "@storybook/react";
+
 import { render } from "@testing-library/react";
 import { isFunction } from "lodash-es";
 

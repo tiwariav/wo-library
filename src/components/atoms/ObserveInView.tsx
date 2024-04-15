@@ -1,9 +1,11 @@
+import type { IntersectionOptions } from "react-intersection-observer";
+import type { Entries } from "type-fest";
+
 import { clsx } from "clsx";
 import { useEffect, useState } from "react";
-import { IntersectionOptions, useInView } from "react-intersection-observer";
-import { Entries } from "type-fest";
+import { useInView } from "react-intersection-observer";
 
-import styles from "./observeInView.module.css";
+import * as styles from "./observeInView.module.css";
 
 interface ObserveInViewProps extends React.HTMLAttributes<HTMLDivElement> {
   animate: boolean;
@@ -16,7 +18,7 @@ interface ObserveInViewProps extends React.HTMLAttributes<HTMLDivElement> {
     outTop?: string;
   };
   observeOptions: IntersectionOptions;
-  onViewChange: (inView: boolean) => void;
+  onViewChange?: (inView: boolean) => void;
 }
 
 export default function ObserveInView({
@@ -43,7 +45,9 @@ export default function ObserveInView({
         for (const [key, value] of Object.entries(dynamicClasses) as Entries<
           ObserveInViewProps["dynamicClasses"]
         >) {
-          if (value === undefined) continue;
+          if (value === undefined) {
+            continue;
+          }
           classNameProps[value] = classNameProps[styles[key]];
         }
       }
@@ -52,9 +56,7 @@ export default function ObserveInView({
   }, [inView, dynamicClasses, rootEntry, animate]);
 
   useEffect(() => {
-    if (onViewChange) {
-      onViewChange(inView);
-    }
+    onViewChange?.(inView);
   }, [inView, onViewChange]);
 
   return (
