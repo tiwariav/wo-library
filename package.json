@@ -147,6 +147,7 @@
   },
   "peerDependencies": {
     "@react-native-async-storage/async-storage": "^1.22.3",
+    "lorem-ipsum": "^2.0.8",
     "react": "^18.2.0",
     "react-hook-form": "^7.51.1",
     "react-native": "0.73.6",
@@ -154,6 +155,9 @@
   },
   "peerDependenciesMeta": {
     "@react-native-async-storage/async-storage": {
+      "optional": true
+    },
+    "lorem-ipsum": {
       "optional": true
     },
     "react-hook-form": {

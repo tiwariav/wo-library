@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
 
 import { noop } from "lodash-es";
-import { loremIpsum } from "lorem-ipsum";
 
 import type { ModalProps } from "./Modal.js";
 
 import useStateWithProp from "../../hooks/useStateWithProp.js";
 import { playFloatingBasic } from "../../tools/storybook/play.js";
+import Lorem from "./Lorem.js";
 import Modal from "./Modal.js";
 
 const MODAL_TEXT = "Content inside Modal!";
@@ -27,16 +27,7 @@ function Template({ isOpen, modalContent, onClose, ...args }: TemplateProps) {
       >
         Show Modal
       </button>
-      <div
-        dangerouslySetInnerHTML={{
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          __html: loremIpsum({
-            count: 16,
-            format: "html",
-            units: "paragraphs",
-          }),
-        }}
-      />
+      <Lorem count={16} units="paragraphs" />
       <Modal
         isOpen={isOpen ?? open}
         onClose={() => {
@@ -84,16 +75,7 @@ export const MaxWidth: Story = {
   args: {
     modalContent: (
       <div>
-        <div
-          dangerouslySetInnerHTML={{
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            __html: loremIpsum({
-              count: 16,
-              format: "html",
-              units: "paragraphs",
-            }),
-          }}
-        />
+        <Lorem count={16} units="paragraphs" />
         <input placeholder="Placeholder" />
       </div>
     ),
