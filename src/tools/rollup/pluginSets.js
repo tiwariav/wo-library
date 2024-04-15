@@ -94,6 +94,7 @@ export const getBuildPlugins = ({
     postcss({
       extract: "dist.css",
       modules: { localsConvention: "camelCase" },
+      namedExports: true,
       sourceMap: isDev,
     }),
     babel({

@@ -14,12 +14,7 @@ const MODAL_TEXT = "Content inside Modal!";
 
 type TemplateProps = ModalProps & { modalContent: ReactNode };
 
-function Template({
-  isOpen,
-  modalContent = "",
-  onClose,
-  ...args
-}: TemplateProps) {
+function Template({ isOpen, modalContent, onClose, ...args }: TemplateProps) {
   const [open, setOpen] = useStateWithProp(isOpen);
 
   return (
