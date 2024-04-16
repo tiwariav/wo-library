@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/tiwariav/wo-library/compare/v5.0.2...v5.0.3) (2024-04-16)
+
+
+### 🐛 Bug Fixes
+
+* add missing style props to Tooltip ([e34b379](https://github.com/tiwariav/wo-library/commit/e34b379cee34b2d0f1e450851faf9366f02924af))
+
 ## [5.0.2](https://github.com/tiwariav/wo-library/compare/v5.0.1...v5.0.2) (2024-04-15)
 
 
