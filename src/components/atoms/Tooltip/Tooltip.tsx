@@ -149,8 +149,8 @@ export interface TooltipProps
     TooltipBodySharedProps {
   animate?: boolean;
   className?: string;
-
   portal?: boolean;
+  style?: CSSProperties;
   title: ReactNode;
   trigger?: TriggerOptions;
 }
