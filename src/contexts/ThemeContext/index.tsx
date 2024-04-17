@@ -17,7 +17,7 @@ interface ThemeProviderProps {
   themeVariants: ThemeVariants;
 }
 
-const { Context, DispatchContext, useContextDispatch, useContextState } =
+const { MethodContext, StateContext, useContextMethod, useContextState } =
   createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
 
 export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
@@ -38,11 +38,11 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
     [state],
   );
 
-  return useSimpleProvider(Context, DispatchContext, {
+  return useSimpleProvider(StateContext, MethodContext, {
     children,
     dispatch,
     state: contextValue,
   });
 }
 
-export { useContextDispatch, useContextState };
+export { useContextMethod, useContextState };

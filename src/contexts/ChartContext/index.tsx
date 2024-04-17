@@ -16,7 +16,7 @@ interface ChartProviderProps {
   children: ReactNode;
 }
 
-const { Context, DispatchContext, useContextDispatch, useContextState } =
+const { MethodContext, StateContext, useContextMethod, useContextState } =
   createAndUseContext<
     ChartState,
     ContextDispatch<ReturnType<typeof createChartMethods>>
@@ -29,11 +29,11 @@ export function ChartProvider({ children }: ChartProviderProps) {
     memoizedInitialState,
   );
 
-  return useSimpleProvider(Context, DispatchContext, {
+  return useSimpleProvider(StateContext, MethodContext, {
     children,
     dispatch,
     state,
   });
 }
 
-export { useContextDispatch, useContextState };
+export { useContextMethod, useContextState };

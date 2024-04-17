@@ -15,13 +15,13 @@ export interface ContextDispatch<
 }
 
 export function createAndUseContext<TState, TDispatch>() {
-  const Context = createContext({} as TState);
-  const DispatchContext = createContext({} as TDispatch);
+  const StateContext = createContext({} as TState);
+  const MethodContext = createContext({} as TDispatch);
 
-  const useContextState = () => useContext(Context);
-  const useContextDispatch = () => useContext(DispatchContext);
+  const useContextState = () => useContext(StateContext);
+  const useContextMethod = () => useContext(MethodContext);
 
-  return { Context, DispatchContext, useContextDispatch, useContextState };
+  return { MethodContext, StateContext, useContextMethod, useContextState };
 }
 
 export function dispatchLoading<
