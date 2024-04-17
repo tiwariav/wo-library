@@ -17,7 +17,7 @@ interface ThemeProviderProps {
   themeVariants: ThemeVariants;
 }
 
-const { MethodContext, StateContext, useContextMethod, useContextState } =
+const { MethodContext, StateContext, useContextMethods, useContextState } =
   createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
 
 export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
@@ -45,4 +45,7 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   });
 }
 
-export { useContextMethod, useContextState };
+export {
+  useContextMethods as useThemeMethods,
+  useContextState as useThemeState,
+};

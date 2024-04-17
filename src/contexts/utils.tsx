@@ -19,9 +19,9 @@ export function createAndUseContext<TState, TDispatch>() {
   const MethodContext = createContext({} as TDispatch);
 
   const useContextState = () => useContext(StateContext);
-  const useContextMethod = () => useContext(MethodContext);
+  const useContextMethods = () => useContext(MethodContext);
 
-  return { MethodContext, StateContext, useContextMethod, useContextState };
+  return { MethodContext, StateContext, useContextMethods, useContextState };
 }
 
 export function dispatchLoading<
