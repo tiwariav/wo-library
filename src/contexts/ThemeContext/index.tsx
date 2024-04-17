@@ -17,10 +17,14 @@ interface ThemeProviderProps {
   themeVariants: ThemeVariants;
 }
 
-const { MethodContext, StateContext, useContextMethods, useContextState } =
-  createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
+const {
+  MethodContext,
+  StateContext,
+  useContextMethods: useThemeMethods,
+  useContextState: useThemeState,
+} = createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
 
-export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
+function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   const memoizedInitialState = useMemo(
     () => ({ ...INITIAL_THEME_STATE, themeVariants }),
     [themeVariants],
@@ -45,7 +49,4 @@ export function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   });
 }
 
-export {
-  useContextMethods as useThemeMethods,
-  useContextState as useThemeState,
-};
+export { ThemeProvider, useThemeMethods, useThemeState };

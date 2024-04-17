@@ -16,13 +16,17 @@ interface ChartProviderProps {
   children: ReactNode;
 }
 
-const { MethodContext, StateContext, useContextMethods, useContextState } =
-  createAndUseContext<
-    ChartState,
-    ContextDispatch<ReturnType<typeof createChartMethods>>
-  >();
+const {
+  MethodContext,
+  StateContext,
+  useContextMethods: useChartMethod,
+  useContextState: useChartState,
+} = createAndUseContext<
+  ChartState,
+  ContextDispatch<ReturnType<typeof createChartMethods>>
+>();
 
-export function ChartProvider({ children }: ChartProviderProps) {
+function ChartProvider({ children }: ChartProviderProps) {
   const memoizedInitialState = useMemo(() => ({ ...INITIAL_CHART_STATE }), []);
   const [state, dispatch] = useMethods(
     createChartMethods,
@@ -36,7 +40,4 @@ export function ChartProvider({ children }: ChartProviderProps) {
   });
 }
 
-export {
-  useContextMethods as useChartMethod,
-  useContextState as useChartState,
-};
+export { ChartProvider, useChartMethod, useChartState };
