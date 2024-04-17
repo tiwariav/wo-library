@@ -19,7 +19,7 @@ interface ChartProviderProps {
 const {
   MethodContext,
   StateContext,
-  useContextMethods: useChartMethod,
+  useContextMethods: useChartMethods,
   useContextState: useChartState,
 } = createAndUseContext<
   ChartState,
@@ -40,4 +40,4 @@ function ChartProvider({ children }: ChartProviderProps) {
   });
 }
 
-export { ChartProvider, useChartMethod, useChartState };
+export { ChartProvider, useChartMethods, useChartState };
