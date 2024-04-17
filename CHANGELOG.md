@@ -1,3 +1,10 @@
+## [5.0.6](https://github.com/tiwariav/wo-library/compare/v5.0.5...v5.0.6) (2024-04-17)
+
+
+### 🐛 Bug Fixes
+
+* fix typo in context export ([d7bb401](https://github.com/tiwariav/wo-library/commit/d7bb40161ceb7be512f61cb92721683c87a94aff))
+
 ## [5.0.5](https://github.com/tiwariav/wo-library/compare/v5.0.4...v5.0.5) (2024-04-17)
 
 
