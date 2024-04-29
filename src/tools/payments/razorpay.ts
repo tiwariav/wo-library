@@ -3,7 +3,7 @@ import type { RazorpayOptions } from "../../types/interfaces/razorpay.js";
 import { WoLoadScriptError } from "../error/index.js";
 import loadScript from "../loadScript.js";
 
-interface RazorpayCheckoutOptions {
+export interface RazorpayCheckoutOptions {
   currency: string;
   description?: string;
   handleClose: CallableFunction;
