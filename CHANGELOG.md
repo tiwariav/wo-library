@@ -1,3 +1,15 @@
+## [5.0.7](https://github.com/tiwariav/wo-library/compare/v5.0.6...v5.0.7) (2024-05-08)
+
+
+### 🐛 Bug Fixes
+
+* disable terser compress.directive in rollup config ([61ca4c2](https://github.com/tiwariav/wo-library/commit/61ca4c2d59cf3fed731b87ed08dae761f65fc0de))
+
+
+### ♻️ Code Refactors
+
+* update dependencies ([9c5f634](https://github.com/tiwariav/wo-library/commit/9c5f6343bba467c0e3d3afb6bc669b3b5dea30b4))
+
 ## [5.0.6](https://github.com/tiwariav/wo-library/compare/v5.0.5...v5.0.6) (2024-04-17)
 
 
