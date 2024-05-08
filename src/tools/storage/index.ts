@@ -100,7 +100,7 @@ export class AnyStorage {
 
   getItem<TResponse = object>(
     key: string,
-    options: GetItemOptions & { json: true },
+    options: { json: true } & GetItemOptions,
   ): Promise<TResponse | null>;
 
   getItem<TResponse = string>(

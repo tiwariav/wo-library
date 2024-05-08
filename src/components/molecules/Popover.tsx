@@ -6,10 +6,10 @@ import { clsx } from "clsx";
 import Tooltip, { type TooltipProps } from "../atoms/Tooltip/Tooltip.js";
 import * as styles from "./popover.module.css";
 
-type PopoverTooltipProps = TooltipProps & {
+type PopoverTooltipProps = {
   content: React.ReactNode;
   title?: ReactNode;
-};
+} & TooltipProps;
 
 export type PopoverProps = SetOptional<PopoverTooltipProps, "title">;
 

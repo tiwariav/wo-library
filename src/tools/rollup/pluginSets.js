@@ -79,7 +79,7 @@ export function getJsPlugins({
   if (isDev) {
     response.push(progress());
   } else {
-    response.push(terser());
+    response.push(terser({ compress: { directives: false } }));
   }
   return response;
 }

@@ -12,7 +12,7 @@ import Modal from "./Modal.js";
 
 const MODAL_TEXT = "Content inside Modal!";
 
-type TemplateProps = ModalProps & { modalContent: ReactNode };
+type TemplateProps = { modalContent: ReactNode } & ModalProps;
 
 function Template({ isOpen, modalContent, onClose, ...args }: TemplateProps) {
   const [open, setOpen] = useStateWithProp(isOpen);

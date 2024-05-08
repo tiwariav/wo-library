@@ -59,7 +59,7 @@ export const ShowArrow: Story = {
 };
 
 export const Options: StoryObj<
-  TooltipProps & { offset: number; padding: number }
+  { offset: number; padding: number } & TooltipProps
 > = {
   args: {
     ...IsOpen.args,
@@ -80,7 +80,7 @@ const ALL_ALIGNMENTS = ["start", "end"];
 function PlacementCell({
   placement,
   ...args
-}: Omit<TooltipProps, "placement"> & { placement: string }) {
+}: { placement: string } & Omit<TooltipProps, "placement">) {
   return (
     <>
       <div>
