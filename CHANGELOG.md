@@ -1,3 +1,10 @@
+## [5.0.8](https://github.com/tiwariav/wo-library/compare/v5.0.7...v5.0.8) (2024-05-10)
+
+
+### 🐛 Bug Fixes
+
+* use esm files for misc utils from react-use ([e00ab90](https://github.com/tiwariav/wo-library/commit/e00ab9087f631d9ba4a1c3520ebfddb09b627db7))
+
 ## [5.0.7](https://github.com/tiwariav/wo-library/compare/v5.0.6...v5.0.7) (2024-05-08)
 
 
