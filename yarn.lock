@@ -2399,7 +2399,7 @@ __metadata:
     postcss: "npm:^8.4.33"
   peerDependencies:
     stylelint: ">=16.0.0"
-  checksum: 10c0/ff7954f2787aa368f18381194217fff18001a087cfe70383ddff98c3493fb6c7ddacd1657844e8b49078b0c86ca5ccf6bcf9d58f9022fc2c33e30d8b851e3246
+  checksum: 10c0/35e139a9554c9c3a9094d7b9914b8cda92d7e5e71b574677703bd6d431d42ed2cae51cc67fba18a37109c97f4c720a34e0e0f39a58153b348498b0b1768c7792
   languageName: node
   linkType: hard
 
@@ -5089,7 +5089,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiwariav/stylelint-config@npm:^2.0.0":
+"@tiwariav/stylelint-config@npm:2.0.0":
   version: 2.0.0
   resolution: "@tiwariav/stylelint-config@npm:2.0.0"
   dependencies:
@@ -7912,10 +7912,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001524, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001524, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
   version: 1.0.30001607
   resolution: "caniuse-lite@npm:1.0.30001607"
   checksum: 10c0/3416b83475b6297a46d4ede1694b351a2899fb409dfd0190b96776d9b49a45f46dd967e673dd0cd3c3fef68549ef708b06de5d73b4c381e205d19c36fcfcfa35
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001109":
+  version: 1.0.30001617
+  resolution: "caniuse-lite@npm:1.0.30001617"
+  checksum: 10c0/711702501063968b2807d1a8f40981e66f45eb8962968b4b84c70392dc804cee62845e8e391e9749f78ff41ca48be2a4a7a38620c44af526b5e03bc3c7a1bc0a
   languageName: node
   linkType: hard
 
@@ -22579,7 +22586,7 @@ __metadata:
     "@tiwariav/browserslist-config": "npm:^1.3.0"
     "@tiwariav/eslint-config": "npm:^2.1.12"
     "@tiwariav/postcss-config": "npm:^1.2.11"
-    "@tiwariav/stylelint-config": "npm:^2.0.0"
+    "@tiwariav/stylelint-config": "npm:2.0.0"
     "@types/babel__plugin-transform-runtime": "npm:^7.9.5"
     "@types/jest": "npm:^29.5.12"
     "@types/lodash-es": "npm:^4.17.12"
@@ -22634,6 +22641,7 @@ __metadata:
     storybook: "npm:^8.0.10"
     style-loader: "npm:^4.0.0"
     stylelint: "npm:^16.5.0"
+    stylelint-order: "npm:^6.0.4"
     swiper: "npm:^11.1.1"
     tslib: "npm:^2.6.2"
     type-fest: "npm:^4.18.2"
