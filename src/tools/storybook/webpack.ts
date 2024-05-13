@@ -3,7 +3,7 @@ import type { Configuration } from "webpack";
 
 import { isObject } from "lodash-es";
 
-const CSS_REGEX = "/\\.css$/";
+const CSS_REGEX = String.raw`/\.css$/`;
 
 export function cssModules(
   config: Configuration,

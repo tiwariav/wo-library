@@ -39,7 +39,7 @@ interface SwiperTopProps {
 }
 
 interface SwiperFadeProps {
-  fade: { left: number; right: number };
+  fade?: { left: number; right: number };
 }
 
 interface FreeModeOptions {
@@ -90,49 +90,21 @@ function SwiperTop({ moreLink, subtitle, title, variant }: SwiperTopProps) {
 
 function SwiperFade({ fade }: SwiperFadeProps) {
   return (
-    <>
-      <div
-        className={styles.fadeLeft}
-        slot="container-start"
-        style={{ width: fade.left }}
-      />
-      <div
-        className={styles.fadeRight}
-        slot="container-end"
-        style={{ width: fade.right }}
-      />
-    </>
+    fade && (
+      <>
+        <div
+          className={styles.fadeLeft}
+          slot="container-start"
+          style={{ width: fade.left }}
+        />
+        <div
+          className={styles.fadeRight}
+          slot="container-end"
+          style={{ width: fade.right }}
+        />
+      </>
+    )
   );
-}
-
-function SwiperSlideGroup({
-  children,
-  variant,
-}: {
-  children: SwiperChild;
-  variant?: SwiperVariant;
-}) {
-  return React.Children.map(children, (child, index) => (
-    <SwiperSlide key={index}>
-      {({
-        isActive,
-        // @ts-expect-error: TS2339 because library definition is wrong
-        isDuplicate,
-      }) => {
-        const extraProps = {} as { viewMode?: string };
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        if (child.type.displayName === "Card") {
-          extraProps.viewMode =
-            variant === "coverflow"
-              ? isActive && !isDuplicate
-                ? "mini"
-                : "thumb"
-              : undefined;
-        }
-        return React.cloneElement(child, extraProps);
-      }}
-    </SwiperSlide>
-  ));
 }
 
 const getFreeModeOptions = ({
@@ -201,8 +173,28 @@ export default function WoSwiper({
         {...derivedProps}
         {...props}
       >
-        <SwiperSlideGroup variant={variant}>{children}</SwiperSlideGroup>
-        {fade && <SwiperFade fade={fade} />}
+        {React.Children.map(children, (child, index) => (
+          <SwiperSlide key={index}>
+            {({
+              isActive,
+              // @ts-expect-error: TS2339 because library definition is wrong
+              isDuplicate,
+            }) => {
+              const extraProps = {} as { viewMode?: string };
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              if (child.type.displayName === "Card") {
+                extraProps.viewMode =
+                  variant === "coverflow"
+                    ? isActive && !isDuplicate
+                      ? "mini"
+                      : "thumb"
+                    : undefined;
+              }
+              return React.cloneElement(child, extraProps);
+            }}
+          </SwiperSlide>
+        ))}
+        <SwiperFade fade={fade} />
       </Swiper>
       {!!moreLinkVertical && (
         <div className={styles.bottom}>{moreLinkVertical}</div>
