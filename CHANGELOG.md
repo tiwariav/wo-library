@@ -1,3 +1,16 @@
+## [5.0.9](https://github.com/tiwariav/wo-library/compare/v5.0.8...v5.0.9) (2024-05-14)
+
+
+### 🐛 Bug Fixes
+
+* fix swiper component ([38b1205](https://github.com/tiwariav/wo-library/commit/38b1205c8d6db65aec587a4f74255182e1beadae))
+
+
+### ♻️ Code Refactors
+
+* update dependencies ([9b97f21](https://github.com/tiwariav/wo-library/commit/9b97f212ef5751573760a7a47557143cd6c7e12b))
+* update stylelint to v16 and add patch for pnp ([78e4cb1](https://github.com/tiwariav/wo-library/commit/78e4cb1a4339b0785ba04a723a2bfc95253a8756))
+
 ## [5.0.8](https://github.com/tiwariav/wo-library/compare/v5.0.7...v5.0.8) (2024-05-10)
 
 
