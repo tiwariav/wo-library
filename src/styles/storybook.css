@@ -46,8 +46,8 @@
 .story-title {
   margin-top: var(--ye-spacing-rem-normal);
   margin-bottom: var(--ye-spacing-rem-normal);
-  font-weight: 500;
   font-size: var(--ye-font-size-large);
+  font-weight: 500;
 }
 
 .swiper-slide {

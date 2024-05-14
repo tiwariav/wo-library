@@ -1,18 +1,22 @@
 @layer wo-components {
   .modal {
     position: relative;
+
     max-width: calc(100vw - var(--ye-spacing-rem-normal) * 2);
     margin: auto;
     padding: var(--ye-spacing-rem-normal);
+
     background: var(--ye-color-background);
     border-radius: var(--ye-radius-normal);
   }
 
   .overlay {
     z-index: var(--ye-z-modal);
+
     display: grid;
+    place-items: center;
+
     background: var(--ye-color-overlay);
     backdrop-filter: blur(12px);
-    place-items: center;
   }
 }

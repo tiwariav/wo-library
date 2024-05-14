@@ -1,0 +1,21 @@
+diff --git a/lib/getPostcssResult.cjs b/lib/getPostcssResult.cjs
+index 19fee544aaff396dc3bd32522eec8cd328c968f4..6f0f7e240304f0e05222bdaa058fd6fa254fb84d 100644
+--- a/lib/getPostcssResult.cjs
++++ b/lib/getPostcssResult.cjs
+@@ -5,6 +5,7 @@
+ const promises = require('node:fs/promises');
+ const LazyResult = require('postcss/lib/lazy-result');
+ const postcss = require('postcss');
++const safeParser = require('postcss-safe-parser');
+ const dynamicImport = require('./utils/dynamicImport.cjs');
+ const getModulePath = require('./utils/getModulePath.cjs');
+ 
+@@ -126,7 +127,7 @@ async function getCustomSyntax(customSyntax, basedir) {
+  * @returns {Promise<Syntax>}
+  */
+ async function cssSyntax(fix) {
+-	const parse = await (fix ? import('postcss-safe-parser').then((m) => m.default) : postcss.parse);
++	const parse = await (fix ? safeParser : postcss.parse);
+ 
+ 	return { parse, stringify: postcss.stringify };
+ }
