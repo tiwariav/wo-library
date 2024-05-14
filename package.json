@@ -1,6 +1,6 @@
 {
   "name": "wo-library",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "type": "module",
   "sideEffects": false,
   "engines": {
