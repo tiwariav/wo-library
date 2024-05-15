@@ -122,9 +122,11 @@ export function TooltipBody({
         })}
       >
         <div
-          className={clsx(styles.title, innerClassNames?.title, {
-            [styles.isPlain]: !isPopover,
-          })}
+          className={clsx(
+            styles.title,
+            innerClassNames?.title,
+            !isPopover && styles.isPlain,
+          )}
           style={animate ? transitionStyles : {}}
         >
           {title}
@@ -176,6 +178,7 @@ export default function Tooltip({
     context,
     floatingRef: refs.setFloating,
     getFloatingProps,
+    innerClassNames,
     title,
   };
 

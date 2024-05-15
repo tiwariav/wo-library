@@ -1,3 +1,17 @@
+## [5.0.11](https://github.com/tiwariav/wo-library/compare/v5.0.10...v5.0.11) (2024-05-15)
+
+
+### 🐛 Bug Fixes
+
+* tooltip innerclassname not propogated ([0cbf5f7](https://github.com/tiwariav/wo-library/commit/0cbf5f7c58b453f923a0659e7eb63c9b847a5214))
+
+## [5.0.10](https://github.com/tiwariav/wo-library/compare/v5.0.9...v5.0.10) (2024-05-14)
+
+
+### 🐛 Bug Fixes
+
+* tooltip props not propogated ([ee45e77](https://github.com/tiwariav/wo-library/commit/ee45e77a9854ec6fd44bea27a2aa64f57bfa16b6))
+
 ## [5.0.9](https://github.com/tiwariav/wo-library/compare/v5.0.8...v5.0.9) (2024-05-14)
 
 

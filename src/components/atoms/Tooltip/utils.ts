@@ -83,6 +83,7 @@ export function useTooltipProps({
   options: propsOptions,
   placement,
   showArrow,
+  ...props
 }: UseTooltipOptions) {
   const arrowRef = useRef<SVGSVGElement>(null);
   const [internalOpen, setInternalOpen] = useState(false);
@@ -119,6 +120,7 @@ export function useTooltipProps({
       transform: "scale(0)",
     },
   });
+
   return {
     arrowRef,
     context,
@@ -127,5 +129,6 @@ export function useTooltipProps({
     refs,
     showBody: open && isMounted,
     transitionStyles,
+    ...props,
   };
 }
