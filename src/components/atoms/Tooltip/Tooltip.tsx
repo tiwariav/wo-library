@@ -178,6 +178,7 @@ export default function Tooltip({
     context,
     floatingRef: refs.setFloating,
     getFloatingProps,
+    innerClassNames,
     title,
   };
 
