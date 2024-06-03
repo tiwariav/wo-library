@@ -2399,7 +2399,7 @@ __metadata:
     postcss: "npm:^8.4.33"
   peerDependencies:
     stylelint: ">=16.0.0"
-  checksum: 10c0/35e139a9554c9c3a9094d7b9914b8cda92d7e5e71b574677703bd6d431d42ed2cae51cc67fba18a37109c97f4c720a34e0e0f39a58153b348498b0b1768c7792
+  checksum: 10c0/ff7954f2787aa368f18381194217fff18001a087cfe70383ddff98c3493fb6c7ddacd1657844e8b49078b0c86ca5ccf6bcf9d58f9022fc2c33e30d8b851e3246
   languageName: node
   linkType: hard
 

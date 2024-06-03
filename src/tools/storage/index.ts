@@ -117,8 +117,8 @@ export class AnyStorage {
     let response: TResponse | null | string = await backend.getItem(storageKey);
     if (response === null && !persist) {
       response = await (session
-        ? this.backends.persist.getItem(storageKey)
-        : this.backends.session.getItem(storageKey));
+        ? this.backends.session.getItem(storageKey)
+        : this.backends.persist.getItem(storageKey));
     }
     if (json && response) {
       response = getJsonItem<TResponse>(response);
