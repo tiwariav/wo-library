@@ -3305,7 +3305,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jscpd/finder@npm:4.0.1":
+"@jscpd/finder@npm:*, @jscpd/finder@npm:4.0.1":
   version: 4.0.1
   resolution: "@jscpd/finder@npm:4.0.1"
   dependencies:
@@ -3334,7 +3334,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jscpd/leveldb-store@npm:^4.0.1":
+"@jscpd/leveldb-store@npm:*, @jscpd/leveldb-store@npm:^4.0.1":
   version: 4.0.1
   resolution: "@jscpd/leveldb-store@npm:4.0.1"
   dependencies:
