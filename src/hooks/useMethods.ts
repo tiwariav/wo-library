@@ -1,5 +1,3 @@
-import type { Reducer } from "react";
-
 import { useMemo, useReducer } from "react";
 
 export interface Action {
@@ -28,22 +26,18 @@ export default function useMethods<
   createMethods: CreateMethods<TRecord, TState>,
   initialState: TState,
 ): [TState, WrappedMethods<TRecord>] {
-  const reducer = useMemo<Reducer<TState, Action>>(
-    () => (reducerState: TState, action: Action) => {
-      return createMethods(reducerState)[action.type](...action.payload);
+  const reducer = useMemo(
+    () => (previousState: TState, action: Action) => {
+      return createMethods(previousState)[action.type](...action.payload);
     },
     [createMethods],
   );
 
-  const [state, dispatch] = useReducer<Reducer<TState, Action>>(
-    reducer,
-    initialState,
-  );
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const wrappedMethods: WrappedMethods<TRecord> = useMemo(() => {
-    const actionTypes = Object.keys(
-      createMethods(initialState),
-    ) as (keyof TRecord)[];
+  const wrappedMethods = useMemo(() => {
+    const createdMethods = createMethods(initialState);
+    const actionTypes = Object.keys(createdMethods) as (keyof TRecord)[];
     const response = {} as WrappedMethods<TRecord>;
     for (const type of actionTypes) {
       response[type] = (...payload) => {
