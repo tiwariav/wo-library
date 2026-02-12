@@ -1,0 +1,29 @@
+@layer ye-structures {
+  .root {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .is-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .variant-stc {
+    display: flex;
+  }
+}

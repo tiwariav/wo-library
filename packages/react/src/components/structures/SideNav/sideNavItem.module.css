@@ -1,0 +1,44 @@
+@layer ye-structures {
+  .root {
+    display: flex;
+    align-items: center;
+    padding: var(--ye-spacing-rem-xsmall) var(--ye-rem-base);
+  }
+
+  .icon,
+  .text {
+    display: flex;
+  }
+
+  .icon {
+    margin-right: var(--ye-spacing-em-xsmall);
+  }
+
+  .has-compact {
+    & .text {
+      transition: opacity var(--ye-transition-duration)
+        var(--ye-transition-function);
+
+      /* stylelint-disable-next-line csstools/media-use-custom-media */
+      @media screen and (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      @media (--media-min-md) and (--media-max-md) {
+        opacity: 0;
+      }
+    }
+  }
+
+  .is-toggled {
+    & .text {
+      @media (--media-min-lg) and (--media-max-lg) {
+        opacity: 0;
+      }
+
+      @media (--media-min-md) and (--media-max-md) {
+        opacity: 1;
+      }
+    }
+  }
+}

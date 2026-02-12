@@ -1,0 +1,44 @@
+{
+  "name": "@wo-library/web",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "dependencies": {
+    "glob": "^10.4.1",
+    "lodash-es": "^4.17.21",
+    "type-fest": "^4.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/plugin-transform-runtime": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-eslint": "patch:@rollup/plugin-eslint@npm%3A9.0.5#~/.yarn/patches/@rollup-plugin-eslint-npm-9.0.5-27b426d4fb.patch",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@simbathesailor/babel-plugin-use-what-changed": "^2.0.0",
+    "@types/lodash-es": "^4.17.12",
+    "@wo-library/react": "workspace:^",
+    "default-import": "^1.1.5",
+    "postcss": "^8.4.38",
+    "rollup": "^4.18.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-postcss": "patch:rollup-plugin-postcss@npm%3A4.0.2#~/.yarn/patches/rollup-plugin-postcss-npm-4.0.2-6f4a722324.patch",
+    "rollup-plugin-progress": "^1.1.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.4.5"
+  }
+}

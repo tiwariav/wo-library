@@ -1,0 +1,67 @@
+@layer ye-base-components {
+  .root {
+    display: inline-flex;
+
+    line-height: var(--ye-line-height);
+
+    background-color: transparent;
+
+    transition-timing-function: var(--ye-transition-function);
+    transition-duration: var(--ye-transition-duration);
+    transition-property: box-shadow, border-radius;
+
+    &:focus {
+      box-shadow: var(--ye-button-focus-shadow);
+    }
+
+    /* stylelint-disable-next-line csstools/media-use-custom-media */
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  /* variants */
+  .variant-borderless {
+    border: none;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .variant-outlined,
+  .variant-dashed {
+    padding: var(--ye-button-outline-padding);
+    border-color: var(--ye-color-text);
+    border-width: var(--ye-control-outline-border-width);
+    box-shadow: none;
+  }
+
+  .variant-outlined {
+    border-style: solid;
+    transition-property: background-color, color;
+
+    &.has-focus,
+    &:focus {
+      background-color: var(--ye-color-text);
+      box-shadow: none;
+    }
+  }
+
+  .variant-dashed {
+    border-style: dashed;
+    transition-property: border;
+
+    &.has-focus,
+    &:focus {
+      border-style: solid;
+      box-shadow: none;
+    }
+  }
+
+  /* to avoid undef error */
+  .variant-basic {
+    /* no styles */
+  }
+}

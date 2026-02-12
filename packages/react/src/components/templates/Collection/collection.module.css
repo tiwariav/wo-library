@@ -1,0 +1,36 @@
+@layer ye-tempaltes {
+  .item {
+    flex-shrink: 0;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: var(--ye-spacing-em-large);
+    }
+  }
+
+  .title {
+    margin-bottom: var(--ye-em-unit);
+  }
+
+  .options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--ye-spacing-em-huge);
+  }
+
+  .button:not(:last-child) {
+    margin-right: var(--ye-em-base);
+  }
+
+  .is-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .is-grid {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-gap: var(--ye-spacing-em-large);
+    grid-template-columns: repeat(auto-fill, minmax(160px, auto));
+  }
+}

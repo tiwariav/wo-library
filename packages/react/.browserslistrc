@@ -1,0 +1,5 @@
+[production]
+extends @wo-library/browserslist-config/production
+
+[development]
+extends @wo-library/browserslist-config/development

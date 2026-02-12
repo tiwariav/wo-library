@@ -1,0 +1,25 @@
+@layer ye-wrappers {
+  .flex {
+    display: flex;
+    gap: var(--ye-spacing-em-normal);
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .flex-align-center {
+    align-items: center;
+  }
+
+  .content-menu-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--ye-font-size-huge);
+    fill: var(--ye-color-dark);
+
+    @media (--media-min-xl) {
+      display: none;
+    }
+  }
+}

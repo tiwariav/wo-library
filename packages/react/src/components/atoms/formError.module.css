@@ -1,0 +1,12 @@
+@layer ye-components {
+  .root {
+    font-size: var(--ye-font-size-xsmall);
+    font-weight: var(--ye-font-weight-normal);
+    color: var(--ye-color-negative);
+  }
+
+  .item {
+    margin: var(--ye-spacing-em-tiny) 0 0;
+    padding-bottom: var(--ye-spacing-em-tiny);
+  }
+}

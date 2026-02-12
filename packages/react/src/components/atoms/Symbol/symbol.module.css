@@ -1,0 +1,12 @@
+@layer ye-components {
+  .root {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  .is-small {
+    width: 10px;
+    height: 10px;
+  }
+}

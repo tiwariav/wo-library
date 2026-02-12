@@ -1,0 +1,7 @@
+[36m
+[1msrc/index.ts[22m → [1mdist[22m...[39m
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[1m[33m(!) [plugin typescript] @rollup/plugin-typescript: outputToFilesystem option is defaulting to true.[39m[22m
+[32mcreated [1mdist[22m in [1m10.9s[22m[39m

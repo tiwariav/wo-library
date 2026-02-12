@@ -29,6 +29,7 @@
     "target": "es2022"
   },
   "include": ["src"],
+  "exclude": ["packages", "dist"],
   "watchOptions": {
     "excludeDirectories": ["**/.yarn", "**/node_modules"],
     "watchFile": "useFsEventsOnParentDirectory"

@@ -1,0 +1,24 @@
+[dotenv@17.2.4] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+[36m
+[1m/home/artst/code/wo-library/packages/ui/src/styles/storybook.css, /home/artst/code/wo-library/packages/ui/src/styles/media.css, /home/artst/code/wo-library/packages/ui/src/styles/base.css[22m → [1m./dist[22m...[39m
+[32mcreated [1m./dist[22m in [1m100ms[22m[39m
+[36m
+[1m/home/artst/code/wo-library/packages/ui/src/index.js, /home/artst/code/wo-library/packages/ui/src/themes/index.ts, /home/artst/code/wo-library/packages/ui/src/svg/index.ts, /home/artst/code/wo-library/packages/ui/src/svg/paths/index.ts, /home/artst/code/wo-library/packages/ui/src/svg/paths/Pin.ts, /home/artst/code/wo-library/packages/ui/src/svg/paths/Flag.ts, /home/artst/code/wo-library/packages/ui/src/svg/icons/index.ts, /home/artst/code/wo-library/packages/ui/src/svg/icons/Circle.tsx[22m → [1m./dist[22m...[39m
+[1m[31m[!] [1m(plugin typescript) RollupError: [plugin typescript] src/svg/icons/Circle.tsx (1:42): @rollup/plugin-typescript TS2503: Cannot find namespace 'React'.[22m[1m[39m[22m
+src/svg/icons/Circle.tsx (1:42)
+[2m
+[7m1[0m export default function SvgCircle(props: React.SVGProps<SVGSVGElement>) {
+[7m [0m [91m                                         ~~~~~[0m
+[22m
+[2m    at getRollupError (/home/artst/.yarn/berry/cache/rollup-npm-4.18.0-9eadb97a09-10c0.zip/node_modules/rollup/dist/shared/parseAst.js:282:41)
+    at Object.error (/home/artst/.yarn/berry/cache/rollup-npm-4.18.0-9eadb97a09-10c0.zip/node_modules/rollup/dist/shared/parseAst.js:278:42)
+    at Object.error (/home/artst/.yarn/berry/cache/rollup-npm-4.18.0-9eadb97a09-10c0.zip/node_modules/rollup/dist/shared/rollup.js:804:32)
+    at emitDiagnostic (file:///home/artst/code/wo-library/.yarn/__virtual__/@rollup-plugin-typescript-virtual-a48bc9e17a/3/.yarn/berry/cache/@rollup-plugin-typescript-npm-11.1.6-aeaa3525fc-10c0.zip/node_modules/@rollup/plugin-typescript/dist/es/index.js:533:17)
+    at reportDiagnostics (file:///home/artst/code/wo-library/.yarn/__virtual__/@rollup-plugin-typescript-virtual-a48bc9e17a/3/.yarn/berry/cache/@rollup-plugin-typescript-npm-11.1.6-aeaa3525fc-10c0.zip/node_modules/@rollup/plugin-typescript/dist/es/index.js:541:9)
+    at Array.forEach (<anonymous>)
+    at emitFilesAndReportErrors (/home/artst/.yarn/berry/cache/typescript-patch-6e159bfddb-10c0.zip/node_modules/typescript/lib/typescript.js:127314:17)
+    at result.afterProgramCreate (/home/artst/.yarn/berry/cache/typescript-patch-6e159bfddb-10c0.zip/node_modules/typescript/lib/typescript.js:127473:7)
+    at Object.afterProgramCreate (file:///home/artst/code/wo-library/.yarn/__virtual__/@rollup-plugin-typescript-virtual-a48bc9e17a/3/.yarn/berry/cache/@rollup-plugin-typescript-npm-11.1.6-aeaa3525fc-10c0.zip/node_modules/@rollup/plugin-typescript/dist/es/index.js:698:29)
+    at synchronizeProgram (/home/artst/.yarn/berry/cache/typescript-patch-6e159bfddb-10c0.zip/node_modules/typescript/lib/typescript.js:127851:14)[22m
+
+

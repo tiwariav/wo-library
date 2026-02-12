@@ -1,0 +1,29 @@
+{
+  "name": "@wo-library/postcss-config",
+  "description": "Postcss config for modern websites",
+  "version": "1.2.12",
+  "type": "commonjs",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@csstools/postcss-global-data": "^2.1.1",
+    "cssnano": "^7.0.2",
+    "cssnano-preset-advanced": "^7.0.2",
+    "postcss-global-import": "^1.0.6",
+    "postcss-import": "^16.1.0",
+    "postcss-mixins": "^10.0.1",
+    "postcss-modules": "^6.0.0",
+    "postcss-preset-env": "^9.5.14"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.38"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.33"
+  },
+  "packageManager": "yarn@4.1.1"
+}

@@ -1,0 +1,39 @@
+@layer ye-components {
+  .container {
+    position: relative;
+
+    overflow: hidden;
+    display: flex;
+
+    width: 100%;
+
+    border: 1px solid var(--ye-color-dark-10);
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ratio {
+    height: 0;
+
+    & .image {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .is-basic {
+    border-radius: var(--ye-radius-normal);
+  }
+
+  .is-circular {
+    border-radius: var(--ye-radius-circle);
+  }
+
+  .spinner {
+    font-size: var(--ye-spacing-em-huge);
+  }
+}

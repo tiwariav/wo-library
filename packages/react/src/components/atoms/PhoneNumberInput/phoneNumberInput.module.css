@@ -1,0 +1,25 @@
+@layer ye-components {
+  .root {
+    font-family: "Twemoji Country Flags", var(--ye-font-family-body);
+  }
+
+  .flag-icon {
+    font-size: var(--ye-font-size-large);
+  }
+
+  .label {
+    --module-input-padding-left: var(--ye-spacing-rem-normal);
+  }
+
+  .variant-material {
+    & .flag-icon {
+      position: absolute;
+      top: auto;
+      bottom: calc(var(--ye-spacing-rem-xsmall) - 1px);
+      left: calc(var(--ye-spacing-rem-normal) - 1px);
+      transform: none;
+
+      height: var(--ye-spacing-em-normal);
+    }
+  }
+}

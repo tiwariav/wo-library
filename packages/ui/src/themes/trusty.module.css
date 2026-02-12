@@ -1,0 +1,8 @@
+@layer ye-defaults {
+  .root {
+    /* color definitions */
+    --ye-color-primary: #05386b;
+    --ye-color-background: #5cdb95;
+    --ye-color-light: #edf5e1;
+  }
+}

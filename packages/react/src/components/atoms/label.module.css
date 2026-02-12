@@ -1,0 +1,26 @@
+@layer ye-components {
+  .root {
+    display: block;
+    margin-bottom: var(--ye-spacing-em-xsmall);
+    padding-left: var(--ye-spacing-em-tiny);
+    line-height: var(--ye-line-height);
+  }
+
+  .with-value,
+  .with-focus {
+    transform: scale(0.72)
+      translateY(
+        calc(
+          var(--ye-input-padding-bottom) - var(--ye-input-padding-top) +
+            var(--ye-input-border-width) - 1px
+        )
+      );
+    font-weight: 500;
+    transition-duration: var(--ye-transition-duration);
+  }
+
+  .required::after {
+    content: " *";
+    color: var(--ye-color-danger);
+  }
+}

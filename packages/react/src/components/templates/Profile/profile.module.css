@@ -1,0 +1,35 @@
+@layer ye-structures {
+  .cover {
+    overflow: hidden;
+
+    width: 100%;
+    height: 200px;
+    margin-bottom: var(--ye-em-base);
+
+    object-fit: cover;
+    background-color: var(--ye-color-dark-10);
+    border-radius: var(--ye-radius-normal);
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .aside {
+    position: relative;
+    top: -160px;
+
+    width: 25%;
+    min-width: 240px;
+    margin-right: var(--ye-spacing-em-xlarge);
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .item {
+    margin-bottom: var(--ye-em-base);
+  }
+}

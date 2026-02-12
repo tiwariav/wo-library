@@ -1,0 +1,41 @@
+{
+  "name": "@wo-library/stylelint-config",
+  "description": "Stylelint config for modern websites",
+  "keywords": [
+    "stylelint-plugin"
+  ],
+  "version": "2.2.1",
+  "type": "module",
+  "license": "MIT",
+  "main": "index.cjs",
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "dependencies": {
+    "@double-great/stylelint-a11y": "^3.0.2",
+    "colorjs.io": "^0.5.0",
+    "stylelint-config-clean-order": "^6.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-declaration-strict-value": "^1.10.4",
+    "stylelint-media-use-custom-media": "^4.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-plugin-defensive-css": "^1.0.4",
+    "stylelint-use-nesting": "^5.1.1",
+    "stylelint-value-no-unknown-custom-properties": "^6.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "postcss": "^8.4.38",
+    "rollup": "^4.18.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "stylelint": "^16.6.1",
+    "stylelint-find-new-rules": "^5.0.0"
+  },
+  "peerDependencies": {
+    "stylelint": "^16.5.0"
+  },
+  "packageManager": "yarn@4.2.2"
+}

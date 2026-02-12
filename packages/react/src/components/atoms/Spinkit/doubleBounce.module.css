@@ -1,0 +1,44 @@
+@layer ye-components {
+  .root {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: var(--ye-gap-normal) auto;
+  }
+
+  .bounce1,
+  .bounce2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.6;
+    background-color: var(--ye-color-accent-dark);
+    border-radius: var(--ye-radius-ellipse);
+
+    animation: sk-bounce 2s infinite ease-in-out;
+
+    /* stylelint-disable-next-line csstools/media-use-custom-media */
+    @media screen and (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  .bounce2 {
+    animation-delay: -1s;
+  }
+
+  @keyframes sk-bounce {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@layer ye-structures {
+  .root {
+    padding-bottom: var(--ye-spacing-rem-xsmall);
+
+    & + .root {
+      padding-top: var(--ye-spacing-rem-xsmall);
+      border-top: 1px solid var(--ye-color-dark-10);
+    }
+
+    @media (--media-min-xl) {
+      padding-top: var(--ye-spacing-rem-xsmall);
+    }
+  }
+
+  .title {
+    font-weight: 300;
+    color: var(--ye-color-dark-50);
+  }
+}

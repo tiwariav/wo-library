@@ -1,0 +1,55 @@
+@layer ye-components {
+  .container {
+    width: 100%;
+    padding: var(--ye-em-base);
+  }
+
+  .spacing-none {
+    padding: 0;
+  }
+
+  .spacing-small {
+    padding: var(--ye-spacing-em-xsmall);
+  }
+
+  .spacing-large {
+    padding: var(--ye-spacing-em-xlarge);
+  }
+
+  .spacing-horizontal {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .variant-secondary {
+    background-color: var(--ye-color-background-secondary);
+  }
+
+  .align-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .width-xsmall {
+    width: 340px;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .width-small {
+    width: 540px;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .height-readable {
+    scrollbar-gutter: auto;
+    overflow: auto;
+    overscroll-behavior: auto;
+    max-height: 80vh;
+  }
+
+  .height-full {
+    height: 100%;
+  }
+}

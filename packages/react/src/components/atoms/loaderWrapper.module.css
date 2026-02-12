@@ -1,0 +1,13 @@
+@layer ye-components {
+  .root {
+    position: absolute;
+    z-index: var(--ye-z-base);
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--ye-color-light-50);
+  }
+}

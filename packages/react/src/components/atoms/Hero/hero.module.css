@@ -1,0 +1,36 @@
+@layer ye-components {
+  .hero {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 90vh;
+    padding-top: var(--ye-spacing-rem-xhuge);
+    padding-bottom: var(--ye-spacing-rem-xhuge);
+
+    background-color: var(--ye-color-background);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+
+    text-align: center;
+  }
+
+  .content-mid {
+    width: 100%;
+    max-width: 1080px;
+    margin: auto;
+  }
+
+  .title {
+    padding: var(--ye-em-base);
+    font-size: var(--ye-font-size-mammoth);
+    font-weight: 200;
+    text-align: center;
+  }
+}

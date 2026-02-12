@@ -1,0 +1,11 @@
+@layer ye-base-components {
+  /* sizes */
+
+  .is-small {
+    font-size: var(--ye-font-size-small);
+  }
+
+  .is-large {
+    font-size: var(--ye-font-size-large);
+  }
+}

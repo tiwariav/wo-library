@@ -1,0 +1,17 @@
+@layer ye-components {
+  .root {
+    position: relative;
+    width: 100%;
+  }
+
+  .hidden-input {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+  }
+}

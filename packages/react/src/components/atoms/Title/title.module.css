@@ -1,0 +1,44 @@
+@layer ye-components {
+  .root {
+    position: relative;
+    font-family: var(--ye-font-family-title);
+  }
+
+  .is-tinyline,
+  .is-tinyline-left {
+    padding-bottom: var(--ye-spacing-rem-small);
+    text-align: center;
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      bottom: 0;
+
+      display: block;
+
+      height: 2px;
+
+      background: var(--ye-color-dark-10);
+    }
+  }
+
+  .is-tinyline {
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+    }
+  }
+
+  .is-tinyline-left {
+    &::after {
+      left: 0.125em;
+      width: 80px;
+    }
+  }
+
+  .align-center {
+    text-align: center;
+  }
+}

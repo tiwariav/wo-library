@@ -1,0 +1,16 @@
+@layer ye-components {
+  .container {
+    display: block;
+    margin-bottom: var(--ye-em-base);
+  }
+
+  .label-text {
+    display: block;
+    margin-bottom: var(--ye-spacing-em-xsmall);
+  }
+
+  .error {
+    margin-top: var(--ye-spacing-em-xsmall);
+    color: var(--ye-color-danger);
+  }
+}

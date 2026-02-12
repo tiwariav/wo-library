@@ -1,0 +1,26 @@
+@layer ye-structures {
+  .root {
+    display: flex;
+    align-items: center;
+  }
+
+  .has-separator {
+    @media (--media-min-xl) {
+      position: relative;
+      padding-right: var(--ye-spacing-em-normal);
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 1px;
+        height: 100%;
+
+        background-color: var(--ye-color-dark-10);
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+@layer ye-components {
+  .root {
+    --ye-input-padding-top: var(--ye-spacing-rem-small);
+    --ye-input-padding-right: var(--ye-spacing-rem-normal);
+    --ye-input-padding-bottom: var(--ye-spacing-rem-small);
+    --ye-input-padding-left: var(--ye-spacing-rem-normal);
+    --module-loader-z: calc(var(--ye-z-base) + 2);
+    --module-shadow-input-focus: var(--ye-shadow-input-focus-1),
+      var(--ye-shadow-input-focus-2);
+
+    position: relative;
+    width: 100%;
+
+    & ::placeholder {
+      font-size: var(--ye-font-size-small);
+      font-weight: 400;
+      color: var(--ye-color-dark-50);
+    }
+  }
+
+  .has-error {
+    --ye-input-shadow: var(--ye-shadow-error);
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+  }
+
+  .text-input {
+    width: 100%;
+    padding: var(--ye-input-padding-top) var(--ye-input-padding-right)
+      var(--ye-input-padding-bottom) var(--ye-input-padding-left);
+
+    font-family: var(--ye-font-family-input);
+    color: inherit;
+
+    background-color: var(--ye-color-input-background);
+    border-radius: var(--ye-input-border-radius);
+
+    &:focus {
+      border-color: var(--ye-color-input-focus-border);
+      outline: none;
+      box-shadow: var(--module-shadow-input-focus);
+    }
+
+    @media (--media-hover) {
+      &:hover {
+        background-color: var(--ye-color-input-focus-background);
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--ye-input-padding-left) / 2);
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  .icon-right {
+    right: calc(var(--ye-input-padding-right) / 2);
+    left: auto;
+    transform: translateY(-50%) translateX(50%);
+  }
+
+  .padded-left {
+    --ye-input-padding-left: calc(
+      var(--ye-input-icon-width) + var(--ye-spacing-rem-normal)
+    );
+  }
+
+  .padded-right {
+    --ye-input-padding-right: calc(
+      var(--ye-input-icon-width) + var(--ye-spacing-rem-normal)
+    );
+  }
+
+  .loader {
+    position: absolute;
+    z-index: var(--module-loader-z);
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: var(--ye-input-border-radius);
+  }
+
+  /* variants */
+
+  .variant-basic,
+  .variant-material {
+    & .text-input {
+      border-color: var(--ye-color-input-border);
+      border-style: solid;
+      border-width: var(--ye-input-border-width);
+      box-shadow: var(--ye-input-shadow);
+    }
+  }
+
+  .variant-outlined,
+  .variant-dashed {
+    border-width: var(--ye-input-border-width);
+    transition-property: background-color, color;
+  }
+
+  .variant-borderless {
+    & .text-input {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: var(--ye-shadow-input-focus-bottom);
+      }
+    }
+  }
+
+  .variant-material {
+    --ye-input-padding-top: calc(var(--ye-spacing-rem-xlarge));
+    --ye-input-padding-bottom: calc(
+      var(--ye-spacing-rem-tiny) + var(--ye-rem-unit)
+    );
+
+    & ::placeholder {
+      transform-origin: left bottom;
+      transform: scale(0);
+
+      opacity: 0;
+
+      transition-timing-function: var(--ye-transition-function);
+      transition-duration: calc(var(--ye-transition-duration) / 2);
+      transition-property: opacity, transform;
+    }
+
+    & .label {
+      --calc-xy-padding: calc(
+        var(--ye-input-padding-top) + var(--ye-input-padding-bottom)
+      );
+
+      cursor: text;
+
+      position: absolute;
+      z-index: calc(var(--module-loader-z) - 1);
+      top: calc((var(--calc-xy-padding) / 2) + 1px);
+      left: calc(var(--ye-input-padding-left));
+      transform-origin: 0 center;
+
+      display: flex;
+
+      margin: 0;
+      padding: 0;
+
+      font-weight: 300;
+      color: var(--ye-color-text-light);
+
+      transition-timing-function: var(--ye-transition-function);
+      transition-duration: calc(var(--ye-transition-duration) / 2);
+      transition-property: transform;
+    }
+
+    &:focus-within,
+    &.has-value {
+      & ::placeholder {
+        transform: scale(1);
+        opacity: 1;
+        transition-duration: calc(var(--ye-transition-duration));
+      }
+
+      & .label {
+        transform: scale(0.72)
+          translateY(
+            calc(
+              var(--ye-input-padding-bottom) - var(--ye-input-padding-top) +
+                var(--ye-input-border-width) - 1px
+            )
+          );
+        font-weight: 500;
+        transition-duration: var(--ye-transition-duration);
+      }
+    }
+  }
+
+  .spinner {
+    border-radius: var(--ye-radius-small);
+  }
+
+  /* to avoid undef error */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .has-value,
+  .label {
+    /* no styles */
+  }
+}

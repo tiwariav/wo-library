@@ -1,0 +1,28 @@
+/* BREAKPOINTS */
+
+/* mobile */
+@custom-media --media-max-xs (max-width: 360px);
+@custom-media --media-min-sm (min-width: 361px);
+@custom-media --media-max-sm (max-width: 600px);
+
+/* tablets */
+@custom-media --media-min-md (min-width: 601px);
+@custom-media --media-max-md (max-width: 960px);
+
+/* small laptops */
+@custom-media --media-min-lg (min-width: 961px);
+@custom-media --media-max-lg (max-width: 1200px);
+
+/* laptops */
+@custom-media --media-min-xl (min-width: 1201px);
+@custom-media --media-max-xl (max-width: 1440px);
+
+/* large screens */
+@custom-media --media-min-xxl (max-width: 1441px);
+@custom-media --media-max-xxl (min-width: 1920px);
+
+/* extra wide */
+@custom-media --media-min-xxxl (min-width: 1921px);
+
+/* hover enabled */
+@custom-media --media-hover (hover: hover);

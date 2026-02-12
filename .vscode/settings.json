@@ -7,5 +7,6 @@
   },
   "testing.openTesting": "neverOpen",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": ".yarn/sdks/typescript/lib"
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "testing.automaticallyOpenTestResults": "neverOpen"
 }

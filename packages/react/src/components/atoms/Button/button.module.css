@@ -1,0 +1,303 @@
+@define-mixin buttonStates {
+  &:focus,
+  &:focus-within {
+    @mixin-content;
+  }
+
+  @media (--media-hover) {
+    &:hover {
+      @mixin-content;
+    }
+  }
+}
+
+@layer ye-components {
+  .root {
+    @mixin buttonStates {
+      outline: none;
+    }
+
+    cursor: var(--ye-button-cursor);
+
+    position: relative;
+
+    overflow: hidden;
+    gap: var(--ye-spacing-em-xsmall);
+    align-items: center;
+
+    padding: var(--ye-button-padding);
+
+    font-weight: var(--ye-button-font-weight);
+    color: var(--ye-color-text);
+    text-align: left;
+
+    border-color: var(--ye-color-border);
+    border-width: var(--ye-button-border-width);
+    border-radius: var(--ye-button-border-radius);
+
+    transition-property: box-shadow, background-color, color;
+  }
+
+  .is-disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
+  .is-full-width {
+    width: 100%;
+  }
+
+  .spacing-equal {
+    padding: var(--ye-spacing-em-xsmall);
+
+    & .icon {
+      &:not(:last-child) {
+        margin-right: var(--ye-spacing-em-tiny);
+      }
+    }
+  }
+
+  .spacing-extra {
+    padding-top: calc(
+      var(--ye-spacing-em-normal) - 2 * var(--ye-button-outline-border-width)
+    );
+    padding-bottom: calc(
+      var(--ye-spacing-em-normal) - 2 * var(--ye-button-outline-border-width)
+    );
+  }
+
+  .spacing-less {
+    padding-top: calc(var(--ye-spacing-em-xsmall));
+    padding-bottom: calc(var(--ye-spacing-em-xsmall));
+  }
+
+  .spacing-none {
+    padding: 0;
+  }
+
+  /* variants */
+
+  .variant-primary {
+    color: var(--ye-color-light);
+    background-color: var(--ye-color-primary);
+  }
+
+  .variant-basic,
+  .variant-primary {
+    @mixin buttonStates {
+      box-shadow: var(--ye-button-focus-shadow);
+    }
+
+    box-shadow: var(--ye-button-shadow);
+  }
+
+  .variant-borderless {
+    @mixin buttonStates {
+      box-shadow: none;
+    }
+
+    background-color: transparent;
+    border-radius: 0;
+  }
+
+  .variant-inline {
+    @mixin buttonStates {
+      box-shadow: none;
+    }
+
+    padding-right: var(--ye-spacing-em-xsmall);
+    padding-left: var(--ye-spacing-em-xsmall);
+    border: 1px solid rgb(0 0 0 / 0.05);
+    box-shadow: none;
+
+    &.disabled {
+      color: var(--ye-color-disabled-button);
+    }
+  }
+
+  .variant-list-item {
+    @mixin buttonStates {
+      background-color: var(--ye-color-dark-10);
+      box-shadow: none;
+    }
+
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .variant-outlined,
+  .variant-dashed {
+    padding: var(--ye-button-outline-padding);
+    border-color: var(--ye-color-text);
+    border-width: var(--ye-button-outline-border-width);
+    box-shadow: none;
+  }
+
+  .variant-outlined {
+    @mixin buttonStates {
+      color: var(--ye-color-background);
+      background-color: var(--ye-color-text);
+      box-shadow: none;
+    }
+
+    border-style: solid;
+    transition-property: background-color, color;
+  }
+
+  .variant-filled {
+    @mixin buttonStates {
+      background-color: var(--ye-color-dark-50);
+      box-shadow: none;
+    }
+
+    color: var(--ye-color-background);
+    background-color: var(--ye-color-text);
+  }
+
+  .variant-dashed {
+    @mixin buttonStates {
+      border-style: solid;
+      box-shadow: none;
+    }
+  }
+
+  .variant-neu {
+    --module-color-neu-background: linear-gradient(
+      145deg,
+      var(--ye-color-neu-background-dark),
+      var(--ye-color-neu-background-light)
+    );
+
+    background: var(--module-color-neu-background);
+    border-radius: var(--ye-radius-normal);
+    box-shadow: var(--ye-shadow-neu);
+
+    &:focus,
+    &:active {
+      box-shadow: var(--ye-shadow-neu-focus);
+    }
+
+    @media (--media-hover) {
+      &:hover {
+        box-shadow: var(--ye-shadow-neu-hover);
+      }
+    }
+  }
+
+  /* sizes */
+
+  .size-small {
+    --ye-button-padding: calc(
+        var(--ye-spacing-rem-xsmall) - var(--ye-button-border-width)
+      )
+      var(--ye-spacing-em-large);
+    --ye-button-outline-padding: calc(
+        var(--ye-spacing-rem-xsmall) - var(--ye-button-outline-border-width)
+      )
+      var(--ye-spacing-em-large);
+
+    font-size: var(--ye-font-size-small);
+  }
+
+  .size-large {
+    font-size: var(--ye-font-size-large);
+  }
+
+  /* effects */
+
+  .effect-cursor-tracking,
+  .effect-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .effect-cursor-tracking::after,
+  .effect-ripple::before {
+    content: "";
+
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1);
+
+    display: block;
+
+    border-radius: var(--ye-radius-circle);
+
+    transition-timing-function: ease-out;
+    transition-duration: 0.5s;
+    transition-property: transform, opacity;
+
+    /* stylelint-disable-next-line csstools/media-use-custom-media */
+    @media screen and (--media-reduced-motion) {
+      transition: none;
+    }
+  }
+
+  .effect-cursor-tracking {
+    @mixin buttonStates {
+      &::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    &::after {
+      top: var(--ye-effect-tracking-y);
+      left: var(--ye-effect-tracking-x);
+      transform: translate(-50%, -50%) scale(0);
+
+      width: 7.5em;
+      height: 7.5em;
+
+      opacity: 0.33;
+      background: var(--ye-gradient-button-tracker);
+    }
+  }
+
+  .effect-ripple {
+    @mixin buttonStates {
+      &::before {
+        width: var(--ye-effect-ripple-diameter);
+        height: var(--ye-effect-ripple-diameter);
+        opacity: 0.025;
+        background: var(--ye-gradient-button-ripple);
+      }
+    }
+
+    &::before {
+      top: var(--ye-effect-ripple-y);
+      left: var(--ye-effect-ripple-x);
+      display: none;
+      opacity: 0;
+    }
+
+    &.variant-primary {
+      @mixin buttonStates {
+        &::before {
+          opacity: 0.125;
+        }
+      }
+    }
+
+    &:active::before {
+      transform: translate(-50%, -50%) scale(0);
+      transition-duration: 0s;
+    }
+
+    @media (--media-hover) {
+      display: block;
+    }
+  }
+
+  .spinner {
+    inset: 1px;
+    background-color: var(--ye-color-light-75);
+    border-radius: var(--ye-button-border-radius);
+  }
+
+  /* to avoid undef error */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .variant-basic,
+  .icon {
+    /* no styles */
+  }
+}

@@ -1,0 +1,408 @@
+/* https://css-tricks.com/css-cascade-layers */
+@layer ye-reset, ye-defaults, ye-wrappers, ye-base-components, ye-components;
+@layer ye-structures, ye-templates, ye-overrides;
+
+@import url("normalize.css") layer(ye-reset);
+
+:root {
+  /* ====== */
+
+  /* BREAKPOINTS */
+
+  /* keep sync with './media.css' */
+  --ye-breakpoint-xs: 360px;
+  --ye-breakpoint-sm: 600px;
+  --ye-breakpoint-md: 960px;
+  --ye-breakpoint-lg: 1200px;
+  --ye-breakpoint-xl: 1440px;
+  --ye-breakpoint-xxl: 1920px;
+
+  /* COLORS */
+
+  /* Opacity levels */
+  --mix-opacity-1: 20%;
+  --mix-opacity-2: 50%;
+  --mix-opacity-3: 90%;
+  --mix-opacity-4: 95%;
+
+  /* color definitions */
+  --ye-color-light: oklch(97.78% 0 0deg);
+  --ye-color-light-90: color-mix(
+    in oklch,
+    var(--ye-color-light),
+    transparent 90%
+  );
+  --ye-color-light-75: color-mix(
+    in oklch,
+    var(--ye-color-light),
+    transparent var(--mix-opacity-1)
+  );
+  --ye-color-light-50: color-mix(
+    in oklch,
+    var(--ye-color-light),
+    transparent var(--mix-opacity-2)
+  );
+  --ye-color-light-10: color-mix(
+    in oklch,
+    var(--ye-color-light),
+    transparent var(--mix-opacity-3)
+  );
+  --ye-color-dark: oklch(0% 0 0deg);
+  --ye-color-dark-5: color-mix(
+    in oklch,
+    var(--ye-color-dark),
+    transparent var(--mix-opacity-4)
+  );
+  --ye-color-dark-10: color-mix(
+    in oklch,
+    var(--ye-color-dark),
+    transparent var(--mix-opacity-3)
+  );
+  --ye-color-dark-50: color-mix(
+    in oklch,
+    var(--ye-color-dark),
+    transparent var(--mix-opacity-2)
+  );
+  --ye-color-dark-75: color-mix(
+    in oklch,
+    var(--ye-color-dark),
+    transparent var(--mix-opacity-1)
+  );
+  --ye-color-accent: oklch(64.78% 0.245 312.5deg / 0.75);
+  --ye-color-accent-dark: oklch(32% 0.082 332.8deg);
+  --ye-color-accent-light: oklch(88.11% 0.109 73deg);
+  --ye-color-background: var(--ye-color-light);
+  --ye-color-background-card: var(--ye-color-light);
+  --ye-color-background-content: var(--ye-color-light);
+  --ye-color-background-secondary: var(--ye-color-light);
+  --ye-color-border: var(--ye-color-dark-5);
+  --ye-color-danger: oklch(64.78% 0.258 29.2deg);
+  --ye-color-negative: oklch(64.78% 0.132 17.1deg);
+  --ye-color-positive: oklch(64.78% 0.226 140.4deg);
+  --ye-color-primary: oklch(74.22% 0.169 60.6deg);
+  --ye-color-ripple: var(--ye-color-shadow);
+  --ye-color-shadow: var(--ye-color-dark-10);
+  --ye-color-shadow-inset: var(--ye-color-dark-5);
+  --ye-color-text: var(--ye-color-dark);
+  --ye-color-text-light: var(--ye-color-dark-50);
+  --ye-color-text-anchor: oklch(64.78% 0.191 252.8deg);
+  --ye-color-input-background: color-mix(
+    in oklch,
+    var(--ye-color-dark),
+    transparent 97.5%
+  );
+  --ye-color-input-border: var(--ye-color-input-background);
+  --ye-color-input-focus-background: var(--ye-color-light);
+  --ye-color-input-focus-placeholder: var(--ye-color-light);
+  --ye-color-bg-scrollbar: var(--ye-color-light);
+  --ye-color-input-focus-border: oklch(74.22% 0.158 247.3deg);
+  --ye-color-input-focus-shadow: color-mix(
+    in oklch,
+    var(--ye-color-input-focus-border),
+    transparent var(--mix-opacity-1)
+  );
+  --ye-shadow-error: 0 0 0 1px var(--ye-color-negative);
+  --ye-color-neu-background-dark: oklch(88.11% 0.001 286.4deg);
+  --ye-color-neu-background-light: var(--ye-color-light);
+  --ye-color-neu-shadow-dark: oklch(74.22% 0.001 197.1deg);
+  --ye-color-neu-shadow-light: var(--ye-color-light);
+  --ye-color-text-anchor-focus: var(--ye-color-input-focus-border);
+  --ye-color-text-anchor-visited: oklch(39.44% 0.112 247.4deg);
+  --ye-color-text-content: var(--ye-color-dark);
+  --ye-color-disabled-button: oklch(46.89% 0.033 246.9deg);
+  --ye-gradient-button-tracker: radial-gradient(
+      circle closest-side,
+      var(--ye-color-shadow),
+      transparent
+    )
+    center/15000%;
+  --ye-gradient-button-ripple: var(--ye-color-ripple)
+    radial-gradient(circle, transparent 1%, var(--ye-color-ripple) 1%)
+    center/15000%;
+
+  /* ====== */
+
+  /* FONTS */
+
+  /* Make sure the fonts are imported in the appropriate html (.storybook/preview-head.html for storybook) */
+  --ye-font-family-body: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-title: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-display: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-mono: source-code-pro, "Menlo", "Monaco", "Consolas",
+    "Courier New", monospace;
+  --ye-font-family-input: var(--ye-font-family-body);
+
+  /* type scale 1.2 (https://type-scale.com/) */
+  --ye-font-size-em: 1.2em;
+  --ye-font-size-mammoth: 2.488rem;
+  --ye-font-size-xhuge: 2.074rem;
+  --ye-font-size-huge: 1.728rem;
+  --ye-font-size-xlarge: 1.44rem;
+  --ye-font-size-large: 1.2rem;
+  --ye-font-size-normal: 1rem;
+  --ye-font-size-small: 0.833rem;
+  --ye-font-size-xsmall: 0.694rem;
+  --ye-font-size-tiny: 0.579rem;
+
+  /* line heights */
+  --ye-line-height: 1.5;
+  --ye-line-height-thin: 1.25;
+
+  /* weights */
+  --ye-font-weight-black: 700;
+  --ye-font-weight-bold: 600;
+  --ye-font-weight-semibold: 500;
+  --ye-font-weight-normal: 400;
+  --ye-font-weight-light: 300;
+  --ye-font-weight-thin: 200;
+
+  /* ====== */
+
+  /* SHADOWS */
+  --ye-shadow-floating-highest: 0 2px 30px var(--ye-color-shadow);
+  --ye-shadow-floating-high: 0 2px 12px var(--ye-color-shadow);
+  --ye-shadow-floating-medium: 0 2px 6px var(--ye-color-shadow);
+  --ye-shadow-floating-low: 0 1px 4px var(--ye-color-shadow);
+  --ye-shadow-floating-lowest: 0 0 2px var(--ye-color-shadow);
+  --ye-shadow-flying-medium: 0 10px 50px 0 var(--ye-color-shadow);
+  --ye-shadow-inset: inset 0 2px 4px var(--ye-color-shadow-inset);
+  --ye-shadow-inset-sm: inset 0 1px 2px var(--ye-color-shadow-inset);
+  --ye-shadow-inset-none: inset 0 0 0 var(--ye-color-shadow-inset);
+  --ye-shadow-outer-none: 0 0 0 var(--ye-color-shadow-inset);
+  --ye-shadow-pressable: var(--ye-shadow-floating-low);
+  --ye-shadow-hovered: var(--ye-shadow-floating-lowest);
+  --ye-shadow-pressed: var(--ye-shadow-inset), var(--ye-shadow-outer-none);
+  --ye-shadow-neu: 2px 2px 5px var(--ye-color-neu-shadow-dark),
+    -2px -2px 5px var(--ye-color-neu-shadow-light);
+  --ye-shadow-neu-hover: 1px 1px 2px var(--ye-color-neu-shadow-dark),
+    -1px -1px 2px var(--ye-color-neu-shadow-light);
+  --ye-shadow-neu-focus: inset 0 0 1px var(--ye-color-neu-shadow-dark);
+  --ye-shadow-input-focus-bottom: 0 2px 1px -1px var(--ye-color-input-focus-shadow);
+  --ye-shadow-drawer: 0 -1px 0 var(--ye-color-background),
+    var(--ye-shadow-floating-low);
+  --ye-shadow-scrollbar: inset 0 0 6px var(--ye-color-dark-10);
+  --ye-shadow-input-focus-1: inset 0 0 0 var(--ye-color-shadow-inset);
+  --ye-shadow-input-focus-2: 0 0 0 1px var(--ye-color-input-focus-shadow);
+
+  /* ====== */
+
+  /* SPACING */
+
+  /* relative */
+  --ye-em-unit: 0.125em; /* 2px */
+  --ye-em-base: 1em;
+  --ye-spacing-em-tiny: calc(2 * var(--ye-em-unit));
+  --ye-spacing-em-xsmall: calc(4 * var(--ye-em-unit));
+  --ye-spacing-em-small: calc(6 * var(--ye-em-unit));
+  --ye-spacing-em-normal: var(--ye-em-base);
+  --ye-spacing-em-large: calc(10 * var(--ye-em-unit));
+  --ye-spacing-em-xlarge: calc(12 * var(--ye-em-unit));
+  --ye-spacing-em-huge: calc(16 * var(--ye-em-unit));
+  --ye-spacing-em-xhuge: calc(20 * var(--ye-em-unit));
+
+  /* fixed */
+  --ye-rem-unit: 0.125rem;
+  --ye-rem-base: 1rem;
+  --ye-spacing-rem-tiny: calc(2 * var(--ye-rem-unit));
+  --ye-spacing-rem-xsmall: calc(4 * var(--ye-rem-unit));
+  --ye-spacing-rem-small: calc(6 * var(--ye-rem-unit));
+  --ye-spacing-rem-normal: var(--ye-rem-base);
+  --ye-spacing-rem-large: calc(10 * var(--ye-rem-unit));
+  --ye-spacing-rem-xlarge: calc(12 * var(--ye-rem-unit));
+  --ye-spacing-rem-huge: calc(16 * var(--ye-rem-unit));
+  --ye-spacing-rem-xhuge: calc(20 * var(--ye-rem-unit));
+
+  /* large spacing vars to add empty space */
+  --ye-gap-normal: 100px;
+
+  /* sizes */
+  --ye-size-hanging-logo: 7rem;
+
+  /* radii */
+  --ye-radius-tiny: var(--ye-em-unit);
+  --ye-radius-small: var(--ye-spacing-em-tiny);
+  --ye-radius-normal: var(--ye-spacing-em-xsmall);
+  --ye-radius-large: var(--ye-spacing-em-small);
+  --ye-radius-xlarge: var(--ye-spacing-em-normal);
+  --ye-radius-circle: 100%;
+  --ye-radius-ellipse: 50%;
+
+  /* ====== */
+
+  /* TRANSITIONS */
+  --ye-transition-function: ease-in-out;
+  --ye-transition-duration: 250ms;
+
+  /* ====== */
+
+  /* LAYOUTS */
+
+  --ye-layout-side-nav-offset: 0px;
+  --ye-layout-side-nav-width: 160px;
+  --ye-layout-side-nav-toggle-width: 56px;
+
+  /* HEIGHTS */
+
+  --ye-height-page-content: calc(100vh - 88px);
+  --ye-height-input: 2.5rem;
+  --ye-height-input-inner: calc(var(--ye-height-input) - 2px);
+
+  /* ====== */
+
+  /* BUTTONS */
+  --ye-button-border-radius: 3em;
+  --ye-button-border-width: 0px;
+  --ye-button-cursor: pointer;
+  --ye-button-outline-border-width: 1px;
+  --ye-button-focus-shadow: var(--ye-shadow-pressed);
+  --ye-button-font-weight: var(--ye-font-weight-semibold);
+  --ye-button-hover-shadow: var(--ye-shadow-hovered);
+  --ye-button-padding: calc(
+      var(--ye-spacing-rem-small) - var(--ye-button-border-width)
+    )
+    var(--ye-spacing-em-large);
+  --ye-button-outline-padding: calc(
+      var(--ye-spacing-rem-small) - var(--ye-button-outline-border-width)
+    )
+    var(--ye-spacing-em-large);
+  --ye-button-shadow: var(--ye-shadow-pressable);
+  --ye-effect-ripple-diameter: 0px;
+  --ye-effect-ripple-x: 0px;
+  --ye-effect-ripple-y: 0px;
+  --ye-effect-tracking-x: 0px;
+  --ye-effect-tracking-y: 0px;
+
+  /* INPUTS */
+
+  --ye-input-padding-top: var(--ye-spacing-rem-small);
+  --ye-input-padding-right: var(--ye-spacing-rem-normal);
+  --ye-input-padding-bottom: var(--ye-spacing-rem-small);
+  --ye-input-padding-left: var(--ye-spacing-rem-normal);
+  --ye-input-icon-width: calc(
+    var(--ye-spacing-em-large) + var(--ye-spacing-rem-small)
+  );
+
+  /* FORM */
+  --ye-control-outline-border-width: 1px;
+  --ye-control-outline-padding: calc(
+      var(--ye-spacing-em-small) - var(--ye-button-outline-border-width)
+    )
+    calc(var(--ye-spacing-em-normal) - var(--ye-button-outline-border-width));
+  --ye-input-border-width: 0px;
+  --ye-input-border-radius: 3em;
+  --ye-input-shadow: var(--ye-shadow-inset);
+  --ye-z-behind: -1;
+  --ye-z-base: 1;
+  --ye-z-topnav: 10;
+  --ye-z-modal: 101;
+
+  /* COMPONENTS SPECIFIC */
+
+  --ye-spinkit-size: 40px;
+  --ye-spinkit-color: var(--ye-color-dark-75);
+
+  /* TOPNAV */
+  --ye-topnav-expanded-color-bg: transparent;
+
+  /* stylelint-disable-next-line csstools/media-use-custom-media */
+  @media (width <= 600px) {
+    --ye-layout-side-nav-width: 240px;
+    --ye-layout-side-nav-toggle-width: 0;
+  }
+}
+
+@layer ye-reset {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  html {
+    background-color: var(--ye-color-background);
+  }
+
+  body {
+    overflow-x: hidden;
+
+    font-family: var(--ye-font-family-body);
+    font-size: var(--ye-font-size-normal);
+    /* stylelint-disable-next-line declaration-property-value-allowed-list */
+    font-size: clamp(100%, 1rem + 2vw, var(--ye-font-size-normal));
+    font-weight: var(--ye-font-weight-normal);
+    line-height: var(--ye-line-height);
+    color: var(--ye-color-text);
+
+    background-color: var(--ye-color-background);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--ye-font-family-display);
+    font-weight: var(--ye-font-weight-bold);
+  }
+
+  h1 {
+    font-size: var(--ye-font-size-mammoth);
+  }
+
+  h2 {
+    font-size: var(--ye-font-size-xhuge);
+  }
+
+  h3 {
+    font-size: var(--ye-font-size-huge);
+  }
+
+  h4 {
+    font-size: var(--ye-font-size-xlarge);
+  }
+
+  h5 {
+    font-size: var(--ye-font-size-large);
+  }
+
+  h6 {
+    font-size: var(--ye-font-size-normal);
+  }
+
+  code {
+    font-family: var(--ye-font-family-mono);
+  }
+}
+
+.custom-scrollbar {
+  /* SCROLLBAR */
+
+  /* New specs, works on Firefox */
+  scrollbar-color: var(--ye-color-bg-scrollbar) var(--ye-color-primary);
+  scrollbar-width: thin;
+
+  /* Works on Chrome/Edge/Safari */
+  &::-webkit-scrollbar-track {
+    background-color: var(--ye-color-bg-scrollbar);
+    border-radius: var(--ye-radius-normal);
+    box-shadow: var(--ye-shadow-scrollbar);
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--ye-color-bg-scrollbar);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--ye-color-primary);
+    border-radius: var(--ye-radius-normal);
+    box-shadow: var(--ye-shadow-scrollbar);
+  }
+}

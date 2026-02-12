@@ -1,0 +1,17 @@
+.red-progress {
+  --color-progress-none: red;
+  --color-progress-partial: red;
+  --color-progress-full: red;
+}
+
+.orange-progress {
+  --color-progress-none: orange;
+  --color-progress-partial: orange;
+  --color-progress-full: orange;
+}
+
+.green-progress {
+  --color-progress-none: green;
+  --color-progress-partial: green;
+  --color-progress-full: green;
+}

@@ -1,36 +1,11 @@
 {
-  "name": "wo-library",
-  "version": "5.0.13",
-  "type": "module",
-  "sideEffects": false,
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "description": "A component library smooth on the edges",
-  "keywords": [
-    "wo-library",
-    "components",
-    "react"
+  "name": "wo-library-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
-    "build": "rollup --config rollup.config.js",
-    "dev": "NODE_ENV=development rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
-    "postversion": "cp -r package.json ..",
-    "release": "cd dist && yarn npm publish",
-    "storybook": "storybook dev -p 9001",
-    "build-storybook": "storybook build",
-    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json"
-  },
-  "dependencies": {
-    "@floating-ui/react": "^0.26.14",
-    "@mdx-js/react": "^3.0.1",
-    "clsx": "^2.1.1",
-    "glob": "^10.4.1",
-    "immer": "^10.1.1",
-    "lodash-es": "^4.17.21",
-    "react-intersection-observer": "^9.10.3",
-    "react-use": "^17.5.0"
+    "test": "yarn workspaces run test"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.7",
@@ -120,6 +95,7 @@
     "jscpd": "^4.0.4",
     "lint-staged": "^15.2.6",
     "lorem-ipsum": "^2.0.8",
+    "nx": "22.5.0",
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "prettier": "3.3.2",
@@ -144,31 +120,6 @@
     "typescript": "^5.4.5",
     "typescript-plugin-css-modules": "^5.1.0",
     "webpack": "^5.92.0"
-  },
-  "peerDependencies": {
-    "@react-native-async-storage/async-storage": "^1.22.3",
-    "lorem-ipsum": "^2.0.8",
-    "react": "^18.2.0",
-    "react-hook-form": "^7.51.1",
-    "react-native": "0.73.6",
-    "swiper": "^11.0.7"
-  },
-  "peerDependenciesMeta": {
-    "@react-native-async-storage/async-storage": {
-      "optional": true
-    },
-    "lorem-ipsum": {
-      "optional": true
-    },
-    "react-hook-form": {
-      "optional": true
-    },
-    "react-native": {
-      "optional": true
-    },
-    "swiper": {
-      "optional": true
-    }
   },
   "packageManager": "yarn@4.3.0"
 }

@@ -1,0 +1,16 @@
+@layer ye-components {
+  .container {
+    display: inline-flex;
+    align-items: center;
+
+    padding: var(--ye-spacing-em-tiny) var(--ye-spacing-em-xsmall);
+
+    background-color: var(--ye-color-dark-10);
+    border-radius: var(--ye-radius-xlarge);
+  }
+
+  .is-after {
+    margin-right: 0;
+    margin-left: var(--ye-spacing-em-xsmall);
+  }
+}

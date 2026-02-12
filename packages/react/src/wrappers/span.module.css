@@ -1,0 +1,34 @@
+@layer ye-wrappers {
+  .base {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: var(--ye-input-icon-width);
+    height: calc(1em * var(--ye-line-height));
+  }
+
+  .icon {
+    margin-right: var(--ye-spacing-em-xsmall);
+    line-height: 1;
+    color: inherit;
+
+    & svg,
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .form-icon {
+    line-height: 1;
+    color: inherit;
+
+    & svg,
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

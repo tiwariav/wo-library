@@ -1,0 +1,43 @@
+@layer ye-components {
+  .bookmark {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: var(--ye-spacing-em-xsmall);
+    padding-bottom: var(--ye-spacing-em-xsmall);
+
+    font-size: var(--ye-font-size-small);
+    color: var(--ye-color-dark-50);
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) .text::after {
+      content: "";
+
+      position: absolute;
+      bottom: calc(var(--ye-em-unit) * -1);
+      left: 0;
+
+      width: 100%;
+      height: 1px;
+
+      background-color: var(--ye-color-dark-10);
+    }
+  }
+
+  .text {
+    position: relative;
+    display: inline-flex;
+    padding-right: var(--ye-em-unit);
+    padding-left: var(--ye-em-unit);
+  }
+
+  .separator {
+    display: inline-flex;
+    margin-right: var(--ye-spacing-em-tiny);
+    margin-left: var(--ye-spacing-em-tiny);
+  }
+}

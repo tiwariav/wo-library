@@ -1,0 +1,75 @@
+@layer ye-components {
+  .root {
+    --module-arc-radius: 1.875em;
+
+    position: relative;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    height: 120px;
+  }
+
+  .svg {
+    width: auto;
+    height: 100%;
+  }
+
+  .content {
+    position: absolute;
+    bottom: calc(-1 * var(--module-arc-radius));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: calc(2 * var(--module-arc-radius));
+    height: calc(2 * var(--module-arc-radius));
+    padding-bottom: var(--ye-font-size-large);
+
+    line-height: 1;
+
+    border-radius: var(--module-arc-radius);
+    box-shadow: var(--ye-shadow-floating-medium);
+  }
+
+  .text {
+    font-weight: 700;
+  }
+
+  .indicator {
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    transform-origin: right;
+
+    display: flex;
+
+    width: 2.25em;
+
+    color: var(--ye-color-primary);
+
+    border-radius: var(--ye-radius-small);
+  }
+
+  .segment {
+    stroke: #000;
+  }
+
+  .segment-1 {
+    stroke: #eb5757;
+  }
+
+  .segment-2 {
+    stroke: #f2c94c;
+  }
+
+  .segment-3 {
+    stroke: #2f80ed;
+  }
+
+  .segment-4 {
+    stroke: #6fcf97;
+  }
+}

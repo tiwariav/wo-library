@@ -1,0 +1,3 @@
+@layer ye-defaults {
+  @global-import "overlayscrollbars/styles/overlayscrollbars.css";
+}

@@ -1,0 +1,10 @@
+@layer ye-components {
+  .root {
+    margin-bottom: 0;
+
+    & :global .ant-form-item-explain-error {
+      position: relative;
+      top: calc(-1 * var(--ye-spacing-em-small));
+    }
+  }
+}

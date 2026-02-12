@@ -1,0 +1,18 @@
+@layer ye-base-components {
+  .container {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--ye-color-dark-50);
+
+    background-color: var(--ye-color-light-90);
+  }
+
+  .spinner {
+    width: 1em;
+  }
+}

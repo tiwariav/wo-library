@@ -1,0 +1,6 @@
+[36m
+[1msrc/index.ts[22m → [1mdist[22m...[39m
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[32mcreated [1mdist[22m in [1m6.7s[22m[39m

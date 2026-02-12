@@ -1,0 +1,37 @@
+@layer ye-structures {
+  .root {
+    position: relative;
+    z-index: var(--ye-z-topnav);
+
+    width: 100%;
+
+    transition-timing-function: var(--ye-transition-function);
+    transition-duration: var(--ye-transition-duration);
+    transition-property: transform;
+
+    /* stylelint-disable-next-line csstools/media-use-custom-media */
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  .is-sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  .is-scrolled {
+    & .container {
+      transition-timing-function: var(--ye-transition-function);
+      transition-duration: var(--ye-transition-duration);
+      transition-property: background-color, box-shadow, padding, transform;
+    }
+  }
+
+  .is-expanded {
+    & .container {
+      padding-top: var(--ye-spacing-rem-huge);
+      padding-bottom: var(--ye-spacing-rem-huge);
+    }
+  }
+}

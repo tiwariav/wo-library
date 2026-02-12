@@ -1,0 +1,67 @@
+@layer ye-components {
+  .root {
+    --color-progress-none: #c23934;
+    --color-progress-partial: #ff9f00;
+    --color-progress-full: #04844b;
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circle-background,
+  .circle-progress {
+    fill: none;
+  }
+
+  .circle-background {
+    stroke: #ddd;
+    stroke-linecap: round;
+  }
+
+  .stroke-round {
+    stroke-linecap: round;
+  }
+
+  .text {
+    font-weight: 700;
+  }
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    display: flex;
+  }
+
+  .progress-none {
+    &.circle-progress {
+      stroke: var(--color-progress-none);
+    }
+
+    &.text {
+      fill: var(--color-progress-none);
+    }
+  }
+
+  .progress-partial {
+    &.circle-progress {
+      stroke: var(--color-progress-partial);
+    }
+
+    &.text {
+      fill: var(--color-progress-partial);
+    }
+  }
+
+  .progress-full {
+    &.circle-progress {
+      stroke: var(--color-progress-full);
+    }
+
+    &.text {
+      fill: var(--color-progress-full);
+    }
+  }
+}
