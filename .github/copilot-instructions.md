@@ -34,4 +34,6 @@ import formatNumber from "@wo-library/js/tools/number";
 ## See Also
 
 - `/.ai/instructions.md` - Complete coding standards and patterns
-- `/AI_AGENT_PLAN.md` - Documentation improvement roadmap
+- `/ARCHITECTURE.md` - Monorepo architecture, component design, state patterns
+- `/ai-context.json` - Machine-readable metadata (packages, exports, component descriptions)
+- `/docs/AI_AGENT_PLAN.md` - Documentation improvement roadmap

@@ -7,6 +7,16 @@ import Spinner from "../Spinner/Spinner.js";
 import TextLoader from "./TextLoader.js";
 import * as styles from "./text.module.css";
 
+/**
+ * Props for the `Text` component.
+ *
+ * @property inline - Renders as `<span>` instead of `<div>` when `true`.
+ * @property isBusy - Shows a spinner alongside the text.
+ * @property isLoading - Shows a skeleton content loader.
+ * @property lineHeight - Line-height multiplier used to compute `minHeight`/`maxHeight`.
+ * @property maxLines - Clamps text to this many visible lines.
+ * @property minLines - Reserves vertical space for at least this many lines.
+ */
 export interface TextProps extends ComponentPropsWithoutRef<"div"> {
   inline?: boolean;
   isBusy?: boolean;

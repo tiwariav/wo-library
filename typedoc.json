@@ -1,0 +1,38 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "name": "wo-library",
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/js",
+    "packages/react",
+    "packages/web",
+    "packages/ui"
+  ],
+  "out": "packages/storybook-host/src/docs",
+  "fileExtension": ".mdx",
+  "entryFileName": "index",
+  "indexFormat": "table",
+  "cleanOutputDir": true,
+  "readme": "none",
+  "includeVersion": true,
+  "sort": ["source-order"],
+  "groupOrder": [
+    "Functions",
+    "Variables",
+    "Type Aliases",
+    "Interfaces",
+    "Classes",
+    "*"
+  ],
+  "skipErrorChecking": true,
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeExternals": true,
+  "searchInComments": true,
+  "flattenOutputFiles": false,
+  "hidePageHeader": false,
+  "hideBreadcrumbs": false,
+  "useCodeBlocks": true,
+  "expandObjects": true
+}

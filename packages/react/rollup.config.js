@@ -1,11 +1,10 @@
-import dotenv from "dotenv";
-
 import {
   getCjsConfig,
   getCssConfig,
   getEsConfig,
 } from "@wo-library/js/tools/rollup/configs.js";
 import { getPublishPlugins } from "@wo-library/js/tools/rollup/pluginSets.js";
+import dotenv from "dotenv";
 
 dotenv.config();
 

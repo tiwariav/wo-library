@@ -42,6 +42,15 @@ export function Template({
 
 const metadata: Meta<TemplateProps> = {
   component: Profile,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Page template for user or entity profile pages with a cover image, avatar/side content column, and a main content area.",
+      },
+    },
+  },
+  title: "Templates/Profile",
   render: (args) => <Template {...args} />,
 };
 

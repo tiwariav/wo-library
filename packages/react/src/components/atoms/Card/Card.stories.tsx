@@ -37,6 +37,15 @@ const metadata: Meta<TemplateProps> = {
   },
   component: Card,
   excludeStories: /.*Template$/,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Content container with multiple layouts (vertical/horizontal), visual variants, height presets, and fly-out/viewMode support. Use the `image` prop for card imagery.",
+      },
+    },
+  },
+  title: "Atoms/Card",
   render: Template,
 };
 

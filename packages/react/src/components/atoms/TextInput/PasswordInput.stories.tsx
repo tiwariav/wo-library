@@ -4,6 +4,7 @@ import PasswordInput from "./PasswordInput.js";
 
 const metadata: Meta<typeof PasswordInput> = {
   component: PasswordInput,
+  title: "Atoms/PasswordInput",
   render: (args) => (
     <div style={{ width: 240 }}>
       <PasswordInput {...args} />

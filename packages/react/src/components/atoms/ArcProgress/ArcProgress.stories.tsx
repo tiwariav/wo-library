@@ -8,6 +8,7 @@ const meta: Meta<typeof ArcProgress> = {
     progress: [50, 100],
   },
   component: ArcProgress,
+  title: "Atoms/ArcProgress",
   render: (args) => <ArcProgress {...args} />,
 };
 

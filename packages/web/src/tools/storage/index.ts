@@ -1,3 +1,7 @@
+/**
+ * A pluggable storage backend interface (sync or async).
+ * Mirrors the Web Storage API (`localStorage` / `sessionStorage`).
+ */
 export interface StorageBackend {
   clear: () => void;
   getItem: (key: string) => Promise<null | string> | null | string;
@@ -5,11 +9,19 @@ export interface StorageBackend {
   setItem: (key: string, value: string) => Promise<void> | void;
 }
 
+/** Supported storage environment types. */
 export const STORAGE_ENVIRONMENTS = ["mobile", "server", "web"] as const;
+
+/** Storage durability tiers: persist (localStorage), session, or temp (memory). */
 export const STORAGE_TYPES = ["persist", "session", "temp"] as const;
 
+/** In-memory record backing the fallback {@link memoryStorage} backend. */
 export let memoryStorageItems: Record<string, null | string> = {};
 
+/**
+ * In-memory `StorageBackend` implementation used as a fallback when
+ * `localStorage` / `sessionStorage` are unavailable (e.g., SSR).
+ */
 export const memoryStorage = {
   clear: () => (memoryStorageItems = {}),
   getItem: (key: string): null | string => memoryStorageItems[key] ?? null,
@@ -46,6 +58,21 @@ function getJsonItem<TResponse = object | string>(value: string) {
   return value;
 }
 
+/**
+ * Unified storage abstraction that delegates to `localStorage`,
+ * `sessionStorage`, or an in-memory fallback depending on the environment.
+ *
+ * Supports optional JSON serialisation, key prefixing, and pluggable backends
+ * (e.g., React Native `AsyncStorage`).
+ *
+ * @example
+ * ```ts
+ * import { anyStorageInstance } from "@wo-library/web";
+ *
+ * await anyStorageInstance.setItem("token", "abc123", { persist: true });
+ * const token = await anyStorageInstance.getItem("token", { persist: true });
+ * ```
+ */
 export class AnyStorage {
   backends: StorageBackendOptions;
   env: (typeof STORAGE_ENVIRONMENTS)[number];
@@ -155,4 +182,5 @@ export class AnyStorage {
   }
 }
 
+/** Pre-instantiated {@link AnyStorage} singleton for convenience. */
 export const anyStorageInstance = new AnyStorage();

@@ -26,6 +26,15 @@ function Template({ files, ...args }: FileInputProps) {
 
 const metadata: Meta<FileInputProps> = {
   component: FileInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Drag-and-drop file upload input. Manages an array of `UploadFile` instances and exposes an `updateFiles` callback for external state management.",
+      },
+    },
+  },
+  title: "Atoms/FileInput",
   render: (args) => <Template {...args} />,
 };
 

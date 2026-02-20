@@ -14,6 +14,15 @@ import FormattedInput from "./FormattedInput.js";
 const metadata = {
   argTypes: iconArgTypes,
   component: FormattedInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Text input with custom `format` and `parse` transform functions for controlled formatting (e.g., masks, hyphens). Extends TextInput.",
+      },
+    },
+  },
+  title: "Atoms/FormattedInput",
 };
 
 export default metadata;

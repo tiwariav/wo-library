@@ -15,6 +15,16 @@ import * as styles from "./image.module.css";
 const IMAGE_VARIANT_OPTIONS = ["basic", "circular"] as const;
 const MAX_PERCENT = 100;
 
+/**
+ * Polymorphic image component with aspect ratio enforcement and loading states.
+ *
+ * @typeParam TElement - Underlying HTML element type (defaults to `"img"`).
+ *
+ * @property aspectRatio - Locks the element to a specific ratio, e.g. `"16/9"`.
+ * @property isBusy - Shows a spinner overlay.
+ * @property isLoading - Shows a skeleton loader.
+ * @property variant - `"basic"` (default) | `"circular"` (square crop in a circle).
+ */
 export type ImageProps<TElement extends ElementType = "img"> = {
   aspectRatio?: `${number}/${number}`;
   isBusy?: boolean;

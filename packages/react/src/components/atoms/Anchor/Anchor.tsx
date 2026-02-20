@@ -30,6 +30,18 @@ export const ANCHOR_VARIANTS = [
   "outlined",
 ] as const;
 
+/**
+ * Polymorphic anchor/link component with icon slots and variant styling.
+ *
+ * @typeParam TElement - Underlying element type (defaults to `"a"`).
+ *
+ * @property iconAfter - Icon node rendered after the label.
+ * @property iconBefore - Icon node rendered before the label.
+ * @property noVisited - Suppresses the browser's visited link styling.
+ * @property size - Size modifier: `"small"` | `"large"`.
+ * @property spacing - Padding modifier: `"less"` | `"extra"`.
+ * @property variant - Visual style: `"color"` | `"filled"` | `"outlined"` | `"list-item"` | `"nav-item"`.
+ */
 export type AnchorProps<TElement extends ElementType = "a"> = {
   iconAfter?: ReactNode;
   iconBefore?: ReactNode;

@@ -6,9 +6,9 @@ import {
   IconMicrophone,
   IconSearch,
 } from "@tabler/icons-react";
+import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
 import clsx from "clsx";
 import { useRef } from "react";
-import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
 
 import type { TopNavProps } from "./TopNav.js";
 
@@ -94,6 +94,15 @@ const metadata: Meta<typeof TopNav> = {
     },
   },
   component: TopNav,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Top navigation bar with logo, icon slots, item slots, sticky/transparent variants, and hanging logo mode. Integrates with `LayoutContext` for layout-aware positioning.",
+      },
+    },
+  },
+  title: "Structures/TopNav",
   render: Template,
 };
 

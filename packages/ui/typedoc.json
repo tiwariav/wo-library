@@ -1,0 +1,15 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "name": "@wo-library/ui",
+  "entryPoints": ["src/index.ts"],
+  "entryPointStrategy": "resolve",
+  "tsconfig": "./tsconfig.json",
+  "out": "../storybook-host/src/docs/ui",
+  "fileExtension": ".mdx",
+  "cleanOutputDir": true,
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "searchInComments": true
+}

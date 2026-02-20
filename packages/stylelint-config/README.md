@@ -1,42 +1,59 @@
-# stylelint-config
+# @wo-library/stylelint-config
 
-Shareable config for stylelint.
+Shareable Stylelint configuration for wo-library projects.
 
-## Known Issues
+Extends `stylelint-config-standard` and `stylelint-config-clean-order` with additional
+rules for accessibility, CSS nesting, defensive CSS, custom media queries, custom
+properties, and strict value declarations.
 
-- Vscode plugin issue with yarn pnp
-  <https://github.com/stylelint/vscode-stylelint/issues/464>
+## Included plugins
 
-When the above is fixed:
-
-- package can be converted to esm
-- Following packages can be used again
-  - <https://github.com/double-great/stylelint-a11y>
+| Plugin                                              | Purpose                                        |
+| --------------------------------------------------- | ---------------------------------------------- |
+| `@double-great/stylelint-a11y`                      | Accessibility rules for CSS                    |
+| `stylelint-config-clean-order`                      | Consistent property ordering                   |
+| `stylelint-media-use-custom-media`                  | Enforce custom media query variables           |
+| `stylelint-plugin-defensive-css`                    | Defensive CSS patterns                         |
+| `stylelint-use-nesting`                             | Encourage CSS nesting                          |
+| `stylelint-value-no-unknown-custom-properties`      | Validate custom property usage                 |
+| `stylelint-declaration-block-no-ignored-properties` | Catch ignored declarations                     |
+| `stylelint-declaration-strict-value`                | Enforce variable usage for specific properties |
 
 ## Installation
 
 ```bash
-npm install --save-dev stylelint @tiwariav/stylelint-config
+yarn add --dev stylelint @wo-library/stylelint-config
 ```
 
 ## Usage
 
-Use with the shared config:
+### `.stylelintrc.json`
 
-```javascript
+```json
 {
-  "extends": [
-    "@tiwariav/stylelint-config"
-  ]
+  "extends": ["@wo-library/stylelint-config"]
 }
 ```
 
-To only use a particular plugin:
+### Individual plugin only
 
-```javascript
+```json
 {
-  "plugins": [
-    "@tiwariav/stylelint-config/plugins/color"
-  ],
+  "plugins": ["@wo-library/stylelint-config/plugins/color"]
 }
 ```
+
+## Notable rules
+
+- `alpha-value-notation: "number"` — use `0.5` not `50%` for alpha
+- `font-weight-notation: "numeric"` — use `700` not `bold`
+- `max-nesting-depth: 4`
+- `at-rule-no-unknown: null` / `function-no-unknown: null` — allow PostCSS extensions
+
+## Known Issues
+
+- VS Code Stylelint extension has issues with Yarn PnP:
+  <https://github.com/stylelint/vscode-stylelint/issues/464>
+
+  Until fixed, the package remains CommonJS and `@double-great/stylelint-a11y` is excluded
+  from the default config (tracked for re-enabling).

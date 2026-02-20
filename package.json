@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "docs": "typedoc",
     "test": "yarn workspaces run test"
   },
   "devDependencies": {
@@ -119,6 +120,8 @@
     "type-fest": "^4.20.0",
     "typescript": "^5.4.5",
     "typescript-plugin-css-modules": "^5.1.0",
+    "typedoc": "^0.26.0",
+    "typedoc-plugin-markdown": "^4.0.0",
     "webpack": "^5.92.0"
   },
   "packageManager": "yarn@4.3.0"

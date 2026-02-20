@@ -1,0 +1,23 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "name": "@wo-library/react",
+  "entryPoints": [
+    "src/components/atoms/index.ts",
+    "src/components/molecules/index.ts",
+    "src/components/structures/index.ts",
+    "src/components/templates/index.ts",
+    "src/hooks/index.ts",
+    "src/contexts/index.ts"
+  ],
+  "entryPointStrategy": "resolve",
+  "tsconfig": "./tsconfig.json",
+  "exclude": ["**/*.stories.*", "**/__tests__/**", "**/testing/**"],
+  "out": "../storybook-host/src/docs/react",
+  "fileExtension": ".mdx",
+  "cleanOutputDir": true,
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "searchInComments": true
+}

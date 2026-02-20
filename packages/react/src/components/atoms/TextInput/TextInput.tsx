@@ -42,6 +42,19 @@ export const TEXT_INPUT_VARIANTS = [
 export type InputDomValue = number | string | undefined;
 export type InputFormValue = InputDomValue | null;
 
+/**
+ * Props for the `TextInput` component.
+ *
+ * @property hasError - Applies error styling when `true`.
+ * @property iconAfter - Icon node rendered after the input.
+ * @property iconBefore - Icon node rendered before the input.
+ * @property innerClassNames - Class name overrides for internal elements.
+ * @property isBusy - Shows a Spinner while a background operation is in progress.
+ * @property isLoading - Shows a skeleton content loader.
+ * @property label - Label text or node displayed above/inside the input.
+ * @property size - Size variant: `"small"` | `"large"`.
+ * @property variant - Visual style: `"outlined"` | `"material"` | `"basic"` | `"dashed"` | `"borderless"`.
+ */
 export interface TextInputProps
   extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   hasError?: boolean;

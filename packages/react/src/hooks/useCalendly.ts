@@ -18,11 +18,32 @@ async function loadCalendlyAssets() {
   }
 }
 
+/**
+ * Options for the {@link useCalendly} hook.
+ *
+ * @property calendlyLink - The full Calendly scheduling URL.
+ * @property prefill - Optional prefill data (name, email, etc.) for the popup.
+ */
 export interface CalendlyOptions {
   calendlyLink: string;
   prefill?: CalendlyPopupWidgetOptionsPrefill;
 }
 
+/**
+ * Loads the Calendly SDK on mount and returns a function to open the popup
+ * scheduling widget.
+ *
+ * @param options - The Calendly link and optional prefill data.
+ * @returns A function that opens the Calendly popup widget when called.
+ *
+ * @example
+ * ```tsx
+ * function BookButton() {
+ *   const openCalendly = useCalendly({ calendlyLink: "https://calendly.com/user/meeting" });
+ *   return <button onClick={openCalendly}>Book a Meeting</button>;
+ * }
+ * ```
+ */
 export default function useCalendly({
   calendlyLink,
   prefill,

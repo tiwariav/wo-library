@@ -42,6 +42,15 @@ export function Template({ cardWidth, variant, ...args }: TemplateProps) {
 const metadata: Meta<typeof Collection> = {
   component: Collection,
   excludeStories: /.*Template$/,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Page template for displaying a paginated grid or list of items. Supports filter controls, column configuration, and empty states.",
+      },
+    },
+  },
+  title: "Templates/Collection",
   render: Template,
 };
 

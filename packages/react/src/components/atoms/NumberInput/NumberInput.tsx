@@ -13,6 +13,18 @@ import type { InputDomValue, InputFormValue } from "../TextInput/TextInput.js";
 import { formatNumber, stringToNumber } from "../../../tools/number.js";
 import { FormattedInput } from "../FormattedInput/index.js";
 
+/**
+ * Props for the `NumberInput` component.
+ *
+ * Extends `FormattedInput` with automatic number formatting using `formatNumber`
+ * (Indian locale, `en-IN`).
+ *
+ * @property format - Formatting options passed to `formatNumber`, or `false` to
+ *   disable formatting, or `true` to use defaults.
+ * @property parse - When `true`, the `onChange` value is converted back to a
+ *   number string (removing locale separators).
+ * @property value - Current numeric value (number or numeric string).
+ */
 export interface NumberInputProps
   extends Omit<FormattedInputProps, "format" | "parse" | "value"> {
   format?: FormatNumberOptions | boolean;

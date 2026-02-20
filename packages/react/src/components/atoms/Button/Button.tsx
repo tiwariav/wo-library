@@ -12,10 +12,10 @@ import type {
   ReactNode,
 } from "react";
 
+import { overrideStyleProperty } from "@wo-library/web/tools/css.js";
 import { clsx } from "clsx";
 import { forwardRef, useEffect } from "react";
 import { useMouseHovered } from "react-use";
-import { overrideStyleProperty } from "@wo-library/web/tools/css.js";
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 
@@ -146,6 +146,21 @@ function useButtonEffects({
   }, [effects, mouseData, variant, neuOptions, innerRef]);
 }
 
+/**
+ * Props for the `Button` component.
+ *
+ * Extends all native `<button>` props plus shared button behaviour.
+ *
+ * @property iconAfter - Icon node rendered after the button label.
+ * @property iconBefore - Icon node rendered before the button label.
+ * @property isBusy - Shows a Spinner inside the button when `true`.
+ * @property isFullWidth - Stretches the button to fill its container.
+ * @property size - Size variant: `"small"` | `"large"` (default inherits).
+ * @property spacing - Padding variant (`"none"` | `"equal"` | `"less"` | `"extra"`).
+ * @property variant - Visual style (`"basic"`, `"primary"`, `"filled"`, `"outlined"`, `"inline"`, `"neu"`, etc.).
+ * @property effects - Interactive CSS effects: `"ripple"` | `"cursor-tracking"`.
+ * @property neuOptions - Neumorphic shadow colour overrides (for `variant="neu"`).
+ */
 export interface ButtonProps
   extends ComponentPropsWithoutRef<"button">,
     SharedButtonProps {
@@ -158,7 +173,19 @@ export interface ButtonProps
 }
 
 /**
- * Primary UI component for user interaction
+ * Primary interactive button component.
+ *
+ * Supports visual variants, icon slots, loading/busy state, CSS effects
+ * (ripple, cursor-tracking), and neumorphic styling.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="primary" iconBefore={<PlusIcon />} onClick={handleClick}>
+ *   Add item
+ * </Button>
+ *
+ * <Button isBusy variant="filled">Saving…</Button>
+ * ```
  */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

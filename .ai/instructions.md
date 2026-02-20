@@ -290,3 +290,13 @@ yarn workspace @wo-library/js build
 ```bash
 yarn workspace @wo-library/react storybook
 ```
+
+---
+
+## Additional Reference Documents
+
+| File | Purpose |
+| --- | --- |
+| `ARCHITECTURE.md` | Detailed architecture: package relationships, component design, state patterns, styling |
+| `ai-context.json` | Machine-readable metadata for AI agents (package exports, patterns, component descriptions) |
+| `docs/AI_AGENT_PLAN.md` | Documentation improvement roadmap and progress tracking |

@@ -21,10 +21,17 @@ import * as styles from "./fileInput.module.css";
 
 const FILE_INPUT_VARIANTS = ["outlined"] as const;
 
+/**
+ * Props for the {@link FileInput} component.
+ * @template TFile - Custom file type extending {@link UploadFile} (default: `UploadFile`).
+ */
 export interface FileInputProps<TFile extends UploadFile = UploadFile>
   extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+  /** Currently attached files displayed as a list below the input. */
   files?: TFile[];
+  /** Icon rendered after the placeholder text. */
   iconAfter?: ReactNode;
+  /** Icon rendered before the placeholder text. */
   iconBefore?: ReactNode;
   innerClassNames?: {
     input?: string;
@@ -32,13 +39,21 @@ export interface FileInputProps<TFile extends UploadFile = UploadFile>
     listItemDataInput?: string;
     placeholder?: string;
   };
+  /** Shows a spinner overlay while keeping content visible (see `isBusy` vs `isLoading` pattern). */
   isBusy?: boolean;
+  /** Label rendered above the file picker button. */
   label?: ReactNode;
+  /** Placeholder text shown on the browse button. @default 'Browse' */
   placeholder?: string;
+  /**
+   * Callback invoked when files are added, removed, or updated.
+   * Receives the updated file list and the action type.
+   */
   updateFiles?: (
     files: (File | TFile)[],
     action: "add" | "remove" | "update",
   ) => Promise<void> | void;
+  /** Visual variant for the file input button. */
   variant?: (typeof FILE_INPUT_VARIANTS)[number];
 }
 

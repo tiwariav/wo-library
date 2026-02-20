@@ -75,6 +75,15 @@ const pageMeta: Meta<typeof Page> = {
     topNav: { mapping: topNavMap, options: Object.keys(topNavMap) },
   },
   component: Page,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Full-page layout that composes `TopNav`, `SideNav`, `Hero`, and templated content areas. Central layout component for application pages.",
+      },
+    },
+  },
+  title: "Structures/Page",
   render: (args) => <Template {...args} />,
 };
 

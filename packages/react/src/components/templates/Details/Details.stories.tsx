@@ -16,6 +16,15 @@ export function Template(args: ComponentProps<typeof Details>) {
 
 const metadata: Meta<typeof Details> = {
   component: Details,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Page template for detail/item views with a main content area and an optional side content column.",
+      },
+    },
+  },
+  title: "Templates/Details",
   render: Template,
 };
 

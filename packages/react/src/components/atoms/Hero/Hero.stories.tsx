@@ -4,6 +4,7 @@ import Hero from "./Hero.js";
 
 const metadata: Meta<typeof Hero> = {
   component: Hero,
+  title: "Atoms/Hero",
 };
 
 export default metadata;

@@ -24,6 +24,19 @@ const {
   useContextState: useThemeState,
 } = createAndUseContext<ThemeState, ContextDispatch<ThemeMethods>>();
 
+/**
+ * Provider component for the theme context.
+ *
+ * Manages the active theme name and class name mappings. Split into
+ * state and method contexts to prevent unnecessary re-renders.
+ *
+ * @example
+ * ```tsx
+ * <ThemeProvider themeVariants={{ fresh: freshTheme.root, trusty: trustyTheme.root }}>
+ *   <App />
+ * </ThemeProvider>
+ * ```
+ */
 function ThemeProvider({ children, themeVariants }: ThemeProviderProps) {
   const memoizedInitialState = useMemo(
     () => ({ ...INITIAL_THEME_STATE, themeVariants }),

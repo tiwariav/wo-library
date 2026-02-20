@@ -17,15 +17,24 @@ import useProgressAnimation, {
 const DEFAULT_SLICE_ANGLE = 7.5;
 const CENTER = 50;
 
+/**
+ * Props for the {@link ArcProgress} component.
+ */
 interface ArcProgressProps {
+  /** Optional content rendered inside the arc (e.g., a label or icon). */
   children?: ReactNode;
   className?: string;
+  /** Override class names for individual arc segments. Keys follow `segment0`, `segment1`, … pattern. */
   innerClassNames?: {
     [key: `segment${number}`]: string;
+    /** Class applied to every segment. */
     segment?: string;
   };
+  /** Tuple of `[current, total]` used to calculate fill percentage. */
   progress: [number, number];
+  /** Number of discrete arc segments to divide the arc into. @default 1 */
   segments?: number;
+  /** SVG stroke width in viewBox units. @default 3 */
   strokeWidth?: number;
 }
 

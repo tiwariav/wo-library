@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRafState } from "react-use";
 import { isBrowser, off, on } from "react-use/esm/misc/util.js";
 
+/** Internal state tracked by {@link useScrollDirection}. */
 interface DirectionState {
   bodyHeight: number;
   direction: "" | "down" | "up";
@@ -35,6 +36,23 @@ function setScrollDirectionState(
   return { bodyHeight, direction, x, y };
 }
 
+/**
+ * Tracks scroll direction (`"up"` or `"down"`) on the window or a specific
+ * scrollable element.
+ *
+ * Uses `requestAnimationFrame`-throttled state updates for performance.
+ *
+ * @param ref - Optional ref to a scrollable element. Defaults to `window`.
+ * @returns An object with `{ direction, x, y, bodyHeight }` scroll state.
+ *
+ * @example
+ * ```tsx
+ * function Header() {
+ *   const { direction } = useScrollDirection();
+ *   return <header className={direction === "down" ? "hidden" : "visible"} />;
+ * }
+ * ```
+ */
 export default function useScrollDirection(ref?: RefObject<HTMLElement>) {
   const [state, setState] = useRafState<DirectionState>({
     bodyHeight: 0,

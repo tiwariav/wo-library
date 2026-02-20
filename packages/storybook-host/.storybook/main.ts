@@ -18,6 +18,8 @@ const config: StorybookConfig = {
     "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
     "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    // TypeDoc-generated API reference pages (produced by `yarn docs`)
+    "../src/docs/**/*.mdx",
   ],
   addons: [
     getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),

@@ -21,6 +21,23 @@ function getNewUrl({
   return url;
 }
 
+/**
+ * Redirects the browser to a logout path, optionally preserving the current
+ * URL as a `from` query parameter for post-login redirects.
+ *
+ * Reloads the window to clear session storage and any in-memory data.
+ *
+ * @param options - Configuration for the redirect.
+ * @param options.hashNavigation - Whether the app uses hash-based routing. Defaults to `true`.
+ * @param options.includeFrom - Whether to append a `from` param with the current path. Defaults to `true`.
+ * @param options.logoutPath - The path segment to redirect to. Defaults to `"logout"`.
+ * @param options.message - An optional message to pass as a query parameter.
+ *
+ * @example
+ * ```ts
+ * redirectToLogout({ message: "Session expired" });
+ * ```
+ */
 export function redirectToLogout({
   hashNavigation = true,
   includeFrom = true,

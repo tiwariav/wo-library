@@ -5,6 +5,14 @@ import type { WoRequestData, WoRequestQuery, XhrStateChange } from "./types.js";
 import { WoResponseError } from "../error/index.js";
 import { CONTENT_TYPE_FORM, CONTENT_TYPE_HEADER } from "./constants.js";
 
+/**
+ * Wraps a `Blob` (and optional key/value metadata) in a `FormData` instance
+ * for file upload requests.
+ *
+ * @param file - The file blob to upload.
+ * @param data - Optional string key/value pairs to include in the form data.
+ * @returns A `FormData` object ready for submission.
+ */
 export function getFormData(
   file: Blob,
   data?: Record<string, string>,
@@ -19,6 +27,13 @@ export function getFormData(
   return formData;
 }
 
+/**
+ * Joins a base URL and a relative URL, removing duplicate slashes.
+ *
+ * @param baseUrl - The base URL.
+ * @param relativeUrl - The path to append.
+ * @returns The combined URL string.
+ */
 export function combineUrls(baseUrl: string, relativeUrl?: string): string {
   const combinedUrl = relativeUrl
     ? `${baseUrl.replace(/\/+$/, "")}/${relativeUrl.replace(/^\/+/, "")}`
@@ -69,6 +84,15 @@ interface CreateUrlOptions {
   trailingSlash?: boolean;
 }
 
+/**
+ * Builds a full `URL` from an API endpoint and path, applying optional query
+ * parameters, resource ID, trailing slash, and dev proxy stripping.
+ *
+ * @param apiEndpoint - The base API endpoint.
+ * @param path - The resource path.
+ * @param options - URL construction options.
+ * @returns A fully constructed `URL` object.
+ */
 export function createUrl(
   apiEndpoint: string,
   path: string,
@@ -93,6 +117,14 @@ export function createUrl(
   return resourceUrl;
 }
 
+/**
+ * Creates a `Headers` or `Map<string, string>` instance depending on whether
+ * the request is XHR-based or fetch-based.
+ *
+ * @param xhr - Whether the request uses XMLHttpRequest.
+ * @param allHeaders - Key/value header pairs.
+ * @returns A `Headers` instance (fetch) or `Map` (XHR).
+ */
 export function getHeaderInstance(
   xhr: boolean,
   allHeaders: Record<string, string>,
@@ -105,6 +137,14 @@ export function getHeaderInstance(
   return headersInstance;
 }
 
+/**
+ * Returns an event handler for `XMLHttpRequest.onreadystatechange` that
+ * resolves or rejects a promise based on the final status code.
+ *
+ * @param options - The XHR object, optional state change callback, and
+ *   promise resolve/reject functions.
+ * @returns An event handler function.
+ */
 export function handleReadyStateChange({
   onStateChange,
   reject,
@@ -132,6 +172,14 @@ export function handleReadyStateChange({
   };
 }
 
+/**
+ * Prepares the request body for `fetch`. Serialises to JSON unless the
+ * content type is multipart form data.
+ *
+ * @param requestHeaders - The request headers (used to check content type).
+ * @param data - The request payload.
+ * @returns The body to pass to `fetch`.
+ */
 export function getFetchBody(
   requestHeaders: Headers | Map<string, string>,
   data?: WoRequestData,

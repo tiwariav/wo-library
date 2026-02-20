@@ -4,6 +4,7 @@ import Bookmark from "./Bookmark.js";
 
 const metadata: Meta<typeof Bookmark> = {
   component: Bookmark,
+  title: "Atoms/Bookmark",
 };
 
 export default metadata;

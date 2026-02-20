@@ -17,7 +17,16 @@ const metadata: Meta<typeof CircleProgress> = {
     strokeWidth: { control: { max: 100, min: 0, type: "range" } },
   },
   component: CircleProgress,
-  render: (args) => <CircleProgress {...args} />,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "SVG-based circular or arc progress indicator. Supports multi-segment progress arrays, configurable arc height, stroke width, and inline progress text.",
+      },
+    },
+  },
+  title: "Atoms/CircleProgress",
+  render: (args) => <CircleProgress {...args} />
 };
 
 export default metadata;

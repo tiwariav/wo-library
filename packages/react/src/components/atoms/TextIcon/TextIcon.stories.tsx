@@ -4,6 +4,7 @@ import TextIcon from "./TextIcon.js";
 
 const metadata: Meta<typeof TextIcon> = {
   component: TextIcon,
+  title: "Atoms/TextIcon",
 };
 
 export default metadata;

@@ -30,16 +30,37 @@ export type ChangeHandler = (
   shouldUpdate?: boolean,
 ) => void;
 
+/**
+ * Props for the {@link HookFormInputWrapper} component.
+ * @template TValues - react-hook-form `FieldValues` shape for the containing form.
+ */
 export type HookFormInputWrapperProps<TValues extends FieldValues> = {
+  /**
+   * The single form input element to control. Must accept an `onChange` prop
+   * compatible with {@link ChangeHandler}.
+   */
   children: ReactElement<
     {
       onChange?: ChangeHandler;
     } & ComponentPropsWithRef<"input">
   >;
+  /** Additional onChange handler called after react-hook-form's controller. */
   onChange?: ChangeEventHandler;
+  /** Whether to render a validation error message below the input. @default true */
   showError?: boolean;
 } & SetOptional<ControllerProps<TValues>, "control" | "render">;
 
+/**
+ * Connects any input component to react-hook-form via `useController`.
+ * Handles value synchronisation, validation errors, and react-select compatibility.
+ *
+ * @template TValues - The form's `FieldValues` type.
+ *
+ * @example
+ * <HookFormInputWrapper control={control} name="email" showError>
+ *   <TextInput label="Email" />
+ * </HookFormInputWrapper>
+ */
 export default function HookFormInputWrapper<TValues extends FieldValues>({
   children,
   name,

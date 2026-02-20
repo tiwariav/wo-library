@@ -12,6 +12,15 @@ import NumberInput from "./NumberInput.js";
 const metadata: Meta<typeof NumberInput> = {
   argTypes: iconArgTypes,
   component: NumberInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Numeric input with format configuration (via `format` prop), increment/decrement stepper controls, and icon slot support.",
+      },
+    },
+  },
+  title: "Atoms/NumberInput",
 };
 
 export default metadata;

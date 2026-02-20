@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Machine-readable metadata for AI agents working in the wo-library monorepo.",
+  "updated": "2026-02-20",
+  "packages": {
+    "@wo-library/js": {
+      "description": "Pure TypeScript utilities with no browser or React dependencies.",
+      "importPath": "@wo-library/js",
+      "categories": {
+        "array": {
+          "exports": ["range", "addOrUpdate"],
+          "description": "Create numeric ranges; add-or-update items in arrays."
+        },
+        "number": {
+          "exports": [
+            "formatNumber",
+            "formatNumberWithSuffix",
+            "ordinalNumber",
+            "stringToNumber"
+          ],
+          "description": "Number formatting using en-IN locale (Lakhs/Crores). formatNumber is the primary utility.",
+          "warnings": ["Always use en-IN locale — do NOT change to en-US."]
+        },
+        "objects": {
+          "exports": ["pushOrCreate", "getNestedValue"],
+          "description": "Push to array on object key (creating if absent); safely read deeply nested values."
+        },
+        "colors": {
+          "exports": ["rgbToHex", "hexToRgb", "randomGradientGenerator"],
+          "description": "Convert between RGB and hex colors; generate random CSS gradients."
+        },
+        "utils": {
+          "exports": ["isEmpty", "inSubArray"],
+          "description": "Check for empty values (null/undefined/empty string/array); check if any items match a sub-array."
+        },
+        "misc": {
+          "exports": ["wait"],
+          "description": "Promise-based delay helper."
+        },
+        "language": {
+          "exports": ["plularize"],
+          "description": "Conditionally pluralise a word based on count."
+        },
+        "path": {
+          "exports": ["posixPath"],
+          "description": "Normalise file paths to POSIX (forward-slash) format."
+        },
+        "svg": {
+          "exports": ["polarToCartesian", "describeArc"],
+          "description": "Compute SVG arc path data from polar coordinates."
+        },
+        "constants": {
+          "exports": ["INPUT_DEBOUNCE"],
+          "description": "Shared timing constants (INPUT_DEBOUNCE = 300ms)."
+        }
+      }
+    },
+    "@wo-library/web": {
+      "description": "Browser and DOM utilities for networking, storage, script loading, and CSS.",
+      "importPath": "@wo-library/web",
+      "categories": {
+        "fetch": {
+          "exports": ["WoFetch", "WoFetchBase"],
+          "importPath": "@wo-library/web",
+          "subPath": "fetch",
+          "description": "Configurable HTTP client. Extend WoFetch and call getUrl/postUrl/patchUrl/putUrl/deleteUrl."
+        },
+        "storage": {
+          "exports": ["AnyStorage", "anyStorageInstance"],
+          "importPath": "@wo-library/web",
+          "subPath": "storage",
+          "description": "Unified localStorage/sessionStorage/memory abstraction. Use anyStorageInstance for the singleton."
+        },
+        "script-loading": {
+          "exports": ["loadScript", "loadStylesheet"],
+          "description": "Dynamically inject external scripts and stylesheets with CSP nonce support."
+        },
+        "css": {
+          "exports": ["cssVariable", "overrideStyleProperty"],
+          "description": "Read and set CSS custom properties on DOM elements."
+        },
+        "svg": {
+          "exports": ["svgNodeToData", "responseTextToData"],
+          "importPath": "@wo-library/web",
+          "subPath": "svg",
+          "description": "Serialise SVG nodes or markup strings to data URIs."
+        },
+        "errors": {
+          "exports": [
+            "WoError",
+            "WoLoadScriptError",
+            "WoNetworkError",
+            "WoResponseError"
+          ],
+          "description": "Typed error hierarchy. WoResponseError carries data and HTTP status."
+        },
+        "routing": {
+          "exports": ["redirectToLogout"],
+          "importPath": "@wo-library/web",
+          "subPath": "others",
+          "description": "Redirect to logout path with optional from/message query params."
+        },
+        "payments": {
+          "exports": ["razorpayCheckout"],
+          "importPath": "@wo-library/web",
+          "subPath": "payments",
+          "description": "Open Razorpay checkout modal. Loads SDK dynamically."
+        }
+      }
+    },
+    "@wo-library/react": {
+      "description": "React components (atomic design) and hooks. Minimal styling, composable with any design system.",
+      "importPath": "@wo-library/react",
+      "components": {
+        "atoms": {
+          "description": "Primitive building blocks. All accept className and standard HTML props.",
+          "items": {
+            "Button": "Interactive button. Props: variant, size, spacing, isBusy, isFullWidth, iconBefore, iconAfter, effects (ripple/cursor-tracking).",
+            "TextInput": "Text input with label, icons, error state. Props: label, variant, size, hasError, isBusy, isLoading, iconBefore, iconAfter.",
+            "NumberInput": "Number input using en-IN locale formatting. Extends FormattedInput.",
+            "Modal": "Accessible dialog via @floating-ui/react. Props: isOpen, onClose, children.",
+            "Card": "Polymorphic container. Props: as, variant, layout, floating, image, isBusy.",
+            "Image": "Polymorphic image with aspect ratio. Props: as, aspectRatio, variant (basic/circular), isBusy, isLoading.",
+            "Text": "Text block with line clamping. Props: inline, maxLines, minLines, isBusy, isLoading.",
+            "Title": "Heading wrapper. Props: as, variant (tinyline/tinyline-left), align.",
+            "Container": "Layout container. Props: spacing, width, height, align, variant.",
+            "Anchor": "Polymorphic link. Props: as, variant, size, spacing, iconBefore, iconAfter, noVisited.",
+            "Tag": "Inline badge/label. Props: iconBefore, iconAfter, isBusy, isLoading.",
+            "Spinner": "Animated SVG spinner. Accepts span props.",
+            "Divider": "Horizontal rule.",
+            "Hero": "Hero section layout.",
+            "Label": "Form label element.",
+            "FormGroup": "Groups form fields together.",
+            "FormError": "Displays form validation error message.",
+            "InputWrapper": "Decorative wrapper for input fields.",
+            "ObserveInView": "Triggers callback when element enters viewport (IntersectionObserver).",
+            "LoaderWrapper": "Shows a spinner while isBusy is true."
+          }
+        },
+        "molecules": {
+          "description": "Compositions of multiple atoms.",
+          "items": {
+            "CardLink": "Card styled as a clickable link.",
+            "Popover": "Floating popover with trigger and content."
+          }
+        }
+      },
+      "hooks": {
+        "useMethods": "Type-safe useReducer with named methods. Returns [state, { method1, method2 }].",
+        "useCalendly": "Loads Calendly SDK and returns a function to open the popup widget.",
+        "useScrollDirection": "Returns { direction: 'up' | 'down' | '', x, y } updated on scroll.",
+        "useStateWithProp": "Like useState but auto-syncs when the prop changes.",
+        "usePropRef": "Merges forwardedRef(s) into a single innerRef + setInnerRef callback.",
+        "useMeasureInput": "Returns [labelRef, extraStyles] for multi-line label height compensation."
+      },
+      "contexts": {
+        "ThemeContext": {
+          "exports": ["ThemeProvider", "useThemeState", "useThemeMethods"],
+          "description": "Manages active theme name and class name. Use ThemeProvider at the app root."
+        },
+        "LayoutContext": {
+          "exports": ["LayoutProvider", "useLayoutState", "useLayoutMethods"],
+          "description": "Tracks layout dimensions, refs for topNav/sideNav, and breakpoints."
+        },
+        "createAndUseContext": "Utility to create split state+dispatch context pairs."
+      }
+    },
+    "@wo-library/ui": {
+      "description": "CSS styles, design-system themes, and SVG path data.",
+      "importPath": "@wo-library/ui",
+      "contents": {
+        "base.css": "CSS reset and base design tokens.",
+        "media.css": "Responsive breakpoint definitions.",
+        "media.ts": "TypeScript breakpoint constants.",
+        "themes": {
+          "fresh": "Fresh theme — fresh.module.css",
+          "trusty": "Trusty theme — trusty.module.css"
+        }
+      }
+    }
+  },
+  "patterns": {
+    "namedExportsOnly": "All public APIs use named exports. Never add default exports to public APIs.",
+    "typescriptStrict": "TypeScript strict mode is enabled. Use 'unknown' instead of 'any'.",
+    "indiaLocale": "Number formatting uses en-IN (Indian numbering system: Lakhs/Crores). Never change to en-US.",
+    "cssModules": "All component styles use *.module.css. No inline styles.",
+    "lodashEs": "Always import from 'lodash-es' (tree-shakeable), never from 'lodash'.",
+    "polymorphicAs": "Many components accept an 'as' prop to change the rendered HTML element.",
+    "busyVsLoading": {
+      "isBusy": "Background operation in progress — content visible, spinner overlaid.",
+      "isLoading": "Content not yet available — replaced with skeleton loader."
+    },
+    "splitContext": "State and dispatch contexts are always split into two providers to prevent unnecessary re-renders.",
+    "useMethods": "Prefer useMethods over useReducer for readable named-action state management."
+  },
+  "testing": {
+    "framework": "Jest with @jest/globals",
+    "imports": "Import from '@jest/globals', not the jest global",
+    "components": "Use React Testing Library",
+    "location": "Test files go in __tests__/ subdirectories alongside source"
+  },
+  "buildSystem": {
+    "bundler": "Rollup",
+    "typescript": "Compiled via Babel (not tsc direct) for builds",
+    "output": "ESM only: dist/index.js + dist/index.d.ts"
+  },
+  "documentation": {
+    "primaryHub": "Storybook (packages/storybook-host). All docs live in one place.",
+    "componentDocs": "Storybook autodocs (autodocs: true) automatically extracts JSDoc from TypeScript component props via react-docgen-typescript.",
+    "apiDocs": {
+      "tool": "TypeDoc + typedoc-plugin-markdown",
+      "command": "yarn docs",
+      "description": "Generates markdown API reference for all packages and outputs it as .mdx files into packages/storybook-host/src/docs/. These are picked up by Storybook's stories glob and appear as API reference pages alongside component stories.",
+      "outputDir": "packages/storybook-host/src/docs/",
+      "gitignored": true,
+      "perPackageConfigs": {
+        "packages/js/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/js",
+        "packages/react/typedoc.json": "Entries: atoms/molecules/structures/templates/hooks/contexts → ../storybook-host/src/docs/react",
+        "packages/web/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/web",
+        "packages/ui/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/ui"
+      }
+    },
+    "storybook": {
+      "host": "packages/storybook-host",
+      "version": 8,
+      "storiesGlobs": [
+        "packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+        "packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+        "packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+        "packages/storybook-host/src/docs/**/*.mdx"
+      ],
+      "autodocs": true,
+      "defaultDocName": "Documentation",
+      "controlsSort": "requiredFirst"
+    },
+    "ciWorkflow": ".github/workflows/docs.yml",
+    "ciWorkflowDescription": "On push to main: build packages → yarn docs (TypeDoc) → build-storybook → deploy to GitHub Pages.",
+    "storybookHierarchy": {
+      "Atoms/*": "Individual UI primitives (Button, TextInput, Modal, etc.)",
+      "Molecules/*": "Compositions of atoms (CardLink, Popover)",
+      "Structures/*": "Page-level sections (Page, SideNav, TopNav, WoSwiper)",
+      "Templates/*": "Full page layouts (Collection, Details, Profile)",
+      "API/*": "TypeDoc-generated API reference for utilities, hooks, and types"
+    }
+  }
+}

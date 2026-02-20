@@ -22,6 +22,15 @@ export const CONTAINER_SPACINGS = [
 export const CONTAINER_HEIGHTS = ["readable", "full"] as const;
 export const CONTAINER_WIDTHS = ["small", "xsmall"] as const;
 
+/**
+ * Props for the `Container` layout component.
+ *
+ * @property align - `"center"` horizontally centres the container.
+ * @property height - `"readable"` caps height for readability; `"full"` fills available height.
+ * @property spacing - Internal padding: `"none"` | `"small"` | `"large"` | `"horizontal"`.
+ * @property variant - `"secondary"` applies alternate background styling.
+ * @property width - Constrains max-width: `"small"` | `"xsmall"`.
+ */
 export interface ContainerProps extends ComponentPropsWithoutRef<"div"> {
   align?: "center";
   height?: (typeof CONTAINER_HEIGHTS)[number];

@@ -145,18 +145,41 @@ export function TooltipBody({
   );
 }
 
+/**
+ * Props for the {@link Tooltip} component.
+ */
 export interface TooltipProps
   extends TooltipCommonProps,
     UseTooltipOptions,
     TooltipBodySharedProps {
+  /** Enables CSS transition animations on the floating element. */
   animate?: boolean;
   className?: string;
+  /** Renders the floating element inside a `<FloatingPortal>` to escape stacking contexts. */
   portal?: boolean;
   style?: CSSProperties;
+  /** Content rendered inside the tooltip/popover body. */
   title: ReactNode;
+  /** Interaction type that opens the tooltip: `'hover'`, `'click'`, or `'focus'`. */
   trigger?: TriggerOptions;
 }
 
+/**
+ * Floating tooltip or popover built on `@floating-ui/react`.
+ * Wraps children in a trigger element and positions `title` content nearby.
+ *
+ * @example
+ * // Hover tooltip
+ * <Tooltip title="More info" trigger="hover">
+ *   <IconInfoCircle />
+ * </Tooltip>
+ *
+ * @example
+ * // Click popover rendered in a portal
+ * <Tooltip title={<PopoverContent />} trigger="click" portal isPopover>
+ *   <Button>Open</Button>
+ * </Tooltip>
+ */
 export default function Tooltip({
   children,
   innerClassNames,

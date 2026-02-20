@@ -9,6 +9,7 @@ const metadata: Meta<typeof Divider> = {
     color: { control: "color" },
   },
   component: Divider,
+  title: "Atoms/Divider",
 };
 
 export default metadata;

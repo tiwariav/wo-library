@@ -1,4 +1,42 @@
-# @tiwariav/eslint-config
+# @wo-library/eslint-config
+
+Shareable ESLint configuration for the wo-library monorepo and consuming projects.
+Covers TypeScript, React, JSX accessibility, CSS Modules, i18n (FormatJS), testing,
+Storybook, and code-quality rules.
+
+## Installation
+
+```bash
+yarn add --dev @wo-library/eslint-config
+```
+
+## Usage
+
+### Flat config (ESLint v9+)
+
+```javascript
+// eslint.config.js
+import config from "@wo-library/eslint-config";
+export default config;
+```
+
+### CommonJS flat config (VS Code ESLint extension compatibility)
+
+```javascript
+// eslint.config.cjs
+const config = require("@wo-library/eslint-config/flatConfig.cjs");
+module.exports = config;
+```
+
+### Next.js projects
+
+```javascript
+// eslint.config.js
+import config from "@wo-library/eslint-config/nextjs";
+export default config;
+```
+
+## Included plugins
 
 The config extends recommended configs from:
 

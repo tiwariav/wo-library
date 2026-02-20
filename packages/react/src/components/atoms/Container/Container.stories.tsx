@@ -13,7 +13,16 @@ const metadata: Meta<typeof Container> = {
     children: "This is a container. It provides space around content.",
   },
   component: Container,
-  render: (args) => <Container className="story-bordered" {...args} />,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Layout container with configurable max-width presets, spacing, alignment, height, and overflow modes. Primary building block for page structure.",
+      },
+    },
+  },
+  title: "Atoms/Container",
+  render: (args) => <Container className="story-bordered" {...args} />
 };
 
 export default metadata;

@@ -5,6 +5,17 @@ import { Children } from "react";
 
 import * as styles from "./bookmark.module.css";
 
+/**
+ * Breadcrumb-style list of items separated by chevron icons.
+ * Each `children` element becomes a breadcrumb segment.
+ *
+ * @example
+ * <Bookmark>
+ *   <span>Home</span>
+ *   <span>Products</span>
+ *   <span>Details</span>
+ * </Bookmark>
+ */
 export default function Bookmark({
   children,
   ...props

@@ -6,6 +6,15 @@ import Text from "./Text.js";
 
 const metadata: Meta<typeof Text> = {
   component: Text,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Text display with line clamping (`maxLines`/`minLines`), block/inline rendering, and skeleton loading state via `isLoading`.",
+      },
+    },
+  },
+  title: "Atoms/Text",
 };
 
 export default metadata;

@@ -7,6 +7,15 @@ import { HookFormInputWrapper } from "./index.js";
 
 const meta = {
   component: HookForm,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Thin wrapper around `react-hook-form`'s `FormProvider`. Accepts `errors` to display field-level validation messages. Wrap form fields as children.",
+      },
+    },
+  },
+  title: "Atoms/HookForm",
 };
 
 export default meta;

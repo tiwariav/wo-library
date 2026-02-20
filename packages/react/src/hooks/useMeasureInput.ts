@@ -3,6 +3,7 @@ import type { RefObject } from "react";
 import { cssVariable } from "@wo-library/web/tools/css.js";
 import { useEffect, useRef, useState } from "react";
 
+/** Computed style overrides for an input element based on label measurement. */
 interface CalculatedInputStyles {
   input?: {
     height: number;
@@ -10,6 +11,26 @@ interface CalculatedInputStyles {
   };
 }
 
+/**
+ * Measures a label element's height and computes padding/height adjustments
+ * for its associated input when the label wraps to multiple lines.
+ *
+ * @returns A `[labelRef, extraStyles]` tuple. Attach `labelRef` to the
+ *   `<label>` element; apply `extraStyles.input` to the input element.
+ *
+ * @example
+ * ```tsx
+ * function TextInput({ label }: { label: string }) {
+ *   const [labelRef, extraStyles] = useMeasureInput();
+ *   return (
+ *     <div>
+ *       <label ref={labelRef}>{label}</label>
+ *       <input style={extraStyles.input} />
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
 export default function useMeasureInput(): [
   RefObject<HTMLLabelElement>,
   CalculatedInputStyles,

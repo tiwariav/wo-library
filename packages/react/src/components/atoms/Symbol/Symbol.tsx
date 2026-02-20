@@ -2,21 +2,23 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 
+import { SVGPathFlagData, SVGPathPinData } from "@wo-library/ui";
 import { clsx } from "clsx";
 import { forwardRef, useId } from "react";
 
-import { SVGPathFlagData, SVGPathPinData } from "@wo-library/ui";
 import * as styles from "./symbol.module.css";
 
-const SVGPathFlag = (props: ComponentPropsWithoutRef<"path">) => (
-  <path d={SVGPathFlagData.d} {...props} />
-);
+function SVGPathFlag(props: ComponentPropsWithoutRef<"path">) {
+  return <path d={SVGPathFlagData.d} {...props} />;
+}
 
-const SVGPathPin = (props: ComponentPropsWithoutRef<"path">) => (
-  <g transform={SVGPathPinData.transform}>
-    <path d={SVGPathPinData.d} {...props} />
-  </g>
-);
+function SVGPathPin(props: ComponentPropsWithoutRef<"path">) {
+  return (
+    <g transform={SVGPathPinData.transform}>
+      <path d={SVGPathPinData.d} {...props} />
+    </g>
+  );
+}
 
 const SYMBOL_VARIANTS = ["circle", "flag", "pin", "triangle"] as const;
 
@@ -33,10 +35,17 @@ function imageTransform(variant: (typeof SYMBOL_VARIANTS)[number]) {
     }
   }
 }
+/**
+ * Props for the {@link Symbol} component.
+ */
 interface SymbolProps extends ComponentPropsWithoutRef<"svg"> {
+  /** Fill colour applied to the shape mask. */
   fill?: string;
+  /** Extra props forwarded to the SVG `<image>` element (when `imageSrc` is set). */
   imageProps?: ComponentPropsWithoutRef<"image">;
+  /** URL of an image rendered inside the shape mask (e.g. a map pin avatar). */
   imageSrc?: string;
+  /** Shape mask applied to the content. One of `'circle'`, `'flag'`, `'pin'`, `'triangle'`. */
   variant?: (typeof SYMBOL_VARIANTS)[number];
 }
 

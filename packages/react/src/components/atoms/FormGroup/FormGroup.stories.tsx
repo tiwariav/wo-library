@@ -4,6 +4,7 @@ import FormGroup from "./FormGroup.js";
 
 const metadata: Meta<typeof FormGroup> = {
   component: FormGroup,
+  title: "Atoms/FormGroup",
 };
 
 export default metadata;

@@ -39,6 +39,15 @@ const metadata: Meta<typeof WoSwiper> = {
     },
   },
   component: WoSwiper,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Horizontally scrollable carousel using Swiper.js. Supports multiple variants, navigation arrows, optional 'see more' links, and overflow modes.",
+      },
+    },
+  },
+  title: "Structures/WoSwiper",
   render: (args) => <Template {...args} />,
 };
 

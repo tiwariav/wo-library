@@ -25,24 +25,39 @@ export type FormattedInputParse = (
   emptyValue: InputFormValue,
 ) => InputFormValue;
 
+/**
+ * Props for the {@link FormattedInput} component.
+ */
 export interface FormattedInputProps
   extends Omit<TextInputProps, "innerClassNames" | "onChange"> {
+  /** Initial raw DOM value before user interaction. */
   defaultValue?: InputDomValue;
+  /** Form value emitted when the input is empty. @default '' */
   emptyValue?: InputFormValue;
+  /** Transforms the raw DOM value into a display string. */
   format?: (value: InputDomValue) => string;
+  /** Extra props forwarded to the hidden `<input>` that carries the parsed form value. */
   hiddenInputProps?: object;
   id?: string;
   innerClassNames?: {
     textInput?: string;
   } & TextInputProps["innerClassNames"];
+  /** Shows a spinner overlay while keeping content visible (see `isBusy` vs `isLoading` pattern). */
   isBusy?: boolean;
+  /** Replaces content with a skeleton while data is loading. */
   isLoading?: boolean;
+  /**
+   * Extended onChange handler receiving the synthetic event, the parsed form value,
+   * and a `shouldUpdate` flag indicating whether the parsed value actually changed.
+   */
   onChange?: (
     event: ChangeEvent<HTMLInputElement>,
     value: InputFormValue,
     shouldUpdate: boolean,
   ) => void;
+  /** Converts the raw DOM string into the form value stored in state. */
   parse?: FormattedInputParse;
+  /** Controlled form value (parsed, not the display string). */
   value?: number | string;
 }
 

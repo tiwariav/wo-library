@@ -10,6 +10,15 @@ import Tooltip from "./Tooltip.js";
 
 const metadata: Meta<typeof Tooltip> = {
   component: Tooltip,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Floating tooltip powered by `@floating-ui/react`. Supports click and hover triggers, configurable placement, and optional enter/exit animation.",
+      },
+    },
+  },
+  title: "Atoms/Tooltip",
   render: (args) => <Tooltip {...args} />,
 };
 

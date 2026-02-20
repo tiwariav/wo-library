@@ -8,6 +8,15 @@ const metadata: Meta<typeof Spinner> = {
     color: { control: "color" },
   },
   component: Spinner,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Animated SVG loading spinner. Place inside a `position: relative` container. Automatically used by `isBusy` on parent components.",
+      },
+    },
+  },
+  title: "Atoms/Spinner",
 };
 
 export default metadata;

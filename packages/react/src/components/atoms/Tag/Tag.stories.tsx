@@ -9,7 +9,16 @@ const metadata: Meta<typeof Tag> = {
     iconBefore: storyIconControl,
   },
   component: Tag,
-  render: (args) => <Tag {...args} />,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Inline label/badge with icon slots and loading state. Used for categories, status indicators, and metadata chips.",
+      },
+    },
+  },
+  title: "Atoms/Tag",
+  render: (args) => <Tag {...args} />
 };
 
 export default metadata;

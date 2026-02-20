@@ -14,6 +14,15 @@ const metadata: Meta<typeof PhoneNumberInput> = {
     label: "Phone Number",
   },
   component: PhoneNumberInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Phone number input built on `FormattedInput` with automatic country-code prefix formatting.",
+      },
+    },
+  },
+  title: "Atoms/PhoneNumberInput",
   render: (args) => <Template {...args} />,
 };
 

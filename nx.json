@@ -8,6 +8,10 @@
       "dependsOn": ["^build"],
       "cache": true
     },
+    "docs": {
+      "cache": true,
+      "dependsOn": ["^build"]
+    },
     "test": {
       "cache": true
     },

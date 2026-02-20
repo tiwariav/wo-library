@@ -15,6 +15,15 @@ import HookFormInputWrapper from "./HookFormInputWrapper.js";
 
 const metadata = {
   component: HookFormInputWrapper,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Connects any input to `react-hook-form` context via a `name` prop. Handles value, onChange, and error propagation without boilerplate.",
+      },
+    },
+  },
+  title: "Atoms/HookFormInputWrapper",
 };
 
 export default metadata;

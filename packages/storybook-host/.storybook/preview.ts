@@ -4,6 +4,10 @@ import "./preview.css";
 
 const preview: Preview = {
   parameters: {
+    controls: {
+      // Show required props first in the Controls panel and autodocs args table
+      sort: "requiredFirst",
+    },
     // for addon-actions to work with regex with TS
     // add argTypes explicitly for components which extend
     // the change handlers from a different type till this issue is resolved

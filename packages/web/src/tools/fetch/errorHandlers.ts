@@ -5,6 +5,13 @@ import {
   HTTP_STATUS,
 } from "./constants.js";
 
+/**
+ * Extracts the response body as JSON (if content type is JSON) or plain text.
+ *
+ * @typeParam TResponseData - Expected shape of a JSON response body.
+ * @param response - The `Response` object from `fetch`.
+ * @returns The parsed JSON object or raw text string.
+ */
 export async function getResponseData<TResponseData>(
   response: Response,
 ): Promise<TResponseData | string> {
@@ -30,6 +37,15 @@ const ERROR_MESSAGES = {
   [HTTP_STATUS.unauthorized]: "Your session has expired!",
 };
 
+/**
+ * Default error handler that throws a {@link WoNetworkError} when no response
+ * is available, or a {@link WoResponseError} with parsed data and a
+ * human-readable message for known status codes.
+ *
+ * @typeParam TResponseData - Expected shape of the error response body.
+ * @param response - The `Response` object (may be `undefined` for network errors).
+ * @param error - The original error, if any.
+ */
 export async function defaultErrorHandler<TResponseData>(
   response?: Response,
   error?: unknown,

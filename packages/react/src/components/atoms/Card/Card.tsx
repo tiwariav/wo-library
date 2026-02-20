@@ -27,6 +27,21 @@ export const CARD_VIEW_MODES = ["thumb"] as const;
 export const CARD_HEIGHTS = ["full"] as const;
 export const CARD_FLYING = ["medium"] as const;
 
+/**
+ * Polymorphic card container component.
+ *
+ * @typeParam TElement - The underlying HTML element type (defaults to `"div"`).
+ *
+ * @property floating - Box-shadow depth level.
+ * @property flying - Hover elevation effect (`"medium"`).
+ * @property height - `"full"` makes the card fill its parent's height.
+ * @property image - Image node rendered in the card image slot.
+ * @property innerClassNames.content - Class override for the content wrapper.
+ * @property isBusy - Shows a loading spinner overlay.
+ * @property layout - `"horizontal"` places image and content side-by-side.
+ * @property variant - `"basic"` (default) | `"borderless"`.
+ * @property viewMode - `"thumb"` uses thumbnail image dimensions.
+ */
 export type CardProps<TElement extends ElementType = "div"> = {
   floating?: (typeof COMPONENT_FLOAT)[number];
   flying?: (typeof CARD_FLYING)[number];

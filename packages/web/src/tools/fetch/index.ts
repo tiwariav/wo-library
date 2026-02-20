@@ -35,6 +35,16 @@ interface UploadXhrOptions {
   transferCompleteFunction?: XhrEventListener;
 }
 
+/**
+ * Configurable fetch wrapper providing auth header injection, URL construction,
+ * pluggable error/response handlers, and XHR-based file upload with progress.
+ *
+ * @example
+ * ```ts
+ * const api = new WoFetchBase({ endpoint: "https://api.example.com" });
+ * const data = await api.fetchUrl<User>("GET", "/users/1");
+ * ```
+ */
 export class WoFetchBase {
   authHeader = "Authorization";
   authTokenPrefix = "Bearer";
@@ -194,6 +204,16 @@ export class WoFetchBase {
   }
 }
 
+/**
+ * Extended fetch wrapper with pre-bound convenience methods for each HTTP verb.
+ *
+ * @example
+ * ```ts
+ * const api = new WoFetch({ endpoint: "https://api.example.com" });
+ * const user = await api.getUrl<User>("/users/1");
+ * await api.postUrl("/users", { data: { name: "Alice" } });
+ * ```
+ */
 export class WoFetch extends WoFetchBase {
   deleteUrl = this.generateFetchMethod("DELETE");
   getUrl = this.generateFetchMethod("GET");

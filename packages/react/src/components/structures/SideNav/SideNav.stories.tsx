@@ -60,6 +60,15 @@ function Template(args: ComponentProps<typeof BasicSideNav>) {
 
 const metadata: Meta<typeof SideNav> = {
   component: SideNav,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Collapsible side navigation panel. Toggle state is managed via `LayoutContext`. Use `SideNavGroup` and `SideNavTitle` for hierarchical section grouping.",
+      },
+    },
+  },
+  title: "Structures/SideNav",
   render: Template,
 };
 

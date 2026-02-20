@@ -15,6 +15,15 @@ import { clsx } from "clsx";
 
 import * as styles from "./modal.module.css";
 
+/**
+ * Props for the `Modal` component.
+ *
+ * @property children - Modal content.
+ * @property className - Additional class name for the modal panel.
+ * @property innerClassNames.overlay - Class name override for the backdrop overlay.
+ * @property isOpen - Controls the modal visibility.
+ * @property onClose - Called when the modal should close (overlay click, Esc key).
+ */
 export interface ModalProps {
   children: ReactNode;
   className?: string;
@@ -25,6 +34,19 @@ export interface ModalProps {
   onClose?: () => void;
 }
 
+/**
+ * Accessible modal dialog built with `@floating-ui/react`.
+ *
+ * Renders into a portal, traps focus, and closes on outside click or Esc.
+ *
+ * @example
+ * ```tsx
+ * <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
+ *   <h2>Confirm deletion</h2>
+ *   <Button onClick={handleDelete}>Delete</Button>
+ * </Modal>
+ * ```
+ */
 export default function Modal({
   children,
   className,

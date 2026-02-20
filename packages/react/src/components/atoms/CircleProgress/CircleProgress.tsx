@@ -17,6 +17,13 @@ const MAX_PERCENT = 100;
 const MAX_ROTATION = 180;
 const ROTATION_OFFSET = 90;
 
+/**
+ * Returns a CSS class key based on the completion percentage.
+ * Returns `'progressNone'` (≤0%), `'progressPartial'` (<100%), or `'progressFull'` (100%).
+ *
+ * @param percentage - Completion percentage between 0 and 100.
+ * @returns Class name key for styling.
+ */
 export function getProgressClass(percentage: number) {
   if (percentage <= 0) {
     return "progressNone";
@@ -102,10 +109,16 @@ interface CircleStyle {
   strokeDashoffset: number;
 }
 
+/**
+ * Props for the {@link CircleProgress} component.
+ */
 interface CircleProgressProps {
+  /** Percentage of the circle height to render (controls arc slice). @default 100 */
   arcHeight?: number;
+  /** Optional content rendered at the center of the circle. */
   children?: ReactNode;
   className?: string;
+  /** Override class names for internal SVG elements. */
   innerClassNames?: {
     circleBackground?: string;
     progressFull?: string;
@@ -113,11 +126,19 @@ interface CircleProgressProps {
     progressPartial?: string;
     text?: string;
   };
+  /** Tuple of `[current, total]` used to compute fill percentage. */
   progress: [number, number];
+  /**
+   * Controls the SVG centre text. Use `'parts'` (current/total), `'percent'` (e.g. `'42%'`),
+   * `'value'` (current), or a custom suffix string appended to the current value.
+   */
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   progressText?: "parts" | "percent" | "value" | string;
+  /** Whether to use round line-caps on the progress arc. @default true */
   roundEdges?: boolean;
+  /** Size of the enclosing SVG viewBox square. @default 20 */
   squareSize?: number;
+  /** SVG stroke width in viewBox units. @default 2 */
   strokeWidth?: number;
 }
 

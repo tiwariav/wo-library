@@ -7,17 +7,28 @@ import { useInView } from "react-intersection-observer";
 
 import * as styles from "./observeInView.module.css";
 
+/**
+ * Props for the {@link ObserveInView} component.
+ */
 interface ObserveInViewProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Whether CSS animation classes should be applied when the element enters/leaves the viewport. */
   animate: boolean;
   children: React.ReactNode;
   className?: string;
+  /** Additional CSS class names applied in response to intersection state changes. */
   dynamicClasses?: {
+    /** Applied when `animate` is `true`. */
     animate?: string;
+    /** Applied when the element is in the viewport. */
     inView?: string;
+    /** Applied when out of view and scrolled below the viewport. */
     outBottom?: string;
+    /** Applied when out of view and scrolled above the viewport. */
     outTop?: string;
   };
+  /** Options forwarded to `react-intersection-observer`'s `useInView`. */
   observeOptions: IntersectionOptions;
+  /** Callback fired whenever visibility state changes. */
   onViewChange?: (inView: boolean) => void;
 }
 

@@ -7,6 +7,15 @@ import CardLink, { type CardLinkProps } from "./CardLink.js";
 
 const metadata: Meta<typeof CardLink> = {
   component: CardLink,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Card styled as a navigable link. Attach a ref to the primary `<Anchor>` child via `linkRef` so clicks anywhere on the card activate the link.",
+      },
+    },
+  },
+  title: "Molecules/CardLink",
 };
 
 export default metadata;

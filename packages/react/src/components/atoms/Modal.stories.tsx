@@ -44,8 +44,15 @@ function Template({ isOpen, modalContent, onClose, ...args }: TemplateProps) {
 
 const metadata: Meta<TemplateProps> = {
   component: Modal,
+  title: "Atoms/Modal",
   parameters: {
-    docs: { story: { inline: false } },
+    docs: {
+      description: {
+        component:
+          "Dialog overlay with optional header/footer slots, backdrop click-to-close, and focus trapping. Controlled via `isOpen`/`onClose` props.",
+      },
+      story: { inline: false },
+    },
   },
   render: (args) => <Template {...args} />,
 };

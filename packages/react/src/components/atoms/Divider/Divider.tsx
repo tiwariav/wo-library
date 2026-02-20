@@ -12,8 +12,13 @@ import * as styles from "./divider.module.css";
 
 const DIVIDER_SPACING_OPTIONS = ["none", "small", "medium", "large"] as const;
 
+/**
+ * Props for the {@link Divider} component.
+ */
 export interface DividerProps extends ComponentPropsWithoutRef<"div"> {
+  /** Controls the margin size around the divider. @default 'medium' */
   spacing?: (typeof DIVIDER_SPACING_OPTIONS)[number];
+  /** Renders a vertical divider (`<div>`) instead of horizontal (`<hr>`). */
   vertical?: boolean;
 }
 

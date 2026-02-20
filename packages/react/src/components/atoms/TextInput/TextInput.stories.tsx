@@ -9,6 +9,15 @@ const metadata: Meta<typeof TextInput> = {
     iconBefore: storyIconControl,
   },
   component: TextInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Text input field with optional leading/trailing icon slots, multiple style variants, and full label support.",
+      },
+    },
+  },
+  title: "Atoms/TextInput",
   render: (args) => (
     <div style={{ width: 240 }}>
       <TextInput {...args} />

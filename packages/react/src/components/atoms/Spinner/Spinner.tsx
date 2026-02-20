@@ -5,6 +5,17 @@ import { useId } from "react";
 
 import * as styles from "./spinner.module.css";
 
+/**
+ * Animated SVG spinner for loading states.
+ *
+ * Renders as a `<span>` wrapper; accepts all native `<span>` props including
+ * `className` and `style`.
+ *
+ * @example
+ * ```tsx
+ * <Spinner style={{ color: "var(--primary-color)" }} />
+ * ```
+ */
 export default function Spinner({
   className,
   ...props

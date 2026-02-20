@@ -7,6 +7,14 @@ import Spinner from "../Spinner/Spinner.js";
 import TagLoader from "./TagLoader.js";
 import * as styles from "./tag.module.css";
 
+/**
+ * Inline label/badge component with optional icon slots and loading states.
+ *
+ * @property iconAfter - Node rendered after the tag label.
+ * @property iconBefore - Node rendered before the tag label.
+ * @property isBusy - Overlays a spinner on the tag.
+ * @property isLoading - Replaces content with a skeleton loader.
+ */
 interface TagProps extends ComponentPropsWithoutRef<"span"> {
   iconAfter?: ReactNode;
   iconBefore?: ReactNode;

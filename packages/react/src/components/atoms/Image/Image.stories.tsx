@@ -16,7 +16,16 @@ export function Template({ width, ...args }: TemplateProps) {
 const metadata: Meta<TemplateProps> = {
   component: Image,
   excludeStories: /.*Template$/,
-  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Image component with built-in loading skeleton state, circular and rectangular variants, and configurable dimensions.",
+      },
+    },
+  },
+  title: "Atoms/Image",
+  render: Template
 };
 
 export default metadata;

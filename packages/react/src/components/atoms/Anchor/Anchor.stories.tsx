@@ -17,7 +17,16 @@ const metadata: Meta<typeof Anchor> = {
     iconBefore: storyIconControl,
   },
   component: Anchor,
-  render: (args) => <Anchor href="/" {...args} />,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Polymorphic link component with icon slots and multiple visual variants. Renders as `<a>` by default; change with the `as` prop.",
+      },
+    },
+  },
+  title: "Atoms/Anchor",
+  render: (args) => <Anchor href="/" {...args} />
 };
 export default metadata;
 

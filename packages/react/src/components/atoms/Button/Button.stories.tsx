@@ -24,7 +24,16 @@ const metadata: Meta<typeof Button> = {
     },
   },
   component: Button,
-  render: (args) => <Button {...args} />,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Versatile button with variants (primary, outlined, ghost, borderless), sizes, icon slots (before/after), loading/busy states, and visual effects. Accepts an `as` prop to render as any element.",
+      },
+    },
+  },
+  title: "Atoms/Button",
+  render: (args) => <Button {...args} />
 };
 
 export default metadata;
