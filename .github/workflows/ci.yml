@@ -1,0 +1,35 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    lint-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - uses: tiwariav/github-actions/cache-js-linters@main
+
+            - run: yarn install --immutable
+
+            - run: yarn eslint --cache --cache-strategy=content --quiet src
+
+            - run: yarn stylelint --cache ./src/**/*.css
+
+            - run: yarn prettier --cache --check src
+
+            - run: yarn jscpd src
+
+            - run: npx nx affected -t build
+
+            - run: npx nx affected -t test

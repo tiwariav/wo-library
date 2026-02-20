@@ -2,7 +2,7 @@ import type { ForwardedRef } from "react";
 
 import { useEffect, useLayoutEffect } from "react";
 import { useLockBodyScroll, useScrollbarWidth, useWindowSize } from "react-use";
-import { cssVariable } from "wo-library/tools/css.js";
+import { cssVariable } from "@wo-library/web/tools/css.js";
 
 import {
   useLayoutMethods,

@@ -1,4 +1,4 @@
-import { getEsConfig } from "./src/tools/rollup/configs.js";
+import { getEsConfig } from "@wo-library/js/tools/rollup/configs.js";
 
 const config = getEsConfig({ isDev: false });
 

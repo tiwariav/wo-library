@@ -1,16 +1,28 @@
 name: "Chromatic"
 
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  chromatic-deployment:
+  chromatic:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - run: yarn install
+      - run: npx nx run-many -t build
+
       - uses: chromaui/action@v1
         with:
-          onlyChanged: true
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/storybook-host
+          buildScriptName: build-storybook
+          onlyChanged: true
+          exitOnceUploaded: true

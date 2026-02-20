@@ -1,22 +1,22 @@
 {
   "name": "@wo-library/react",
-  "version": "4.0.12",
+  "version": "5.0.13",
   "type": "module",
   "sideEffects": false,
   "engines": {
     "node": ">=18.0.0"
   },
-  "description": "A modern, minimal design system",
+  "description": "A component library smooth on the edges",
   "license": "MIT",
   "keywords": [
-    "ye-design",
-    "ui",
+    "wo-library",
+    "components",
     "react"
   ],
   "scripts": {
     "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
     "build": "rollup --config rollup.config.js",
-    "dev": "rollup -w --config rollup.config.js --watch.onEnd 'yalc push dist'",
+    "dev": "NODE_ENV=development rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
     "postversion": "cp -r package.json ..",
     "precommit": "lint-staged",
     "release": "cd dist && yarn npm publish",
@@ -29,6 +29,7 @@
     "@hookform/error-message": "^2.0.1",
     "@mdx-js/react": "^3.0.1",
     "@tabler/icons-react": "^3.5.0",
+    "@wo-library/js": "workspace:^",
     "@wo-library/ui": "workspace:^",
     "@wo-library/web": "workspace:^",
     "animejs": "^3.2.2",
@@ -168,19 +169,39 @@
     "webpack": "^5.92.0"
   },
   "peerDependencies": {
+    "@react-native-async-storage/async-storage": "^1.22.3",
     "antd": "^5.17.2",
+    "lorem-ipsum": "^2.0.8",
     "overlayscrollbars": "^2.8.0",
     "overlayscrollbars-react": "^0.5.6",
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "react-hook-form": "^7.51.1",
+    "react-native": "0.73.6",
+    "swiper": "^11.0.7"
   },
   "peerDependenciesMeta": {
+    "@react-native-async-storage/async-storage": {
+      "optional": true
+    },
     "antd": {
+      "optional": true
+    },
+    "lorem-ipsum": {
       "optional": true
     },
     "overlayscrollbars": {
       "optional": true
     },
     "overlayscrollbars-react": {
+      "optional": true
+    },
+    "react-hook-form": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "swiper": {
       "optional": true
     }
   },

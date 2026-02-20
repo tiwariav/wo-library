@@ -1,4 +1,4 @@
-# @tiwariav/semantic-release-config
+# @wo-library/semantic-release-config
 
 ## Known Issues
 

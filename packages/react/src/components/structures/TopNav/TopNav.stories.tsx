@@ -8,7 +8,7 @@ import {
 } from "@tabler/icons-react";
 import clsx from "clsx";
 import { useRef } from "react";
-import { randomGradientGenerator } from "wo-library/tools/colors.js";
+import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
 
 import type { TopNavProps } from "./TopNav.js";
 

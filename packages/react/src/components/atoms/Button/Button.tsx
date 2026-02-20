@@ -15,7 +15,7 @@ import type {
 import { clsx } from "clsx";
 import { forwardRef, useEffect } from "react";
 import { useMouseHovered } from "react-use";
-import { overrideStyleProperty } from "wo-library/tools/css.js";
+import { overrideStyleProperty } from "@wo-library/web/tools/css.js";
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 

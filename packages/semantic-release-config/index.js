@@ -1,21 +1,20 @@
 const fs = require("fs");
+const {
+  branches,
+  commitMessage,
+  getSemanticReleaseRules,
+  getSemanticReleaseTypes,
+} = require("./shared.js");
 
 const distPath = "./dist";
 
 module.exports = {
-  branches: ["main", "master", "+([0-9])?(.{+([0-9]),x}).x"],
+  branches,
   plugins: [
     [
       "@semantic-release/commit-analyzer",
       {
-        releaseRules: [
-          { breaking: true, release: "major" },
-          { release: "patch", revert: true },
-          { release: "minor", type: "feat" },
-          { release: "patch", type: "fix" },
-          { release: "patch", type: "perf" },
-          { release: "patch", type: "refactor" },
-        ],
+        releaseRules: getSemanticReleaseRules(),
       },
     ],
     [
@@ -23,20 +22,7 @@ module.exports = {
       {
         preset: "conventionalcommits",
         presetConfig: {
-          types: [
-            { section: "✨ Features", type: "feat" },
-            { section: "🐛 Bug Fixes", type: "fix" },
-            { section: "⚡️ Performance Improvements", type: "perf" },
-            { section: "Reverts", type: "revert" },
-            { hidden: false, section: "📚 Documentation", type: "docs" },
-            { hidden: false, section: "🎨 Styles", type: "style" },
-            {
-              hidden: false,
-              section: "♻️ Code Refactors",
-              type: "refactor",
-            },
-            { hidden: false, section: "🚦 Tests", type: "test" },
-          ],
+          types: getSemanticReleaseTypes(),
         },
       },
     ],
@@ -60,8 +46,7 @@ module.exports = {
           "!(.yarn|node_modules)/**/(!node_modules|.yarn)/**/ios/*/project.pbxproj",
           "!(.yarn|node_modules)/**/(!node_modules|.yarn)/**/android/app/build.gradle",
         ],
-        message:
-          "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+        message: commitMessage,
       },
     ],
   ],

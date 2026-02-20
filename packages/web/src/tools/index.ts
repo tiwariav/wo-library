@@ -5,3 +5,4 @@ export { default as loadStylesheet } from "./loadStylesheet.js";
 export * as others from "./others/index.js";
 export * as storage from "./storage/index.js";
 export * as svg from "./svg.js";
+export * from "./css.js";

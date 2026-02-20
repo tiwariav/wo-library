@@ -1,25 +1,19 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": false,
+    "declarationMap": true,
+    "outDir": "dist",
     "rootDir": "src",
+    "noEmit": false,
+    "composite": true,
     "paths": {
       "country-flag-emoji-polyfill": [
         "./node_modules/country-flag-emoji-polyfill/dist/index.d.ts"
       ]
     },
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "nodenext",
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
     "plugins": [
       {
         "name": "typescript-plugin-css-modules",
@@ -27,17 +21,20 @@
           "classnameTransform": "camelCase"
         }
       }
-    ],
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "target": "es2022"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["src/**/__stories__", "src/**/stories", "src/**/*.test.ts", "src/**/*.test.tsx"],
-  "watchOptions": {
-    "excludeDirectories": ["**/.yarn", "**/node_modules"],
-    "watchFile": "useFsEventsOnParentDirectory"
-  }
+  "include": ["src/**/*"],
+  "exclude": [
+    "src/**/__stories__",
+    "src/**/stories",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

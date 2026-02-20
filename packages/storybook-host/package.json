@@ -1,0 +1,43 @@
+{
+  "name": "@wo-library/storybook-host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 9002",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.2",
+    "@storybook/addon-a11y": "^8.2.9",
+    "@storybook/addon-actions": "^8.2.9",
+    "@storybook/addon-backgrounds": "^8.2.9",
+    "@storybook/addon-controls": "^8.2.9",
+    "@storybook/addon-docs": "^8.2.9",
+    "@storybook/addon-interactions": "^8.2.9",
+    "@storybook/addon-links": "^8.2.9",
+    "@storybook/addon-measure": "^8.2.9",
+    "@storybook/addon-outline": "^8.2.9",
+    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-themes": "^8.2.9",
+    "@storybook/addon-toolbars": "^8.2.9",
+    "@storybook/addon-viewport": "^8.2.9",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
+    "@storybook/react": "^8.2.9",
+    "@storybook/react-webpack5": "^8.2.9",
+    "css-loader": "^7.1.2",
+    "postcss": "^8.4.39",
+    "postcss-loader": "^8.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^8.2.9",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.5.2",
+    "webpack": "^5.92.1"
+  },
+  "dependencies": {
+    "@wo-library/react": "workspace:^",
+    "@wo-library/ui": "workspace:^",
+    "@wo-library/web": "workspace:^"
+  }
+}

@@ -1,12 +1,9 @@
+const a = require("stylelint");
+
 module.exports = {
-  extends: "@wo-library/stylelint-config",
+  extends: "@tiwariav/stylelint-config",
   rules: {
-    "csstools/media-use-custom-media": [
-      "always-known",
-      {
-        importFrom: ["src/styles/media.css"],
-      },
-    ],
+    "csstools/media-use-custom-media": null,
     "csstools/value-no-unknown-custom-properties": [
       true,
       {

@@ -1,17 +1,5 @@
-import { camelCase, isNil } from "lodash-es";
+import { camelCase } from "lodash-es";
 import { forwardRef } from "react";
-
-export function isEmpty<TValue>(value: TValue) {
-  return isNil(value) || value === "";
-}
-
-export function inSubArray<TArray extends [], TValue = TArray[number]>(
-  array: readonly unknown[],
-  value: unknown,
-) {
-  const typedValue = value as TValue;
-  return array.includes(typedValue) ? typedValue : undefined;
-}
 
 export const isBrowser = typeof window !== "undefined" && !!window.document;
 
