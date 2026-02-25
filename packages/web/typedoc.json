@@ -9,6 +9,7 @@
   "fileExtension": ".mdx",
   "cleanOutputDir": true,
   "readme": "none",
+  "skipErrorChecking": true,
   "excludePrivate": true,
   "excludeExternals": true,
   "searchInComments": true

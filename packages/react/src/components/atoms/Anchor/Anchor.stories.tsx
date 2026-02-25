@@ -26,7 +26,7 @@ const metadata: Meta<typeof Anchor> = {
     },
   },
   title: "Atoms/Anchor",
-  render: (args) => <Anchor href="/" {...args} />
+  render: (args) => <Anchor href="/" {...args} />,
 };
 export default metadata;
 

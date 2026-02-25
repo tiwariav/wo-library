@@ -782,7 +782,7 @@ Or maintain them manually (they're small enough that sync issues are unlikely).
 18. ✅ **Storybook as unified doc hub** - Stories glob extended to pick up TypeDoc-generated MDX pages alongside component stories; TypeDoc API pages appear under `API/` in Storybook sidebar
 19. ✅ **GitHub Pages via Storybook** - `.github/workflows/docs.yml` replaced: builds packages → `yarn docs` (TypeDoc) → `build-storybook` → deploys Storybook to GitHub Pages (single unified site)
 20. ✅ **`ai-context.json` extended** - Added `documentation` section covering Storybook hub, TypeDoc workflow, stories globs, hierarchy, and CI pipeline
-21. ✅ **Component-level story descriptions** - Added `parameters.docs.description.component` to all 26 story files (atoms, molecules, structures, templates) so Storybook autodocs pages display a component overview above the props table
+21. ✅ **Component-level story descriptions** - Added `parameters.docs.description.component` to all 33 story files (atoms, molecules, structures, templates) so Storybook autodocs pages display a component overview above the props table
 
 ---
 

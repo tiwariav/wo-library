@@ -18,7 +18,7 @@ const metadata: Meta<typeof Tag> = {
     },
   },
   title: "Atoms/Tag",
-  render: (args) => <Tag {...args} />
+  render: (args) => <Tag {...args} />,
 };
 
 export default metadata;

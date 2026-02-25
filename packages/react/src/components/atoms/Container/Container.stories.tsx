@@ -22,7 +22,7 @@ const metadata: Meta<typeof Container> = {
     },
   },
   title: "Atoms/Container",
-  render: (args) => <Container className="story-bordered" {...args} />
+  render: (args) => <Container className="story-bordered" {...args} />,
 };
 
 export default metadata;

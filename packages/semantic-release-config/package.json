@@ -30,13 +30,13 @@
   ],
   "dependencies": {
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^10.0.6",
-    "@semantic-release/gitlab": "^13.1.0",
-    "@semantic-release/npm": "^12.0.1",
-    "@semantic-release/release-notes-generator": "^14.0.0",
-    "conventional-changelog-conventionalcommits": "^8.0.0",
-    "semantic-release": "^24.0.0"
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/gitlab": "^13.3.0",
+    "@semantic-release/npm": "^13.1.4",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "semantic-release": "^25.0.3"
   }
 }

@@ -8,6 +8,14 @@ const meta: Meta<typeof ArcProgress> = {
     progress: [50, 100],
   },
   component: ArcProgress,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "SVG arc/partial-circle progress indicator. Accepts a `progress` array for multi-segment fills with configurable stroke width and dimensions.",
+      },
+    },
+  },
   title: "Atoms/ArcProgress",
   render: (args) => <ArcProgress {...args} />,
 };

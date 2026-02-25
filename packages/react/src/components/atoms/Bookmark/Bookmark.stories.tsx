@@ -4,6 +4,14 @@ import Bookmark from "./Bookmark.js";
 
 const metadata: Meta<typeof Bookmark> = {
   component: Bookmark,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Breadcrumb-style navigation trail. Accepts an array of strings or nodes as `children` to render the current path hierarchy.",
+      },
+    },
+  },
   title: "Atoms/Bookmark",
 };
 

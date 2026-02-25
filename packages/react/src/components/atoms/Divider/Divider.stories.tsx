@@ -9,6 +9,14 @@ const metadata: Meta<typeof Divider> = {
     color: { control: "color" },
   },
   component: Divider,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Horizontal or vertical rule for visually separating content sections. Supports custom color, spacing, and label text.",
+      },
+    },
+  },
   title: "Atoms/Divider",
 };
 

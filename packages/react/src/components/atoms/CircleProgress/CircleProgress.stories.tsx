@@ -26,7 +26,7 @@ const metadata: Meta<typeof CircleProgress> = {
     },
   },
   title: "Atoms/CircleProgress",
-  render: (args) => <CircleProgress {...args} />
+  render: (args) => <CircleProgress {...args} />,
 };
 
 export default metadata;

@@ -1,6 +1,9 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
+import { createRequire } from "node:module";
 import path from "node:path";
+
+const require = createRequire(import.meta.url);
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -9,7 +12,6 @@ const isDev = process.env.NODE_ENV === "development";
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
 function getAbsolutePath(value: string): string {
-  // eslint-disable-next-line unicorn/prefer-module
   return path.dirname(require.resolve(path.join(value, "package.json")));
 }
 
@@ -24,14 +26,8 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
     getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-backgrounds"),
-    getAbsolutePath("@storybook/addon-controls"),
     getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-actions"),
-    getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-measure"),
-    getAbsolutePath("@storybook/addon-outline"),
     {
       name: getAbsolutePath("@storybook/addon-styling-webpack"),
       options: {
@@ -56,7 +52,6 @@ const config: StorybookConfig = {
               },
               {
                 loader: "postcss-loader",
-                // eslint-disable-next-line unicorn/prefer-module
                 options: { implementation: require.resolve("postcss") },
               },
             ],
@@ -65,8 +60,6 @@ const config: StorybookConfig = {
       },
     },
     getAbsolutePath("@storybook/addon-themes"),
-    getAbsolutePath("@storybook/addon-toolbars"),
-    getAbsolutePath("@storybook/addon-viewport"),
     getAbsolutePath("@chromatic-com/storybook"),
   ],
   core: {

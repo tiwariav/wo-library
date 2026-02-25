@@ -4,6 +4,14 @@ import TextIcon from "./TextIcon.js";
 
 const metadata: Meta<typeof TextIcon> = {
   component: TextIcon,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Single-character circular badge for avatar-style initials or icon-text display. Commonly used as an avatar placeholder.",
+      },
+    },
+  },
   title: "Atoms/TextIcon",
 };
 

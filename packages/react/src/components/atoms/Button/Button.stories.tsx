@@ -33,7 +33,7 @@ const metadata: Meta<typeof Button> = {
     },
   },
   title: "Atoms/Button",
-  render: (args) => <Button {...args} />
+  render: (args) => <Button {...args} />,
 };
 
 export default metadata;

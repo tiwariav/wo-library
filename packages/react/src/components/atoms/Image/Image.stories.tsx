@@ -25,7 +25,7 @@ const metadata: Meta<TemplateProps> = {
     },
   },
   title: "Atoms/Image",
-  render: Template
+  render: Template,
 };
 
 export default metadata;
