@@ -72,3 +72,5 @@ reports
 
 .nx/cache
 .nx/workspace-data
+
+.DS_Store

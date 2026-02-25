@@ -36,6 +36,5 @@
   },
   "peerDependencies": {
     "stylelint": "^16.5.0"
-  },
-  "packageManager": "yarn@4.2.2"
+  }
 }

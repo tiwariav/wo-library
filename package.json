@@ -1,9 +1,6 @@
 {
   "name": "wo-library-monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "docs": "yarn typedoc",
     "test": "yarn workspaces run test"
@@ -85,13 +82,13 @@
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-delete": "^3.0.2",
     "rollup-plugin-node-externals": "^8.1.2",
-    "rollup-plugin-postcss": "patch:rollup-plugin-postcss@npm%3A4.0.2#~/.yarn/patches/rollup-plugin-postcss-npm-4.0.2-6f4a722324.patch",
+    "rollup-plugin-postcss": "patch:rollup-plugin-postcss@4.0.2#./patches/rollup-plugin-postcss@4.0.2.patch",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-visualizer": "^7.0.0",
     "source-map-explorer": "^2.5.3",
     "storybook": "^10.2.10",
     "style-loader": "^4.0.0",
-    "stylelint": "patch:stylelint@npm%3A16.6.1#~/.yarn/patches/stylelint-npm-16.6.1-2dcbcc15ac.patch",
+    "stylelint": "patch:stylelint@16.6.1#./patches/stylelint@16.6.1.patch",
     "stylelint-order": "^7.0.1",
     "swiper": "^12.1.2",
     "tslib": "^2.8.1",
@@ -101,5 +98,5 @@
     "typescript": "^5.9.3",
     "typescript-plugin-css-modules": "^5.2.0"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "pnpm@9.1.0"
 }

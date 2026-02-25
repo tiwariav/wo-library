@@ -24,6 +24,5 @@
   },
   "peerDependencies": {
     "postcss": "^8.4.33"
-  },
-  "packageManager": "yarn@4.1.1"
+  }
 }

@@ -22,7 +22,6 @@
   "scripts": {
     "release": "npm publish --access public"
   },
-  "packageManager": "yarn@4.1.1",
   "files": [
     "index.js",
     "shared.js",

@@ -1,0 +1,18 @@
+diff --git a/dist/index.js b/dist/index.js
+index 8ca4cf35ac17b3874f116a5620c6816854311099..abf327e1f61eb0bd41b81dbdfa6fb071d3b00097 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -945,6 +945,13 @@ var index = ((options = {}) => {
+               map.file = fileName;
+             }
+ 
++            const cssPath = normalizePath(result.id.replace(options_.preserveModulesRoot + "/", "").replace(".module.", "."));
++            _this2.emitFile({
++              fileName: cssPath,
++              type: 'asset',
++              source: result.code
++            });
++
+             concat.add(relative, result.code, map);
+           }
+ 
