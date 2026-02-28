@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import type { ComponentProps } from "react";
 
-import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
+import { randomGradientGenerator } from "@wo-library/js";
 
 import { BasicSideNav } from "../../__stories/SideNavTemplates.js";
 import Hero from "../../atoms/Hero/Hero.js";

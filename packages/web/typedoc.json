@@ -5,7 +5,7 @@
   "entryPoints": ["src/index.ts"],
   "entryPointStrategy": "resolve",
   "tsconfig": "./tsconfig.json",
-  "out": "../storybook-host/src/docs/web",
+  "out": "../storybook/src/docs/web",
   "fileExtension": ".mdx",
   "cleanOutputDir": true,
   "readme": "none",

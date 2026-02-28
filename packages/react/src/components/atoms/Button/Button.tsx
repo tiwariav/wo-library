@@ -12,7 +12,8 @@ import type {
   ReactNode,
 } from "react";
 
-import { overrideStyleProperty } from "@wo-library/web/tools/css.js";
+import { inSubArray } from "@wo-library/js";
+import { overrideStyleProperty } from "@wo-library/web";
 import { clsx } from "clsx";
 import { forwardRef, useEffect } from "react";
 import { useMouseHovered } from "react-use";
@@ -21,7 +22,7 @@ import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 
 import { usePropRef } from "../../../hooks/index.js";
 import { COMPONENT_SPACINGS } from "../../../tools/constants/props.js";
-import { getDynamicClassName, inSubArray } from "../../../tools/utils.js";
+import { getDynamicClassName } from "../../../tools/utils.js";
 import { FormIconSpan } from "../../../wrappers/span.js";
 import { FORM_CONTROL_VARIANTS, FormButtonControl } from "../FormControl.js";
 import Spinner from "../Spinner/Spinner.js";
@@ -162,8 +163,7 @@ function useButtonEffects({
  * @property neuOptions - Neumorphic shadow colour overrides (for `variant="neu"`).
  */
 export interface ButtonProps
-  extends ComponentPropsWithoutRef<"button">,
-    SharedButtonProps {
+  extends ComponentPropsWithoutRef<"button">, SharedButtonProps {
   iconAfter?: ReactNode;
   iconBefore?: ReactNode;
   isBusy?: boolean;

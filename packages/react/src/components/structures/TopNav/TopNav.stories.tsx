@@ -6,7 +6,7 @@ import {
   IconMicrophone,
   IconSearch,
 } from "@tabler/icons-react";
-import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
+import { randomGradientGenerator } from "@wo-library/js";
 import clsx from "clsx";
 import { useRef } from "react";
 

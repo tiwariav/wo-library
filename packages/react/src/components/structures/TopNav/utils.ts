@@ -9,15 +9,15 @@ import clsx from "clsx";
 import { isObject } from "lodash-es";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
-import { useScrollDirection } from "wo-library/hooks/index.js";
 
 import {
   useLayoutMethods,
   useLayoutState,
 } from "../../../contexts/LayoutContext/index.js";
-import usePropRef from "../../../hooks/usePropRef.js";
-import { BREAKPOINTS } from "../../../styles/media.js";
-import { getDynamicClassName } from "../../../tools/utils.js";
+import usePropRef from "../../../hooks/usePropRef";
+import useScrollDirection from "../../../hooks/useScrollDirection";
+import { BREAKPOINTS } from "../../../styles/media";
+import { getDynamicClassName } from "../../../tools/utils";
 import * as styles from "./utils.module.css";
 
 export const TOPNAV_VARIANTS = ["transparent", "flat", "underlined"] as const;

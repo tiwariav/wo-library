@@ -1,5 +1,4 @@
 /* stylelint-disable csstools/media-use-custom-media */
-@import url("wo-library/styles/storybook.css");
 
 .story-flex {
   flex-wrap: nowrap;

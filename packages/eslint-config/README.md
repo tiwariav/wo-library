@@ -2,7 +2,7 @@
 
 Shareable ESLint configuration for the wo-library monorepo and consuming projects.
 Covers TypeScript, React, JSX accessibility, CSS Modules, i18n (FormatJS), testing,
-Storybook, and code-quality rules.
+and code-quality rules.
 
 ## Installation
 
@@ -63,7 +63,6 @@ Not supporting flat config
 - eslint-plugin-lodash
 - eslint-plugin-react-hooks
 - eslint-plugin-sonarjs
-- eslint-plugin-storybook
 
 ## Plugins with known issues
 

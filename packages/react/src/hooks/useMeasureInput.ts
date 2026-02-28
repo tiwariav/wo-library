@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 
-import { cssVariable } from "@wo-library/web/tools/css.js";
+import { cssVariable } from "@wo-library/web";
 import { useEffect, useRef, useState } from "react";
 
 /** Computed style overrides for an input element based on label measurement. */

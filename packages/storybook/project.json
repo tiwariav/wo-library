@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "name": "storybook-host",
-  "sourceRoot": "packages/storybook-host/src",
+  "name": "storybook",
+  "sourceRoot": "packages/storybook/src",
   "projectType": "library",
   "tags": ["type:storybook"],
   "implicitDependencies": ["react", "ui", "web"]

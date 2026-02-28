@@ -2,8 +2,8 @@ import type { MutableRefObject, ReactElement } from "react";
 
 import type { ChartState } from "./state.js";
 
-import { pushOrCreate } from "../../tools/others/objects.js";
-import { svgNodeToData } from "../../tools/svg.js";
+import { pushOrCreate } from "@wo-library/js";
+import { svg } from "@wo-library/web";
 
 export default function createChartMethods(state: ChartState) {
   return {
@@ -23,7 +23,7 @@ export default function createChartMethods(state: ChartState) {
         symbolImages[item.props.seriesName] = pushOrCreate({
           data: symbolImages,
           key: item.props.seriesName,
-          value: svgNodeToData(childNodes[index]),
+          value: svg.svgNodeToData(childNodes[index]),
         });
       }
       return { ...state, symbolImages };
@@ -38,7 +38,7 @@ export default function createChartMethods(state: ChartState) {
         data: symbolImages,
         index: seriesIndex,
         key: seriesName,
-        value: svgNodeToData(node),
+        value: svg.svgNodeToData(node),
       });
       return { ...state, symbolImages };
     },

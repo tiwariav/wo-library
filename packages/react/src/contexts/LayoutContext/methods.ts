@@ -1,4 +1,4 @@
-import { getUpdateStateMethod } from "wo-library/contexts/utils.js";
+import { getUpdateStateMethod } from "../utils";
 
 import type { LayoutState } from "./state.js";
 

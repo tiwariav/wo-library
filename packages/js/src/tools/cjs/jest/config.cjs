@@ -61,7 +61,6 @@ const config = {
   testPathIgnorePatterns: ["/node_modules/", "/dist/", "/reports/"],
   transform: {
     "^.+\\.m?jsx?$": "babel-jest",
-    "^.+\\.mdx?$": "@storybook/addon-docs/jest-transform-mdx",
     "^.+\\.tsx?$": "babel-jest",
   },
 };

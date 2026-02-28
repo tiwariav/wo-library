@@ -1,4 +1,0 @@
-# Yarn non-zero install
-node_modules/
-.yarn/*
-.pnp.cjs

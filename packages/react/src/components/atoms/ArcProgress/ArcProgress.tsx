@@ -7,7 +7,7 @@ import { IconArrowLeftRhombus } from "@tabler/icons-react";
 import { clsx } from "clsx";
 import { useId, useMemo } from "react";
 
-import { describeArc } from "../../../tools/svg.js";
+import { describeArc } from "@wo-library/js";
 import * as styles from "./arcProgress.module.css";
 import useProgressAnimation, {
   ARC_ANGLE,

@@ -9,6 +9,7 @@ import type {
 } from "react";
 
 import { clsx } from "clsx";
+import { isEmpty } from "lodash-es";
 import {
   forwardRef,
   useCallback,
@@ -20,12 +21,9 @@ import {
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 
+import { inSubArray } from "@wo-library/js";
 import { useMeasureInput } from "../../../hooks/index.js";
-import {
-  getDynamicClassName,
-  inSubArray,
-  isEmpty,
-} from "../../../tools/utils.js";
+import { getDynamicClassName } from "../../../tools/utils.js";
 import ContentLoader from "../../../vendors/ContentLoader.js";
 import { FormIconSpan } from "../../../wrappers/span.js";
 import { FORM_CONTROL_VARIANTS, FormInputControl } from "../FormControl.js";
@@ -55,8 +53,10 @@ export type InputFormValue = InputDomValue | null;
  * @property size - Size variant: `"small"` | `"large"`.
  * @property variant - Visual style: `"outlined"` | `"material"` | `"basic"` | `"dashed"` | `"borderless"`.
  */
-export interface TextInputProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+export interface TextInputProps extends Omit<
+  ComponentPropsWithoutRef<"input">,
+  "size"
+> {
   hasError?: boolean;
   iconAfter?: ReactNode;
   iconBefore?: ReactNode;

@@ -1,12 +1,1 @@
-# Yarn non-zero install
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.cjs
-
-tmp
 .stylelintcache
-dist

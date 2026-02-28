@@ -1,9 +1,8 @@
 import { useEffectOnce } from "react-use";
 
-import type { CalendlyPopupWidgetOptionsPrefill } from "../types/interfaces/calendly.js";
+import type { CalendlyPopupWidgetOptionsPrefill } from "../types/interfaces/calendly";
 
-import { WoLoadScriptError } from "../tools/error/index.js";
-import { loadScript, loadStylesheet } from "../tools/index.js";
+import { WoLoadScriptError, loadScript, loadStylesheet } from "@wo-library/web";
 
 async function loadCalendlyAssets() {
   const calendlyScript = await loadScript(

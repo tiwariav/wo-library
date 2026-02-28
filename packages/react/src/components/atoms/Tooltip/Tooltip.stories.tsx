@@ -2,11 +2,23 @@ import type { Placement } from "@floating-ui/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { useState } from "react";
+import { expect, screen, userEvent, within } from "storybook/test";
 
 import type { TooltipProps } from "./Tooltip.js";
 
-import { playFloatingBasic } from "../../../tools/storybook/play.js";
 import Tooltip from "./Tooltip.js";
+
+async function playFloatingBasic(
+  canvasElement: HTMLElement,
+  floatingText: string,
+) {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+  const modalBody = screen.getByText(floatingText);
+  await expect(modalBody).toBeInTheDocument();
+  await userEvent.click(document.body);
+  await expect(modalBody).not.toBeInTheDocument();
+}
 
 const metadata: Meta<typeof Tooltip> = {
   component: Tooltip,

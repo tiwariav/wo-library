@@ -1,19 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
-
-import { createRequire } from "node:module";
-import path from "node:path";
-
-const require = createRequire(import.meta.url);
+import type { Configuration } from "webpack";
 
 const isDev = process.env.NODE_ENV === "development";
-
-/**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
-function getAbsolutePath(value: string): string {
-  return path.dirname(require.resolve(path.join(value, "package.json")));
-}
 
 const config: StorybookConfig = {
   stories: [
@@ -24,12 +12,12 @@ const config: StorybookConfig = {
     "../src/docs/**/*.mdx",
   ],
   addons: [
-    getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
-    getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-links"),
+    "@storybook/addon-webpack5-compiler-swc",
+    "@storybook/addon-a11y",
+    "@storybook/addon-docs",
+    "@storybook/addon-links",
     {
-      name: getAbsolutePath("@storybook/addon-styling-webpack"),
+      name: "@storybook/addon-styling-webpack",
       options: {
         rules: [
           // Replaces existing CSS rules to support CSS Modules
@@ -52,29 +40,24 @@ const config: StorybookConfig = {
               },
               {
                 loader: "postcss-loader",
-                options: { implementation: require.resolve("postcss") },
               },
             ],
           },
         ],
       },
     },
-    getAbsolutePath("@storybook/addon-themes"),
-    getAbsolutePath("@chromatic-com/storybook"),
+    "@storybook/addon-themes",
+    "@chromatic-com/storybook",
   ],
   core: {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: true,
+    autodocs: "tag",
     defaultName: "Documentation",
   },
-  features: {
-    argTypeTargetsV7: true,
-  },
   framework: {
-    // @ts-expect-error 2353 because name does exist
-    name: getAbsolutePath("@storybook/react-webpack5"),
+    name: "@storybook/react-webpack5",
     options: {
       builder: {
         useSWC: true,
@@ -90,16 +73,8 @@ const config: StorybookConfig = {
       },
     },
   }),
-  webpackFinal: async (config) => {
-    // Handle fullySpecified modules
-    config.module?.rules?.push({
-      test: /\.m?js/,
-      resolve: {
-        fullySpecified: false,
-      },
-    });
-
-    // Add extension aliases for nodeNext resolution
+  webpackFinal: async (config: Configuration) => {
+    // Add extension aliases for better TypeScript resolution
     if (config.resolve) {
       config.resolve.extensionAlias = {
         ".js": [".ts", ".tsx", ".js", ".jsx"],

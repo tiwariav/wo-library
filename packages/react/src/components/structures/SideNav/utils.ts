@@ -1,15 +1,15 @@
 import type { ForwardedRef } from "react";
 
+import { cssVariable } from "@wo-library/web";
 import { useEffect, useLayoutEffect } from "react";
 import { useLockBodyScroll, useScrollbarWidth, useWindowSize } from "react-use";
-import { cssVariable } from "@wo-library/web/tools/css.js";
 
 import {
   useLayoutMethods,
   useLayoutState,
 } from "../../../contexts/LayoutContext/index.js";
-import usePropRef from "../../../hooks/usePropRef.js";
-import { BREAKPOINTS } from "../../../styles/media.js";
+import usePropRef from "../../../hooks/usePropRef";
+import { BREAKPOINTS } from "../../../styles/media";
 
 const CSS_VAR_OFFSET = "--ye-layout-side-nav-offset";
 const CSS_VAR_TOGGLE_WIDTH = "--ye-layout-side-nav-toggle-width";

@@ -17,7 +17,7 @@ wo-library/
 │   ├── postcss-config/       # @wo-library/postcss-config
 │   ├── stylelint-config/     # @wo-library/stylelint-config
 │   ├── semantic-release-config/
-│   └── storybook-host/       # Storybook development host
+│   └── storybook/              # Storybook development host
 ├── .ai/instructions.md       # AI coding standards (canonical)
 ├── .github/copilot-instructions.md
 ├── .cursorrules

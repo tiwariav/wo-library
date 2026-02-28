@@ -2,13 +2,9 @@ import type {
   OverlayScrollbarsComponentProps,
   OverlayScrollbarsComponentRef,
 } from "overlayscrollbars-react";
-import type { ContextDispatch } from "wo-library/contexts/utils.js";
-
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { useMemo, useRef } from "react";
-import { useEffectOnce } from "react-use";
-import { createAndUseContext } from "wo-library/contexts/utils.js";
-import useMethods from "wo-library/hooks/useMethods.js";
+import useMethods from "../../hooks/useMethods";
+import type { ContextDispatch } from "../utils";
+import { createAndUseContext } from "../utils";
 
 import type { ScrollState } from "./state.js";
 

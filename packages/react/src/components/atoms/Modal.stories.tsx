@@ -2,15 +2,27 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
 
 import { noop } from "lodash-es";
+import { expect, screen, userEvent, within } from "storybook/test";
 
 import type { ModalProps } from "./Modal.js";
 
 import useStateWithProp from "../../hooks/useStateWithProp.js";
-import { playFloatingBasic } from "../../tools/storybook/play.js";
 import Lorem from "./Lorem.js";
 import Modal from "./Modal.js";
 
 const MODAL_TEXT = "Content inside Modal!";
+
+async function playFloatingBasic(
+  canvasElement: HTMLElement,
+  floatingText: string,
+) {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+  const modalBody = screen.getByText(floatingText);
+  await expect(modalBody).toBeInTheDocument();
+  await userEvent.click(document.body);
+  await expect(modalBody).not.toBeInTheDocument();
+}
 
 type TemplateProps = { modalContent: ReactNode } & ModalProps;
 

@@ -17,7 +17,6 @@ const reactHooksPlugin = require("eslint-plugin-react-hooks");
 const reactJsx = require("eslint-plugin-react/configs/jsx-runtime.js");
 const reactRecommended = require("eslint-plugin-react/configs/recommended.js");
 const sonarjsPlugin = require("eslint-plugin-sonarjs");
-const storybookPlugin = require("eslint-plugin-storybook");
 const unicorn = require("eslint-plugin-unicorn");
 const unusedImportsPlugin = require("eslint-plugin-unused-imports");
 const globals = require("globals");
@@ -79,7 +78,6 @@ module.exports = [
       perfectionist,
       "react-hooks": reactHooksPlugin,
       sonarjs: sonarjsPlugin,
-      storybook: storybookPlugin,
       "testing-library": testingLibraryPlugin,
       "unused-imports": unusedImportsPlugin,
     },
@@ -88,7 +86,6 @@ module.exports = [
       ...jsxA11yPlugin.configs.recommended.rules,
       ...lodashPlugin.configs.recommended.rules,
       ...sonarjsPlugin.configs.recommended.rules,
-      ...storybookPlugin.configs.recommended.rules,
       ...testingLibraryPlugin.configs.react.rules,
       ...removeKeysStartingWith(craConfig.rules, ["flowtype/", "import/"]),
       "css-modules/no-undef-class": ["error", { camelCase: true }],

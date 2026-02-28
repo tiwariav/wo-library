@@ -9,7 +9,7 @@ import { useId, useState } from "react";
 
 import type UploadFile from "../../../tools/uploadFile.js";
 
-import { INPUT_DEBOUNCE } from "../../../tools/constants/time.js";
+import { INPUT_DEBOUNCE } from "@wo-library/js";
 import { getDynamicClassName } from "../../../tools/utils.js";
 import { FormIconSpan } from "../../../wrappers/span.js";
 import Button from "../Button/Button.js";
@@ -25,8 +25,9 @@ const FILE_INPUT_VARIANTS = ["outlined"] as const;
  * Props for the {@link FileInput} component.
  * @template TFile - Custom file type extending {@link UploadFile} (default: `UploadFile`).
  */
-export interface FileInputProps<TFile extends UploadFile = UploadFile>
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+export interface FileInputProps<
+  TFile extends UploadFile = UploadFile,
+> extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /** Currently attached files displayed as a list below the input. */
   files?: TFile[];
   /** Icon rendered after the placeholder text. */

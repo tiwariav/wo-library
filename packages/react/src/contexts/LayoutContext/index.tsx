@@ -1,9 +1,9 @@
 import type { ReactNode, RefObject } from "react";
-import type { ContextDispatch } from "wo-library/contexts/utils.js";
+import type { ContextDispatch } from "../utils";
 
 import { useMemo, useRef } from "react";
-import { createAndUseContext } from "wo-library/contexts/utils.js";
-import useMethods from "wo-library/hooks/useMethods.js";
+import useMethods from "../../hooks/useMethods";
+import { createAndUseContext } from "../utils";
 
 import type { LayoutMethods } from "./methods.js";
 import type { LayoutState } from "./state.js";

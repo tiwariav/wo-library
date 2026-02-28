@@ -48,8 +48,8 @@ stats.html
 storybook-static
 
 # TypeDoc-generated API reference (output of `yarn docs`)
-packages/storybook-host/src/docs/@wo-library/
-packages/storybook-host/src/docs/index.mdx
+packages/storybook/src/docs/@wo-library/
+packages/storybook/src/docs/index.mdx
 
 # yalc files
 .yalc

@@ -205,29 +205,29 @@
     "output": "ESM only: dist/index.js + dist/index.d.ts"
   },
   "documentation": {
-    "primaryHub": "Storybook (packages/storybook-host). All docs live in one place.",
+    "primaryHub": "Storybook (packages/storybook). All docs live in one place.",
     "componentDocs": "Storybook autodocs (autodocs: true) automatically extracts JSDoc from TypeScript component props via react-docgen-typescript.",
     "apiDocs": {
       "tool": "TypeDoc + typedoc-plugin-markdown",
       "command": "yarn docs",
-      "description": "Generates markdown API reference for all packages and outputs it as .mdx files into packages/storybook-host/src/docs/. These are picked up by Storybook's stories glob and appear as API reference pages alongside component stories.",
-      "outputDir": "packages/storybook-host/src/docs/",
+      "description": "Generates markdown API reference for all packages and outputs it as .mdx files into packages/storybook/src/docs/. These are picked up by Storybook's stories glob and appear as API reference pages alongside component stories.",
+      "outputDir": "packages/storybook/src/docs/",
       "gitignored": true,
       "perPackageConfigs": {
-        "packages/js/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/js",
-        "packages/react/typedoc.json": "Entries: atoms/molecules/structures/templates/hooks/contexts → ../storybook-host/src/docs/react",
-        "packages/web/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/web",
-        "packages/ui/typedoc.json": "Entry: src/index.ts → ../storybook-host/src/docs/ui"
+        "packages/js/typedoc.json": "Entry: src/index.ts → ../storybook/src/docs/js",
+        "packages/react/typedoc.json": "Entries: atoms/molecules/structures/templates/hooks/contexts → ../storybook/src/docs/react",
+        "packages/web/typedoc.json": "Entry: src/index.ts → ../storybook/src/docs/web",
+        "packages/ui/typedoc.json": "Entry: src/index.ts → ../storybook/src/docs/ui"
       }
     },
     "storybook": {
-      "host": "packages/storybook-host",
+      "host": "packages/storybook",
       "version": 8,
       "storiesGlobs": [
         "packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
         "packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
         "packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-        "packages/storybook-host/src/docs/**/*.mdx"
+        "packages/storybook/src/docs/**/*.mdx"
       ],
       "autodocs": true,
       "defaultDocName": "Documentation",

@@ -1,6 +1,6 @@
-import { getPublishPlugins } from "../web/src/tools/rollup/pluginSets.js";
-import { getEsConfig, getCssConfig } from "../web/src/tools/rollup/configs.js";
 import dotenv from "dotenv";
+import { getCssConfig, getEsConfig } from "../js/src/tools/rollup/configs.js";
+import { getPublishPlugins } from "../js/src/tools/rollup/pluginSets.js";
 
 dotenv.config();
 

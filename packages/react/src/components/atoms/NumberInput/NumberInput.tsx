@@ -3,14 +3,14 @@ import type { MutableRefObject } from "react";
 import { isEmpty, isNil, isObject } from "lodash-es";
 import { forwardRef, useCallback, useRef } from "react";
 
-import type { FormatNumberOptions } from "../../../tools/number.js";
+import type { FormatNumberOptions } from "@wo-library/js";
 import type {
   FormattedInputParse,
   FormattedInputProps,
 } from "../FormattedInput/FormattedInput.js";
 import type { InputDomValue, InputFormValue } from "../TextInput/TextInput.js";
 
-import { formatNumber, stringToNumber } from "../../../tools/number.js";
+import { formatNumber, stringToNumber } from "@wo-library/js";
 import { FormattedInput } from "../FormattedInput/index.js";
 
 /**
@@ -25,8 +25,10 @@ import { FormattedInput } from "../FormattedInput/index.js";
  *   number string (removing locale separators).
  * @property value - Current numeric value (number or numeric string).
  */
-export interface NumberInputProps
-  extends Omit<FormattedInputProps, "format" | "parse" | "value"> {
+export interface NumberInputProps extends Omit<
+  FormattedInputProps,
+  "format" | "parse" | "value"
+> {
   format?: FormatNumberOptions | boolean;
   parse?: boolean;
   value?: number | string;

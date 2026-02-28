@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import type { FileInputProps } from "./FileInput.js";
 
-import UploadFile from "../../../tools/uploadFile.js";
+import UploadFile from "../../../tools/uploadFile";
 import FileInput from "./FileInput.js";
 
 function Template({ files, ...args }: FileInputProps) {

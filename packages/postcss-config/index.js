@@ -1,12 +1,12 @@
 /// <reference path="index.d.ts"/>
 
-const cssnano = require("cssnano");
-const cssnanoPresetAdvanced = require("cssnano-preset-advanced");
-const postcssGlobalImport = require("postcss-global-import");
-const postcssImport = require("postcss-import");
-const postcssPresetEnv = require("postcss-preset-env");
-const postcssMixin = require("postcss-mixins");
-const globalData = require("@csstools/postcss-global-data");
+import globalData from "@csstools/postcss-global-data";
+import cssnano from "cssnano";
+import cssnanoPresetAdvanced from "cssnano-preset-advanced";
+import postcssGlobalImport from "postcss-global-import";
+import postcssImport from "postcss-import";
+import postcssMixin from "postcss-mixins";
+import postcssPresetEnv from "postcss-preset-env";
 
 const cssnanoPreset = () => cssnanoPresetAdvanced({ zindex: false });
 
@@ -27,7 +27,7 @@ const getPresetEnvOptions = ({ preserveMediaQueries } = {}) => ({
 /** @type {import("@wo-library/postcss-config").getConfig} */
 const getConfig = (
   env = "production",
-  { globalDataOptions, mixinOptions, presetEnvOptions } = {}
+  { globalDataOptions, mixinOptions, presetEnvOptions } = {},
 ) => {
   const config = {
     plugins: [
@@ -47,7 +47,7 @@ const getConfig = (
 /** @type {import("@wo-library/postcss-config").getConfig} */
 const getStringConfig = (
   env = "production",
-  { globalDataOptions, mixinOptions, presetEnvOptions } = {}
+  { globalDataOptions, mixinOptions, presetEnvOptions } = {},
 ) => {
   const config = {
     plugins: [
@@ -67,4 +67,4 @@ const getStringConfig = (
   return config;
 };
 
-module.exports = { getConfig, getPresetEnvOptions, getStringConfig };
+export { getConfig, getPresetEnvOptions, getStringConfig };

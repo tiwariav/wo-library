@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
 import { IconMenu } from "@tabler/icons-react";
-import { randomGradientGenerator } from "@wo-library/web/tools/colors.js";
+import { randomGradientGenerator } from "@wo-library/js";
 
 import {
   LayoutProvider,

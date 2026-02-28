@@ -44,21 +44,5 @@ node_modules/
 dist
 stats.html
 
-# storybook
-storybook-static
-
-# yalc files
-.yalc
-yalc.lock
-
 # reports
 reports
-
-# Yarn non-zero install
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.cjs

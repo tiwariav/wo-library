@@ -2,7 +2,7 @@
   "name": "@wo-library/postcss-config",
   "description": "Postcss config for modern websites",
   "version": "1.2.12",
-  "type": "commonjs",
+  "type": "module",
   "license": "MIT",
   "files": [
     "index.js",

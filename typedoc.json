@@ -4,7 +4,7 @@
   "name": "wo-library",
   "entryPointStrategy": "packages",
   "entryPoints": ["packages/js", "packages/web", "packages/ui"],
-  "out": "packages/storybook-host/src/docs",
+  "out": "packages/storybook/src/docs",
   "fileExtension": ".mdx",
   "entryFileName": "index",
   "indexFormat": "table",

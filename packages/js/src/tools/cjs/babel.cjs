@@ -1,13 +1,5 @@
 const getConfig = ({ isDev = false } = {}) => ({
-  plugins: [
-    "@babel/plugin-transform-runtime",
-    [
-      "@simbathesailor/babel-plugin-use-what-changed",
-      {
-        active: isDev,
-      },
-    ],
-  ],
+  plugins: ["@babel/plugin-transform-runtime"],
   presets: [
     [
       "@babel/preset-env",
