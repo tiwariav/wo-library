@@ -1,13 +1,49 @@
 {
   "name": "@wo-library/ui",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "description": "CSS styles, themes and design tokens",
+  "license": "MIT",
+  "keywords": [
+    "wo-library",
+    "css",
+    "themes",
+    "tokens"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/ui#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "rollup -c -w",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.cjs --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -15,8 +51,12 @@
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
+    "@jest/globals": "^30.2.0",
+    "@types/jest": "^30.0.0",
     "@wo-library/web": "workspace:^",
+    "babel-jest": "^30.2.0",
     "dotenv": "^17.3.1",
+    "jest": "^30.2.0",
     "postcss": "^8.5.6",
     "rollup": "^4.57.1",
     "rollup-plugin-copy": "^3.5.0",

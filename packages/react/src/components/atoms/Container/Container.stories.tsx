@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
+import { expect, within } from "storybook/test";
 
 import Container, {
   CONTAINER_HEIGHTS,
@@ -71,8 +72,11 @@ export const Height: Story = {
           {...args}
         >
           <p>&apos;{height}&apos; height</p>
-          {Array.from({ length: 10 }).map((_item, index) => (
-            <p key={index}>{metadata.args?.children}</p>
+          {Array.from(
+            { length: 10 },
+            (_item, index) => `line-${index + 1}`,
+          ).map((line) => (
+            <p key={line}>{metadata.args?.children}</p>
           ))}
         </Container>
       ))}
@@ -124,4 +128,14 @@ export const Widths: Story = {
       ))}
     </FirstContainerTemplate>
   ),
+};
+
+export const Interactive: Story = {
+  args: {
+    children: "Interactive Container",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText("Interactive Container")).toBeInTheDocument();
+  },
 };

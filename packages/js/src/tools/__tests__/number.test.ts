@@ -87,7 +87,7 @@ describe("format number", () => {
 
 describe("format number with suffix", () => {
   test("should return null-value for non-numbers", () => {
-    expectResult(NON_NUMBERS);
+    expectResult(NON_NUMBERS, true);
   });
 
   test("should format correctly", () => {
@@ -110,6 +110,6 @@ describe("format number with suffix", () => {
       [["10000000000", { suffix: "Cr" }], "1,000.00 Cr"],
       [["10000", { fractionDigits: 3, suffix: "Cr" }], "0.001 Cr"],
     ];
-    expectResult(tests);
+    expectResult(tests, true);
   });
 });

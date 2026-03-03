@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
+import { expect, within } from "storybook/test";
 
 import { TEXT_LONG } from "./__testData.js";
 import Text from "./Text.js";
@@ -55,4 +56,17 @@ export const Loading: Story = {
     isLoading: true,
   },
   render: (args) => <Template {...args} />,
+};
+
+export const Interactive: Story = {
+  args: {
+    children: "Interactive Text",
+    isLoading: false,
+    width: 400,
+  },
+  render: (args) => <Template {...args} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText("Interactive Text")).toBeInTheDocument();
+  },
 };

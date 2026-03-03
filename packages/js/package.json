@@ -1,10 +1,16 @@
 {
   "name": "@wo-library/js",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "sideEffects": false,
   "engines": {
     "node": ">=18.0.0"
@@ -17,9 +23,27 @@
     "javascript",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/js"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/js#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "rollup -c -w",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.cjs --coverage"
   },
   "dependencies": {
     "glob": "^13.0.6",
@@ -37,9 +61,12 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@types/jest": "^30.0.0",
     "@types/lodash-es": "^4.17.12",
     "@types/micromatch": "^4.0.10",
+    "babel-jest": "^30.2.0",
     "default-import": "^2.0.8",
+    "jest": "^30.2.0",
     "rollup": "^4.57.1",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-delete": "^3.0.2",

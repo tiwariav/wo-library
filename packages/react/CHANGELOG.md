@@ -1,3 +1,26 @@
+# 6.0.0 (2026-03-03)
+
+### 🚀 Features
+
+- **react:** add documentation for usePropRef, useScrollDirection, and useStateWithProp hooks ([cef54e9](https://github.com/tiwariav/wo-library/commit/cef54e9))
+
+### 🩹 Fixes
+
+- update output directory for TypeDoc documentation ([cb6af23](https://github.com/tiwariav/wo-library/commit/cb6af23))
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/js to 2.0.0
+- Updated @wo-library/web to 2.0.0
+- Updated @wo-library/ui to 2.0.0
+- Updated @wo-library/eslint-config to 3.0.0
+- Updated @wo-library/postcss-config to 2.0.0
+- Updated @wo-library/stylelint-config to 3.0.0
+
+### ❤️ Thank You
+
+- Arvind Tiwari
+
 ## [4.0.12](https://github.com/tiwariav/ye-design/compare/v4.0.11...v4.0.12) (2024-06-18)
 
 ### 🐛 Bug Fixes

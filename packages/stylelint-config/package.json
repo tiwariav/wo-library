@@ -4,10 +4,27 @@
   "keywords": [
     "stylelint-plugin"
   ],
-  "version": "2.2.1",
+  "version": "3.0.0",
   "type": "module",
   "license": "MIT",
-  "main": "index.cjs",
+  "main": "dist/index.cjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/stylelint-config"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/stylelint-config#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup --config rollup.config.js"
   },

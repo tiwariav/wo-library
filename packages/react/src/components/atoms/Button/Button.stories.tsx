@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 import { storyIconMap } from "../../../tools/storybook.js";
@@ -118,4 +119,17 @@ export const Variants: Story = {
       ))}
     </div>
   ),
+};
+
+export const Interactive: Story = {
+  args: {
+    children: "Interactive Button",
+    onClick: fn(),
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Interactive Button" });
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
 };

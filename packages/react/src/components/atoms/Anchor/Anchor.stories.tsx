@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 
 import {
   COMPONENT_SIZES,
@@ -108,5 +109,16 @@ export const NoVisited: Story = {
     children: "Color anchor",
     noVisited: true,
     variant: "color",
+  },
+};
+
+export const Interactive: Story = {
+  args: {
+    children: "Interactive Anchor",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Interactive Anchor" });
+    await expect(link).toHaveAttribute("href", "/");
   },
 };

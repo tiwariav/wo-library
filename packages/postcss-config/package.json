@@ -1,9 +1,21 @@
 {
   "name": "@wo-library/postcss-config",
   "description": "Postcss config for modern websites",
-  "version": "1.2.12",
+  "version": "2.0.0",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/postcss-config"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/postcss-config#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "index.js",
     "index.d.ts",

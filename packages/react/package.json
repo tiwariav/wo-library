@@ -1,6 +1,6 @@
 {
   "name": "@wo-library/react",
-  "version": "5.0.13",
+  "version": "6.0.0",
   "type": "module",
   "sideEffects": false,
   "engines": {
@@ -13,14 +13,31 @@
     "components",
     "react"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/react#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "analyze": "source-map-explorer 'dist/**/*.js' --no-border-checks",
     "build": "rollup --config rollup.config.js",
     "dev": "NODE_ENV=development rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
     "postversion": "cp -r package.json ..",
     "precommit": "lint-staged",
-    "release": "cd dist && yarn npm publish",
-    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --coverage --json --outputFile=./reports/test-report.json",
+    "test:non-ui": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.non-ui.config.cjs --coverage"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.18",

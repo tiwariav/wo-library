@@ -1,7 +1,7 @@
 {
   "name": "@wo-library/semantic-release-config",
   "description": "Semantic release config for github and npm, with Nx support",
-  "version": "1.3.10",
+  "version": "2.0.0",
   "type": "commonjs",
   "license": "MIT",
   "main": "index.js",
@@ -18,6 +18,9 @@
   "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/semantic-release-config#readme",
   "bugs": {
     "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "release": "npm publish --access public"
