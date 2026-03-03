@@ -47,7 +47,7 @@ stats.html
 # storybook
 storybook-static
 
-# TypeDoc-generated API reference (output of `yarn docs`)
+# TypeDoc-generated API reference (output of `pnpm docs`)
 packages/storybook/src/docs/@wo-library/
 packages/storybook/src/docs/index.mdx
 
@@ -57,16 +57,6 @@ yalc.lock
 
 # reports
 reports
-
-# Yarn non-zero install
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.cjs
-
 *storybook.log
 
 

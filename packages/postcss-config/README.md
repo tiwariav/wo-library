@@ -12,7 +12,7 @@ Includes: `postcss-import`, `postcss-global-import`, `postcss-mixins`, `postcss-
 ## Installation
 
 ```bash
-yarn add --dev @wo-library/postcss-config
+pnpm add -D @wo-library/postcss-config
 ```
 
 ## Usage

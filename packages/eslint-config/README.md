@@ -7,7 +7,7 @@ and code-quality rules.
 ## Installation
 
 ```bash
-yarn add --dev @wo-library/eslint-config
+pnpm add -D @wo-library/eslint-config
 ```
 
 ## Usage

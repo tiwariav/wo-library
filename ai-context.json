@@ -209,7 +209,7 @@
     "componentDocs": "Storybook autodocs (autodocs: true) automatically extracts JSDoc from TypeScript component props via react-docgen-typescript.",
     "apiDocs": {
       "tool": "TypeDoc + typedoc-plugin-markdown",
-      "command": "yarn docs",
+      "command": "pnpm docs",
       "description": "Generates markdown API reference for all packages and outputs it as .mdx files into packages/storybook/src/docs/. These are picked up by Storybook's stories glob and appear as API reference pages alongside component stories.",
       "outputDir": "packages/storybook/src/docs/",
       "gitignored": true,
@@ -234,7 +234,7 @@
       "controlsSort": "requiredFirst"
     },
     "ciWorkflow": ".github/workflows/docs.yml",
-    "ciWorkflowDescription": "On push to main: build packages → yarn docs (TypeDoc) → build-storybook → deploy to GitHub Pages.",
+    "ciWorkflowDescription": "On push to main: build packages → pnpm docs (TypeDoc) → build-storybook → deploy to GitHub Pages.",
     "storybookHierarchy": {
       "Atoms/*": "Individual UI primitives (Button, TextInput, Modal, etc.)",
       "Molecules/*": "Compositions of atoms (CardLink, Popover)",

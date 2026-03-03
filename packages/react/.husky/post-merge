@@ -16,10 +16,10 @@ check_run() {
 prompt_npm_install() {
   exec </dev/tty
   echo "Changes detected in lock file"
-  # yarn install
+  # pnpm install
 }
 
-check_run "yarn.lock" prompt_npm_install
+check_run "pnpm-lock.yaml" prompt_npm_install
 check_run "package-lock.json" prompt_npm_install
 
 exit 0

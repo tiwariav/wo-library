@@ -7,7 +7,7 @@ Browser and DOM utilities for script loading, fetch wrappers, storage abstractio
 ```bash
 npm install @wo-library/web
 # or
-yarn add @wo-library/web
+pnpm add @wo-library/web
 ```
 
 ## Features
@@ -71,11 +71,11 @@ const dataUri = svg.svgNodeToData(document.querySelector("svg")!);
 
 Typed error hierarchy for network and response failures:
 
-| Class | Description |
-| --- | --- |
-| `WoError` | Base error |
-| `WoLoadScriptError` | Script failed to load |
-| `WoNetworkError` | No response received |
+| Class                | Description                              |
+| -------------------- | ---------------------------------------- |
+| `WoError`            | Base error                               |
+| `WoLoadScriptError`  | Script failed to load                    |
+| `WoNetworkError`     | No response received                     |
 | `WoResponseError<T>` | Non-OK response with `data` and `status` |
 
 ### Payments

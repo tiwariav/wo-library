@@ -21,11 +21,11 @@
 ## Development Commands
 
 ```bash
-yarn install              # Install dependencies
-yarn build                # Build all packages
-yarn test                 # Run all tests
-yarn workspace @wo-library/react storybook  # Start Storybook
-yarn workspace @wo-library/react test       # Test react package
+pnpm install              # Install dependencies
+pnpm nx run-many -t build # Build all packages
+pnpm nx run-many -t test  # Run all tests
+pnpm --filter "@wo-library/react" storybook  # Start Storybook
+pnpm --filter "@wo-library/react" test       # Test react package
 ```
 
 ---
@@ -272,31 +272,31 @@ describe('formatNumber', () => {
 ### Adding a new export to a package
 1. Create the function/component with JSDoc
 2. Export from the module's `index.ts`
-3. Verify build: `yarn workspace @wo-library/{package} build`
+3. Verify build: `pnpm --filter "@wo-library/{package}" build`
 
 ### Running tests for a specific package
 ```bash
-yarn workspace @wo-library/react test
-yarn workspace @wo-library/js test
+pnpm --filter "@wo-library/react" test
+pnpm --filter "@wo-library/js" test
 ```
 
 ### Building a specific package
 ```bash
-yarn workspace @wo-library/react build
-yarn workspace @wo-library/js build
+pnpm --filter "@wo-library/react" build
+pnpm --filter "@wo-library/js" build
 ```
 
 ### Starting Storybook
 ```bash
-yarn workspace @wo-library/react storybook
+pnpm --filter "@wo-library/react" storybook
 ```
 
 ---
 
 ## Additional Reference Documents
 
-| File | Purpose |
-| --- | --- |
-| `ARCHITECTURE.md` | Detailed architecture: package relationships, component design, state patterns, styling |
-| `ai-context.json` | Machine-readable metadata for AI agents (package exports, patterns, component descriptions) |
-| `docs/AI_AGENT_PLAN.md` | Documentation improvement roadmap and progress tracking |
+| File                    | Purpose                                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------- |
+| `ARCHITECTURE.md`       | Detailed architecture: package relationships, component design, state patterns, styling     |
+| `ai-context.json`       | Machine-readable metadata for AI agents (package exports, patterns, component descriptions) |
+| `docs/AI_AGENT_PLAN.md` | Documentation improvement roadmap and progress tracking                                     |

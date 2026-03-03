@@ -4,28 +4,28 @@ A TypeScript monorepo providing reusable utilities, React components, web helper
 
 ## Packages
 
-| Package | Description | Docs |
-| --- | --- | --- |
-| [`@wo-library/js`](packages/js) | Pure JS/TS utilities (arrays, numbers, objects, colors, SVG) | [README](packages/js/README.md) |
-| [`@wo-library/react`](packages/react) | React components (atomic design) and hooks | [README](packages/react/README.md) |
-| [`@wo-library/web`](packages/web) | Browser/DOM utilities (fetch, storage, script loading) | [README](packages/web/README.md) |
-| [`@wo-library/ui`](packages/ui) | CSS styles, themes, and SVG path data | [README](packages/ui/README.md) |
-| [`@wo-library/eslint-config`](packages/eslint-config) | Shared ESLint flat-config presets | [README](packages/eslint-config/README.md) |
-| [`@wo-library/postcss-config`](packages/postcss-config) | Shared PostCSS configuration | [README](packages/postcss-config/README.md) |
-| [`@wo-library/stylelint-config`](packages/stylelint-config) | Shared Stylelint configuration | [README](packages/stylelint-config/README.md) |
-| [`@wo-library/semantic-release-config`](packages/semantic-release-config) | Semantic release presets | [README](packages/semantic-release-config/README.md) |
+| Package                                                                   | Description                                                  | Docs                                                 |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| [`@wo-library/js`](packages/js)                                           | Pure JS/TS utilities (arrays, numbers, objects, colors, SVG) | [README](packages/js/README.md)                      |
+| [`@wo-library/react`](packages/react)                                     | React components (atomic design) and hooks                   | [README](packages/react/README.md)                   |
+| [`@wo-library/web`](packages/web)                                         | Browser/DOM utilities (fetch, storage, script loading)       | [README](packages/web/README.md)                     |
+| [`@wo-library/ui`](packages/ui)                                           | CSS styles, themes, and SVG path data                        | [README](packages/ui/README.md)                      |
+| [`@wo-library/eslint-config`](packages/eslint-config)                     | Shared ESLint flat-config presets                            | [README](packages/eslint-config/README.md)           |
+| [`@wo-library/postcss-config`](packages/postcss-config)                   | Shared PostCSS configuration                                 | [README](packages/postcss-config/README.md)          |
+| [`@wo-library/stylelint-config`](packages/stylelint-config)               | Shared Stylelint configuration                               | [README](packages/stylelint-config/README.md)        |
+| [`@wo-library/semantic-release-config`](packages/semantic-release-config) | Semantic release presets                                     | [README](packages/semantic-release-config/README.md) |
 
 ## Quick Start
 
 ```bash
 # Install dependencies
-yarn install
+pnpm install
 
 # Build all packages
-yarn nx run-many --target=build
+pnpm nx run-many --target=build
 
 # Run tests
-yarn nx run-many --target=test
+pnpm nx run-many --target=test
 ```
 
 ## Import Pattern

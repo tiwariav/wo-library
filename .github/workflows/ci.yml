@@ -20,15 +20,15 @@ jobs:
 
             - uses: tiwariav/github-actions/cache-js-linters@main
 
-            - run: yarn install --immutable
+            - run: pnpm install --frozen-lockfile
 
-            - run: yarn eslint --cache --cache-strategy=content --quiet src
+            - run: pnpm eslint --cache --cache-strategy=content --quiet src
 
-            - run: yarn stylelint --cache ./src/**/*.css
+            - run: pnpm stylelint --cache ./src/**/*.css
 
-            - run: yarn prettier --cache --check src
+            - run: pnpm prettier --cache --check src
 
-            - run: yarn jscpd src
+            - run: pnpm jscpd src
 
             - run: npx nx affected -t build
 

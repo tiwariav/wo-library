@@ -30,16 +30,16 @@ jobs:
       - name: Enable Corepack & install dependencies
         run: |
           corepack enable
-          yarn install --immutable
+          pnpm install --frozen-lockfile
 
       - name: Build packages (required for type resolution)
-        run: yarn nx run-many -t build --projects=js,web,ui,react
+        run: pnpm nx run-many -t build --projects=js,web,ui,react
 
       - name: Generate TypeDoc API reference (markdown → storybook/src/docs/)
-        run: yarn docs
+        run: pnpm docs
 
       - name: Build Storybook static site
-        run: yarn nx run storybook:build-storybook
+        run: pnpm nx run storybook:build-storybook
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

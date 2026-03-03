@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: yarn install
+      - run: pnpm install
       - run: npx nx run-many -t build
 
       - uses: chromaui/action@v1

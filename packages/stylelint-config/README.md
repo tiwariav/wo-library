@@ -22,7 +22,7 @@ properties, and strict value declarations.
 ## Installation
 
 ```bash
-yarn add --dev stylelint @wo-library/stylelint-config
+pnpm add -D stylelint @wo-library/stylelint-config
 ```
 
 ## Usage

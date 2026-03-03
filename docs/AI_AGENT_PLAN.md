@@ -77,7 +77,7 @@ Each package should have a comprehensive README with:
 Brief description of what this package does and when to use it.
 
 ## Installation
-npm/yarn/pnpm installation commands.
+pnpm installation commands.
 
 ## Quick Start
 Minimal example to get started.
@@ -778,9 +778,9 @@ Or maintain them manually (they're small enough that sync issues are unlikely).
 14. ✅ **Config package READMEs** - `@wo-library/eslint-config`, `postcss-config`, `stylelint-config`, `semantic-release-config`
 15. ✅ **Storybook autodocs** - `title` hierarchy added to all 33 story files (`Atoms/*`, `Molecules/*`, `Structures/*`, `Templates/*`); `controls.sort: 'requiredFirst'` set globally; `autodocs: true` already in `main.ts`
 16. ✅ **Component category READMEs** - `atoms/README.md`, `molecules/README.md`, `structures/README.md`, `templates/README.md` (full component catalog with props and usage patterns)
-17. ✅ **TypeDoc + Storybook integration** - `typedoc-plugin-markdown` generates `.mdx` API reference pages into `packages/storybook-host/src/docs/` (per-package `typedoc.json` configs for js/react/web/ui); root `typedoc.json` orchestrates all packages; `yarn docs` command; generated files are gitignored
+17. ✅ **TypeDoc + Storybook integration** - `typedoc-plugin-markdown` generates `.mdx` API reference pages into `packages/storybook-host/src/docs/` (per-package `typedoc.json` configs for js/react/web/ui); root `typedoc.json` orchestrates all packages; `pnpm docs` command; generated files are gitignored
 18. ✅ **Storybook as unified doc hub** - Stories glob extended to pick up TypeDoc-generated MDX pages alongside component stories; TypeDoc API pages appear under `API/` in Storybook sidebar
-19. ✅ **GitHub Pages via Storybook** - `.github/workflows/docs.yml` replaced: builds packages → `yarn docs` (TypeDoc) → `build-storybook` → deploys Storybook to GitHub Pages (single unified site)
+19. ✅ **GitHub Pages via Storybook** - `.github/workflows/docs.yml` replaced: builds packages → `pnpm docs` (TypeDoc) → `build-storybook` → deploys Storybook to GitHub Pages (single unified site)
 20. ✅ **`ai-context.json` extended** - Added `documentation` section covering Storybook hub, TypeDoc workflow, stories globs, hierarchy, and CI pipeline
 21. ✅ **Component-level story descriptions** - Added `parameters.docs.description.component` to all 33 story files (atoms, molecules, structures, templates) so Storybook autodocs pages display a component overview above the props table
 

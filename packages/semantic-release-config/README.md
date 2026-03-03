@@ -7,7 +7,7 @@ and [Nx release](https://nx.dev/features/manage-releases), using
 ## Installation
 
 ```bash
-yarn add --dev @wo-library/semantic-release-config
+pnpm add -D @wo-library/semantic-release-config
 ```
 
 ## Usage

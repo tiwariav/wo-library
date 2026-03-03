@@ -7,27 +7,27 @@ CSS styles, design-system themes, and SVG path data shared across `@wo-library/r
 ```bash
 npm install @wo-library/ui
 # or
-yarn add @wo-library/ui
+pnpm add @wo-library/ui
 ```
 
 ## Contents
 
 ### Styles
 
-| File | Description |
-| --- | --- |
-| `styles/base.css` | CSS reset and base styles |
-| `styles/media.css` | Responsive breakpoint definitions |
-| `styles/media.ts` | TypeScript constants matching the CSS breakpoints |
-| `styles/storybook.css` | Storybook-specific style overrides |
+| File                   | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `styles/base.css`      | CSS reset and base styles                         |
+| `styles/media.css`     | Responsive breakpoint definitions                 |
+| `styles/media.ts`      | TypeScript constants matching the CSS breakpoints |
+| `styles/storybook.css` | Storybook-specific style overrides                |
 
 ### Themes
 
 CSS Module themes providing design-system tokens:
 
-| Theme | File |
-| --- | --- |
-| Fresh | `themes/fresh.module.css` |
+| Theme  | File                       |
+| ------ | -------------------------- |
+| Fresh  | `themes/fresh.module.css`  |
 | Trusty | `themes/trusty.module.css` |
 
 Themes are consumed via the `ThemeContext` in `@wo-library/react`.

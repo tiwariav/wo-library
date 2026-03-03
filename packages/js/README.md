@@ -7,7 +7,7 @@ Pure JavaScript/TypeScript utilities that work in any environment (browser, Node
 ```bash
 npm install @wo-library/js
 # or
-yarn add @wo-library/js
+pnpm add @wo-library/js
 ```
 
 ## Features
