@@ -74,3 +74,4 @@ reports
 .nx/workspace-data
 
 .DS_Store
+.npmrc

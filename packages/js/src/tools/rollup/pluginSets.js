@@ -138,7 +138,7 @@ export const getPublishPlugins = ({
     targets: [
       {
         dest: buildPath,
-        src: ["package.json", "README.md"],
+        src: ["package.json", "README.md", "LICENSE"],
         transform: (contents) =>
           removePostInstall
             ? contents.toString().replace(/\n*\s*"postinstall": "[^"]*",?/, "")

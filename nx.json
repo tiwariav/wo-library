@@ -4,7 +4,37 @@
     "packageManager": "pnpm"
   },
   "release": {
-    "projectsRelationship": "independent"
+    "projectsRelationship": "independent",
+    "projects": [
+      "@wo-library/js",
+      "@wo-library/react",
+      "@wo-library/web",
+      "@wo-library/ui",
+      "@wo-library/eslint-config",
+      "@wo-library/postcss-config",
+      "@wo-library/stylelint-config",
+      "@wo-library/semantic-release-config"
+    ],
+    "version": {
+      "conventionalCommits": true,
+      "fallbackCurrentVersionResolver": "disk"
+    },
+    "changelog": {
+      "automaticFromRef": "2a8df82f0e5471dd402aea0168390ca5370acf18",
+      "workspaceChangelog": false,
+      "projectChangelogs": {
+        "createRelease": "github",
+        "file": "{projectRoot}/CHANGELOG.md",
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
+    },
+    "git": {
+      "commitMessage": "chore(release): publish {version}"
+    }
   },
   "targetDefaults": {
     "build": {

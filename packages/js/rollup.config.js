@@ -58,7 +58,7 @@ const config = {
       flatten: false,
       hook: "writeBundle",
       targets: [
-        { dest: "dist", src: ["package.json", "README.md"] },
+        { dest: "dist", src: ["package.json", "README.md", "LICENSE"] },
         { dest: "dist", src: ["src/**/*.d.ts"] },
       ],
     }),

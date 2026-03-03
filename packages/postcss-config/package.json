@@ -1,7 +1,7 @@
 {
   "name": "@wo-library/postcss-config",
   "description": "Postcss config for modern websites",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "repository": {

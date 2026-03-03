@@ -10,6 +10,8 @@
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
     "@nx/storybook": "^22.5.1",
+    "@swc-node/register": "^1.11.1",
+    "@swc/core": "^1.15.18",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.3.0",
     "@wo-library/eslint-config": "workspace:^",
