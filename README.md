@@ -1,6 +1,6 @@
 # wo-library
 
-A TypeScript monorepo providing reusable utilities, React components, web helpers, and shared configuration packages.
+A professional library used to develop web and mobile applications.
 
 ## Packages
 

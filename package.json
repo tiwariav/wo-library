@@ -1,6 +1,7 @@
 {
   "name": "wo-library-monorepo",
   "private": true,
+  "description": "A professional library used to develop web and mobile applications",
   "scripts": {
     "docs": "pnpm typedoc",
     "storybook": "nx storybook storybook",
