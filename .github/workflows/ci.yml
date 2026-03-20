@@ -18,6 +18,8 @@ jobs:
               with:
                   node-version: "20"
 
+            - run: corepack enable
+
             - uses: tiwariav/github-actions/cache-js-linters@main
 
             - run: pnpm install --frozen-lockfile
