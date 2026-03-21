@@ -1,19 +1,22 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Configuration } from "webpack";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { resolve } from "node:path";
 
 const isDev = process.env.NODE_ENV === "development";
+const storybookDir = dirname(fileURLToPath(import.meta.url));
 
 const mediaFile = resolve(process.cwd(), "../ui/src/styles/media.css");
 
 const config: StorybookConfig = {
   stories: [
-    "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-    "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-    "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    resolve(storybookDir, "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
+    resolve(storybookDir, "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
+    resolve(storybookDir, "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
     // TypeDoc-generated API reference pages (produced by `yarn docs`)
-    "../src/docs/**/*.mdx",
+    resolve(storybookDir, "../src/docs/**/*.mdx"),
   ],
   addons: [
     "@storybook/addon-webpack5-compiler-swc",

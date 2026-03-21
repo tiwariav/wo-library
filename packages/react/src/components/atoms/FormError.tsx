@@ -7,16 +7,17 @@ function CustomError({
 }: {
   messages?: MultipleFieldErrors | string;
 }) {
+  if (!messages) {
+    return null;
+  }
   return (
-    messages && (
-      <div className={styles.root}>
-        {Object.entries(messages).map(([type, message]) => (
-          <p className={styles.item} key={type}>
-            {message}
-          </p>
-        ))}
-      </div>
-    )
+    <div className={styles.root}>
+      {Object.entries(messages).map(([type, message]) => (
+        <p className={styles.item} key={type}>
+          {message}
+        </p>
+      ))}
+    </div>
   );
 }
 

@@ -40,7 +40,7 @@ export function TooltipTrigger({
   getReferenceProps,
   onClick,
   referenceRef,
-}: TooltipTriggerProps) {
+}: Readonly<TooltipTriggerProps>) {
   if (
     isValidElement<{
       className: string;
@@ -111,37 +111,38 @@ export function TooltipBody({
   showBody,
   title,
   transitionStyles,
-}: TooltipBodyProps) {
+}: Readonly<TooltipBodyProps>) {
+  if (!showBody) {
+    return null;
+  }
   return (
-    showBody && (
+    <div
+      className={clsx(styles.floating, innerClassNames?.floating)}
+      {...getFloatingProps({
+        ref: floatingRef,
+        style: floatingStyles,
+      })}
+    >
       <div
-        className={clsx(styles.floating, innerClassNames?.floating)}
-        {...getFloatingProps({
-          ref: floatingRef,
-          style: floatingStyles,
-        })}
-      >
-        <div
-          className={clsx(
-            styles.title,
-            innerClassNames?.title,
-            !isPopover && styles.isPlain,
-          )}
-          style={animate ? transitionStyles : {}}
-        >
-          {title}
-        </div>
-        {showArrow && (
-          <FloatingArrow
-            className={clsx(styles.arrow, innerClassNames?.arrow)}
-            context={context}
-            height={ARROW_HEIGHT}
-            ref={arrowRef}
-            width={ARROW_WIDTH}
-          />
+        className={clsx(
+          styles.title,
+          innerClassNames?.title,
+          !isPopover && styles.isPlain,
         )}
+        style={animate ? transitionStyles : {}}
+      >
+        {title}
       </div>
-    )
+      {showArrow && (
+        <FloatingArrow
+          className={clsx(styles.arrow, innerClassNames?.arrow)}
+          context={context}
+          height={ARROW_HEIGHT}
+          ref={arrowRef}
+          width={ARROW_WIDTH}
+        />
+      )}
+    </div>
   );
 }
 
@@ -188,7 +189,7 @@ export default function Tooltip({
   title,
   trigger,
   ...props
-}: TooltipProps) {
+}: Readonly<TooltipProps>) {
   const { context, refs, ...floatingProps } = useTooltipProps({ ...props });
 
   const { getFloatingProps, getReferenceProps } = useContextInteractions(

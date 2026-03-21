@@ -66,7 +66,7 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
   name,
   showError = true,
   ...props
-}: HookFormInputWrapperProps<TValues>): ReactNode {
+}: Readonly<HookFormInputWrapperProps<TValues>>): ReactNode {
   const {
     field: { onBlur, onChange, ref, value },
     fieldState: { error },
@@ -88,13 +88,9 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
         inputValue.action === "select-option"
       ) {
         onChange(event);
-        return;
-      }
-      if (shouldUpdate) {
+      } else if (shouldUpdate) {
         onChange(inputValue);
-        return;
-      }
-      if (inputValue === undefined) {
+      } else if (inputValue === undefined) {
         onChange(event);
       }
     },

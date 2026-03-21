@@ -1,10 +1,5 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  'space-none', 'space-small', 'space-large', 'space-medium'
-]}] */
-
-import type { ComponentPropsWithoutRef } from "react";
-
 import { clsx } from "clsx";
+import type { ComponentPropsWithoutRef } from "react";
 import React from "react";
 
 import { getDynamicClassName } from "../../../tools/utils.js";
@@ -32,7 +27,7 @@ export default function Divider({
   spacing = "medium",
   vertical,
   ...props
-}: DividerProps) {
+}: Readonly<DividerProps>) {
   return React.createElement(
     vertical ? "div" : "hr",
     {
