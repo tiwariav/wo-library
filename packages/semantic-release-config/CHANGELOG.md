@@ -1,3 +1,7 @@
+## 2.1.0 (2026-03-21)
+
+This was a version bump only for @wo-library/semantic-release-config to align it with other projects, there were no code changes.
+
 ## 2.0.1 (2026-03-21)
 
 ### 🩹 Fixes
