@@ -47,10 +47,10 @@ export function addOrUpdate(
 ) {
   const newArray = [...array];
   const existingIndex = newArray.findIndex((item) => item[key] === object[key]);
-  if (existingIndex >= 0) {
-    newArray[existingIndex] = { ...object };
-  } else {
+  if (existingIndex === -1) {
     newArray.push(object);
+  } else {
+    newArray[existingIndex] = { ...object };
   }
   return newArray;
 }

@@ -17,12 +17,12 @@ const metadata: Meta<typeof TextInput> = {
       },
     },
   },
-  title: "Atoms/TextInput",
   render: (args) => (
     <div style={{ width: 240 }}>
       <TextInput {...args} />
     </div>
   ),
+  title: "Atoms/TextInput",
 };
 
 export default metadata;

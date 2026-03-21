@@ -22,8 +22,8 @@ const metadata: Meta<typeof PhoneNumberInput> = {
       },
     },
   },
-  title: "Atoms/PhoneNumberInput",
   render: (args) => <Template {...args} />,
+  title: "Atoms/PhoneNumberInput",
 };
 
 export default metadata;

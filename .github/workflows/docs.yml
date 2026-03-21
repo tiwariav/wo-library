@@ -38,7 +38,7 @@ jobs:
         run: pnpm nx run-many -t build --projects=js,web,ui,react
 
       - name: Generate TypeDoc API reference (markdown → storybook/src/docs/)
-        run: pnpm docs
+        run: pnpm run docs
 
       - name: Build Storybook static site
         run: pnpm nx run storybook:build-storybook

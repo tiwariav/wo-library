@@ -34,8 +34,8 @@ const metadata: Meta<FileInputProps> = {
       },
     },
   },
-  title: "Atoms/FileInput",
   render: (args) => <Template {...args} />,
+  title: "Atoms/FileInput",
 };
 
 export default metadata;

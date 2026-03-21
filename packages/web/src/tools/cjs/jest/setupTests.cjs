@@ -6,7 +6,7 @@ require("@testing-library/jest-dom");
 
 window.scrollTo = jest.fn();
 
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(globalThis, "matchMedia", {
   value: jest.fn().mockImplementation((query) => ({
     // deprecated
     addEventListener: jest.fn(),

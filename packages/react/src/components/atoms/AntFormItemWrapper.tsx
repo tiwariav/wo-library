@@ -31,7 +31,7 @@ export default function AntFormItemWrapper({
   onKeyPress,
   rules,
   ...props
-}: AntFormItemWrapperProps): ReactElement {
+}: Readonly<AntFormItemWrapperProps>): ReactElement {
   const [virgin, setVirgin] = useState(true);
   const [validateTrigger, setValidateTrigger] = useState("onChange");
 
@@ -76,12 +76,17 @@ export default function AntFormItemWrapper({
     <Form.Item
       className={clsx(styles.root, className)}
       getValueFromEvent={(event: EventValue) => {
-        return !isObject(event) || isDate(event)
-          ? event
-          : event.value ??
-              (event.target.id.startsWith("numberInputText")
-                ? Number(event.target.value)
-                : event.target.value);
+        if (!isObject(event) || isDate(event)) {
+          return event;
+        }
+        if (event.value !== undefined) {
+          return event.value;
+        }
+        const { id, value } = event.target;
+        if (id.startsWith("numberInputText")) {
+          return Number(value);
+        }
+        return value;
       }}
       rules={rules}
       validateTrigger={validateTrigger}

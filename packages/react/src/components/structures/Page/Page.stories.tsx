@@ -83,8 +83,8 @@ const pageMeta: Meta<typeof Page> = {
       },
     },
   },
-  title: "Structures/Page",
   render: (args) => <Template {...args} />,
+  title: "Structures/Page",
 };
 
 export default pageMeta;

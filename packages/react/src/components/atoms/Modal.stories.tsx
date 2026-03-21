@@ -56,7 +56,6 @@ function Template({ isOpen, modalContent, onClose, ...args }: TemplateProps) {
 
 const metadata: Meta<TemplateProps> = {
   component: Modal,
-  title: "Atoms/Modal",
   parameters: {
     docs: {
       description: {
@@ -67,6 +66,7 @@ const metadata: Meta<TemplateProps> = {
     },
   },
   render: (args) => <Template {...args} />,
+  title: "Atoms/Modal",
 };
 export default metadata;
 
