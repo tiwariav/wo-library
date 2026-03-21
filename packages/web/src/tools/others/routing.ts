@@ -16,7 +16,7 @@ function getNewUrl({
   if (includeFrom) {
     newSearch.append("from", currentPath);
   }
-  const url = new URL(`${window.location.origin}${redirectPath}`);
+  const url = new URL(`${globalThis.location.origin}${redirectPath}`);
   url.search = newSearch.toString();
   return url;
 }
@@ -44,7 +44,7 @@ export function redirectToLogout({
   logoutPath = "logout",
   message = "",
 } = {}) {
-  const { hash, pathname, search } = window.location;
+  const { hash, pathname, search } = globalThis.location;
   const considerHash = hash && hashNavigation;
   const isAlreadyThere =
     pathname.split("/").includes(logoutPath) ||
@@ -57,5 +57,5 @@ export function redirectToLogout({
   const redirectPath = `${considerHash ? "/#" : ""}/${logoutPath}`;
   const url = getNewUrl({ currentPath, includeFrom, message, redirectPath });
   // reload the window to automatically clear session storage and any other data in memory.
-  window.location.href = url.href;
+  globalThis.location.href = url.href;
 }

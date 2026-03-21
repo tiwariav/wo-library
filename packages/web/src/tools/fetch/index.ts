@@ -24,7 +24,7 @@ import {
   getFormData,
   getHeaderInstance,
   handleReadyStateChange,
-} from "./utils.js";
+} from "./utilities.js";
 
 interface UploadXhrOptions {
   data: Record<string, string>;
@@ -100,10 +100,10 @@ export class WoFetchBase {
       const response = await fetch(url.toString(), {
         body: getFetchBody(requestHeaders, data),
         credentials,
-        headers: Object.fromEntries(requestHeaders),
+        headers: requestHeaders,
         method,
       });
-      return responseHandler<TResponseData>(response, errorHandler);
+      return await responseHandler<TResponseData>(response, errorHandler);
     } catch (error) {
       await errorHandler(undefined, error);
     }
@@ -111,14 +111,34 @@ export class WoFetchBase {
   }
 
   generateFetchMethod(method: WoRequestMethod) {
-    return <
-      TData extends object,
-      TFetchOptions extends FetchOptions = FetchOptions,
-    >(
+    return <TData extends object>(
       path: string,
-      options?: TFetchOptions,
+      options?: FetchOptions,
     ) => this.fetchUrl<TData>(method, path, options);
   }
+
+  async getHeaders({
+    headers = {},
+    requireAuth = true,
+    token,
+  }: {
+    headers?: Record<string, string>;
+    requireAuth?: boolean;
+    token?: string;
+    xhr?: false;
+  } = {}): Promise<Headers>;
+
+  async getHeaders({
+    headers = {},
+    requireAuth = true,
+    token,
+    xhr,
+  }: {
+    headers?: Record<string, string>;
+    requireAuth?: boolean;
+    token?: string;
+    xhr: true;
+  }): Promise<Map<string, string>>;
 
   async getHeaders({
     headers = {},
