@@ -16,6 +16,9 @@ import useProgressAnimation, {
 
 const DEFAULT_SLICE_ANGLE = 7.5;
 const CENTER = 50;
+const START_ANGLE_OFFSET = -90;
+const VIEWBOX_WIDTH = 100;
+const VIEWBOX_HEIGHT = 50;
 
 /**
  * Props for the {@link ArcProgress} component.
@@ -43,7 +46,7 @@ function getAngles(segments: number) {
   const parts = Array.from<number>({ length: segments }).fill(
     MAX_PROGRESS / segments,
   );
-  let startAngle = -90;
+  let startAngle = START_ANGLE_OFFSET;
   for (let index = 0; index < parts.length; index++) {
     const part = parts[index];
     const nextAngle = startAngle + (ARC_ANGLE * part) / MAX_PROGRESS;
@@ -62,7 +65,7 @@ export default function ArcProgress({
   progress,
   segments = 4,
   strokeWidth = 2,
-}: ArcProgressProps) {
+}: Readonly<ArcProgressProps>) {
   const percentage = MAX_PROGRESS * (progress[0] / progress[1]);
   const animeId = useId();
   const angles = useMemo(() => getAngles(segments), [segments]);
@@ -71,7 +74,10 @@ export default function ArcProgress({
 
   return (
     <div className={clsx(styles.root, className)}>
-      <svg className={styles.svg} viewBox="0 0 100 50">
+      <svg
+        className={styles.svg}
+        viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
+      >
         {angles.map(([startAngle, endAngle], index) => {
           const segmentIndex: `segment${number}` = `segment${index + 1}`;
           return (

@@ -15,7 +15,7 @@ import { isNil } from "lodash-es";
  * isEmpty("hello");   // false
  * ```
  */
-export function isEmpty<TValue>(value: TValue) {
+export function isEmpty(value: unknown) {
   return isNil(value) || value === "";
 }
 
@@ -36,10 +36,7 @@ export function isEmpty<TValue>(value: TValue) {
  * inSubArray(sizes, "xl"); // undefined
  * ```
  */
-export function inSubArray<TArray extends [], TValue = TArray[number]>(
-  array: readonly unknown[],
-  value: unknown,
-) {
+export function inSubArray<TValue>(array: readonly TValue[], value: unknown) {
   const typedValue = value as TValue;
   return array.includes(typedValue) ? typedValue : undefined;
 }

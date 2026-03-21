@@ -45,8 +45,8 @@ const metadata: Meta<TemplateProps> = {
       },
     },
   },
-  title: "Atoms/Card",
   render: Template,
+  title: "Atoms/Card",
 };
 
 export default metadata;

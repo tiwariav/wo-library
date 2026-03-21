@@ -30,8 +30,8 @@ const metadata: Meta<typeof Tooltip> = {
       },
     },
   },
-  title: "Atoms/Tooltip",
   render: (args) => <Tooltip {...args} />,
+  title: "Atoms/Tooltip",
 };
 
 export default metadata;

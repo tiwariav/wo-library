@@ -4,11 +4,11 @@ import { SVGPathFlagData, SVGPathPinData } from "../svg/paths/index.js";
 describe("ui non-UI exports", () => {
   test("exports BREAKPOINTS and svg path constants", () => {
     expect(BREAKPOINTS).toEqual({
-      xs: 360,
-      sm: 600,
-      md: 960,
       lg: 1200,
+      md: 960,
+      sm: 600,
       xl: 1440,
+      xs: 360,
       xxl: 1920,
     });
     expect(typeof SVGPathFlagData.d).toBe("string");
@@ -18,11 +18,11 @@ describe("ui non-UI exports", () => {
 
   test("BREAKPOINTS values are ordered and numeric", () => {
     expect(BREAKPOINTS).toEqual({
-      xs: 360,
-      sm: 600,
-      md: 960,
       lg: 1200,
+      md: 960,
+      sm: 600,
       xl: 1440,
+      xs: 360,
       xxl: 1920,
     });
   });

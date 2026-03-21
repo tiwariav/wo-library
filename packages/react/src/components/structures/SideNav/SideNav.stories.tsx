@@ -68,8 +68,8 @@ const metadata: Meta<typeof SideNav> = {
       },
     },
   },
-  title: "Structures/SideNav",
   render: Template,
+  title: "Structures/SideNav",
 };
 
 export default metadata;

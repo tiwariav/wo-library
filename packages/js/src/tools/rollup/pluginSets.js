@@ -12,7 +12,7 @@ import _progress from "rollup-plugin-progress";
 
 import { getConfig as getBabelConfig } from "../cjs/babel.cjs";
 import { autoExternal, skipOutput } from "./plugins.js";
-import { getInput } from "./utils.js";
+import { getInput } from "./utilities.js";
 
 const commonjs = defaultImport(_commonjs);
 const postcss = defaultImport(_postcss);
@@ -133,16 +133,16 @@ export const getPublishPlugins = ({
         src: ["package.json", "README.md", "LICENSE"],
         transform: (contents) =>
           removePostInstall
-            ? contents.toString().replace(/\n*\s*"postinstall": "[^"]*",?/, "")
+            ? contents.toString().replace(/^\s*"postinstall":\s*"[^"]*",?$/m, "")
             : contents,
       },
       {
         dest: buildPath,
         src: ["src/**/*.d.ts"],
       },
-      ...(assetDirectories?.map((dir) => ({
-        dest: `${buildPath}/${dir.replace("src/", "")}`,
-        src: [`${dir}/*`],
+      ...(assetDirectories?.map((directory) => ({
+        dest: `${buildPath}/${directory.replace("src/", "")}`,
+        src: [`${directory}/*`],
       })) ?? []),
     ],
   }),

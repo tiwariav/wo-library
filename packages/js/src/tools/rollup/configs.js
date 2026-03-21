@@ -4,7 +4,7 @@ import {
   getCssBundlePlugins,
   getJsPlugins,
 } from "./pluginSets.js";
-import { getInput } from "./utils.js";
+import { getInput } from "./utilities.js";
 
 const getBaseConfig = ({ isDev = false } = {}) => {
   return {

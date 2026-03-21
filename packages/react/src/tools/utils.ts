@@ -1,7 +1,7 @@
 import { camelCase } from "lodash-es";
 import { forwardRef } from "react";
 
-export const isBrowser = typeof window !== "undefined" && !!window.document;
+export const isBrowser = globalThis.window !== undefined && !!globalThis.document;
 
 export const getDynamicClassName = (styles: unknown, name: string) => {
   /**
