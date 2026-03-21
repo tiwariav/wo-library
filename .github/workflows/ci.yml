@@ -16,9 +16,12 @@ jobs:
 
             - uses: actions/setup-node@v4
               with:
-                  node-version: "20"
+                  node-version: "24"
+                  cache: "pnpm"
 
             - uses: tiwariav/github-actions/cache-js-linters@main
+
+            - run: corepack enable
 
             - run: pnpm install --frozen-lockfile
 
