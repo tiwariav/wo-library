@@ -20,6 +20,8 @@ jobs:
 
             - uses: tiwariav/github-actions/cache-js-linters@main
 
+            - run: corepack enable
+
             - run: pnpm install --frozen-lockfile
 
             - run: pnpm eslint --cache --cache-strategy=content --quiet src

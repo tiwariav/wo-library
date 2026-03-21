@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - run: corepack enable
       - run: pnpm install
       - run: npx nx run-many -t build
 
