@@ -5,7 +5,7 @@ Composite components that combine two or more atoms into a cohesive UI pattern.
 Import from `@wo-library/react`:
 
 ```tsx
-import { CardLink, Popover } from "@wo-library/react";
+import { CardLink, Popover, Select, ToastContainer } from "@wo-library/react";
 ```
 
 ---
@@ -47,3 +47,50 @@ import { Popover } from "@wo-library/react";
 ```
 
 **Props**: All `TooltipProps` (except `title` is optional) plus `content: ReactNode`.
+
+---
+
+### `Select`
+
+A robust, accessible dropdown selection component supporting search, single-select, and multi-select.
+
+```tsx
+import { Select } from "@wo-library/react";
+
+const options = [
+  { label: 'Option 1', value: 1 },
+  { label: 'Option 2', value: 2 },
+];
+
+<Select options={options} onChange={setValue} label="Select an option" />
+```
+
+**Props**: `options`, `value`, `onChange`, `multiple`, `label`, `placeholder`, `size`, `hasError`, `disabled`.
+
+---
+
+### `Toast`
+
+A global notification system for transient feedback. Consists of `ToastProvider`, `ToastContainer`, and hooks.
+
+```tsx
+import { ToastProvider, ToastContainer, useToastMethods } from "@wo-library/react";
+
+function App() {
+  return (
+    <ToastProvider>
+      <MyComponent />
+      <ToastContainer />
+    </ToastProvider>
+  );
+}
+
+function MyComponent() {
+  const { dispatch } = useToastMethods();
+  return (
+    <button onClick={() => dispatch.addToast({ message: 'Success!', type: 'success' })}>
+      Show Toast
+    </button>
+  );
+}
+```

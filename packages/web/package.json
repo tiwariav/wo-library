@@ -9,7 +9,9 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./tools/cjs/jest/config.cjs": "./src/tools/cjs/jest/config.cjs",
+    "./tools/cjs/jest/setupTests.cjs": "./src/tools/cjs/jest/setupTests.cjs"
   },
   "sideEffects": false,
   "engines": {
