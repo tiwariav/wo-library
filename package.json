@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "docs": "pnpm typedoc",
+    "prepare": "husky",
     "storybook": "nx storybook storybook",
     "test": "pnpm -r run test"
   },
