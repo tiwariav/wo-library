@@ -75,8 +75,7 @@ export function pushOrCreate<TValue, TKey extends number | string>({
  * ```
  */
 export function getNestedValue<TResponse = string>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: Record<string, any>,
+  data: Record<string, unknown>,
   key: string,
 ): TResponse | TResponse[] {
   const keys = Object.keys(data);
@@ -86,13 +85,15 @@ export function getNestedValue<TResponse = string>(
       if (!isObject(value)) {
         continue;
       }
-      const childResponse = getNestedValue<TResponse>(value, key);
+      const childResponse = getNestedValue<TResponse>(
+        value as Record<string, unknown>,
+        key,
+      );
       response = isArray(childResponse)
         ? [...response, ...childResponse]
         : [...response, childResponse];
     }
     return response;
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return data[key];
+  return data[key] as TResponse;
 }

@@ -20,15 +20,17 @@ jobs:
 
             - uses: tiwariav/github-actions/cache-js-linters@main
 
+            - run: corepack enable
+
             - run: pnpm install --frozen-lockfile
 
-            - run: pnpm eslint --cache --cache-strategy=content --quiet src
+            - run: pnpm eslint --cache --cache-strategy=content --quiet "packages/*/src"
 
-            - run: pnpm stylelint --cache ./src/**/*.css
+            - run: pnpm stylelint --cache "packages/*/src/**/*.css"
 
-            - run: pnpm prettier --cache --check src
+            - run: pnpm prettier --cache --check "packages/*/src"
 
-            - run: pnpm jscpd src
+            - run: pnpm jscpd packages
 
             - run: npx nx affected -t build
 
