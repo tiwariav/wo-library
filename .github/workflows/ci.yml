@@ -25,7 +25,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm eslint --cache --cache-strategy=content --quiet packages/*/src
+      - run: pnpm eslint --cache --cache-strategy=content --quiet --no-warn-ignored packages/*/src
 
       - run: pnpm stylelint --cache packages/*/src/**/*.css
 
