@@ -111,10 +111,8 @@ export class WoFetchBase {
   }
 
   generateFetchMethod(method: WoRequestMethod) {
-    return <TData extends object>(
-      path: string,
-      options?: FetchOptions,
-    ) => this.fetchUrl<TData>(method, path, options);
+    return <TData extends object>(path: string, options?: FetchOptions) =>
+      this.fetchUrl<TData>(method, path, options);
   }
 
   async getHeaders({
