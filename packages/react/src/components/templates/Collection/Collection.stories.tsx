@@ -44,7 +44,7 @@ const metadata: Meta<typeof Collection> = {
     variant: { control: "select", options: COLLECTION_VARIANT_OPTIONS },
   },
   component: Collection,
-  excludeStories: /.*Template$/,
+  excludeStories: /Template$/
   parameters: {
     docs: {
       description: {

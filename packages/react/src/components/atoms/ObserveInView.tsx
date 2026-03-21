@@ -40,7 +40,7 @@ export default function ObserveInView({
   observeOptions,
   onViewChange,
   ...props
-}: ObserveInViewProps) {
+}: Readonly<ObserveInViewProps>) {
   const [rootRef, inView, rootEntry] = useInView(observeOptions);
   const [rootClasses, setRootClasses] = useState<Record<string, boolean>>();
 

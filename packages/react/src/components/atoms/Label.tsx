@@ -16,8 +16,7 @@ interface LabelProps extends ComponentPropsWithoutRef<"label"> {
 const Label = forwardRef<HTMLLabelElement, LabelProps>(
   ({ children, className, required, withFocus, withValue, ...props }, ref) => {
     const requiredText = isString(required) && required;
-    return (
-      children && (
+    return children ? (
         <label
           className={clsx(
             styles.root,
@@ -34,8 +33,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>(
           {children}
           {!!requiredText && ` ( ${requiredText} )`}
         </label>
-      )
-    );
+      ) : null;
   },
 );
 Label.displayName = "Label";

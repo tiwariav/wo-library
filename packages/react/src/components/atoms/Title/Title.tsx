@@ -1,9 +1,4 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  is-tinyline, is-tinyline-left,
-  align-center
-]}] */
-
-import type { ElementType } from "react";
+import type { ElementType, ReactElement } from "react";
 
 import { clsx } from "clsx";
 
@@ -12,8 +7,8 @@ import type { AsElementProps } from "../../AsElement.js";
 import { getDynamicClassName } from "../../../tools/utils.js";
 import * as styles from "./title.module.css";
 
-const TITLE_ALIGN_OPTIONS = ["center"] as const;
-const TITLE_VARIANT_OPTIONS = ["tinyline", "tinyline-left"] as const;
+export const TITLE_ALIGN_OPTIONS = ["center"] as const;
+export const TITLE_VARIANT_OPTIONS = ["tinyline", "tinyline-left"] as const;
 
 type TitleProps<TElement extends ElementType = "div"> = {
   align?: (typeof TITLE_ALIGN_OPTIONS)[number];
@@ -26,14 +21,22 @@ export default function Title<TElement extends ElementType>({
   className,
   variant,
   ...props
-}: TitleProps<TElement>) {
+}: Readonly<TitleProps<TElement>>): ReactElement {
   const Element = as ?? "div";
   return (
     <Element
       className={clsx(
         styles.root,
-        align && getDynamicClassName(styles, `align-${align}`),
-        variant && getDynamicClassName(styles, `is-${variant}`),
+        align &&
+          getDynamicClassName(
+            styles,
+            `align-${align as string}`,
+          ),
+        variant &&
+          getDynamicClassName(
+            styles,
+            `is-${variant as string}`,
+          ),
         className,
       )}
       {...props}

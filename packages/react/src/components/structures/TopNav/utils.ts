@@ -1,7 +1,6 @@
 import type {
   CSSProperties,
   ForwardedRef,
-  MutableRefObject,
   RefObject,
 } from "react";
 
@@ -48,7 +47,7 @@ function useVariantClassName({
       }
       return "";
     }
-    return variant && getDynamicClassName(styles, `variant-${variant}`);
+    return variant ? getDynamicClassName(styles, `variant-${variant}`) : "";
   }, [topNavExpanded, variant]);
 }
 
@@ -70,7 +69,7 @@ function useScrollUpdates({
   rootRef,
   sticky,
 }: {
-  rootRef: MutableRefObject<HTMLDivElement | null>;
+  rootRef: RefObject<HTMLDivElement | null>;
 } & ScrollUpdateOptions) {
   const layoutState = useLayoutState();
   const { direction, y: scrollY } = useScrollDirection(containerRef);

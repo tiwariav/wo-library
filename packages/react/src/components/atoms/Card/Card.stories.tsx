@@ -42,7 +42,7 @@ const metadata: Meta<TemplateProps> = {
     width: { control: { max: 320, min: 80, type: "range" } },
   },
   component: Card,
-  excludeStories: /.*Template$/,
+  excludeStories: /Template$/
   parameters: {
     docs: {
       description: {

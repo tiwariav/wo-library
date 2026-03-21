@@ -80,7 +80,7 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
       event: ChangeEvent<HTMLInputElement>,
       inputValue: unknown,
       shouldUpdate?: boolean,
-    ) => {
+    ): void => {
       // for react-select compatibility
       if (
         isObject(inputValue) &&

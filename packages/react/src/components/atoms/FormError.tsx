@@ -4,7 +4,7 @@ import * as styles from "./formError.module.css";
 
 function CustomError({
   messages,
-}: {
+}: Readonly<{
   messages?: MultipleFieldErrors | string;
 }) {
   if (!messages) {

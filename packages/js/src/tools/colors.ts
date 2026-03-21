@@ -62,7 +62,7 @@ const MAX_RGB = 255;
 const MAX_ANGLE = 360;
 
 function getRandomRgb(opacity = 100) {
-  const number_ = Math.round(RGB_BASE * Math.random());
+  const number_ = Math.round(RGB_BASE * Math.random()); // NOSONAR - safe for visual color generation
   const r = number_ >> G_SHIFT;
   const g = (number_ >> B_SHIFT) & MAX_RGB;
   const b = number_ & MAX_RGB;
@@ -84,6 +84,6 @@ function getRandomRgb(opacity = 100) {
 export function randomGradientGenerator(opacity: number) {
   const newColor1 = getRandomRgb(opacity);
   const newColor2 = getRandomRgb(opacity);
-  const angle = Math.round(Math.random() * MAX_ANGLE);
+  const angle = Math.round(Math.random() * MAX_ANGLE); // NOSONAR - safe for visual gradient angle
   return `linear-gradient(${angle}deg, ${newColor1}, ${newColor2})`;
 }

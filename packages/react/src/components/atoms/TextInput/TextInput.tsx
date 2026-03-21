@@ -1,7 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed:[
-  'variant-outlined', 'variant-material', 'variant-basic', 'variant-dashed',
-  'variant-borderless'
-]}] */
 import type {
   ComponentPropsWithoutRef,
   FocusEventHandler,
@@ -13,7 +9,6 @@ import { isEmpty } from "lodash-es";
 import {
   forwardRef,
   useCallback,
-  useEffect,
   useId,
   useMemo,
   useState,
@@ -75,7 +70,7 @@ export interface TextInputProps extends Omit<
   variant?: (typeof TEXT_INPUT_VARIANTS)[number];
 }
 
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
   (
     {
       className,
@@ -98,14 +93,22 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     },
     ref,
   ) => {
-    const [hasValue, setHasValue] = useState(!isEmpty(value ?? defaultValue));
+    const [internalHasValue, setInternalHasValue] = useState(() =>
+      !isEmpty(defaultValue),
+    );
+    const hasValue = useMemo(() => {
+      if (value === undefined) {
+        return internalHasValue;
+      }
+      return !isEmpty(value);
+    }, [internalHasValue, value]);
     const inputId = useId();
 
     const [labelRef, { input }] = useMeasureInput();
 
     const handleBlur = useCallback<FocusEventHandler<HTMLInputElement>>(
       (event) => {
-        setHasValue(!isEmpty(event.target.value));
+        setInternalHasValue(!isEmpty(event.target.value));
         onBlur?.(event);
       },
       [onBlur],
@@ -121,9 +124,6 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         : originalStyle;
     }, [input, style, variant]);
 
-    useEffect(() => {
-      setHasValue(!isEmpty(value));
-    }, [value]);
 
     return (
       <InputWrapper
@@ -172,7 +172,12 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             style={inputStyle}
             type="text"
             value={value}
-            variant={inSubArray(FORM_CONTROL_VARIANTS, variant)}
+            variant={
+              inSubArray(
+                FORM_CONTROL_VARIANTS,
+                variant,
+              ) as (typeof FORM_CONTROL_VARIANTS)[number]
+            }
             {...props}
           />
           {!!iconAfter && (
