@@ -35,7 +35,9 @@ function createStyleElement(source: string) {
  */
 export default function loadStylesheet(source: string) {
   return new Promise((resolve) => {
-    const existingStyle = document.querySelector(`link[href="${source}"]`);
+    const existingStyle = document.querySelector(
+      `link[href="${CSS.escape(source)}"]`,
+    );
     if (existingStyle) {
       resolve(true);
     } else {
