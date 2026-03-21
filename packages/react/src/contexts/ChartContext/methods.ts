@@ -1,4 +1,4 @@
-import type { MutableRefObject, ReactElement } from "react";
+import type { RefObject, ReactElement } from "react";
 
 import type { ChartState } from "./state.js";
 
@@ -11,7 +11,7 @@ export default function createChartMethods(state: ChartState) {
       return { ...state, isLoading };
     },
     setSymbolImages: (
-      symbolsRef: MutableRefObject<HTMLDivElement | null>,
+      symbolsRef: RefObject<HTMLDivElement | null>,
       symbolsData: ReactElement<{ seriesName: string }>[],
     ): ChartState => {
       const childNodes = symbolsRef.current?.childNodes;

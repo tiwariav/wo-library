@@ -7,7 +7,7 @@ const TEST_UNIQUE_KEY =
     ? "test"
     : undefined;
 
-export default function ImageLoader(props: IContentLoaderProps) {
+export default function ImageLoader(props: Readonly<IContentLoaderProps>) {
   return (
     <ContentLoader
       preserveAspectRatio="xMidYMid slice"

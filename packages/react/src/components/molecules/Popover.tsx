@@ -17,7 +17,7 @@ export default function Popover({
   content,
   innerClassNames,
   ...props
-}: PopoverProps) {
+}: Readonly<PopoverProps>) {
   return (
     <Tooltip
       innerClassNames={{

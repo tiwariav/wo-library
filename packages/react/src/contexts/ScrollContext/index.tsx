@@ -31,7 +31,7 @@ function ScrollProvider({
   className,
   data,
   ...props
-}: ScrollProviderProps) {
+}: Readonly<ScrollProviderProps>) {
   const overlayRef = useRef<OverlayScrollbarsComponentRef>(null);
 
   const [state, dispatch] = useMethods(createScrollMethods, {

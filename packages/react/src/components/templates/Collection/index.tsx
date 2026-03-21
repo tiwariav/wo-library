@@ -44,7 +44,7 @@ export default function Collection({
   title,
   variant = "list",
   ...props
-}: CollectionProps) {
+}: Readonly<CollectionProps>) {
   const itemStyle: CSSProperties = {};
   const contentStyle: CSSProperties = {};
   if (columns) {

@@ -59,7 +59,7 @@ export interface FileInputProps<
 function FileStatus<TFile extends UploadFile>({
   item,
   updateFiles,
-}: {
+}: Readonly<{
   item: TFile;
   updateFiles: FileInputProps<TFile>["updateFiles"];
 }) {

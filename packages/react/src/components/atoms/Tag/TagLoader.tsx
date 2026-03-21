@@ -33,7 +33,7 @@ export default function TagLoader({
   iconAfter,
   iconBefore,
   ...props
-}: TagLoaderProps) {
+}: Readonly<TagLoaderProps>) {
   return (
     <span className={clsx(styles.loader, className)} {...props}>
       {iconBefore && <IconLoader />}

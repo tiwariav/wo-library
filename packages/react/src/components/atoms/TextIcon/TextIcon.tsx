@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactElement } from "react";
 
 import * as styles from "./textIcon.module.css";
 
@@ -15,7 +15,7 @@ import * as styles from "./textIcon.module.css";
 export default function Text({
   children,
   ...props
-}: ComponentPropsWithoutRef<"span">) {
+}: Readonly<ComponentPropsWithoutRef<"span">>): ReactElement {
   return (
     <span className={styles.container} {...props}>
       {children}

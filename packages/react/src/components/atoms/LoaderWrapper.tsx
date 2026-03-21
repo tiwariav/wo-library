@@ -9,6 +9,6 @@ import * as styles from "./loaderWrapper.module.css";
  * @example
  * {isLoading ? <LoaderWrapper /> : <MyContent />}
  */
-export default function LoaderWrapper(props: ComponentPropsWithoutRef<"div">) {
+export default function LoaderWrapper(props: Readonly<ComponentPropsWithoutRef<"div">>) {
   return <div className={styles.root} {...props} />;
 }
