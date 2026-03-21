@@ -1,3 +1,9 @@
+## 6.1.0 (2026-03-21)
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/eslint-config to 3.1.0
+
 ## 6.0.1 (2026-03-21)
 
 ### 🩹 Fixes
