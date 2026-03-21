@@ -39,12 +39,10 @@ export default defineConfig([
   ...tsEslint.configs.strictTypeChecked.map((config) => ({
     ...config,
     files: ["**/*.ts?(x)"],
-    ignores: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"],
   })),
   ...tsEslint.configs.stylisticTypeChecked.map((config) => ({
     ...config,
     files: ["**/*.ts?(x)"],
-    ignores: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"],
   })),
   compatPlugin.configs["flat/recommended"],
   eslintReact.configs["recommended-typescript"],
@@ -70,6 +68,7 @@ export default defineConfig([
       ...sonarjsPlugin.configs.recommended.rules,
       ...testingLibraryPlugin.configs.react.rules,
       ...removeKeysStartingWith(craConfig.rules, [
+        "css-modules/",
         "flowtype/",
         "import/",
         "react/",
@@ -168,6 +167,7 @@ export default defineConfig([
       "unicorn/prevent-abbreviations": [
         "error",
         {
+          checkFilenames: false,
           replacements: {
             arg: { argument: false },
             args: { arguments: false },
@@ -199,6 +199,7 @@ export default defineConfig([
     },
     rules: {
       ...removeKeysStartingWith(craConfig.overrides[0].rules, [
+        "css-modules/",
         "react/",
         "react-hooks/",
       ]),
@@ -292,11 +293,16 @@ export default defineConfig([
     },
   },
   {
+    files: ["**/*.stories.tsx"],
+    ...tsEslint.configs.disableTypeChecked,
+  },
+  {
     files: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"],
     ...tsEslint.configs.disableTypeChecked,
-    plugins: { "@typescript-eslint": tsEslint.plugin },
+  },
+  {
+    files: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"],
     rules: {
-      "@typescript-eslint/await-thenable": "off",
       "@typescript-eslint/no-magic-numbers": "off",
       "lodash/prefer-constant": "off",
       "lodash/prefer-lodash-typecheck": "off",
@@ -306,6 +312,12 @@ export default defineConfig([
       "unicorn/no-array-for-each": "off",
       "unicorn/no-useless-undefined": "off",
       "unicorn/prevent-abbreviations": "off",
+    },
+  },
+  {
+    files: ["**/tools/cjs/**/*.cjs", "**/tools/rollup/**/*.js"],
+    rules: {
+      "compat/compat": "off",
     },
   },
   {

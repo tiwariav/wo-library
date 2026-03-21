@@ -50,8 +50,8 @@ const metadata: Meta<typeof Collection> = {
       },
     },
   },
-  title: "Templates/Collection",
   render: Template,
+  title: "Templates/Collection",
 };
 
 export default metadata;

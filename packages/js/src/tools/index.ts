@@ -26,4 +26,4 @@ export * from "./path.js";
 export * from "./svg.js";
 
 // General purpose utilities (isEmpty, inSubArray)
-export * from "./utils.js";
+export * from "./utilities.js";

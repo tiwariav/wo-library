@@ -186,7 +186,7 @@ export function useTopNavProps(
           [styles.isScrolled]: direction,
           [styles.isSticky]: sticky && isReady,
         },
-        ((shrinkOffset > 0 && typeof window === "undefined") ||
+        ((shrinkOffset > 0 && globalThis.window === undefined) ||
           (topNavExpanded && isReady)) && [
           styles.isExpanded,
           innerClassNames?.isExpanded,

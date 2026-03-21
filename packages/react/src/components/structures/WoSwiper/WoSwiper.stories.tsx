@@ -47,8 +47,8 @@ const metadata: Meta<typeof WoSwiper> = {
       },
     },
   },
-  title: "Structures/WoSwiper",
   render: (args) => <Template {...args} />,
+  title: "Structures/WoSwiper",
 };
 
 export default metadata;
