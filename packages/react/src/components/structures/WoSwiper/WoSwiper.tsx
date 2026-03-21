@@ -63,7 +63,7 @@ const SPACE_BETWEEN_OPTIONS = {
   normal: 32,
 };
 
-function getDerivedProps(variant: string | undefined) {
+function getDerivedProps(variant: string | undefined): Record<string, unknown> {
   let derivedProps = {};
   if (variant === "coverflow") {
     derivedProps = {
@@ -147,7 +147,7 @@ export default function WoSwiper({
   title,
   variant,
   ...props
-}: WoSwiperProps) {
+}: Readonly<WoSwiperProps>) {
   const derivedProps = getDerivedProps(variant);
 
   return (

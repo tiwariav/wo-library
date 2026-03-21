@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactElement } from "react";
 
 import { clsx } from "clsx";
 import { useId } from "react";
@@ -19,7 +19,7 @@ import * as styles from "./spinner.module.css";
 export default function Spinner({
   className,
   ...props
-}: ComponentPropsWithoutRef<"span">) {
+}: Readonly<ComponentPropsWithoutRef<"span">>): ReactElement {
   const id = useId();
   return (
     <span className={clsx(styles.container, className)} {...props}>

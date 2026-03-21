@@ -53,7 +53,7 @@ export default function Modal({
   innerClassNames,
   isOpen,
   onClose,
-}: ModalProps) {
+}: Readonly<ModalProps>) {
   const handleOpenChange = () => {
     onClose?.();
   };
@@ -64,8 +64,8 @@ export default function Modal({
   });
 
   const id = useId();
-  const labelId = `${id}-label`;
-  const descriptionId = `${id}-description`;
+  const labelId = `${id ?? ""}-label`;
+  const descriptionId = `${id ?? ""}-description`;
 
   const { getFloatingProps, getReferenceProps } = useInteractions([
     useClick(context),

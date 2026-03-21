@@ -1,7 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed:
-  ['is-small', 'is-large']
-}] */
-
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 
 import clsx from "clsx";
@@ -21,12 +17,12 @@ export default function InputWrapper<TElement extends ElementType>({
   className,
   size,
   ...props
-}: ComponentPropsWithoutRef<TElement> & InputWrapperProps<TElement>) {
+}: Readonly<ComponentPropsWithoutRef<TElement> & InputWrapperProps<TElement>>) {
   const Element = as ?? "div";
   return (
     <Element
       className={clsx(
-        size && getDynamicClassName(styles, `is-${size}`),
+        size && getDynamicClassName(styles, `is-${size as string}`),
         className,
       )}
       {...props}

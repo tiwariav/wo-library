@@ -1,5 +1,3 @@
-import type { RefObject } from "react";
-
 import { isArray, isFunction, isObject } from "lodash-es";
 import { useCallback, useRef } from "react";
 

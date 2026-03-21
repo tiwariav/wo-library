@@ -3,6 +3,7 @@ import {
   forwardRef,
   useCallback,
   useRef,
+  type ReactElement,
   type RefObject,
 } from "react";
 
@@ -47,7 +48,7 @@ function getFormattedNumber(
   value: string,
   format: FormatNumberOptions | boolean,
   textRef: RefObject<InputFormValue>,
-) {
+): string {
   const newValueDecimals = (value.split(".")[1] as string | undefined)?.length ?? 0;
   const nullValue = value ? "0" : "";
   const formatOptions: FormatNumberOptions = isObject(format) ? format : {};
@@ -66,9 +67,9 @@ function getFormattedNumber(
     // if the input value decimals are more than format options,
     // reduce the decimals for input to parseFucntion
     const newSplits = value.split(".") as [string, string | undefined];
-    /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
-    (textRef as any).current = `${newSplits[0]}.${(formattedValue.split(".")[1] as string | undefined) ?? ""}`;
-    /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
+    textRef.current = `${newSplits[0]}.${
+      (formattedValue.split(".")[1] as string | undefined) ?? ""
+    }`;
   }
   return formattedValue;
 }
@@ -88,36 +89,38 @@ function getParsedValue({
   parse,
   textValue,
 }: GetParsedValueOptions): InputFormValue {
-  const unformattedValue = isEmpty(textValue)
-    ? emptyValue
-    : (format
-        ? (stringToNumber(
-            formattedValue as string,
-            emptyValue as number,
-          ) as InputFormValue)
-        : textValue);
+  let unformattedValue: InputFormValue;
+  if (isEmpty(textValue)) {
+    unformattedValue = emptyValue;
+  } else if (format) {
+    unformattedValue = stringToNumber(
+      formattedValue as string,
+      emptyValue as number,
+    ) as InputFormValue;
+  } else {
+    unformattedValue = textValue;
+  }
 
-  return parse || isNil(unformattedValue)
-    ? unformattedValue
-    : String(unformattedValue);
+  if (parse || isNil(unformattedValue)) {
+    return unformattedValue;
+  }
+  return String(unformattedValue) as InputFormValue;
 }
 
-const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
-  ({ format = false, parse = false, ...props }, ref) => {
-    const textValueRef = useRef<InputFormValue>(null);
+const NumberInput = forwardRef<
+  HTMLInputElement,
+  Readonly<NumberInputProps>
+>(({ format = false, parse = false, ...props }, ref): ReactElement => {
+    const textValueRef = useRef<InputFormValue>(null as InputFormValue);
 
     const formatFunction = useCallback(
       (value: InputDomValue) => {
         if (isNil(value)) {
-          /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
-          (textValueRef as any).current = "";
-          /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
+        textValueRef.current = "";
           return "";
         }
         const stringValue = value.toString();
-        /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
-        (textValueRef as any).current = stringValue;
-        /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access */
+        textValueRef.current = stringValue;
         if (!format || stringValue.endsWith(".") || stringValue === "-") {
           return stringValue;
         }
