@@ -76,17 +76,20 @@ export default function AntFormItemWrapper({
     <Form.Item
       className={clsx(styles.root, className)}
       getValueFromEvent={(event: EventValue) => {
-        if (!isObject(event) || isDate(event)) {
-          return event;
+        let result: unknown;
+        if (isObject(event)) {
+          if (isDate(event)) {
+            result = event;
+          } else if (event.value === undefined) {
+            const { id, value } = event.target;
+            result = id.startsWith("numberInputText") ? Number(value) : value;
+          } else {
+            result = event.value;
+          }
+        } else {
+          result = event;
         }
-        if (event.value !== undefined) {
-          return event.value;
-        }
-        const { id, value } = event.target;
-        if (id.startsWith("numberInputText")) {
-          return Number(value);
-        }
-        return value;
+        return result;
       }}
       rules={rules}
       validateTrigger={validateTrigger}
