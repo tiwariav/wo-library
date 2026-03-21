@@ -36,7 +36,7 @@
     "dev": "NODE_ENV=development rollup --config rollup.config.js --watch --watch.onEnd 'yalc push dist'",
     "postversion": "cp -r package.json ..",
     "precommit": "lint-staged",
-    "test": "node --experimental-vm-modules $(pnpm bin)/jest --coverage --json --outputFile=./reports/test-report.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --json --outputFile=./reports/test-report.json",
     "test:non-ui": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.non-ui.config.cjs --coverage"
   },
   "dependencies": {

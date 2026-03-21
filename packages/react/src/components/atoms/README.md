@@ -23,6 +23,7 @@ import { Button, TextInput, Card } from "@wo-library/react";
 | Component              | Description                                                                                                                |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `Button`               | Primary interactive element with icon slots, `isBusy`/`isLoading`, variant, spacing, and size props. Polymorphic via `as`. |
+| `Checkbox`             | Standard checkbox input with support for indeterminate states.                                                             |
 | `FileInput`            | File picker with drag-and-drop list, `isBusy`, typed generic `TFile extends UploadFile`.                                   |
 | `FormattedInput`       | Text input with `format` (display) and `parse` (value) transforms. Emits `(event, parsedValue, shouldUpdate)`.             |
 | `FormControl`          | Low-level control wrapper (exports `useFormControl` hook).                                                                 |
@@ -34,6 +35,8 @@ import { Button, TextInput, Card } from "@wo-library/react";
 | `Label`                | Styled `<label>` element.                                                                                                  |
 | `NumberInput`          | Numeric input with `format`/`parse` via `FormattedInput`, step controls.                                                   |
 | `PhoneNumberInput`     | Pre-configured `FormattedInput` for E.164 phone numbers.                                                                   |
+| `Radio`                | Standard radio input component for mutual-exclusion selection.                                                             |
+| `Switch`               | Accessible switch (toggle) component.                                                                                      |
 | `TextInput`            | Base text input with icon slots (`iconBefore`, `iconAfter`), `isBusy`, `isLoading`, variants.                              |
 
 ## Layout
@@ -67,6 +70,7 @@ import { Button, TextInput, Card } from "@wo-library/react";
 | ---------------- | ----------------------------------------------------------------------------------------------------------- |
 | `ArcProgress`    | SVG arc-shaped progress indicator. `progress: [current, total]`, configurable `segments` and `strokeWidth`. |
 | `CircleProgress` | SVG circular progress. `progressText` accepts `'parts'`, `'percent'`, `'value'`, or a custom unit string.   |
+| `ProgressBar`    | Horizontal progress bar component.                                                                          |
 
 ## Loading States
 

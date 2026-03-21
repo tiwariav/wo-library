@@ -2,6 +2,12 @@
 export { default as useCalendly } from "./useCalendly.js";
 export type { CalendlyOptions } from "./useCalendly.js";
 
+// Triggers callback on clicks outside the target element
+export { default as useClickAway } from "./useClickAway.js";
+
+// Synchronize state with localStorage
+export { default as useLocalStorage } from "./useLocalStorage.js";
+
 // Measure input element dimensions
 export { default as useMeasureInput } from "./useMeasureInput.js";
 
@@ -17,3 +23,6 @@ export { default as useScrollDirection } from "./useScrollDirection.js";
 
 // Keeps local state synced with a prop value
 export { default as useStateWithProp } from "./useStateWithProp.js";
+
+// Tracks window dimensions
+export { default as useWindowSize } from "./useWindowSize.js";
