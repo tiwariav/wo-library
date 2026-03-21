@@ -1,6 +1,5 @@
 import { babel } from "@rollup/plugin-babel";
 import _commonjs from "@rollup/plugin-commonjs";
-import _eslint from "@rollup/plugin-eslint";
 import _json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import _terser from "@rollup/plugin-terser";
@@ -20,7 +19,6 @@ const postcss = defaultImport(_postcss);
 const copy = defaultImport(_copy);
 const del = defaultImport(_del);
 const terser = defaultImport(_terser);
-const eslint = defaultImport(_eslint);
 const progress = defaultImport(_progress);
 const json = defaultImport(_json);
 
@@ -68,14 +66,8 @@ export function getJsPlugins({
     ...buildPlugins,
   ];
   if (isDev && enableEslint) {
-    response.push(
-      eslint({
-        cache: true,
-        fix: true,
-        include: "src/**/*.{js,jsx,ts,tsx}",
-        throwOnError: true,
-      }),
-    );
+    // Rollup-side linting is intentionally disabled for ESLint v10 compatibility.
+    // Use the top-level `pnpm eslint` command in CI and local workflows instead.
   }
   if (isDev) {
     response.push(progress());

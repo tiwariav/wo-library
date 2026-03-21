@@ -1,6 +1,3 @@
-import config, { rcCompat } from "./flatConfig";
+import config from "./eslint.config.js";
 
-export default [
-  ...config,
-  rcCompat.extends("plugin:@next/next/recommended", "plugin:@next/next/core-web-vitals")
-];
+export default config;
