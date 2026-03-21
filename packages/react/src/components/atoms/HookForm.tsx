@@ -36,7 +36,7 @@ export default function HookForm<TFieldValues extends FieldValues>({
   onInvalid,
   onValid,
   ...props
-}: HookFormProps<TFieldValues>) {
+}: Readonly<HookFormProps<TFieldValues>>) {
   const methods = useForm({ criteriaMode, mode, ...props });
 
   useEffect(() => {

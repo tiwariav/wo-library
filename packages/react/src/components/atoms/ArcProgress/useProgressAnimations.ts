@@ -19,15 +19,15 @@ export default function useProgressAnimation(
     };
     animate(`#${animeId}-animeIndicator`, {
       rotateZ: [0, (ARC_ANGLE * percentage) / MAX_PROGRESS],
+      targets: `#${animeId}-animeIndicator`,
       ...animeProps,
     });
     animate(`#${animeId}-animeText`, {
       round: 1,
       textContent: [0, percentage],
       ...animeProps,
-      ease: "outElastic(1, 2)",
+      easing: "outElastic(1, 2)",
     });
-    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
   }, [percentage, animeId]);
   return null;
 }

@@ -1,9 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  size-small, size-large,
-  variant-list-item, variant-nav-item, variant-outlined,
-  variant-filled, variant-basic, variant-color,
-  spacing-less, spacing-extra,
-]}] */
 
 import type { ElementType, ReactNode, Ref } from "react";
 

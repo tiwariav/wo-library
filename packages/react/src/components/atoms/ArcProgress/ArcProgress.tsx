@@ -1,6 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  segment-1, segment-2, segment-3, segment-4
-]}] */
 import type { ReactNode } from "react";
 
 import { IconArrowLeftRhombus } from "@tabler/icons-react";
