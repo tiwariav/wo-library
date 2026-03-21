@@ -24,7 +24,7 @@ import {
   getFormData,
   getHeaderInstance,
   handleReadyStateChange,
-} from "../fetch/utils.js";
+} from "../fetch/utilities.js";
 import { anyStorageInstance } from "../storage/index.js";
 
 class MockResponse {

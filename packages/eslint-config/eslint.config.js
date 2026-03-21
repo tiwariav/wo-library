@@ -23,35 +23,18 @@ function removeKeysStartingWith(object, prefixes) {
   );
 }
 
-const settings = {
-  lintAllEsApis: true,
-  react: {
-    version: "detect",
-  },
-};
+const settings = { lintAllEsApis: true, react: { version: "detect" } };
 
 const noMagicNumbersOptions = {
-  ignore: [-1, 0, 1, 2],
-  ignoreArrayIndexes: true,
-  ignoreClassFieldInitialValues: true,
-  ignoreDefaultValues: true,
+  ignore: [-1, 0, 1, 2], ignoreArrayIndexes: true, ignoreClassFieldInitialValues: true, ignoreDefaultValues: true,
 };
 
-const preferDestructuringOptions = {
-  array: false,
-  object: true,
-};
+const preferDestructuringOptions = { array: false, object: true };
 
 export default defineConfig([
   js.configs.recommended,
-  ...tsEslint.configs.strictTypeChecked.map((config) => ({
-    ...config,
-    files: ["**/*.ts?(x)"],
-  })),
-  ...tsEslint.configs.stylisticTypeChecked.map((config) => ({
-    ...config,
-    files: ["**/*.ts?(x)"],
-  })),
+  ...tsEslint.configs.strictTypeChecked.map((config) => ({ ...config, files: ["**/*.ts?(x)"], ignores: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"] })),
+  ...tsEslint.configs.stylisticTypeChecked.map((config) => ({ ...config, files: ["**/*.ts?(x)"], ignores: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"] })),
   compatPlugin.configs["flat/recommended"],
   eslintReact.configs["recommended-typescript"],
   prettier,
@@ -298,17 +281,15 @@ export default defineConfig([
     },
   },
   {
-    files: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"],
-    ...tsEslint.configs.disableTypeChecked,
+    files: ["**/__tests__/**/*.{ts,tsx}", "**/*.{spec,test}.{ts,tsx}"], ...tsEslint.configs.disableTypeChecked, plugins: { "@typescript-eslint": tsEslint.plugin },
+    rules: {
+      "@typescript-eslint/await-thenable": "off", "@typescript-eslint/no-magic-numbers": "off", "lodash/prefer-constant": "off",
+      "lodash/prefer-lodash-typecheck": "off", "max-lines": "off", "max-statements": "off", "require-await": "off",
+      "unicorn/no-array-for-each": "off", "unicorn/no-useless-undefined": "off", "unicorn/prevent-abbreviations": "off",
+    },
   },
   {
-    files: [
-      "**/eslint.config.{js,cjs,mjs}",
-      "**/*.config.{js,cjs,mjs}",
-      "**/rollup.config.js",
-      "**/babel.config.cjs",
-      "**/jest.config.{js,cjs}",
-    ],
+    files: ["**/eslint.config.{js,cjs,mjs}", "**/*.config.{js,cjs,mjs}", "**/rollup.config.js", "**/babel.config.cjs", "**/jest.config.{js,cjs}"],
     ...tsEslint.configs.disableTypeChecked,
   },
   {
