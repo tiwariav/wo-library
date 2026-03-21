@@ -205,6 +205,9 @@ importers:
       '@rollup/plugin-commonjs':
         specifier: ^29.0.0
         version: 29.0.0(rollup@4.59.0)
+      '@rollup/plugin-eslint':
+        specifier: ^9.2.0
+        version: 9.2.0(eslint@10.0.2(jiti@2.6.1))(rollup@4.59.0)
       '@rollup/plugin-json':
         specifier: ^6.1.0
         version: 6.1.0(rollup@4.59.0)
