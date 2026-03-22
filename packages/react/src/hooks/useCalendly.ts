@@ -52,6 +52,6 @@ export default function useCalendly({
   });
 
   return () => {
-    window.Calendly.initPopupWidget({ prefill, url: calendlyLink });
+    globalThis.Calendly.initPopupWidget({ prefill, url: calendlyLink });
   };
 }

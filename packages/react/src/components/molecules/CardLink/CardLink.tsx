@@ -1,4 +1,4 @@
-import type { MutableRefObject, ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 
 import { useRef } from "react";
 import { useEffectOnce } from "react-use";
@@ -10,21 +10,21 @@ import { Card } from "../../atoms/index.js";
 
 export interface CardLinkProps extends CardProps {
   children: ReactNode;
-  linkRef: MutableRefObject<HTMLAnchorElement | null>;
+  linkRef: RefObject<HTMLAnchorElement | null>;
 }
 
 export default function CardLink({
   children,
   linkRef,
   ...props
-}: CardLinkProps) {
+}: Readonly<CardLinkProps>) {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     if (isBrowser) {
       return;
     }
-    const noTextSelected = !window.getSelection()?.toString();
+    const noTextSelected = !globalThis.getSelection()?.toString();
 
     if (noTextSelected) {
       linkRef.current?.click();

@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/prefer-module */
-const { readPackageJSON } = require("./nodeUtils.cjs");
+const { readPackageJSON } = require("./nodeUtilities.cjs");
 const micromatch = require("micromatch");
 const path = require("node:path");
 

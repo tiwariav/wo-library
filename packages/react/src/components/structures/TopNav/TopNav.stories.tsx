@@ -102,8 +102,8 @@ const metadata: Meta<typeof TopNav> = {
       },
     },
   },
-  title: "Structures/TopNav",
   render: Template,
+  title: "Structures/TopNav",
 };
 
 export default metadata;

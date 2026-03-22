@@ -8,8 +8,8 @@
 
 import type {
   ComponentPropsWithoutRef,
-  MutableRefObject,
   ReactNode,
+  RefObject,
 } from "react";
 
 import { inSubArray } from "@wo-library/js";
@@ -126,9 +126,9 @@ function useButtonEffects({
   neuOptions,
   variant,
 }: {
-  innerRef: MutableRefObject<HTMLButtonElement | null>;
+  innerRef: RefObject<HTMLButtonElement | null>;
 } & SharedButtonProps) {
-  const mouseData = useMouseHovered(innerRef, {
+  const mouseData = useMouseHovered(innerRef as RefObject<Element>, {
     bound: true,
     whenHovered: true,
   });

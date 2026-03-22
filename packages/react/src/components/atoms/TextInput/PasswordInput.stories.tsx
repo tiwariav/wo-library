@@ -12,12 +12,12 @@ const metadata: Meta<typeof PasswordInput> = {
       },
     },
   },
-  title: "Atoms/PasswordInput",
   render: (args) => (
     <div style={{ width: 240 }}>
       <PasswordInput {...args} />
     </div>
   ),
+  title: "Atoms/PasswordInput",
 };
 
 export default metadata;

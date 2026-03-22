@@ -16,8 +16,8 @@ const meta: Meta<typeof ArcProgress> = {
       },
     },
   },
-  title: "Atoms/ArcProgress",
   render: (args) => <ArcProgress {...args} />,
+  title: "Atoms/ArcProgress",
 };
 
 export default meta;

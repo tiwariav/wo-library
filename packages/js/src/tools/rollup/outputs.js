@@ -1,4 +1,4 @@
-import { addBanner } from "./utils.js";
+import { addBanner } from "./utilities.js";
 
 export const getEsOutput = ({ isDev = false } = {}) => ({
   banner: addBanner,

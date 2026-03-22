@@ -22,6 +22,7 @@ import {
   wait,
 } from "../index.js";
 
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 describe("constants", () => {
   test("root index exports tools", () => {
     expect(typeof rootExports.formatNumber).toBe("function");
@@ -34,6 +35,7 @@ describe("constants", () => {
 
 describe("array tools", () => {
   test("range creates inclusive sequence", () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(range(1, 5, 2)).toEqual([1, 3, 5]);
   });
 
@@ -56,9 +58,12 @@ describe("array tools", () => {
 
 describe("color tools", () => {
   test("rgbToHex and hexToRgb convert both ways", () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(rgbToHex(255, 87, 51)).toBe("#ff5733");
-    expect(hexToRgb("#ff5733")).toEqual({ r: 255, g: 87, b: 51 });
-    expect(hexToRgb("#fff")).toEqual({ r: 255, g: 255, b: 255 });
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    expect(hexToRgb("#ff5733")).toEqual({ b: 51, g: 87, r: 255 });
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    expect(hexToRgb("#fff")).toEqual({ b: 255, g: 255, r: 255 });
     expect(hexToRgb("invalid")).toBeNull();
   });
 
@@ -66,9 +71,11 @@ describe("color tools", () => {
     const randomSpy = jest
       .spyOn(Math, "random")
       .mockReturnValueOnce(0)
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       .mockReturnValueOnce(0.5)
       .mockReturnValueOnce(1);
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const output = randomGradientGenerator(60);
 
     expect(output).toContain("linear-gradient(360deg");
@@ -80,8 +87,11 @@ describe("color tools", () => {
   test("randomGradientGenerator uses default opacity when undefined", () => {
     const randomSpy = jest
       .spyOn(Math, "random")
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       .mockReturnValueOnce(0.1)
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       .mockReturnValueOnce(0.2)
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       .mockReturnValueOnce(0.3);
 
     const output = randomGradientGenerator(undefined as unknown as number);
@@ -100,6 +110,7 @@ describe("language and misc tools", () => {
       "apples",
     );
     expect(
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       plularize("child", 2, { plural: "children", pluralSuffix: "s" }),
     ).toBe("children");
   });
@@ -107,8 +118,10 @@ describe("language and misc tools", () => {
   test("wait resolves after timeout", async () => {
     jest.useFakeTimers();
     const resolved = jest.fn();
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const promise = wait(50).then(resolved);
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     jest.advanceTimersByTime(49);
     await Promise.resolve();
     expect(resolved).not.toHaveBeenCalled();
@@ -133,9 +146,9 @@ describe("object tools", () => {
     expect(
       pushOrCreate({
         data: { fruits: ["apple", "banana"] },
+        index: 1,
         key: "fruits",
         value: "mango",
-        index: 1,
       }),
     ).toEqual(["apple", "mango"]);
   });
@@ -143,11 +156,11 @@ describe("object tools", () => {
   test("getNestedValue returns direct key and recursive values", () => {
     const source = {
       city: "Mumbai",
+      label: "name",
       nested: {
         city: "Delhi",
         deep: { city: "Pune" },
       },
-      label: "name",
     };
 
     expect(getNestedValue<string>(source, "label")).toBe("name");
@@ -164,18 +177,23 @@ describe("object tools", () => {
 
 describe("path and svg tools", () => {
   test("posixPath replaces backslashes", () => {
-    expect(posixPath("a\\b\\c")).toBe("a/b/c");
+    expect(posixPath(String.raw`a\b\c`)).toBe("a/b/c");
   });
 
   test("polarToCartesian converts angle from top-origin", () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const point = polarToCartesian({ x: 50, y: 50 }, 40, 0);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(point.x).toBeCloseTo(50);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(point.y).toBeCloseTo(10);
   });
 
   test("describeArc includes expected flags for small and large arcs", () => {
-    const smallArc = describeArc(10, { start: 0, end: 90 }, { x: 0, y: 0 });
-    const largeArc = describeArc(10, { start: 0, end: 270 }, { x: 0, y: 0 });
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const smallArc = describeArc(10, { end: 90, start: 0 }, { x: 0, y: 0 });
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    const largeArc = describeArc(10, { end: 270, start: 0 }, { x: 0, y: 0 });
 
     expect(smallArc).toContain("A 10 10 0 0 0");
     expect(largeArc).toContain("A 10 10 0 1 0");
@@ -190,18 +208,21 @@ describe("general utility and number helpers", () => {
     expect(isEmpty(0)).toBe(false);
 
     const sizes = ["sm", "md", "lg"] as const;
-    expect(inSubArray<typeof sizes, (typeof sizes)[number]>(sizes, "md")).toBe(
+    expect(inSubArray<(typeof sizes)[number]>(sizes, "md")).toBe(
       "md",
     );
-    expect(inSubArray<typeof sizes, (typeof sizes)[number]>(sizes, "xl")).toBe(
+    expect(inSubArray<(typeof sizes)[number]>(sizes, "xl")).toBe(
       undefined,
     );
   });
 
   test("stringToNumber parses values and falls back to nanValue", () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(stringToNumber(42)).toBe(42);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(stringToNumber("1,234.56")).toBe(1234.56);
     expect(stringToNumber("abc", 0)).toBe(0);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(stringToNumber(undefined as unknown as string, 7)).toBe(7);
   });
 
@@ -212,13 +233,17 @@ describe("general utility and number helpers", () => {
   test("ordinalNumber formats cardinal forms", () => {
     expect(ordinalNumber(1)).toBe("1st");
     expect(ordinalNumber(2)).toBe("2nd");
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(ordinalNumber(3)).toBe("3rd");
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(ordinalNumber(4)).toBe("4th");
     expect(ordinalNumber("x" as unknown as number)).toBe("x");
   });
 
   test("formatNumber and formatNumberWithSuffix are exported and callable", () => {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     expect(formatNumber(1234)).toBe("1,234.00");
-    expect(formatNumberWithSuffix(100000)).toBe("1.00 L");
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    expect(formatNumberWithSuffix(100_000)).toBe("1.00 L");
   });
 });

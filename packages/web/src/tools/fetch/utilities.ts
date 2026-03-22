@@ -35,10 +35,14 @@ export function getFormData(
  * @returns The combined URL string.
  */
 export function combineUrls(baseUrl: string, relativeUrl?: string): string {
-  const combinedUrl = relativeUrl
-    ? `${baseUrl.replace(/\/+$/, "")}/${relativeUrl.replace(/^\/+/, "")}`
-    : baseUrl;
-  return combinedUrl.replace(/\/+$/, "");
+  const sanitizedBaseUrl = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+  const sanitizedRelativeUrl = relativeUrl?.startsWith("/")
+    ? relativeUrl.slice(1)
+    : relativeUrl;
+  const combinedUrl = sanitizedRelativeUrl
+    ? `${sanitizedBaseUrl}/${sanitizedRelativeUrl}`
+    : sanitizedBaseUrl;
+  return combinedUrl.endsWith("/") ? combinedUrl.slice(0, -1) : combinedUrl;
 }
 
 function updateResourceUrl(
@@ -67,14 +71,14 @@ function getResourcePath(path: string, devProxy?: string) {
 
 function combineResourceUrl(
   apiEndpoint: string,
-  baseUrl: string,
   resourcePath: string,
 ) {
-  if (!(apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:"))) {
-    baseUrl = combineUrls(window.location.origin, apiEndpoint);
-  }
+  const baseUrl =
+    apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:")
+      ? apiEndpoint
+      : combineUrls(globalThis.location.origin, apiEndpoint);
   const resourceUrl = new URL(combineUrls(baseUrl, resourcePath));
-  return { baseUrl, resourceUrl };
+  return resourceUrl;
 }
 
 interface CreateUrlOptions {
@@ -98,18 +102,11 @@ export function createUrl(
   path: string,
   { devProxy, id, query, trailingSlash }: CreateUrlOptions = {},
 ): URL {
-  let baseUrl = apiEndpoint;
   const resourcePath = getResourcePath(path, devProxy);
-  let resourceUrl: URL;
-  if (resourcePath.startsWith("http:") || resourcePath.startsWith("https:")) {
-    resourceUrl = new URL(combineUrls(resourcePath));
-  } else {
-    ({ baseUrl, resourceUrl } = combineResourceUrl(
-      apiEndpoint,
-      baseUrl,
-      resourcePath,
-    ));
-  }
+  const resourceUrl =
+    resourcePath.startsWith("http:") || resourcePath.startsWith("https:")
+      ? new URL(combineUrls(resourcePath))
+      : combineResourceUrl(apiEndpoint, resourcePath);
   if (id && !resourceUrl.pathname.endsWith("/")) {
     resourceUrl.pathname += `/${id}`;
   }
@@ -129,7 +126,7 @@ export function getHeaderInstance(
   xhr: boolean,
   allHeaders: Record<string, string>,
 ) {
-  const headersInstance = xhr ? new Map() : new Headers();
+  const headersInstance = xhr ? new Map<string, string>() : new Headers();
   for (const key in allHeaders) {
     const element = allHeaders[key];
     headersInstance.set(key, element);

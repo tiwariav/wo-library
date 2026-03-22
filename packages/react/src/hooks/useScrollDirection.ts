@@ -73,13 +73,13 @@ export default function useScrollDirection(ref?: RefObject<HTMLElement>) {
     //Window scroll may be changed between render and effect handler.
     handler();
 
-    on(current ?? window, "scroll", handler, {
+    on(current ?? globalThis, "scroll", handler, {
       capture: false,
       passive: true,
     });
 
     return () => {
-      off(current ?? window, "scroll", handler);
+      off(current ?? globalThis, "scroll", handler);
     };
   }, [ref, setState]);
 

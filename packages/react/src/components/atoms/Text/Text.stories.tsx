@@ -64,9 +64,9 @@ export const Interactive: Story = {
     isLoading: false,
     width: 400,
   },
-  render: (args) => <Template {...args} />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByText("Interactive Text")).toBeInTheDocument();
   },
+  render: (args) => <Template {...args} />,
 };
