@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import type { DividerProps } from "./Divider.js";
 
-import Divider from "./Divider.js";
+import Divider, { DIVIDER_SPACING_OPTIONS } from "./Divider.js";
 
 const metadata: Meta<typeof Divider> = {
   argTypes: {
     color: { control: "color" },
+    spacing: { control: "select", options: DIVIDER_SPACING_OPTIONS },
   },
   component: Divider,
   parameters: {

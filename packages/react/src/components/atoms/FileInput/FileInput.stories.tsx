@@ -5,7 +5,7 @@ import { useState } from "react";
 import type { FileInputProps } from "./FileInput.js";
 
 import UploadFile from "../../../tools/uploadFile";
-import FileInput from "./FileInput.js";
+import FileInput, { FILE_INPUT_VARIANTS } from "./FileInput.js";
 
 function Template({ files, ...args }: FileInputProps) {
   const [allFiles, setFiles] = useState(files);
@@ -25,6 +25,9 @@ function Template({ files, ...args }: FileInputProps) {
 }
 
 const metadata: Meta<FileInputProps> = {
+  argTypes: {
+    variant: { control: "select", options: FILE_INPUT_VARIANTS },
+  },
   component: FileInput,
   parameters: {
     docs: {

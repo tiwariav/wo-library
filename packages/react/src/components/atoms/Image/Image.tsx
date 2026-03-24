@@ -12,7 +12,7 @@ import Spinner from "../Spinner/Spinner.js";
 import ImageLoader from "./ImageLoader.js";
 import * as styles from "./image.module.css";
 
-const IMAGE_VARIANT_OPTIONS = ["basic", "circular"] as const;
+export const IMAGE_VARIANT_OPTIONS = ["basic", "circular"] as const;
 const MAX_PERCENT = 100;
 
 /**
