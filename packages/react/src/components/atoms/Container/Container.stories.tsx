@@ -13,6 +13,13 @@ const metadata: Meta<typeof Container> = {
   args: {
     children: "This is a container. It provides space around content.",
   },
+  argTypes: {
+    align: { control: "select", options: ["center"] },
+    height: { control: "select", options: CONTAINER_HEIGHTS },
+    spacing: { control: "select", options: CONTAINER_SPACINGS },
+    variant: { control: "select", options: ["secondary"] },
+    width: { control: "select", options: CONTAINER_WIDTHS },
+  },
   component: Container,
   parameters: {
     docs: {
@@ -34,7 +41,7 @@ export const Basic: Story = {};
 
 export const Align: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <Container className="story-bordered" {...args}>
         No align
       </Container>
@@ -52,7 +59,7 @@ function FirstContainerTemplate({
   ...args
 }: { firstContent: ReactNode; isList?: boolean } & ContainerProps) {
   return (
-    <div className={isList ? "story-list" : "story-grid"}>
+    <div className={isList ? "story-list" : "story-list"}>
       <Container className="story-bordered" {...args}>
         {firstContent}
       </Container>

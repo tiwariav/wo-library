@@ -23,7 +23,7 @@ export interface SortOption {
   name: string;
 }
 
-const COLLECTION_VARIANT_OPTIONS = ["list", "grid"] as const;
+export const COLLECTION_VARIANT_OPTIONS = ["list", "grid"] as const;
 
 export interface CollectionProps {
   children: ReactNode;

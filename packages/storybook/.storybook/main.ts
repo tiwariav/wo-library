@@ -1,7 +1,11 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Configuration } from "webpack";
 
+import { resolve } from "node:path";
+
 const isDev = process.env.NODE_ENV === "development";
+
+const mediaFile = resolve(process.cwd(), "../ui/src/styles/media.css");
 
 const config: StorybookConfig = {
   stories: [
@@ -40,6 +44,28 @@ const config: StorybookConfig = {
               },
               {
                 loader: "postcss-loader",
+                options: {
+                  postcssOptions: {
+                    plugins: [
+                      ["@csstools/postcss-global-data", { files: [mediaFile] }],
+                      "postcss-mixins",
+                      [
+                        "postcss-preset-env",
+                        {
+                          autoprefixer: { flexbox: "no-2009" },
+                          features: {
+                            "cascade-layers": false,
+                            "custom-media-queries": {},
+                            "custom-properties": true,
+                            "gap-properties": true,
+                            "nesting-rules": true,
+                          },
+                          stage: 1,
+                        },
+                      ],
+                    ],
+                  },
+                },
               },
             ],
           },

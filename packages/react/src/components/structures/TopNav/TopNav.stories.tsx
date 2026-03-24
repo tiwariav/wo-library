@@ -92,6 +92,8 @@ const metadata: Meta<typeof TopNav> = {
         options: Object.keys(iconMap),
       },
     },
+    logoVariant: { control: "select", options: ["hanging"] },
+    variant: { control: "select", options: TOPNAV_VARIANTS },
   },
   component: TopNav,
   parameters: {
@@ -115,8 +117,8 @@ export const Basic: Story = {};
 export const Sticky: Story = {
   args: { banner: <div>What a great day!</div> },
   render: (args) => (
-    <div className="story-grid">
-      <Template {...args} className="story-grid-row" logo="fixed" sticky />
+    <div className="story-list">
+      <Template {...args} className="story-list-row" logo="fixed" sticky />
       <Template {...args} logo="hideOnScroll" sticky={{ hideOnScroll: true }} />
       <Template {...args} logo="shrinkOffset" sticky={{ shrinkOffset: 100 }} />
     </div>
@@ -126,7 +128,7 @@ export const Sticky: Story = {
 export const Variants: Story = {
   args: { sticky: true },
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       {TOPNAV_VARIANTS.map((variant) => (
         <Template key={variant} variant={variant} {...args} logo={variant} />
       ))}

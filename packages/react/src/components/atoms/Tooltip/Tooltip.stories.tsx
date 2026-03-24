@@ -130,7 +130,7 @@ export const Placements: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-flex">
+    <div className="story-list">
       <div className="story-flex-grow">
         <div className="story-title">Leftdiv</div>
         <div
@@ -194,7 +194,7 @@ export const Triggers: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <div>
         <Tooltip trigger="click" {...args}>
           Click for Tooltip!

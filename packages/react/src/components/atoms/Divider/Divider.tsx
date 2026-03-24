@@ -10,7 +10,12 @@ import React from "react";
 import { getDynamicClassName } from "../../../tools/utils.js";
 import * as styles from "./divider.module.css";
 
-const DIVIDER_SPACING_OPTIONS = ["none", "small", "medium", "large"] as const;
+export const DIVIDER_SPACING_OPTIONS = [
+  "none",
+  "small",
+  "medium",
+  "large",
+] as const;
 
 /**
  * Props for the {@link Divider} component.

@@ -2,12 +2,16 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import ContentLoader from "../../../vendors/ContentLoader.js";
 
-const TEST_UNIQUE_KEY = process.env.JEST_WORKER_ID ? "test" : undefined;
+const TEST_UNIQUE_KEY =
+  typeof process !== "undefined" && process.env?.JEST_WORKER_ID
+    ? "test"
+    : undefined;
 const LINE_HEIGHT = 24;
 const Y_MARGIN = 3;
 
-interface TextLoaderProps
-  extends ComponentPropsWithoutRef<typeof ContentLoader> {
+interface TextLoaderProps extends ComponentPropsWithoutRef<
+  typeof ContentLoader
+> {
   lines?: number;
 }
 

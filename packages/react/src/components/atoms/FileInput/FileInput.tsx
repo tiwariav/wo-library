@@ -19,7 +19,7 @@ import Spinner from "../Spinner/Spinner.js";
 import PasswordInput from "../TextInput/PasswordInput.js";
 import * as styles from "./fileInput.module.css";
 
-const FILE_INPUT_VARIANTS = ["outlined"] as const;
+export const FILE_INPUT_VARIANTS = ["outlined"] as const;
 
 /**
  * Props for the {@link FileInput} component.

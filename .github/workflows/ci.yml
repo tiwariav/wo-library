@@ -18,8 +18,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"
-          cache: "pnpm"
+          node-version: 24
+          cache: pnpm
 
       - uses: tiwariav/github-actions/cache-js-linters@main
 
