@@ -37,6 +37,7 @@ const metadata: Meta<typeof WoSwiper> = {
       mapping: moreLinkMap,
       options: Object.keys(moreLinkMap),
     },
+    variant: { control: "select", options: WO_SWIPER_VARIANTS },
   },
   component: WoSwiper,
   parameters: {

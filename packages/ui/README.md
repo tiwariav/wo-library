@@ -14,12 +14,11 @@ pnpm add @wo-library/ui
 
 ### Styles
 
-| File                   | Description                                       |
-| ---------------------- | ------------------------------------------------- |
-| `styles/base.css`      | CSS reset and base styles                         |
-| `styles/media.css`     | Responsive breakpoint definitions                 |
-| `styles/media.ts`      | TypeScript constants matching the CSS breakpoints |
-| `styles/storybook.css` | Storybook-specific style overrides                |
+| File               | Description                                       |
+| ------------------ | ------------------------------------------------- |
+| `styles/base.css`  | CSS reset and base styles                         |
+| `styles/media.css` | Responsive breakpoint definitions                 |
+| `styles/media.ts`  | TypeScript constants matching the CSS breakpoints |
 
 ### Themes
 
