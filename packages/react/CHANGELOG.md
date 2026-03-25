@@ -1,3 +1,11 @@
+## 6.2.1 (2026-03-25)
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/js to 2.1.1
+- Updated @wo-library/web to 2.1.1
+- Updated @wo-library/ui to 2.1.1
+
 ## 6.2.0 (2026-03-21)
 
 ### 🧱 Updated Dependencies
