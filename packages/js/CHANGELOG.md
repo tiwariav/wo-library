@@ -1,3 +1,7 @@
+## 2.1.1 (2026-03-25)
+
+This was a version bump only for @wo-library/js to align it with other projects, there were no code changes.
+
 ## 2.1.0 (2026-03-21)
 
 ### 🚀 Features
