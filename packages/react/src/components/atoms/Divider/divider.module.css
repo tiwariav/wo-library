@@ -1,7 +1,7 @@
 @layer ye-components {
   .root {
-    background-color: var(--ye-color-dark-10);
     border: 0;
+    background-color: var(--ye-color-dark-10);
   }
 
   .is-horizontal {

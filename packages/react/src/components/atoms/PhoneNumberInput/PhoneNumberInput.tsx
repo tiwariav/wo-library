@@ -104,25 +104,24 @@ const PhoneNumberInput = forwardRef<
       : String(formattedValue);
   }, []);
 
-    return (
-      <FormattedInput
-        className={clsx(
-          styles.root,
-          variant === "material" && styles.variantMaterial,
-          className,
-        )}
-        defaultValue={defaultValue}
-        format={formatFunction}
-        iconBefore={flag}
-        innerClassNames={{ iconBefore: styles.flagIcon, label: styles.label }}
-        parse={parseFunction}
-        ref={ref}
-        variant={variant}
-        {...props}
-      />
-    );
-  },
-);
+  return (
+    <FormattedInput
+      className={clsx(
+        styles.root,
+        variant === "material" && styles.variantMaterial,
+        className,
+      )}
+      defaultValue={defaultValue}
+      format={formatFunction}
+      iconBefore={flag}
+      innerClassNames={{ iconBefore: styles.flagIcon, label: styles.label }}
+      parse={parseFunction}
+      ref={ref}
+      variant={variant}
+      {...props}
+    />
+  );
+});
 PhoneNumberInput.displayName = "PhoneNumberInput";
 
 export default PhoneNumberInput;

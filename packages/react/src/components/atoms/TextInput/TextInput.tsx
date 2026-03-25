@@ -6,13 +6,7 @@ import type {
 
 import { clsx } from "clsx";
 import { isEmpty } from "lodash-es";
-import {
-  forwardRef,
-  useCallback,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { forwardRef, useCallback, useId, useMemo, useState } from "react";
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 
@@ -93,8 +87,8 @@ const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
     },
     ref,
   ) => {
-    const [internalHasValue, setInternalHasValue] = useState(() =>
-      !isEmpty(defaultValue),
+    const [internalHasValue, setInternalHasValue] = useState(
+      () => !isEmpty(defaultValue),
     );
     const hasValue = useMemo(() => {
       if (value === undefined) {
@@ -123,7 +117,6 @@ const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
           }
         : originalStyle;
     }, [input, style, variant]);
-
 
     return (
       <InputWrapper
