@@ -52,7 +52,7 @@ const itemsMap = {
   ),
 };
 
-function Template({ className, ...props }: TopNavProps) {
+function Template({ className, ...props }: Readonly<TopNavProps>) {
   const ref = useRef<HTMLDivElement>(null);
   return (
     <div

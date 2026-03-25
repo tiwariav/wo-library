@@ -25,7 +25,7 @@ export default metadata;
 
 type Story = StoryObj<typeof Divider>;
 
-function Template({ vertical, ...props }: DividerProps) {
+function Template({ vertical, ...props }: Readonly<DividerProps>) {
   return (
     <div
       style={{
