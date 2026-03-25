@@ -33,6 +33,6 @@ jobs:
 
       - run: pnpm jscpd packages/*/src
 
-      - run: npx nx affected -t build
+      - run: pnpm nx affected -t build
 
-      - run: npx nx affected -t test
+      - run: pnpm nx affected -t test
