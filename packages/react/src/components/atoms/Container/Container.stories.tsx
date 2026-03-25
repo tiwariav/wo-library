@@ -55,11 +55,10 @@ export const Align: Story = {
 function FirstContainerTemplate({
   children,
   firstContent,
-  isList,
   ...args
-}: { firstContent: ReactNode; isList?: boolean } & ContainerProps) {
+}: { firstContent: ReactNode } & Readonly<ContainerProps>) {
   return (
-    <div className={isList ? "story-list" : "story-list"}>
+    <div className="story-list">
       <Container className="story-bordered" {...args}>
         {firstContent}
       </Container>

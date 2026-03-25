@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 const ANIME_DELAY = 1000;
 const ANIME_DURATION = 3000;
-const ANIME_ROUND = 1;
 
 export const ARC_ANGLE = 180;
 export const MAX_PROGRESS = 100;

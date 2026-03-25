@@ -33,10 +33,7 @@ function getNewProperties(
     finalScrollHeight += topNavElement.offsetHeight;
   }
   if (finalScrollHeight > sideNavElement.clientHeight) {
-    const toggleWidth = Number.parseInt(
-      String(cssVariable(CSS_VAR_TOGGLE_WIDTH)),
-      10,
-    );
+    const toggleWidth = Number.parseInt(cssVariable(CSS_VAR_TOGGLE_WIDTH), 10);
     if (toggleWidth) {
       newProperties[CSS_VAR_TOGGLE_WIDTH] = `${
         toggleWidth + (scrollWidth ?? 0) * TOGGLE_WIDTH_MULTIPLIER

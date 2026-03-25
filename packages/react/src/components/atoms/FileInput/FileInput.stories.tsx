@@ -7,13 +7,13 @@ import type { FileInputProps } from "./FileInput.js";
 import UploadFile from "../../../tools/uploadFile";
 import FileInput, { FILE_INPUT_VARIANTS } from "./FileInput.js";
 
-function Template({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState(files);
+function Template({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState(files);
   return (
     <FileInput
       files={allFiles}
       updateFiles={(newFiles) => {
-        setFiles(
+        setAllFiles(
           newFiles.map((item) =>
             item instanceof UploadFile ? item : new UploadFile(item),
           ),
@@ -51,14 +51,16 @@ class CustomUploadFile extends UploadFile {
   text?: string;
 }
 
-function FileObjectTemplate({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState<CustomUploadFile[] | undefined>(files);
+function FileObjectTemplate({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState<CustomUploadFile[] | undefined>(
+    files,
+  );
   return (
     <>
       <FileInput
         files={allFiles}
         updateFiles={(newFiles) => {
-          setFiles(
+          setAllFiles(
             newFiles.map((item) => {
               if (item instanceof CustomUploadFile) {
                 return item;
@@ -80,14 +82,14 @@ export const CustomFileObject: Story = {
   render: (args) => <FileObjectTemplate {...args} />,
 };
 
-function PasswordTemplate({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState(files);
+function PasswordTemplate({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState(files);
   return (
     <div className="story-bg-container">
       <FileInput
         files={allFiles}
         updateFiles={(newFiles) => {
-          setFiles(
+          setAllFiles(
             newFiles.map((item) => {
               if (!(item instanceof File)) {
                 return item;

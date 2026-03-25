@@ -16,7 +16,7 @@ const moreLinkMap = {
   SeeMore: <button>See more</button>,
 };
 
-function Template(args: WoSwiperProps) {
+function Template(args: Readonly<WoSwiperProps>) {
   return (
     <div style={{ overflow: "hidden", padding: 4 }}>
       <WoSwiper {...args}>

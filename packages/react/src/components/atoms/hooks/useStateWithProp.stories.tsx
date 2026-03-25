@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import useStateWithProp from "../../../hooks/useStateWithProp.js";
 
-function UseStateWithPropDemo({ value }: { value: string }) {
+function UseStateWithPropDemo({ value }: Readonly<{ value: string }>) {
   const [localValue, setLocalValue] = useStateWithProp(value);
 
   return (
