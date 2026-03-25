@@ -1,9 +1,5 @@
-import { cssOutput, getCjsOutput, getEsOutput } from "./outputs.js";
-import {
-  getBuildPlugins,
-  getCssBundlePlugins,
-  getJsPlugins,
-} from "./pluginSets.js";
+import { cssOutput, getEsOutput } from "./outputs.js";
+import { getBuildPlugins, getCssBundlePlugins } from "./pluginSets.js";
 import { getInput } from "./utilities.js";
 
 const getBaseConfig = ({ isDev = false } = {}) => {
@@ -19,16 +15,6 @@ const getBaseConfig = ({ isDev = false } = {}) => {
     },
   };
 };
-
-export const getCjsConfig = ({ isDev = false } = {}) => ({
-  ...getBaseConfig({ isDev }),
-  input: getInput("src", {
-    excludeDirectories: ["stories", "mocks"],
-    extension: "*.cjs",
-  }),
-  output: getCjsOutput({ isDev }),
-  plugins: getJsPlugins({ enableEslint: true, isDev }),
-});
 
 export const getEsConfig = ({ includeTsc, isDev = false } = {}) => ({
   ...getBaseConfig({ isDev }),

@@ -1,8 +1,8 @@
-const path = require("node:path");
+import path from "node:path";
 
-const reportsDirectory = path.join(process.cwd(), "reports");
+export const reportsDirectory = path.join(process.cwd(), "reports");
 
-const ciReporters = [
+export const ciReporters = [
   [
     "jest-junit",
     {
@@ -10,7 +10,8 @@ const ciReporters = [
     },
   ],
 ];
-const devReporters = [
+
+export const devReporters = [
   [
     "jest-html-reporter",
     {
@@ -26,11 +27,12 @@ const devReporters = [
     },
   ],
 ];
-const reporters = process.env.CI
+
+export const reporters = process.env.CI
   ? [...devReporters, ...ciReporters]
   : devReporters;
 
-const config = {
+export const config = {
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
   coverageDirectory: "reports",
   coveragePathIgnorePatterns: [
@@ -49,10 +51,6 @@ const config = {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   reporters: [
-    /*
-      jest-html-reporters and jest-html-reporter (without trailing 's')
-      are completely different reporters, evaluating both right now
-    */
     "default",
     // @ts-expect-error: TS2322 because ReporterConfig is not exported from jest
     ...reporters,
@@ -63,12 +61,4 @@ const config = {
     "^.+\\.m?jsx?$": "babel-jest",
     "^.+\\.tsx?$": "babel-jest",
   },
-};
-
-module.exports = {
-  ciReporters,
-  config,
-  devReporters,
-  reporters,
-  reportsDirectory,
 };

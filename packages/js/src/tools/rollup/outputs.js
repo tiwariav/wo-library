@@ -13,13 +13,6 @@ export const getEsOutput = ({ isDev = false } = {}) => ({
   preserveModulesRoot: "src",
 });
 
-export const getCjsOutput = ({ isDev = false } = {}) => ({
-  ...getEsOutput({ isDev }),
-  entryFileNames: "[name].cjs",
-  exports: "auto",
-  format: "cjs",
-});
-
 export const cssOutput = {
   dir: "./dist",
   preserveModules: true,
