@@ -63,6 +63,23 @@ function FileStatus<TFile extends UploadFile>({
   item: TFile;
   updateFiles: FileInputProps<TFile>["updateFiles"];
 }>) {
+  const renderActionButton = (
+    action: "add" | "remove",
+    icon: ReactNode,
+  ) => {
+    return (
+      <div>
+        <Button
+          onClick={() => void updateFiles?.([item], action)}
+          spacing="equal"
+          variant="borderless"
+        >
+          {icon}
+        </Button>
+      </div>
+    );
+  };
+
   if (item.status === "uploading") {
     return (
       <>
@@ -87,15 +104,7 @@ function FileStatus<TFile extends UploadFile>({
         <div className={clsx(styles.listItemStatusText, styles.success)}>
           Uploaded
         </div>
-        <div>
-          <Button
-            onClick={() => void updateFiles?.([item], "remove")}
-            spacing="equal"
-            variant="borderless"
-          >
-            <IconTrashXFilled />
-          </Button>
-        </div>
+        {renderActionButton("remove", <IconTrashXFilled />)}
       </>
     );
   }
@@ -105,24 +114,8 @@ function FileStatus<TFile extends UploadFile>({
         <div className={clsx(styles.listItemStatusText, styles.failed)}>
           Failed
         </div>
-        <div>
-          <Button
-            onClick={() => void updateFiles?.([item], "add")}
-            spacing="equal"
-            variant="borderless"
-          >
-            <IconReload />
-          </Button>
-        </div>
-        <div>
-          <Button
-            onClick={() => void updateFiles?.([item], "remove")}
-            spacing="equal"
-            variant="borderless"
-          >
-            <IconTrashXFilled />
-          </Button>
-        </div>
+        {renderActionButton("add", <IconReload />)}
+        {renderActionButton("remove", <IconTrashXFilled />)}
       </>
     );
   }

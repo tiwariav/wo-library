@@ -28,8 +28,10 @@ export type FormattedInputParse = (
 /**
  * Props for the {@link FormattedInput} component.
  */
-export interface FormattedInputProps
-  extends Omit<TextInputProps, "innerClassNames" | "onChange"> {
+export interface FormattedInputProps extends Omit<
+  TextInputProps,
+  "innerClassNames" | "onChange"
+> {
   /** Initial raw DOM value before user interaction. */
   defaultValue?: InputDomValue;
   /** Form value emitted when the input is empty. @default '' */
@@ -61,7 +63,10 @@ export interface FormattedInputProps
   value?: number | string;
 }
 
-const FormattedInput = forwardRef<HTMLInputElement, Readonly<FormattedInputProps>>(
+const FormattedInput = forwardRef<
+  HTMLInputElement,
+  Readonly<FormattedInputProps>
+>(
   (
     {
       className,

@@ -54,10 +54,10 @@
       --module-swiper-navigation-size: 3rem;
 
       width: var(--module-swiper-navigation-size);
+      border-radius: var(--ye-radius-circle);
 
       opacity: 0.75;
       background-color: var(--ye-color-background);
-      border-radius: var(--ye-radius-circle);
       box-shadow: var(--ye-shadow-pressable);
 
       &:focus {
@@ -68,7 +68,7 @@
         display: none;
       }
 
-      @media (hover: hover) {
+      @media (--media-hover) {
         &:hover {
           @mixin containerFocus;
         }

@@ -15,8 +15,10 @@ type ErrorKey<TFieldValues extends FieldValues> =
   | `root.${string}`
   | Path<TFieldValues>;
 
-export interface HookFormProps<TFieldValues extends FieldValues>
-  extends Omit<UseFormProps<TFieldValues>, "errors"> {
+export interface HookFormProps<TFieldValues extends FieldValues> extends Omit<
+  UseFormProps<TFieldValues>,
+  "errors"
+> {
   children: React.ReactNode;
   className?: string;
   errors?: Record<ErrorKey<TFieldValues>, string>;
