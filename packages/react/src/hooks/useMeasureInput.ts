@@ -32,7 +32,7 @@ interface CalculatedInputStyles {
  * ```
  */
 export default function useMeasureInput(): [
-  RefObject<HTMLLabelElement>,
+  RefObject<HTMLLabelElement | null>,
   CalculatedInputStyles,
 ] {
   const labelRef = useRef<HTMLLabelElement>(null);

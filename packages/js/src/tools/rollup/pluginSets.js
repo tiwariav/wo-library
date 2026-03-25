@@ -86,7 +86,7 @@ export const getBuildPlugins = ({
   const buildPlugins = [
     postcss({
       extract: "dist.css",
-      modules: { localsConvention: "camelCase" },
+      modules: { localsConvention: "camelCaseOnly" },
       namedExports: true,
       sourceMap: isDev,
     }),

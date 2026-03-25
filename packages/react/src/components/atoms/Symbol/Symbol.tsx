@@ -1,6 +1,9 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { SVGPathFlagData, SVGPathPinData } from "@wo-library/ui";
+import {
+  svgPathFlagData as SVGPathFlagData,
+  svgPathPinData as SVGPathPinData,
+} from "@wo-library/ui";
 import { clsx } from "clsx";
 import { forwardRef, useId } from "react";
 
