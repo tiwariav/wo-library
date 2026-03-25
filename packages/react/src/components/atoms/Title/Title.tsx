@@ -22,7 +22,7 @@ export default function Title<TElement extends ElementType>({
   variant,
   ...props
 }: Readonly<TitleProps<TElement>>): ReactElement {
-  const Element = as ?? "div";
+  const Element = (as ?? "div") as ElementType;
   return (
     <Element
       className={clsx(

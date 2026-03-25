@@ -54,8 +54,8 @@ export interface StickyOptions {
 }
 
 interface ScrollUpdateOptions {
-  containerRef?: RefObject<HTMLDivElement>;
-  contentLeftRef?: RefObject<HTMLDivElement>;
+  containerRef?: RefObject<HTMLDivElement | null>;
+  contentLeftRef?: RefObject<HTMLDivElement | null>;
   sticky?: StickyOptions | boolean;
 }
 
@@ -193,7 +193,7 @@ export function useTopNavProps(
       style: {
         transform: isReady ? `translateY(${transform})` : "none",
         ...style,
-      },
+      } as CSSProperties,
     },
     smallerWidth,
   };
