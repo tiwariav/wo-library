@@ -1,5 +1,5 @@
 import pluginA11y from "@double-great/stylelint-a11y";
-import configCleanOrder from "stylelint-config-clean-order/error.js";
+import configCleanOrder from "stylelint-config-clean-order";
 import pluginCustomMedia from "stylelint-media-use-custom-media";
 import pluginDefensiveCss from "stylelint-plugin-defensive-css";
 import pluginUseNesting from "stylelint-use-nesting";

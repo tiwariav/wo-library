@@ -314,23 +314,23 @@ export default defineConfig([
     },
   },
   {
-    files: ["**/tools/cjs/**/*.cjs", "**/tools/rollup/**/*.js"],
+    files: ["**/tools/node/**/*.js", "**/tools/rollup/**/*.js"],
     rules: {
       "compat/compat": "off",
     },
   },
   {
     files: [
-      "**/eslint.config.{js,cjs,mjs}",
-      "**/*.config.{js,cjs,mjs}",
+      "**/eslint.config.{js,mjs}",
+      "**/*.config.{js,mjs}",
       "**/rollup.config.js",
-      "**/babel.config.cjs",
-      "**/jest.config.{js,cjs}",
+      "**/babel.config.mjs",
+      "**/jest.config.{js,mjs}",
     ],
     ...tsEslint.configs.disableTypeChecked,
   },
   {
-    files: ["**/*.{cjs,js?(x),mjs}"],
+    files: ["**/*.{js?(x),mjs}"],
     ...tsEslint.configs.disableTypeChecked,
   },
 ]);

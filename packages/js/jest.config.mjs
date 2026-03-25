@@ -1,10 +1,12 @@
 const config = {
   collectCoverage: true,
   collectCoverageFrom: [
-    "src/styles/media.ts",
-    "src/svg/paths/index.ts",
-    "src/svg/paths/Pin.ts",
-    "src/svg/paths/Flag.ts",
+    "src/index.ts",
+    "src/tools/**/*.{ts,tsx}",
+    "!src/tools/**/*.d.ts",
+    "!src/tools/node/**",
+    "!src/tools/rollup/**",
+    "!src/tools/**/__tests__/**",
   ],
   coverageProvider: "v8",
   coverageThreshold: {
@@ -25,6 +27,7 @@ const config = {
   transform: {
     "^.+\\.tsx?$": "babel-jest",
   },
+  transformIgnorePatterns: ["/node_modules/(?!lodash-es/)"],
 };
 
-module.exports = config;
+export default config;

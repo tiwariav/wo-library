@@ -2,11 +2,12 @@ const config = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/index.ts",
-    "src/tools/**/*.{ts,tsx}",
-    "!src/tools/**/*.d.ts",
-    "!src/tools/cjs/**",
-    "!src/tools/rollup/**",
-    "!src/tools/**/__tests__/**",
+    "src/tools/index.ts",
+    "src/tools/css.ts",
+    "src/tools/loadStylesheet.ts",
+    "src/tools/svg.ts",
+    "src/tools/error/index.ts",
+    "src/tools/others/index.ts",
   ],
   coverageProvider: "v8",
   coverageThreshold: {
@@ -22,12 +23,12 @@ const config = {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
   testMatch: ["<rootDir>/src/**/__tests__/**/*.test.ts"],
-  transformIgnorePatterns: ["/node_modules/(?!lodash-es/)"],
   transform: {
     "^.+\\.tsx?$": "babel-jest",
   },
+  transformIgnorePatterns: ["/node_modules/(?!lodash-es|type-fest/)"],
 };
 
-module.exports = config;
+export default config;

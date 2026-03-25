@@ -7,7 +7,7 @@ import {
 } from "../../contexts/ThemeContext/index.js";
 
 function ThemeConsumer() {
-  const { activeThemeName, activeThemeClassName } = useThemeState();
+  const { activeThemeClassName, activeThemeName } = useThemeState();
   const { dispatch } = useThemeMethods();
 
   return (

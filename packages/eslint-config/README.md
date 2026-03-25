@@ -20,14 +20,14 @@ import config from "@wo-library/eslint-config";
 export default config;
 ```
 
-### CommonJS config
+### ESM config (`.mjs`)
 
 ```javascript
-// eslint.config.cjs
-const { defineConfig } = require("eslint/config");
-const config = require("@wo-library/eslint-config").default;
+// eslint.config.mjs
+import { defineConfig } from "eslint/config";
+import config from "@wo-library/eslint-config";
 
-module.exports = defineConfig(config);
+export default defineConfig(config);
 ```
 
 ### Next.js projects
