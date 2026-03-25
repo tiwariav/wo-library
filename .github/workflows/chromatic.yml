@@ -22,7 +22,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: npx nx run-many -t build
+      - run: pnpm nx run-many -t build
 
       - uses: chromaui/action@v1
         with:
