@@ -5,7 +5,7 @@ export default {
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        importFrom: ["src/styles/base.css"],
+        importFrom: ["../ui/src/styles/base.css"],
       },
     ],
   },
