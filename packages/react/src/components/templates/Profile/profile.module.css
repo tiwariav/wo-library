@@ -5,10 +5,10 @@
     width: 100%;
     height: 200px;
     margin-bottom: var(--ye-em-base);
+    border-radius: var(--ye-radius-normal);
 
     object-fit: cover;
     background-color: var(--ye-color-dark-10);
-    border-radius: var(--ye-radius-normal);
   }
 
   .container {

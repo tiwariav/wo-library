@@ -5,8 +5,8 @@
     --ye-input-padding-bottom: var(--ye-spacing-rem-small);
     --ye-input-padding-left: var(--ye-spacing-rem-normal);
     --module-loader-z: calc(var(--ye-z-base) + 2);
-    --module-shadow-input-focus: var(--ye-shadow-input-focus-1),
-      var(--ye-shadow-input-focus-2);
+    --module-shadow-input-focus:
+      var(--ye-shadow-input-focus-1), var(--ye-shadow-input-focus-2);
 
     position: relative;
     width: 100%;
@@ -31,12 +31,12 @@
     width: 100%;
     padding: var(--ye-input-padding-top) var(--ye-input-padding-right)
       var(--ye-input-padding-bottom) var(--ye-input-padding-left);
+    border-radius: var(--ye-input-border-radius);
 
     font-family: var(--ye-font-family-input);
     color: inherit;
 
     background-color: var(--ye-color-input-background);
-    border-radius: var(--ye-input-border-radius);
 
     &:focus {
       border-color: var(--ye-color-input-focus-border);
@@ -82,7 +82,6 @@
 
     width: 100%;
     height: 100%;
-
     border-radius: var(--ye-input-border-radius);
   }
 
@@ -107,9 +106,9 @@
   .variant-borderless {
     & .text-input {
       padding: 0;
-      background-color: transparent;
       border: none;
       border-radius: 0;
+      background-color: transparent;
 
       &:focus {
         box-shadow: var(--ye-shadow-input-focus-bottom);

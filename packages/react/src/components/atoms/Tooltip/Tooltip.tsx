@@ -150,9 +150,7 @@ export function TooltipBody({
  * Props for the {@link Tooltip} component.
  */
 export interface TooltipProps
-  extends TooltipCommonProps,
-    UseTooltipOptions,
-    TooltipBodySharedProps {
+  extends TooltipCommonProps, UseTooltipOptions, TooltipBodySharedProps {
   /** Enables CSS transition animations on the floating element. */
   animate?: boolean;
   className?: string;

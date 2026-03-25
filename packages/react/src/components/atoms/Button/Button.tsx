@@ -1,9 +1,4 @@
-
-import type {
-  ComponentPropsWithoutRef,
-  ReactNode,
-  RefObject,
-} from "react";
+import type { ComponentPropsWithoutRef, ReactNode, RefObject } from "react";
 
 import { inSubArray } from "@wo-library/js";
 import { overrideStyleProperty } from "@wo-library/web";
@@ -239,7 +234,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
         ref={setInnerRef}
         type="button"
-        variant={inSubArray(FORM_CONTROL_VARIANTS, variant) as (typeof FORM_CONTROL_VARIANTS)[number]}
+        variant={
+          inSubArray(
+            FORM_CONTROL_VARIANTS,
+            variant,
+          ) as (typeof FORM_CONTROL_VARIANTS)[number]
+        }
         {...props}
       >
         {!!iconBefore && (

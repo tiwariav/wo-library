@@ -10,7 +10,7 @@ body {
 .story-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--ye-spacing-rem-normal);
 }
 
 .story-flex {

@@ -208,12 +208,8 @@ describe("general utility and number helpers", () => {
     expect(isEmpty(0)).toBe(false);
 
     const sizes = ["sm", "md", "lg"] as const;
-    expect(inSubArray<(typeof sizes)[number]>(sizes, "md")).toBe(
-      "md",
-    );
-    expect(inSubArray<(typeof sizes)[number]>(sizes, "xl")).toBe(
-      undefined,
-    );
+    expect(inSubArray<(typeof sizes)[number]>(sizes, "md")).toBe("md");
+    expect(inSubArray<(typeof sizes)[number]>(sizes, "xl")).toBe(undefined);
   });
 
   test("stringToNumber parses values and falls back to nanValue", () => {
