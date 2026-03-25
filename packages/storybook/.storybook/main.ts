@@ -1,23 +1,34 @@
+import { existsSync } from "node:fs";
 import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Configuration } from "webpack";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { resolve } from "node:path";
-
 const isDev = process.env.NODE_ENV === "development";
 const storybookDir = dirname(fileURLToPath(import.meta.url));
+const docsDir = resolve(storybookDir, "../src/docs");
+const mediaFile = resolve(storybookDir, "../../ui/src/styles/media.css");
 
-const mediaFile = resolve(process.cwd(), "../ui/src/styles/media.css");
+const stories = [
+  resolve(
+    storybookDir,
+    "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+  ),
+  resolve(
+    storybookDir,
+    "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+  ),
+  resolve(
+    storybookDir,
+    "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+  ),
+];
+
+if (existsSync(docsDir)) {
+  stories.push(resolve(docsDir, "**/*.mdx"));
+}
 
 const config: StorybookConfig = {
-  stories: [
-    resolve(storybookDir, "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
-    resolve(storybookDir, "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
-    resolve(storybookDir, "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)"),
-    // TypeDoc-generated API reference pages (produced by `yarn docs`)
-    resolve(storybookDir, "../src/docs/**/*.mdx"),
-  ],
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-a11y",
@@ -93,6 +104,7 @@ const config: StorybookConfig = {
       },
     },
   },
+  stories,
   swc: () => ({
     jsc: {
       transform: {
@@ -106,9 +118,9 @@ const config: StorybookConfig = {
     // Add extension aliases for better TypeScript resolution
     if (config.resolve) {
       config.resolve.extensionAlias = {
+        ".cjs": [".cts", ".cjs"],
         ".js": [".ts", ".tsx", ".js", ".jsx"],
         ".mjs": [".mts", ".mjs"],
-        ".cjs": [".cts", ".cjs"],
       };
     }
 
