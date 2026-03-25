@@ -17,23 +17,23 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>(
   ({ children, className, required, withFocus, withValue, ...props }, ref) => {
     const requiredText = isString(required) && required;
     return children ? (
-        <label
-          className={clsx(
-            styles.root,
-            {
-              [styles.required]: required && !requiredText,
-              [styles.withFocus]: withFocus,
-              [styles.withValue]: withValue,
-            },
-            className,
-          )}
-          ref={ref}
-          {...props}
-        >
-          {children}
-          {!!requiredText && ` ( ${requiredText} )`}
-        </label>
-      ) : null;
+      <label
+        className={clsx(
+          styles.root,
+          {
+            [styles.required]: required && !requiredText,
+            [styles.withFocus]: withFocus,
+            [styles.withValue]: withValue,
+          },
+          className,
+        )}
+        ref={ref}
+        {...props}
+      >
+        {children}
+        {!!requiredText && ` ( ${requiredText} )`}
+      </label>
+    ) : null;
   },
 );
 Label.displayName = "Label";

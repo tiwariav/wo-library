@@ -15,7 +15,10 @@ interface TextLoaderProps extends ComponentPropsWithoutRef<
   lines?: number;
 }
 
-export default function TextLoader({ lines = 1, ...props }: Readonly<TextLoaderProps>) {
+export default function TextLoader({
+  lines = 1,
+  ...props
+}: Readonly<TextLoaderProps>) {
   const height = LINE_HEIGHT * (lines || 1);
 
   return (

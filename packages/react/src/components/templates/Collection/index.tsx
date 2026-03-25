@@ -1,7 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  is-list, is-grid
-]}] */
-
 import type { CSSProperties, ReactNode } from "react";
 
 import { IconFilter, IconSortDescending } from "@tabler/icons-react";

@@ -30,7 +30,10 @@ const {
   useContextState: useLayoutState,
 } = createAndUseContext<LayoutContextState, ContextDispatch<LayoutMethods>>();
 
-function LayoutProvider({ children, initialState }: Readonly<LayoutProviderProps>) {
+function LayoutProvider({
+  children,
+  initialState,
+}: Readonly<LayoutProviderProps>) {
   const memoizedInitialState = useMemo(
     () => ({ ...INITIAL_LAYOUT_STATE, ...initialState }),
     [initialState],

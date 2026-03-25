@@ -55,7 +55,7 @@ function PageInner({
     if (!sideNav) {
       return null;
     }
-    const topNavProps = (topNav?.props || {}) as TopNavProps;
+    const topNavProps = (topNav?.props ?? {}) as TopNavProps;
     const sideNavProps = { ...sideNav.props } as SideNavProps;
     if (
       variant === variantTsc &&

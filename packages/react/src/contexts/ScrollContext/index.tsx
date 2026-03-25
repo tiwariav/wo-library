@@ -2,6 +2,10 @@ import type {
   OverlayScrollbarsComponentProps,
   OverlayScrollbarsComponentRef,
 } from "overlayscrollbars-react";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { useMemo, useRef } from "react";
+import { useEffectOnce } from "react-use";
+
 import useMethods from "../../hooks/useMethods";
 import type { ContextDispatch } from "../utils";
 import { createAndUseContext } from "../utils";
@@ -13,7 +17,7 @@ import "./scrollContext.module.css";
 import INITIAL_SCROLL_STATE from "./state.js";
 
 interface ScrollProviderProps extends OverlayScrollbarsComponentProps {
-  data?: object;
+  data?: Partial<ScrollState>;
 }
 
 const {

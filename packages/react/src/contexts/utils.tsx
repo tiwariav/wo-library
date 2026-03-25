@@ -41,10 +41,17 @@ export function createAndUseContext<TState, TDispatch>() {
   const StateContext = createContext({} as TState);
   const MethodContext = createContext({} as TDispatch);
 
+  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextState = () => useContext(StateContext);
+  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextMethods = () => useContext(MethodContext);
 
-  return { MethodContext, StateContext, useContextMethods, useContextState };
+  return {
+    MethodContext,
+    StateContext,
+    useContextMethods,
+    useContextState,
+  };
 }
 
 export function dispatchLoading<
@@ -71,7 +78,7 @@ export const getUpdateStateMethod =
   <TState extends object>(state: TState) =>
   (data: Partial<TState>) => {
     return produce(state, (draft) => {
-      void Object.assign(draft, data);
+      Object.assign(draft, data);
     });
   };
 
