@@ -1,4 +1,4 @@
-import type { RefObject, ReactElement } from "react";
+import type { ReactElement, RefObject } from "react";
 
 import type { ChartState } from "./state.js";
 
@@ -24,7 +24,7 @@ export default function createChartMethods(state: ChartState) {
           data: symbolImages,
           key: item.props.seriesName,
           value: svg.svgNodeToData(childNodes[index]),
-        });
+        }) as string[];
       }
       return { ...state, symbolImages };
     },
@@ -39,7 +39,7 @@ export default function createChartMethods(state: ChartState) {
         index: seriesIndex,
         key: seriesName,
         value: svg.svgNodeToData(node),
-      });
+      }) as string[];
       return { ...state, symbolImages };
     },
   };
