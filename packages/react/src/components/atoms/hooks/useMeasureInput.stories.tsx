@@ -9,12 +9,14 @@ function UseMeasureInputDemo() {
     <div style={{ maxWidth: 300 }}>
       <label
         ref={labelRef}
+        htmlFor="measured-input"
         style={{ display: "block", marginBottom: "0.25rem" }}
       >
         This is a very long label that might wrap to multiple lines depending on
         the container width
       </label>
       <input
+        id="measured-input"
         placeholder="Input with measured padding"
         style={{
           boxSizing: "border-box",

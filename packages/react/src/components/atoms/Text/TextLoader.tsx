@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import ContentLoader from "../../../vendors/ContentLoader.js";
 
 const TEST_UNIQUE_KEY =
-  typeof process !== "undefined" && process.env?.JEST_WORKER_ID
+  typeof process !== "undefined" && process.env.JEST_WORKER_ID
     ? "test"
     : undefined;
 const LINE_HEIGHT = 24;

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
  * Context utility documentation story.
  * The utilities are building blocks for creating split state/dispatch contexts.
  */
-function ContextUtilsDemo() {
+function ContextUtilitiesDemo() {
   return (
     <div>
       <h4>Context Utilities</h4>
@@ -69,7 +69,7 @@ function ContextUtilsDemo() {
 }
 
 const metadata: Meta = {
-  component: ContextUtilsDemo,
+  component: ContextUtilitiesDemo,
   parameters: {
     docs: {
       description: {
@@ -86,5 +86,5 @@ export default metadata;
 type Story = StoryObj;
 
 export const Overview: Story = {
-  render: () => <ContextUtilsDemo />,
+  render: () => <ContextUtilitiesDemo />,
 };

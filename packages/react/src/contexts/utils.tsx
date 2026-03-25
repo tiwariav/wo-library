@@ -63,7 +63,9 @@ export function dispatchLoading<
   ...args: Parameters<TMethod>
 ) {
   dispatch.setLoading(true);
+
   method(...args);
+
   dispatch.setLoading(true);
 }
 
@@ -78,7 +80,11 @@ export const getUpdateStateMethod =
   <TState extends object>(state: TState) =>
   (data: Partial<TState>) => {
     return produce(state, (draft) => {
-      Object.assign(draft, data);
+      for (const [key, value] of Object.entries(data)) {
+        if (key in draft) {
+          (draft as Record<string, unknown>)[key] = value;
+        }
+      }
     });
   };
 

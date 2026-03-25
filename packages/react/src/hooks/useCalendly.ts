@@ -3,10 +3,10 @@ import { useEffectOnce } from "react-use";
 import { WoLoadScriptError, loadScript, loadStylesheet } from "@wo-library/web";
 
 async function loadCalendlyAssets() {
-  const calendlyScript = await loadScript(
+  const calendlyScript: unknown = await loadScript(
     "https://assets.calendly.com/assets/external/widget.js",
   );
-  const calendlyStlyesheet = await loadStylesheet(
+  const calendlyStlyesheet: unknown = await loadStylesheet(
     "https://assets.calendly.com/assets/external/widget.css",
   );
 

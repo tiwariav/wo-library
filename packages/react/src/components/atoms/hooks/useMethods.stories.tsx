@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { constant } from "lodash-es";
+
 import useMethods from "../../../hooks/useMethods.js";
 
 function UseMethodsDemo() {
@@ -7,7 +9,7 @@ function UseMethodsDemo() {
     (state: number) => ({
       decrement: () => state - 1,
       increment: () => state + 1,
-      reset: () => 0,
+      reset: constant(0),
     }),
     0,
   );

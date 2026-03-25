@@ -54,7 +54,7 @@ export const WithIcon: Story = {
   },
 };
 
-function FirstButtonTemplate({ children, ...args }: ButtonProps) {
+function FirstButtonTemplate({ children, ...args }: Readonly<ButtonProps>) {
   return (
     <div className="story-list">
       <Button {...args}>Button</Button>
