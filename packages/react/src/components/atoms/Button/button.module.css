@@ -1,3 +1,4 @@
+/* stylelint-disable nesting-selector-no-missing-scoping-root */
 @define-mixin buttonStates {
   &:focus,
   &:focus-within {
@@ -10,6 +11,7 @@
     }
   }
 }
+/* stylelint-enable nesting-selector-no-missing-scoping-root */
 
 @layer ye-components {
   .root {
@@ -26,14 +28,13 @@
     align-items: center;
 
     padding: var(--ye-button-padding);
+    border-color: var(--ye-color-border);
+    border-width: var(--ye-button-border-width);
+    border-radius: var(--ye-button-border-radius);
 
     font-weight: var(--ye-button-font-weight);
     color: var(--ye-color-text);
     text-align: left;
-
-    border-color: var(--ye-color-border);
-    border-width: var(--ye-button-border-width);
-    border-radius: var(--ye-button-border-radius);
 
     transition-property: box-shadow, background-color, color;
   }
@@ -96,8 +97,8 @@
       box-shadow: none;
     }
 
-    background-color: transparent;
     border-radius: 0;
+    background-color: transparent;
   }
 
   .variant-inline {
@@ -169,8 +170,8 @@
       var(--ye-color-neu-background-light)
     );
 
-    background: var(--module-color-neu-background);
     border-radius: var(--ye-radius-normal);
+    background: var(--module-color-neu-background);
     box-shadow: var(--ye-shadow-neu);
 
     &:focus,
@@ -290,8 +291,8 @@
 
   .spinner {
     inset: 1px;
-    background-color: var(--ye-color-light-75);
     border-radius: var(--ye-button-border-radius);
+    background-color: var(--ye-color-light-75);
   }
 
   /* to avoid undef error */
