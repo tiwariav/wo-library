@@ -18,7 +18,7 @@ export default function InputWrapper<TElement extends ElementType>({
   size,
   ...props
 }: Readonly<ComponentPropsWithoutRef<TElement> & InputWrapperProps<TElement>>) {
-  const Element = as ?? "div";
+  const Element = (as ?? "div") as ElementType;
   return (
     <Element
       className={clsx(

@@ -85,7 +85,7 @@ describe("tools/utils", () => {
     render(
       <TestComponent
         label="name"
-        ref={(node) => {
+        ref={(node: HTMLInputElement | null) => {
           refNode = node;
         }}
       />,

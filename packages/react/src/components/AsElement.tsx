@@ -14,6 +14,6 @@ export default function AsElement<TElement extends ElementType>({
   as,
   ...props
 }: Readonly<AsElementProps<TElement>>): ReactElement {
-  const Element = as ?? "div";
+  const Element = (as ?? "div") as ElementType;
   return <Element {...props} />;
 }
