@@ -63,10 +63,7 @@ function FileStatus<TFile extends UploadFile>({
   item: TFile;
   updateFiles: FileInputProps<TFile>["updateFiles"];
 }>) {
-  const renderActionButton = (
-    action: "add" | "remove",
-    icon: ReactNode,
-  ) => {
+  const renderActionButton = (action: "add" | "remove", icon: ReactNode) => {
     return (
       <div>
         <Button
