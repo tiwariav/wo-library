@@ -1,8 +1,4 @@
-import type {
-  CSSProperties,
-  ForwardedRef,
-  RefObject,
-} from "react";
+import type { CSSProperties, ForwardedRef, RefObject } from "react";
 
 import clsx from "clsx";
 import { isObject } from "lodash-es";
@@ -89,7 +85,7 @@ function useScrollUpdates({
       !rootRef.current ||
       scrollY + hideOffset < rootRef.current.offsetHeight
     ) {
-      return 0;
+      return "0";
     }
     if (hideOnScroll === "contentLeft" && contentLeftRef?.current) {
       return `${contentLeftRef.current.offsetHeight + HIDE_ON_SCROLL_OFFSET}px`;
@@ -185,7 +181,8 @@ export function useTopNavProps(
           [styles.isScrolled]: direction,
           [styles.isSticky]: sticky && isReady,
         },
-        ((shrinkOffset > 0 && globalThis.window === undefined) ||
+        ((shrinkOffset > 0 &&
+          (globalThis as Record<string, unknown>).window === undefined) ||
           (topNavExpanded && isReady)) && [
           styles.isExpanded,
           innerClassNames?.isExpanded,

@@ -1,7 +1,6 @@
 import type { ForwardedRef } from "react";
 
-import { render } from "@testing-library/react";
-import { createRef } from "react";
+import { render, screen } from "@testing-library/react";
 
 import {
   COMPONENT_FLOAT,
@@ -82,13 +81,20 @@ describe("tools/utils", () => {
       "TestComponent",
     );
 
-    const ref = createRef<HTMLInputElement>();
-    const { getByLabelText } = render(<TestComponent label="name" ref={ref} />);
+    let refNode: HTMLInputElement | null = null;
+    render(
+      <TestComponent
+        label="name"
+        ref={(node) => {
+          refNode = node;
+        }}
+      />,
+    );
 
-    expect(getByLabelText("name")).toBeTruthy();
+    expect(screen.getByLabelText("name")).toBeTruthy();
     expect(
       (TestComponent as unknown as { displayName?: string }).displayName,
     ).toBe("TestComponent");
-    expect(ref.current?.tagName).toBe("INPUT");
+    expect(refNode?.tagName).toBe("INPUT");
   });
 });

@@ -40,7 +40,9 @@ export default function useMeasureInput(): [
 
   useEffect(() => {
     if (labelRef.current) {
-      const lineHeight = Number.parseFloat(cssVariable("--ye-line-height"));
+      const lineHeight = Number.parseFloat(
+        String(cssVariable("--ye-line-height")),
+      );
       const labelHeight = labelRef.current.offsetHeight;
       const fontSize = Number.parseFloat(
         getComputedStyle(labelRef.current).fontSize,

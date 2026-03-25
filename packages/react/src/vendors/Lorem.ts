@@ -7,9 +7,13 @@ import { loremIpsum } from "lorem-ipsum";
 
 const parse = defaultImport(_parse);
 
+// eslint-disable-next-line sonarjs/function-return-type
 export default function Lorem({
   format = "html",
   ...props
 }: ILoremIpsumParams): ReactNode {
-  return parse(loremIpsum({ format, ...props })) as ReactNode;
+  const content: ReactNode = parse(
+    loremIpsum({ format, ...props }),
+  ) as ReactNode;
+  return content;
 }

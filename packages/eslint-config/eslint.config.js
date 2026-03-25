@@ -194,7 +194,6 @@ export default defineConfig([
       parser: tsEslint.parser,
       parserOptions: {
         project: true,
-        tsconfigRootDir: process.cwd(),
       },
     },
     rules: {

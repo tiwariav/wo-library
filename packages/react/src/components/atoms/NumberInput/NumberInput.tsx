@@ -8,11 +8,11 @@ import {
 } from "react";
 
 import { formatNumber, stringToNumber } from "@wo-library/js";
-import { FormattedInput } from "../FormattedInput/index.js";
 import type {
   FormattedInputParse,
   FormattedInputProps,
 } from "../FormattedInput/FormattedInput.js";
+import { FormattedInput } from "../FormattedInput/index.js";
 import type { InputDomValue, InputFormValue } from "../TextInput/TextInput.js";
 
 /** Options for number formatting. */
@@ -49,7 +49,8 @@ function getFormattedNumber(
   format: FormatNumberOptions | boolean,
   textRef: RefObject<InputFormValue>,
 ): string {
-  const newValueDecimals = (value.split(".")[1] as string | undefined)?.length ?? 0;
+  const newValueDecimals =
+    (value.split(".")[1] as string | undefined)?.length ?? 0;
   const nullValue = value ? "0" : "";
   const formatOptions: FormatNumberOptions = isObject(format) ? format : {};
   const maxDecimals = formatOptions.maximumFractionDigits ?? 2;
@@ -63,7 +64,10 @@ function getFormattedNumber(
     ...formatOptions,
     minimumFractionDigits,
   }) as string;
-  if (newValueDecimals > ((formattedValue.split(".")[1] as string | undefined)?.length ?? 0)) {
+  if (
+    newValueDecimals >
+    ((formattedValue.split(".")[1] as string | undefined)?.length ?? 0)
+  ) {
     // if the input value decimals are more than format options,
     // reduce the decimals for input to parseFucntion
     const newSplits = value.split(".") as [string, string | undefined];
@@ -82,6 +86,7 @@ interface GetParsedValueOptions {
   textValue: InputFormValue;
 }
 
+// eslint-disable-next-line sonarjs/function-return-type
 function getParsedValue({
   emptyValue,
   format,
@@ -107,16 +112,14 @@ function getParsedValue({
   return String(unformattedValue) as InputFormValue;
 }
 
-const NumberInput = forwardRef<
-  HTMLInputElement,
-  Readonly<NumberInputProps>
->(({ format = false, parse = false, ...props }, ref): ReactElement => {
+const NumberInput = forwardRef<HTMLInputElement, Readonly<NumberInputProps>>(
+  ({ format = false, parse = false, ...props }, ref): ReactElement => {
     const textValueRef = useRef<InputFormValue>(null as InputFormValue);
 
     const formatFunction = useCallback(
-      (value: InputDomValue) => {
+      (value: InputDomValue): string => {
         if (isNil(value)) {
-        textValueRef.current = "";
+          textValueRef.current = "";
           return "";
         }
         const stringValue = value.toString();

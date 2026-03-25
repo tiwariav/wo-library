@@ -18,7 +18,7 @@ const metadata: Meta<TemplateProps> = {
     variant: { control: "select", options: IMAGE_VARIANT_OPTIONS },
   },
   component: Image,
-  excludeStories: /Template$/
+  excludeStories: /Template$/,
   parameters: {
     docs: {
       description: {

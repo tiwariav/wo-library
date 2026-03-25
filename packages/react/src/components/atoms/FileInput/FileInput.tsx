@@ -62,7 +62,7 @@ function FileStatus<TFile extends UploadFile>({
 }: Readonly<{
   item: TFile;
   updateFiles: FileInputProps<TFile>["updateFiles"];
-}) {
+}>) {
   if (item.status === "uploading") {
     return (
       <>

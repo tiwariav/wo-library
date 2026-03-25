@@ -27,16 +27,8 @@ export default function Title<TElement extends ElementType>({
     <Element
       className={clsx(
         styles.root,
-        align &&
-          getDynamicClassName(
-            styles,
-            `align-${align as string}`,
-          ),
-        variant &&
-          getDynamicClassName(
-            styles,
-            `is-${variant as string}`,
-          ),
+        align && getDynamicClassName(styles, `align-${align as string}`),
+        variant && getDynamicClassName(styles, `is-${variant as string}`),
         className,
       )}
       {...props}

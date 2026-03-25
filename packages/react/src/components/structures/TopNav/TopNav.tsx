@@ -1,7 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  variant-flat, variant-underlined, variant-transparent, variant-logo-hanging
-]}] */
-
 import type { ReactNode } from "react";
 
 import { IconMenu } from "@tabler/icons-react";
@@ -143,8 +139,7 @@ function RightNavIcon(props: Readonly<ButtonProps>) {
 }
 
 export interface TopNavProps
-  extends Omit<ContentMenuProps, "smallerWidth">,
-    UseTopNavPropsOptions {
+  extends Omit<ContentMenuProps, "smallerWidth">, UseTopNavPropsOptions {
   banner?: ReactNode;
   leftNavIcon?: ReactNode;
   logo?: ReactNode;

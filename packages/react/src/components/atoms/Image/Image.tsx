@@ -1,5 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: ['is-basic', 'is-circular'] }] */
-
 import type { ElementType } from "react";
 
 import { clsx } from "clsx";
@@ -61,6 +59,14 @@ export default function Image<TElement extends ElementType>({
     }
   }, [aspectRatio, variant]);
 
+  const imageContent = aspectRatio ? (
+    <div className={styles.ratio} style={contentStyle}>
+      {image}
+    </div>
+  ) : (
+    image
+  );
+
   return (
     <div
       className={clsx(
@@ -69,15 +75,7 @@ export default function Image<TElement extends ElementType>({
       )}
       style={style}
     >
-      {isLoading ? (
-        <ImageLoader className={styles.image} />
-      ) : aspectRatio ? (
-        <div className={styles.ratio} style={contentStyle}>
-          {image}
-        </div>
-      ) : (
-        image
-      )}
+      {isLoading ? <ImageLoader className={styles.image} /> : imageContent}
       {isBusy && <Spinner className={styles.spinner} />}
     </div>
   );

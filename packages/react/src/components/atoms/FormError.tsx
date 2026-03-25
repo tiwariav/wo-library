@@ -6,7 +6,7 @@ function CustomError({
   messages,
 }: Readonly<{
   messages?: MultipleFieldErrors | string;
-}) {
+}>) {
   if (!messages) {
     return null;
   }
