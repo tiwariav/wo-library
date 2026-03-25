@@ -10,7 +10,7 @@ import _del from "rollup-plugin-delete";
 import _postcss from "rollup-plugin-postcss";
 import _progress from "rollup-plugin-progress";
 
-import { getConfig as getBabelConfig } from "../cjs/babel.cjs";
+import { getConfig as getBabelConfig } from "../node/babel.js";
 import { autoExternal, skipOutput } from "./plugins.js";
 import { getInput } from "./utilities.js";
 
@@ -135,7 +135,7 @@ export const getPublishPlugins = ({
           removePostInstall
             ? contents
                 .toString()
-                .replace(/^[ \t]*"postinstall":[ \t]*"[^"]*",?[ \t]*$/m, "")
+                .replace(/^\s*"postinstall":\s*"[^"]*",?$/m, "")
             : contents,
       },
       {

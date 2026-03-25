@@ -1,13 +1,12 @@
-/* eslint-disable unicorn/prefer-module */
-const { readPackageJSON } = require("./nodeUtilities.cjs");
-const micromatch = require("micromatch");
-const path = require("node:path");
+import micromatch from "micromatch";
+import path from "node:path";
 
-function extractWorkspaces(manifest) {
+import { readPackageJSON } from "./nodeUtilities.js";
+
+export function extractWorkspaces(manifest) {
   const { workspaces } = manifest || {};
   return (
-    (workspaces && workspaces.packages) ||
-    (Array.isArray(workspaces) ? workspaces : null)
+    workspaces?.packages ?? (Array.isArray(workspaces) ? workspaces : null)
   );
 }
 
@@ -15,16 +14,17 @@ function extractWorkspaces(manifest) {
  * Adapted from:
  * https://github.com/yarnpkg/yarn/blob/ddf2f9ade211195372236c2f39a75b00fa18d4de/src/config.js#L612
  */
-function findWorkspaceRoot(initial) {
+export function findWorkspaceRoot(initial) {
+  const targetPath = initial ?? process.cwd();
   let previous;
-  let current = path.normalize(initial ?? process.cwd());
+  let current = path.normalize(targetPath);
 
   do {
     const manifest = readPackageJSON(current);
     const workspaces = extractWorkspaces(manifest);
 
     if (workspaces) {
-      const relativePath = path.relative(current, initial);
+      const relativePath = path.relative(current, targetPath);
       return relativePath === "" ||
         micromatch([relativePath], workspaces).length > 0
         ? current
@@ -36,15 +36,8 @@ function findWorkspaceRoot(initial) {
   } while (current !== previous);
 }
 
-function workspacePackages() {
+export function workspacePackages() {
   const workspaceRoot = findWorkspaceRoot();
   const manifest = readPackageJSON(workspaceRoot);
   return extractWorkspaces(manifest);
 }
-
-module.exports = {
-  extractWorkspaces,
-  findWorkspaceRoot,
-  readPackageJSON,
-  workspacePackages,
-};

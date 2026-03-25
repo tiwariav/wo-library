@@ -5,7 +5,18 @@ import copy from "rollup-plugin-copy";
 
 export default {
   external: ["stylelint", "colorjs.io"],
-  treeshake: true,
+  input: {
+    index: "lib/index.js",
+    "plugins/colors/index": "lib/plugins/colors/index.js",
+  },
+  minifyInternalExports: true,
+  output: {
+    chunkFileNames: "chunks/[name]-[hash].js",
+    dir: "./dist",
+    entryFileNames: "[name].js",
+    format: "es",
+    generatedCode: "es2015",
+  },
   plugins: [
     commonjs(),
     nodeResolve(),
@@ -21,18 +32,7 @@ export default {
       ],
     }),
   ],
-  input: {
-    index: "lib/index.js",
-    "plugins/colors/index": "lib/plugins/colors/index.js",
-  },
-  output: {
-    format: "cjs",
-    generatedCode: "es2015",
-    chunkFileNames: "chunks/[name]-[hash].cjs",
-    entryFileNames: "[name].cjs",
-    dir: "./dist",
-  },
-  minifyInternalExports: true,
   preserveModules: true,
   preserveModulesRoot: "src",
+  treeshake: true,
 };

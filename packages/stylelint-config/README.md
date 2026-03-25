@@ -55,5 +55,5 @@ pnpm add -D stylelint @wo-library/stylelint-config
 - VS Code Stylelint extension has issues with Yarn PnP:
   <https://github.com/stylelint/vscode-stylelint/issues/464>
 
-  Until fixed, the package remains CommonJS and `@double-great/stylelint-a11y` is excluded
-  from the default config (tracked for re-enabling).
+  Keep extension/runtime behavior in sync with the Stylelint major version used by this
+  package.

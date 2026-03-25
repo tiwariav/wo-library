@@ -17,15 +17,15 @@ const config = {
   },
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
-    "^(\\.{1,2}/.*)\\.js$": "$1",
     "\\.(css|less|scss)$": "identity-obj-proxy",
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   testEnvironment: "jsdom",
   testMatch: ["<rootDir>/src/tools/__tests__/**/*.test.ts?(x)"],
-  transformIgnorePatterns: ["/node_modules/(?!lodash-es|@tabler/)"],
   transform: {
     "^.+\\.tsx?$": "babel-jest",
   },
+  transformIgnorePatterns: ["/node_modules/(?!lodash-es|@tabler/)"],
 };
 
-module.exports = config;
+export default config;

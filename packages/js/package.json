@@ -43,7 +43,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.cjs --coverage"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.mjs --coverage"
   },
   "dependencies": {
     "glob": "^13.0.6",

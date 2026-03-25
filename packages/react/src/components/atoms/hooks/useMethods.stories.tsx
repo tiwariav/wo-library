@@ -57,7 +57,7 @@ function TodoDemo() {
   const [todos, { add, remove }] = useMethods(
     (state: string[]) => ({
       add: (item: string) => [...state, item],
-      remove: (index: number) => state.filter((_, i) => i !== index),
+      remove: (index: number) => state.filter((_, index_) => index_ !== index),
     }),
     ["Buy groceries", "Read a book"],
   );
