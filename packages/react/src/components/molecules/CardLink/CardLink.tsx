@@ -32,11 +32,15 @@ export default function CardLink({
   };
 
   useEffectOnce(() => {
-    if (ref.current) {
-      for (const element of ref.current.querySelectorAll("a, button")) {
-        element.addEventListener("click", (event) => {
-          event.stopPropagation();
-        });
+    const container = ref.current;
+    if (container instanceof HTMLDivElement) {
+      const interactiveElements = container.querySelectorAll("a, button");
+      for (const element of interactiveElements) {
+        if (element instanceof HTMLElement) {
+          element.addEventListener("click", (event: Event) => {
+            event.stopPropagation();
+          });
+        }
       }
     }
   });

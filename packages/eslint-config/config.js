@@ -35,6 +35,18 @@ const noMagicNumbersOptions = {
 const preferDestructuringOptions = { array: false, object: true };
 
 export default defineConfig([
+  {
+    ignores: [
+      "**/.nx/**",
+      "**/dist/**",
+      "**/coverage/**",
+      "**/storybook-static/**",
+      "**/.git/**",
+      "**/.github/**",
+      "**/.ai/**",
+      "**/.husky/**",
+    ],
+  },
   js.configs.recommended,
   ...tsEslint.configs.strictTypeChecked.map((config) => ({
     ...config,

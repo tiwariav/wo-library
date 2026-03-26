@@ -150,7 +150,13 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
 
   const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0 && updateFiles) {
-      await updateFiles([...event.target.files], "add");
+      const selectedFiles: File[] = [];
+      for (const selectedFile of event.target.files) {
+        if (selectedFile instanceof File) {
+          selectedFiles.push(selectedFile);
+        }
+      }
+      await updateFiles(selectedFiles, "add");
     }
     onChange?.(event);
   };
