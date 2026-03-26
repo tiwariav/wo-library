@@ -33,7 +33,7 @@ type Story = StoryObj<typeof HookFormInputWrapper>;
 function InputWrapper({
   name,
   ...props
-}: SetRequired<NumberInputProps, "name">) {
+}: Readonly<SetRequired<NumberInputProps, "name">>) {
   return (
     <HookFormInputWrapper name={name}>
       <NumberInput label={name} size="small" variant="material" {...props} />
@@ -115,7 +115,6 @@ function Template() {
   return (
     <HookForm
       defaultValues={{
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "NumberInput (format with default)": "1234.1003",
       }}
       mode="onChange"

@@ -1,7 +1,8 @@
-import { camelCase } from "lodash-es";
+import { camelCase, isUndefined } from "lodash-es";
 import { forwardRef } from "react";
 
-export const isBrowser = typeof window !== "undefined" && !!window.document;
+export const isBrowser =
+  !isUndefined(globalThis.window) && !isUndefined(globalThis.document);
 
 export const getDynamicClassName = (styles: unknown, name: string) => {
   /**
@@ -15,8 +16,10 @@ export function genericForwardRef<TRef, TProps = object>(
   render: (props: TProps, ref: React.Ref<TRef>) => React.ReactNode,
   name: string,
 ): (props: React.RefAttributes<TRef> & TProps) => React.ReactNode {
+  // @ts-expect-error 2322 because generic mismatch
   const component = forwardRef(render);
   component.displayName = name;
-  // @ts-expect-error 2322 because generic mismatch
-  return component as unknown;
+  return component as (
+    props: React.RefAttributes<TRef> & TProps,
+  ) => React.ReactNode;
 }

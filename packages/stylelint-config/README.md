@@ -13,7 +13,6 @@ properties, and strict value declarations.
 | `@double-great/stylelint-a11y`                      | Accessibility rules for CSS                    |
 | `stylelint-config-clean-order`                      | Consistent property ordering                   |
 | `stylelint-media-use-custom-media`                  | Enforce custom media query variables           |
-| `stylelint-plugin-defensive-css`                    | Defensive CSS patterns                         |
 | `stylelint-use-nesting`                             | Encourage CSS nesting                          |
 | `stylelint-value-no-unknown-custom-properties`      | Validate custom property usage                 |
 | `stylelint-declaration-block-no-ignored-properties` | Catch ignored declarations                     |
@@ -55,5 +54,5 @@ pnpm add -D stylelint @wo-library/stylelint-config
 - VS Code Stylelint extension has issues with Yarn PnP:
   <https://github.com/stylelint/vscode-stylelint/issues/464>
 
-  Until fixed, the package remains CommonJS and `@double-great/stylelint-a11y` is excluded
-  from the default config (tracked for re-enabling).
+  Keep extension/runtime behavior in sync with the Stylelint major version used by this
+  package.

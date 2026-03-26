@@ -21,7 +21,7 @@ export default function SideNavGroup({
   icon,
   title,
   ...props
-}: SideNavGroupProps) {
+}: Readonly<SideNavGroupProps>) {
   return (
     <div className={clsx(styles.root)} {...props}>
       {!!title && <SideNavTitle icon={icon}>{title}</SideNavTitle>}

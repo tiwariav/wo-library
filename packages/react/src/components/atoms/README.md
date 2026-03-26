@@ -79,7 +79,7 @@ import { Button, TextInput, Card } from "@wo-library/react";
 ## Overlays
 
 | Component | Description                                                                      |
-| --------- | -------------------------------------------------------------------------------- |
+| --------- | -------------------------------------------------------------------------------- | ------- | ------------------------ |
 | `Modal`   | Accessible dialog with `isOpen`/`onClose` API, portal rendering, and focus trap. |
 | `Tooltip` | Floating tooltip/popover powered by `@floating-ui/react`. `trigger`: `'hover'    | 'click' | 'focus'`, `portal` prop. |
 
@@ -115,7 +115,9 @@ import { Button, TextInput, Card } from "@wo-library/react";
 ```tsx
 // Render an Anchor as a react-router Link
 import { Link } from "react-router-dom";
-<Anchor as={Link} to="/home">Go Home</Anchor>
+<Anchor as={Link} to="/home">
+  Go Home
+</Anchor>;
 ```
 
 ### `progress` tuple

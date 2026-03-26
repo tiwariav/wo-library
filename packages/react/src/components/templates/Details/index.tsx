@@ -23,7 +23,7 @@ export default function Details({
   headerMain,
   headerSide,
   ...props
-}: DetailsProps) {
+}: Readonly<DetailsProps>) {
   const itemStyle = {};
   return (
     <Container

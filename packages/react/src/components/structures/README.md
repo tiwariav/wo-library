@@ -6,7 +6,13 @@ Most structures integrate with `LayoutContext` for coordinated state (e.g., side
 Import from `@wo-library/react`:
 
 ```tsx
-import { TopNav, SideNav, SideNavToggle, Page, WoSwiper } from "@wo-library/react";
+import {
+  TopNav,
+  SideNav,
+  SideNavToggle,
+  Page,
+  WoSwiper,
+} from "@wo-library/react";
 ```
 
 ---
@@ -19,6 +25,7 @@ Full-page layout shell that orchestrates `TopNav`, `SideNav`, hero, and main con
 Wraps everything in `LayoutProvider`.
 
 Two layout variants:
+
 - `'[T][SC]'` — TopNav spans full width, SideNav beside content (default)
 - `'[S][TC]'` — SideNav spans full height, TopNav beside content
 
@@ -27,11 +34,15 @@ import { Page, TopNav, SideNav } from "@wo-library/react";
 
 <Page
   topNav={<TopNav logo={<Logo />} />}
-  sideNav={<SideNav><nav>...</nav></SideNav>}
+  sideNav={
+    <SideNav>
+      <nav>...</nav>
+    </SideNav>
+  }
   hero={<Hero title="Dashboard" />}
 >
   <MainContent />
-</Page>
+</Page>;
 ```
 
 **Props**: `children`, `hero`, `topNav`, `sideNav`, `isCentered`, `variant`, `innerClassNames`, `className`.
@@ -43,7 +54,12 @@ import { Page, TopNav, SideNav } from "@wo-library/react";
 Collapsible sidebar driven by `LayoutContext`. Renders an overlay backdrop on mobile.
 
 ```tsx
-import { SideNav, SideNavGroup, SideNavFooter, SideNavToggle } from "@wo-library/react";
+import {
+  SideNav,
+  SideNavGroup,
+  SideNavFooter,
+  SideNavToggle,
+} from "@wo-library/react";
 
 <SideNav>
   <SideNavGroup title="Main">
@@ -52,7 +68,7 @@ import { SideNav, SideNavGroup, SideNavFooter, SideNavToggle } from "@wo-library
   <SideNavFooter>
     <UserProfile />
   </SideNavFooter>
-</SideNav>
+</SideNav>;
 ```
 
 **Related exports**: `SideNav`, `SideNavFooter`, `SideNavGroup`, `SideNavToggle` (button that toggles `LayoutContext.sideNav.isToggled`).
@@ -73,7 +89,7 @@ import { TopNav, TopNavItem } from "@wo-library/react";
   logo={<Logo />}
   contentLeft={[<SearchInput />]}
   contentRight={[<UserMenu />, <NotificationBell />]}
-/>
+/>;
 ```
 
 **Related exports**: `TopNav`, `TopNavItem` (wrapper for individual nav content items).
@@ -94,7 +110,7 @@ import { WoSwiper } from "@wo-library/react";
   <Card>Slide 1</Card>
   <Card>Slide 2</Card>
   <Card>Slide 3</Card>
-</WoSwiper>
+</WoSwiper>;
 ```
 
 **Props**: `title`, `subtitle`, `moreLink`, `moreLinkVertical`, `variant` (`'coverflow'`), `fade`,

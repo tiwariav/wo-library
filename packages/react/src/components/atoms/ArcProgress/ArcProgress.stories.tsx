@@ -16,8 +16,8 @@ const meta: Meta<typeof ArcProgress> = {
       },
     },
   },
-  title: "Atoms/ArcProgress",
   render: (args) => <ArcProgress {...args} />,
+  title: "Atoms/ArcProgress",
 };
 
 export default meta;
@@ -28,7 +28,7 @@ export const Basic: Story = {};
 
 export const Segments: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <ArcProgress segments={1} {...args} />
       <ArcProgress segments={5} {...args} />
       <ArcProgress segments={10} {...args} />
@@ -39,7 +39,7 @@ export const Segments: Story = {
 /* jscpd:ignore-start */
 export const StrokeWidth: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <ArcProgress strokeWidth={1} {...args} />
       <ArcProgress strokeWidth={5} {...args} />
       <ArcProgress strokeWidth={10} {...args} />

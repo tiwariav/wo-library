@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from "react";
 
 import { clsx } from "clsx";
 
@@ -30,7 +30,7 @@ function Tag({
   isBusy,
   isLoading,
   ...props
-}: TagProps) {
+}: Readonly<TagProps>): ReactElement {
   return (
     <span className={clsx(styles.container, className)} {...props}>
       {isLoading ? (

@@ -1,11 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  variant-secondary,
-  align-center,
-  width-xsmall, width-small,
-  height-readable, height-full,
-  spacing-none, spacing-small, spacing-large, spacing-horizontal
-]}] */
-
 import type { ComponentPropsWithoutRef } from "react";
 
 import { clsx } from "clsx";
@@ -48,7 +40,7 @@ export default function Container({
   variant,
   width,
   ...props
-}: ContainerProps) {
+}: Readonly<ContainerProps>) {
   return (
     <div
       className={clsx(

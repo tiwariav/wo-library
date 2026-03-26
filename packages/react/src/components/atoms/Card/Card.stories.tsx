@@ -32,11 +32,17 @@ const metadata: Meta<TemplateProps> = {
     children: "Card content",
   },
   argTypes: {
+    floating: { control: "select", options: COMPONENT_FLOAT },
+    flying: { control: "select", options: CARD_FLYING },
+    height: { control: "select", options: CARD_HEIGHTS },
     image: { mapping: imageMap, options: Object.keys(imageMap) },
+    layout: { control: "select", options: CARD_LAYOUTS },
+    variant: { control: "select", options: CARD_VARIANTS },
+    viewMode: { control: "select", options: CARD_VIEW_MODES },
     width: { control: { max: 320, min: 80, type: "range" } },
   },
   component: Card,
-  excludeStories: /.*Template$/,
+  excludeStories: /Template$/,
   parameters: {
     docs: {
       description: {
@@ -45,8 +51,8 @@ const metadata: Meta<TemplateProps> = {
       },
     },
   },
-  title: "Atoms/Card",
   render: Template,
+  title: "Atoms/Card",
 };
 
 export default metadata;
@@ -67,7 +73,7 @@ export const Layouts: Story = {
     ...WithImage.args,
   },
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <Card {...args} />
       {CARD_LAYOUTS.map((layout) => (
         <Card key={layout} layout={layout} {...args} />
@@ -82,7 +88,7 @@ function FirstCardTemplate({
   ...args
 }: { firstContent: ReactNode } & CardProps) {
   return (
-    <div className="story-grid">
+    <div className="story-list">
       <Card {...args}>{firstContent}</Card>
       {children}
     </div>
@@ -128,7 +134,7 @@ export const Height: Story = {
 export const Variants: Story = {
   ...WithImage,
   render: (...args) => (
-    <div className="story-grid">
+    <div className="story-list">
       {CARD_VARIANTS.map((variant) => (
         <Card key={variant} variant={variant} {...args}>
           variant {variant}

@@ -1,5 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: ['is-outlined'] }] */
-
 import type { ChangeEvent, ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { IconReload, IconTrashXFilled } from "@tabler/icons-react";
@@ -19,7 +17,7 @@ import Spinner from "../Spinner/Spinner.js";
 import PasswordInput from "../TextInput/PasswordInput.js";
 import * as styles from "./fileInput.module.css";
 
-const FILE_INPUT_VARIANTS = ["outlined"] as const;
+export const FILE_INPUT_VARIANTS = ["outlined"] as const;
 
 /**
  * Props for the {@link FileInput} component.
@@ -27,7 +25,7 @@ const FILE_INPUT_VARIANTS = ["outlined"] as const;
  */
 export interface FileInputProps<
   TFile extends UploadFile = UploadFile,
-> extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+> extends Omit<Readonly<ComponentPropsWithoutRef<"input">>, "size"> {
   /** Currently attached files displayed as a list below the input. */
   files?: TFile[];
   /** Icon rendered after the placeholder text. */
@@ -58,6 +56,69 @@ export interface FileInputProps<
   variant?: (typeof FILE_INPUT_VARIANTS)[number];
 }
 
+function FileStatus<TFile extends UploadFile>({
+  item,
+  updateFiles,
+}: Readonly<{
+  item: TFile;
+  updateFiles: FileInputProps<TFile>["updateFiles"];
+}>) {
+  const renderActionButton = (action: "add" | "remove", icon: ReactNode) => {
+    return (
+      <div>
+        <Button
+          onClick={() => void updateFiles?.([item], action)}
+          spacing="equal"
+          variant="borderless"
+        >
+          {icon}
+        </Button>
+      </div>
+    );
+  };
+
+  if (item.status === "uploading") {
+    return (
+      <>
+        <div className={clsx(styles.listItemStatusText, styles.progress)}>
+          Uploading...
+        </div>
+        {item.progress && (
+          <div>
+            <CircleProgress
+              className={styles.listItemProgress}
+              progress={item.progress}
+              squareSize={18}
+            />
+          </div>
+        )}
+      </>
+    );
+  }
+  if (item.status === "uploaded") {
+    return (
+      <>
+        <div className={clsx(styles.listItemStatusText, styles.success)}>
+          Uploaded
+        </div>
+        {renderActionButton("remove", <IconTrashXFilled />)}
+      </>
+    );
+  }
+  if (item.status === "failed") {
+    return (
+      <>
+        <div className={clsx(styles.listItemStatusText, styles.failed)}>
+          Failed
+        </div>
+        {renderActionButton("add", <IconReload />)}
+        {renderActionButton("remove", <IconTrashXFilled />)}
+      </>
+    );
+  }
+  return null;
+}
+
 export default function FileInput<TFile extends UploadFile = UploadFile>({
   className,
   files,
@@ -73,7 +134,7 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
   updateFiles,
   variant,
   ...props
-}: FileInputProps<TFile>) {
+}: Readonly<FileInputProps<TFile>>) {
   const [hasFocus, setHasFocus] = useState(false);
   const fileInputId = useId();
 
@@ -89,7 +150,13 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
 
   const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0 && updateFiles) {
-      await updateFiles([...event.target.files], "add");
+      const selectedFiles: File[] = [];
+      for (const selectedFile of event.target.files) {
+        if (selectedFile instanceof File) {
+          selectedFiles.push(selectedFile);
+        }
+      }
+      await updateFiles(selectedFiles, "add");
     }
     onChange?.(event);
   };
@@ -102,7 +169,13 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
     ) => {
       const fileData = file.data ? [...file.data] : [];
       fileData[dataIndex].value = event.target.value;
-      await updateFiles?.([{ ...file, data: fileData }], "update");
+      // Object.assign to avoid spreading class instance
+      const updatedFile = Object.assign(
+        Object.create(Object.getPrototypeOf(file) as object) as object,
+        file,
+        { data: fileData },
+      ) as TFile;
+      await updateFiles?.([updatedFile], "update");
     },
     INPUT_DEBOUNCE,
   );
@@ -153,78 +226,7 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
               <div className={styles.listItem} key={index}>
                 <div className={styles.listItemText}>{item.file.name}</div>
                 <div className={styles.uploadSection}>
-                  {item.status === "uploading" ? (
-                    <>
-                      <div
-                        className={clsx(
-                          styles.listItemStatusText,
-                          styles.progress,
-                        )}
-                      >
-                        Uploading...
-                      </div>
-                      {item.progress && (
-                        <div>
-                          <CircleProgress
-                            className={styles.listItemProgress}
-                            progress={item.progress}
-                            squareSize={18}
-                          />
-                        </div>
-                      )}
-                    </>
-                  ) : item.status === "uploaded" ? (
-                    <>
-                      <div
-                        className={clsx(
-                          styles.listItemStatusText,
-                          styles.success,
-                        )}
-                      >
-                        Uploaded
-                      </div>
-                      <div>
-                        <Button
-                          onClick={() => void updateFiles?.([item], "remove")}
-                          spacing="equal"
-                          variant="borderless"
-                        >
-                          <IconTrashXFilled />
-                        </Button>
-                      </div>
-                    </>
-                  ) : (
-                    item.status === "failed" && (
-                      <>
-                        <div
-                          className={clsx(
-                            styles.listItemStatusText,
-                            styles.failed,
-                          )}
-                        >
-                          Failed
-                        </div>
-                        <div>
-                          <Button
-                            onClick={() => void updateFiles?.([item], "add")}
-                            spacing="equal"
-                            variant="borderless"
-                          >
-                            <IconReload />
-                          </Button>
-                        </div>
-                        <div>
-                          <Button
-                            onClick={() => void updateFiles?.([item], "remove")}
-                            spacing="equal"
-                            variant="borderless"
-                          >
-                            <IconTrashXFilled />
-                          </Button>
-                        </div>
-                      </>
-                    )
-                  )}
+                  <FileStatus item={item} updateFiles={updateFiles} />
                 </div>
               </div>
               {item.data &&
@@ -237,7 +239,7 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
                         input: styles.listItemDataInput,
                         label: styles.listItemDataLabel,
                       }}
-                      key={index}
+                      key={dataIndex}
                       onChange={(event) =>
                         void handleDataChange(event, item, dataIndex)
                       }
@@ -249,7 +251,7 @@ export default function FileInput<TFile extends UploadFile = UploadFile>({
                       alt={dataItem.name}
                       className={styles.previewImage}
                       id={dataItem.resource}
-                      key={index}
+                      key={dataIndex}
                       src={dataItem.resource}
                     />
                   ),

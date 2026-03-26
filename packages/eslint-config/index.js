@@ -1,3 +1,1 @@
-import config from "./flatConfig.cjs";
-
-export default config;
+export { default } from "./config.js";

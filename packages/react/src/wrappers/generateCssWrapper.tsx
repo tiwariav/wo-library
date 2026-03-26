@@ -11,12 +11,12 @@ export default function generateCssWrapper<
   TComponent extends ElementType,
   TProps extends ComponentPropsWithoutRef<TComponent>,
 >(rootClassName: string, as?: TComponent, defaultProps?: Partial<TProps>) {
-  const CssWrapper = forwardRef<TProps["ref"], { className: string } & TProps>(
+  const CssWrapper = forwardRef<TProps["ref"], { className?: string } & TProps>(
     ({ className, ...props }, ref) => {
       const Component = as ?? "div";
       return (
         <Component
-          className={clsx(rootClassName, className)}
+          className={clsx(rootClassName, className as string | undefined)}
           ref={ref}
           {...defaultProps}
           {...props}
