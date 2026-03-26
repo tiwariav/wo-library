@@ -18,6 +18,8 @@ export { default as Button } from "./Button/Button.js";
 // Content card container
 export { default as Card } from "./Card/Card.js";
 
+export { default as Checkbox } from "./Checkbox/index.js";
+
 export { default as CircleProgress } from "./CircleProgress/CircleProgress.js";
 
 // Layout
@@ -49,10 +51,17 @@ export { default as NumberInput } from "./NumberInput/NumberInput.js";
 export { default as ObserveInView } from "./ObserveInView.js";
 export { default as PhoneNumberInput } from "./PhoneNumberInput/PhoneNumberInput.js";
 
+export { default as ProgressBar } from "./ProgressBar/index.js";
+
+export { default as Radio } from "./Radio/index.js";
+
 // Loading states
 export * from "./Spinkit/index.js";
 
 export { default as Spinner } from "./Spinner/Spinner.js";
+
+export { default as Switch } from "./Switch/index.js";
+
 export { default as Symbol } from "./Symbol/Symbol.js";
 
 export { default as Tag } from "./Tag/Tag.js";
