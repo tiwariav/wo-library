@@ -48,7 +48,9 @@ export default function loadScript(
     if (typeof document === "undefined") {
       return;
     }
-    const existingScript = document.querySelector(`script[src="${source}"]`);
+    const existingScript = document.querySelector(
+      `script[src="${CSS.escape(source)}"]`,
+    );
     if (existingScript) {
       resolve(true);
     } else {
