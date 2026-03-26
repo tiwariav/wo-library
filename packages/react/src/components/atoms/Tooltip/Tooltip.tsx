@@ -40,7 +40,7 @@ export function TooltipTrigger({
   getReferenceProps,
   onClick,
   referenceRef,
-}: Readonly<TooltipTriggerProps>) {
+}: TooltipTriggerProps) {
   if (
     isValidElement<{
       className: string;
@@ -111,38 +111,37 @@ export function TooltipBody({
   showBody,
   title,
   transitionStyles,
-}: Readonly<TooltipBodyProps>) {
-  if (!showBody) {
-    return null;
-  }
+}: TooltipBodyProps) {
   return (
-    <div
-      className={clsx(styles.floating, innerClassNames?.floating)}
-      {...getFloatingProps({
-        ref: floatingRef,
-        style: floatingStyles,
-      })}
-    >
+    showBody && (
       <div
-        className={clsx(
-          styles.title,
-          innerClassNames?.title,
-          !isPopover && styles.isPlain,
-        )}
-        style={animate ? transitionStyles : {}}
+        className={clsx(styles.floating, innerClassNames?.floating)}
+        {...getFloatingProps({
+          ref: floatingRef,
+          style: floatingStyles,
+        })}
       >
-        {title}
+        <div
+          className={clsx(
+            styles.title,
+            innerClassNames?.title,
+            !isPopover && styles.isPlain,
+          )}
+          style={animate ? transitionStyles : {}}
+        >
+          {title}
+        </div>
+        {showArrow && (
+          <FloatingArrow
+            className={clsx(styles.arrow, innerClassNames?.arrow)}
+            context={context}
+            height={ARROW_HEIGHT}
+            ref={arrowRef}
+            width={ARROW_WIDTH}
+          />
+        )}
       </div>
-      {showArrow && (
-        <FloatingArrow
-          className={clsx(styles.arrow, innerClassNames?.arrow)}
-          context={context}
-          height={ARROW_HEIGHT}
-          ref={arrowRef}
-          width={ARROW_WIDTH}
-        />
-      )}
-    </div>
+    )
   );
 }
 
@@ -150,7 +149,9 @@ export function TooltipBody({
  * Props for the {@link Tooltip} component.
  */
 export interface TooltipProps
-  extends TooltipCommonProps, UseTooltipOptions, TooltipBodySharedProps {
+  extends TooltipCommonProps,
+    UseTooltipOptions,
+    TooltipBodySharedProps {
   /** Enables CSS transition animations on the floating element. */
   animate?: boolean;
   className?: string;
@@ -187,7 +188,7 @@ export default function Tooltip({
   title,
   trigger,
   ...props
-}: Readonly<TooltipProps>) {
+}: TooltipProps) {
   const { context, refs, ...floatingProps } = useTooltipProps({ ...props });
 
   const { getFloatingProps, getReferenceProps } = useContextInteractions(

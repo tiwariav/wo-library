@@ -8,7 +8,7 @@ import {
   Template as ImageTemplate,
 } from "../../atoms/Image/Image.stories.js";
 import { Card } from "../../atoms/index.js";
-import Collection, { COLLECTION_VARIANT_OPTIONS } from "./index.js";
+import Collection from "./index.js";
 
 type TemplateProps = {
   cardWidth?: number;
@@ -40,11 +40,8 @@ export function Template({ cardWidth, variant, ...args }: TemplateProps) {
 }
 
 const metadata: Meta<typeof Collection> = {
-  argTypes: {
-    variant: { control: "select", options: COLLECTION_VARIANT_OPTIONS },
-  },
   component: Collection,
-  excludeStories: /Template$/,
+  excludeStories: /.*Template$/,
   parameters: {
     docs: {
       description: {
@@ -53,8 +50,8 @@ const metadata: Meta<typeof Collection> = {
       },
     },
   },
-  render: Template,
   title: "Templates/Collection",
+  render: Template,
 };
 
 export default metadata;

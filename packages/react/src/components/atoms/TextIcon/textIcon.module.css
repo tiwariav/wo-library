@@ -6,11 +6,11 @@
 
     width: var(--ye-spacing-em-huge);
     height: var(--ye-spacing-em-huge);
-    border-radius: var(--ye-radius-normal);
 
     font-size: var(--ye-font-size-tiny);
     color: var(--ye-color-light);
 
     background-color: var(--ye-color-dark-10);
+    border-radius: var(--ye-radius-normal);
   }
 }

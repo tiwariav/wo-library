@@ -18,85 +18,17 @@ const meta = {
   url: "https://github.com/tiwariav/stylelint-config/rules/no-indistinguishable-colors/README.md",
 };
 
-const MAX_THRESHOLD = 100;
-
 function getWhitelistHashKey(pair) {
-  return pair.toSorted().join("-");
+  pair = pair.sort();
+  return pair[0] + "-" + pair[1];
 }
 
 function getProp(decl) {
-  const { prop } = decl;
+  const prop = decl.prop;
   if (prop.startsWith("--")) {
     return prop;
   }
-  const { selector } = decl.parent;
-  return `${selector} -> ${prop}`;
-}
-
-function parseColor(value) {
-  try {
-    return new Color(value);
-  } catch (error) {
-    if (error instanceof TypeError) {
-      return null;
-    }
-    throw error;
-  }
-}
-
-function reportColorMatch({ colorList, decl, delta, newColorString, result }) {
-  for (const { prop } of colorList) {
-    report({
-      message: messages.rejected(
-        colorList[0].value,
-        newColorString,
-        delta,
-        prop,
-      ),
-      node: decl,
-      result,
-      ruleName,
-      word: newColorString,
-    });
-  }
-}
-
-function isWhitelistedPair(colorString, newColorString, whitelistHash) {
-  const hashKey = getWhitelistHashKey([colorString, newColorString]);
-  return Boolean(whitelistHash[hashKey]);
-}
-
-function findIndistinguishableColors({
-  colors,
-  decl,
-  newColor,
-  newColorString,
-  result,
-  threshold,
-  whitelistHash,
-}) {
-  for (const colorString of Object.keys(colors)) {
-    const colorList = colors[colorString];
-    if (!colorList || colorList.length === 0) {
-      continue;
-    }
-    if (isWhitelistedPair(colorString, newColorString, whitelistHash)) {
-      continue;
-    }
-    if (colorList[0].color === newColor) {
-      continue;
-    }
-
-    const delta = colorList[0].color.deltaE(newColor, "2000");
-    if (delta < threshold) {
-      reportColorMatch({ colorList, decl, delta, newColorString, result });
-    }
-  }
-}
-
-function trackColor(colors, colorValue, colorString, prop) {
-  colors[colorString] ||= [];
-  colors[colorString].push({ color: colorValue, prop, value: colorString });
+  return `${decl.parent.selector} -> ${decl.prop}`;
 }
 
 /** @type {import('stylelint').Rule} */
@@ -110,33 +42,27 @@ const ruleFunction = (primary, secondaryOptions = {}) => {
         possible: [true],
       },
       {
-        actual: secondaryOptions,
         optional: true,
+        actual: secondaryOptions,
         possible: {
-          threshold: (x) => Number.isInteger(x) && x >= 0 && x <= MAX_THRESHOLD,
           whitelist: (x) =>
-            Array.isArray(x) &&
-            x.every(
-              (index) =>
-                Object.prototype.toString.call(index) === "[object String]",
-            ),
+            Array.isArray(x) && x.every((i) => typeof i === "string"),
+          threshold: (x) => Number.isInteger(x) && x >= 0 && x <= 100,
         },
-      },
+      }
     );
     const { threshold = 3, whitelist = [] } = secondaryOptions;
     const whitelistHash = {};
     for (const pair of whitelist) {
       if (!Array.isArray(pair)) {
-        throw new TypeError(
+        throw new Error(
           "The whitelist option takes an array of array pairs. " +
-            "You probably sent an array of strings.",
+            "You probably sent an array of strings."
         );
       }
       whitelistHash[getWhitelistHashKey(pair)] = true;
     }
-    if (!validOptions) {
-      return;
-    }
+    if (!validOptions) return;
     const colors = {};
     root.walkDecls(COLOR_PROP_REGEX, (decl) => {
       const newColorStrings = decl.value.match(COLOR_VALUE_REGEX);
@@ -145,22 +71,44 @@ const ruleFunction = (primary, secondaryOptions = {}) => {
       }
 
       for (const newColorString of newColorStrings) {
-        const newColor = parseColor(newColorString);
-        if (!newColor) {
-          continue;
+        let newColor;
+        try {
+          newColor = new Color(newColorString);
+        } catch (error) {
+          if (error instanceof TypeError) {
+            continue;
+          }
         }
 
-        const prop = getProp(decl);
-        trackColor(colors, newColor, newColorString, prop);
-        findIndistinguishableColors({
-          colors,
-          decl,
-          newColor,
-          newColorString,
-          result,
-          threshold,
-          whitelistHash,
-        });
+        if (!(newColorString in colors)) {
+          colors[newColorString] = colors[newColorString] || [];
+          colors[newColorString].push({ color: newColor, prop: getProp(decl) });
+        }
+
+        for (const colorString of Object.keys(colors)) {
+          /** @type {{color:Color; prop: string}[]} */
+          const colorList = colors[colorString];
+          if (colorList[0].color === newColor) {
+            return;
+          }
+          const delta = colorList[0].color.deltaE(newColor, "2000");
+          if (delta < threshold) {
+            for (const { color, prop } of colorList) {
+              report({
+                result,
+                ruleName,
+                message: messages.rejected(
+                  colorString,
+                  newColorString,
+                  delta,
+                  prop
+                ),
+                node: decl,
+                word: newColorString,
+              });
+            }
+          }
+        }
       }
     });
   };

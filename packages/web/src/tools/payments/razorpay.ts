@@ -77,7 +77,7 @@ export async function checkout({
     prefill,
   };
 
-  const razorpay = new globalThis.window.Razorpay(options);
+  const razorpay = new window.Razorpay(options);
 
   razorpay.on("payment.failed", handleError);
 

@@ -1,8 +1,4 @@
-import type {
-  CSSProperties,
-  ComponentPropsWithoutRef,
-  ReactElement,
-} from "react";
+import type { CSSProperties, ComponentPropsWithoutRef } from "react";
 
 import { clsx } from "clsx";
 import { memo } from "react";
@@ -43,7 +39,7 @@ function Text({
   minLines = 1,
   style,
   ...props
-}: Readonly<TextProps>): ReactElement {
+}: TextProps) {
   const textStyles: CSSProperties = {};
   if (maxLines) {
     textStyles.maxHeight = `${maxLines * lineHeight}em`;

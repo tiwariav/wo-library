@@ -17,7 +17,7 @@ export default function Profile({
   contentLeft,
   coverImage,
   ...props
-}: Readonly<ProfileProps>) {
+}: ProfileProps) {
   const itemStyle = {};
   return (
     <Container className={clsx(className)} {...props}>

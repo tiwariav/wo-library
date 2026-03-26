@@ -25,24 +25,23 @@ const { getNxConventionalCommits, nxCommitMessage } = require("./shared.js");
  */
 function getNxReleaseConfig(options = {}) {
   const {
+    projects = ["packages/*"],
     createGitHubRelease = true,
     packageRoot = "dist/{projectName}",
-    projects = ["packages/*"],
   } = options;
 
   return {
     release: {
-      changelog: {
-        conventionalCommits: getNxConventionalCommits(),
-        projectChangelogs: {
-          createRelease: createGitHubRelease ? "github" : false,
-          file: "{projectRoot}/CHANGELOG.md",
-          renderOptions: {
-            authors: true,
-            commitReferences: true,
-            versionTitleDate: true,
-          },
+      projectsRelationship: "independent",
+      projects,
+      version: {
+        conventionalCommits: true,
+        generatorOptions: {
+          packageRoot,
+          currentVersionResolver: "git-tag",
         },
+      },
+      changelog: {
         workspaceChangelog: {
           createRelease: createGitHubRelease ? "github" : false,
           file: "CHANGELOG.md",
@@ -52,25 +51,26 @@ function getNxReleaseConfig(options = {}) {
             versionTitleDate: true,
           },
         },
+        projectChangelogs: {
+          createRelease: createGitHubRelease ? "github" : false,
+          file: "{projectRoot}/CHANGELOG.md",
+          renderOptions: {
+            authors: true,
+            commitReferences: true,
+            versionTitleDate: true,
+          },
+        },
+        conventionalCommits: getNxConventionalCommits(),
       },
       git: {
         commitMessage: nxCommitMessage,
-      },
-      projects,
-      projectsRelationship: "independent",
-      version: {
-        conventionalCommits: true,
-        generatorOptions: {
-          currentVersionResolver: "git-tag",
-          packageRoot,
-        },
       },
     },
   };
 }
 
 module.exports = {
-  getNxConventionalCommits,
   getNxReleaseConfig,
+  getNxConventionalCommits,
   nxCommitMessage,
 };

@@ -41,17 +41,10 @@ export function createAndUseContext<TState, TDispatch>() {
   const StateContext = createContext({} as TState);
   const MethodContext = createContext({} as TDispatch);
 
-  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextState = () => useContext(StateContext);
-  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextMethods = () => useContext(MethodContext);
 
-  return {
-    MethodContext,
-    StateContext,
-    useContextMethods,
-    useContextState,
-  };
+  return { MethodContext, StateContext, useContextMethods, useContextState };
 }
 
 export function dispatchLoading<
@@ -63,9 +56,7 @@ export function dispatchLoading<
   ...args: Parameters<TMethod>
 ) {
   dispatch.setLoading(true);
-
   method(...args);
-
   dispatch.setLoading(true);
 }
 
@@ -80,11 +71,7 @@ export const getUpdateStateMethod =
   <TState extends object>(state: TState) =>
   (data: Partial<TState>) => {
     return produce(state, (draft) => {
-      for (const [key, value] of Object.entries(data)) {
-        if (key in draft) {
-          (draft as Record<string, unknown>)[key] = value;
-        }
-      }
+      void Object.assign(draft, data);
     });
   };
 

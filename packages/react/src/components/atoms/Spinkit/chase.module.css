@@ -28,9 +28,9 @@
 
       width: 25%;
       height: 25%;
-      border-radius: var(--ye-radius-circle);
 
       background-color: var(--ye-spinkit-color);
+      border-radius: var(--ye-radius-circle);
 
       animation: dot-before 2s infinite ease-in-out both;
 

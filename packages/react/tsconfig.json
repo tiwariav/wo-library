@@ -10,10 +10,6 @@
     "noEmit": false,
     "composite": true,
     "paths": {
-      "@wo-library/js": ["../js/src/index.ts"],
-      "@wo-library/react": ["./src/index.ts"],
-      "@wo-library/ui": ["../ui/src/index.ts"],
-      "@wo-library/web": ["../web/src/index.ts"],
       "country-flag-emoji-polyfill": [
         "./node_modules/country-flag-emoji-polyfill/dist/index.d.ts"
       ]
@@ -28,5 +24,17 @@
     ]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "src/**/__stories__",
+    "src/**/stories",
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

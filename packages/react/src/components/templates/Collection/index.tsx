@@ -1,3 +1,7 @@
+/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
+  is-list, is-grid
+]}] */
+
 import type { CSSProperties, ReactNode } from "react";
 
 import { IconFilter, IconSortDescending } from "@tabler/icons-react";
@@ -19,7 +23,7 @@ export interface SortOption {
   name: string;
 }
 
-export const COLLECTION_VARIANT_OPTIONS = ["list", "grid"] as const;
+const COLLECTION_VARIANT_OPTIONS = ["list", "grid"] as const;
 
 export interface CollectionProps {
   children: ReactNode;
@@ -40,7 +44,7 @@ export default function Collection({
   title,
   variant = "list",
   ...props
-}: Readonly<CollectionProps>) {
+}: CollectionProps) {
   const itemStyle: CSSProperties = {};
   const contentStyle: CSSProperties = {};
   if (columns) {

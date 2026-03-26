@@ -10,9 +10,9 @@ import _del from "rollup-plugin-delete";
 import _postcss from "rollup-plugin-postcss";
 import _progress from "rollup-plugin-progress";
 
-import { getConfig as getBabelConfig } from "../node/babel.js";
+import { getConfig as getBabelConfig } from "../cjs/babel.cjs";
 import { autoExternal, skipOutput } from "./plugins.js";
-import { getInput } from "./utilities.js";
+import { getInput } from "./utils.js";
 
 const commonjs = defaultImport(_commonjs);
 const postcss = defaultImport(_postcss);
@@ -65,10 +65,6 @@ export function getJsPlugins({
     json(),
     ...buildPlugins,
   ];
-  if (isDev && enableEslint) {
-    // Rollup-side linting is intentionally disabled for ESLint v10 compatibility.
-    // Use the top-level `pnpm eslint` command in CI and local workflows instead.
-  }
   if (isDev) {
     response.push(progress());
   } else {
@@ -86,7 +82,7 @@ export const getBuildPlugins = ({
   const buildPlugins = [
     postcss({
       extract: "dist.css",
-      modules: { localsConvention: "camelCaseOnly" },
+      modules: { localsConvention: "camelCase" },
       namedExports: true,
       sourceMap: isDev,
     }),
@@ -131,26 +127,18 @@ export const getPublishPlugins = ({
       {
         dest: buildPath,
         src: ["package.json", "README.md", "LICENSE"],
-        transform: (contents) => {
-          const contentText = contents.toString();
-
-          if (!removePostInstall) {
-            return contentText;
-          }
-
-          return contentText
-            .split("\n")
-            .filter((line) => !line.trimStart().startsWith('"postinstall":'))
-            .join("\n");
-        },
+        transform: (contents) =>
+          removePostInstall
+            ? contents.toString().replace(/\n*\s*"postinstall": "[^"]*",?/, "")
+            : contents,
       },
       {
         dest: buildPath,
         src: ["src/**/*.d.ts"],
       },
-      ...(assetDirectories?.map((directory) => ({
-        dest: `${buildPath}/${directory.replace("src/", "")}`,
-        src: [`${directory}/*`],
+      ...(assetDirectories?.map((dir) => ({
+        dest: `${buildPath}/${dir.replace("src/", "")}`,
+        src: [`${dir}/*`],
       })) ?? []),
     ],
   }),

@@ -16,7 +16,7 @@ import { Button } from "../../atoms/index.js";
 import * as styles from "./sideNav.module.css";
 import { useSideNavEffects } from "./utils.js";
 
-export function SideNavToggle({ children, ...props }: Readonly<ButtonProps>) {
+export function SideNavToggle({ children, ...props }: ButtonProps) {
   const layoutState = useLayoutState();
   const layoutDispatch = useLayoutMethods();
   return (
@@ -37,7 +37,7 @@ export function SideNavToggle({ children, ...props }: Readonly<ButtonProps>) {
 
 function SideNavInner({
   children,
-}: Readonly<Pick<SideNavProps, "children" | "toggleIcon">>) {
+}: Pick<SideNavProps, "children" | "toggleIcon">) {
   return (
     <div className={styles.wrapperOuter}>
       <div className={styles.wrapperInner}>{children}</div>

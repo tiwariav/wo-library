@@ -3,11 +3,7 @@ import type { Dispatch, SetStateAction } from "react";
 
 import clsx from "clsx";
 import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
-import {
-  AsYouType,
-  ParseError,
-  parsePhoneNumberFromString,
-} from "libphonenumber-js";
+import { AsYouType, ParseError, parsePhoneNumber } from "libphonenumber-js";
 import { isNil, isString } from "lodash-es";
 import { forwardRef, useCallback, useRef, useState } from "react";
 import { useEffectOnce } from "react-use";
@@ -32,9 +28,9 @@ function getFlagEmoji(countryCode: string) {
     );
 }
 
-function getPhoneNumber(value: string): PhoneNumber | undefined {
+function getPhoneNumber(value: string) {
   try {
-    return parsePhoneNumberFromString(value, "IN");
+    return parsePhoneNumber(value, "IN");
   } catch (error) {
     if (!(error instanceof ParseError)) {
       throw error;
@@ -43,85 +39,93 @@ function getPhoneNumber(value: string): PhoneNumber | undefined {
       (error.message === "NOT_A_NUMBER" && !/[^+]/.test(value)) ||
       (error.message === "TOO_SHORT" && /^\+?[\d\s]+-*$/.test(value))
     ) {
-      // return undefined to allow value change and maintain type consistency
-      return undefined;
+      // return empty string to allow value change
+      return "";
     }
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw error;
   }
 }
 
 function formatCountryCode({
+  currentText,
   phoneNumber,
   setFlag,
   value,
 }: {
+  currentText: string;
   phoneNumber: PhoneNumber;
   setFlag: Dispatch<SetStateAction<string>>;
   value: string;
 }) {
+  currentText = value;
   if (!phoneNumber.country) {
-    return value;
+    currentText = value;
+    return currentText;
   }
   setFlag(getFlagEmoji(phoneNumber.country));
   return new AsYouType().input(value);
 }
 
-const PhoneNumberInput = forwardRef<
-  HTMLInputElement,
-  Readonly<FormattedInputProps>
->(({ className, defaultValue = "+91", variant, ...props }, ref) => {
-  const textValueRef = useRef<string>(defaultValue.toString());
-  const [flag, setFlag] = useState(() => getFlagEmoji("IN"));
+const PhoneNumberInput = forwardRef<HTMLInputElement, FormattedInputProps>(
+  ({ className, defaultValue = "+91", variant, ...props }, ref) => {
+    const textValueRef = useRef<string>(defaultValue.toString());
+    const [flag, setFlag] = useState(getFlagEmoji("IN"));
 
-  useEffectOnce(() => {
-    polyfillCountryFlagEmojis();
-  });
+    useEffectOnce(() => {
+      polyfillCountryFlagEmojis();
+    });
 
-  const formatFunction = useCallback((value: InputDomValue) => {
-    if (isNil(value)) {
-      textValueRef.current = "";
-      return "";
-    }
-    const stringValue = value.toString();
-    try {
-      const phoneNumber = getPhoneNumber(stringValue);
-      if (!phoneNumber) {
-        return stringValue;
+    const formatFunction = useCallback((value: InputDomValue) => {
+      if (isNil(value)) {
+        textValueRef.current = "";
+        return "";
       }
-      return formatCountryCode({ phoneNumber, setFlag, value: stringValue });
-    } catch {
-      return textValueRef.current;
-    }
-  }, []);
+      value = value.toString();
+      let phoneNumber;
+      try {
+        phoneNumber = getPhoneNumber(value) as PhoneNumber;
+      } catch {
+        // unhandled error, dont update input value
+        return textValueRef.current;
+      }
+      return formatCountryCode({
+        currentText: textValueRef.current,
+        phoneNumber,
+        setFlag,
+        value,
+      });
+    }, []);
 
-  const parseFunction = useCallback<FormattedInputParse>((formattedValue) => {
-    const textValue = textValueRef.current;
-    if (isNil(textValue) || isNil(formattedValue)) {
-      return "";
-    }
-    return isString(formattedValue)
-      ? formattedValue.replaceAll(" ", "")
-      : String(formattedValue);
-  }, []);
+    const parseFunction = useCallback<FormattedInputParse>((formattedValue) => {
+      const textValue = textValueRef.current;
+      if (isNil(textValue) || isNil(formattedValue)) {
+        return;
+      }
+      return isString(formattedValue)
+        ? formattedValue.replaceAll(" ", "")
+        : formattedValue;
+    }, []);
 
-  return (
-    <FormattedInput
-      className={clsx(
-        styles.root,
-        variant === "material" && styles.variantMaterial,
-        className,
-      )}
-      defaultValue={defaultValue}
-      format={formatFunction}
-      iconBefore={flag}
-      innerClassNames={{ iconBefore: styles.flagIcon, label: styles.label }}
-      parse={parseFunction}
-      ref={ref}
-      variant={variant}
-      {...props}
-    />
-  );
-});
+    return (
+      <FormattedInput
+        className={clsx(
+          styles.root,
+          variant === "material" && styles.variantMaterial,
+          className,
+        )}
+        defaultValue={defaultValue}
+        format={formatFunction}
+        iconBefore={flag}
+        innerClassNames={{ iconBefore: styles.flagIcon, label: styles.label }}
+        parse={parseFunction}
+        ref={ref}
+        variant={variant}
+        {...props}
+      />
+    );
+  },
+);
 PhoneNumberInput.displayName = "PhoneNumberInput";
 
 export default PhoneNumberInput;

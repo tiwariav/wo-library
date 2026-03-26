@@ -20,7 +20,7 @@ export const autoExternal = ({ assets = /assets/, copy = false } = {}) => ({
 
 export const skipOutput = () => ({
   generateBundle(_options, bundle) {
-    for (const fileName in bundle) {
+    for (const fileName of Object.keys(bundle)) {
       if (fileName.endsWith(".js")) {
         delete bundle[fileName];
       }

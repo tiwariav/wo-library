@@ -1,4 +1,3 @@
-/* stylelint-disable nesting-selector-no-missing-scoping-root */
 @define-mixin anchorStates {
   &.has-focus,
   &:focus {
@@ -12,7 +11,6 @@
     }
   }
 }
-/* stylelint-enable nesting-selector-no-missing-scoping-root */
 
 @layer ye-components {
   .anchor {
@@ -85,6 +83,7 @@
 
     width: 100%;
     padding: var(--ye-spacing-em-xsmall) var(--ye-spacing-em-normal);
+
     border-radius: 0;
 
     transition-property: box-shadow, border-radius, background-color;
@@ -125,6 +124,7 @@
     }
 
     padding: var(--ye-button-outline-padding);
+
     border-color: var(--ye-color-text);
     border-style: solid;
     border-width: var(--ye-button-outline-border-width);

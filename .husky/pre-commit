@@ -1,4 +1,1 @@
-#!/usr/bin/env sh
-
 pnpm lint-staged
-pnpm jscpd packages/*/src

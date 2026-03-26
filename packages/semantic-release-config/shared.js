@@ -4,60 +4,60 @@
  */
 
 const conventionalCommitTypes = {
-  build: {
-    hidden: true,
-    semverBump: "none",
-    title: "Build",
-  },
-  chore: {
-    hidden: true,
-    semverBump: "none",
-    title: "Chores",
-  },
-  ci: {
-    hidden: true,
-    semverBump: "none",
-    title: "CI",
-  },
-  docs: {
-    hidden: false,
-    semverBump: "patch",
-    title: "📚 Documentation",
-  },
   feat: {
-    hidden: false,
-    semverBump: "minor",
     title: "✨ Features",
+    semverBump: "minor",
+    hidden: false,
   },
   fix: {
-    hidden: false,
-    semverBump: "patch",
     title: "🐛 Bug Fixes",
+    semverBump: "patch",
+    hidden: false,
   },
   perf: {
-    hidden: false,
-    semverBump: "patch",
     title: "⚡️ Performance Improvements",
+    semverBump: "patch",
+    hidden: false,
   },
   refactor: {
-    hidden: false,
-    semverBump: "patch",
     title: "♻️ Code Refactors",
-  },
-  revert: {
-    hidden: false,
     semverBump: "patch",
-    title: "Reverts",
+    hidden: false,
+  },
+  docs: {
+    title: "📚 Documentation",
+    semverBump: "patch",
+    hidden: false,
   },
   style: {
-    hidden: false,
-    semverBump: "none",
     title: "🎨 Styles",
+    semverBump: "none",
+    hidden: false,
   },
   test: {
-    hidden: false,
-    semverBump: "none",
     title: "🚦 Tests",
+    semverBump: "none",
+    hidden: false,
+  },
+  revert: {
+    title: "Reverts",
+    semverBump: "patch",
+    hidden: false,
+  },
+  chore: {
+    title: "Chores",
+    semverBump: "none",
+    hidden: true,
+  },
+  ci: {
+    title: "CI",
+    semverBump: "none",
+    hidden: true,
+  },
+  build: {
+    title: "Build",
+    semverBump: "none",
+    hidden: true,
   },
 };
 
@@ -75,11 +75,11 @@ function getNxConventionalCommits() {
   const types = {};
   for (const [type, config] of Object.entries(conventionalCommitTypes)) {
     types[type] = {
-      changelog: {
-        hidden: config.hidden,
-        title: config.title,
-      },
       semverBump: config.semverBump,
+      changelog: {
+        title: config.title,
+        hidden: config.hidden,
+      },
     };
   }
   return { types };
@@ -93,7 +93,7 @@ function getSemanticReleaseRules() {
   const rules = [{ breaking: true, release: "major" }];
   for (const [type, config] of Object.entries(conventionalCommitTypes)) {
     if (config.semverBump !== "none") {
-      rules.push({ release: config.semverBump, type });
+      rules.push({ type, release: config.semverBump });
     }
   }
   return rules;
@@ -105,18 +105,18 @@ function getSemanticReleaseRules() {
  */
 function getSemanticReleaseTypes() {
   return Object.entries(conventionalCommitTypes).map(([type, config]) => ({
-    hidden: config.hidden,
-    section: config.title,
     type,
+    section: config.title,
+    hidden: config.hidden,
   }));
 }
 
 module.exports = {
+  conventionalCommitTypes,
   branches,
   commitMessage,
-  conventionalCommitTypes,
+  nxCommitMessage,
   getNxConventionalCommits,
   getSemanticReleaseRules,
   getSemanticReleaseTypes,
-  nxCommitMessage,
 };

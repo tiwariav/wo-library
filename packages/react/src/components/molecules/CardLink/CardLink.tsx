@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from "react";
+import type { MutableRefObject, ReactNode } from "react";
 
 import { useRef } from "react";
 import { useEffectOnce } from "react-use";
@@ -10,21 +10,21 @@ import { Card } from "../../atoms/index.js";
 
 export interface CardLinkProps extends CardProps {
   children: ReactNode;
-  linkRef: RefObject<HTMLAnchorElement | null>;
+  linkRef: MutableRefObject<HTMLAnchorElement | null>;
 }
 
 export default function CardLink({
   children,
   linkRef,
   ...props
-}: Readonly<CardLinkProps>) {
+}: CardLinkProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     if (isBrowser) {
       return;
     }
-    const noTextSelected = !globalThis.getSelection()?.toString();
+    const noTextSelected = !window.getSelection()?.toString();
 
     if (noTextSelected) {
       linkRef.current?.click();
@@ -32,15 +32,11 @@ export default function CardLink({
   };
 
   useEffectOnce(() => {
-    const container = ref.current;
-    if (container instanceof HTMLDivElement) {
-      const interactiveElements = container.querySelectorAll("a, button");
-      for (const element of interactiveElements) {
-        if (element instanceof HTMLElement) {
-          element.addEventListener("click", (event: Event) => {
-            event.stopPropagation();
-          });
-        }
+    if (ref.current) {
+      for (const element of ref.current.querySelectorAll("a, button")) {
+        element.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
       }
     }
   });

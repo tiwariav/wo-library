@@ -1,19 +1,18 @@
+/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: ['is-small'] }] */
+
 import type { ComponentPropsWithoutRef } from "react";
 
-import {
-  svgPathFlagData as SVGPathFlagData,
-  svgPathPinData as SVGPathPinData,
-} from "@wo-library/ui";
+import { SVGPathFlagData, SVGPathPinData } from "@wo-library/ui";
 import { clsx } from "clsx";
 import { forwardRef, useId } from "react";
 
 import * as styles from "./symbol.module.css";
 
-function SvgPathFlag(props: Readonly<ComponentPropsWithoutRef<"path">>) {
+function SVGPathFlag(props: ComponentPropsWithoutRef<"path">) {
   return <path d={SVGPathFlagData.d} {...props} />;
 }
 
-function SvgPathPin(props: Readonly<ComponentPropsWithoutRef<"path">>) {
+function SVGPathPin(props: ComponentPropsWithoutRef<"path">) {
   return (
     <g transform={SVGPathPinData.transform}>
       <path d={SVGPathPinData.d} {...props} />
@@ -21,9 +20,9 @@ function SvgPathPin(props: Readonly<ComponentPropsWithoutRef<"path">>) {
   );
 }
 
-type IconSymbolVariant = "circle" | "flag" | "pin" | "triangle";
+const SYMBOL_VARIANTS = ["circle", "flag", "pin", "triangle"] as const;
 
-function imageTransform(variant: IconSymbolVariant) {
+function imageTransform(variant: (typeof SYMBOL_VARIANTS)[number]) {
   switch (variant) {
     case "pin": {
       return "translate(0 -0.5)";
@@ -36,11 +35,10 @@ function imageTransform(variant: IconSymbolVariant) {
     }
   }
 }
-
 /**
- * Props for the {@link IconSymbol} component.
+ * Props for the {@link Symbol} component.
  */
-interface IconSymbolProps extends ComponentPropsWithoutRef<"svg"> {
+interface SymbolProps extends ComponentPropsWithoutRef<"svg"> {
   /** Fill colour applied to the shape mask. */
   fill?: string;
   /** Extra props forwarded to the SVG `<image>` element (when `imageSrc` is set). */
@@ -48,30 +46,12 @@ interface IconSymbolProps extends ComponentPropsWithoutRef<"svg"> {
   /** URL of an image rendered inside the shape mask (e.g. a map pin avatar). */
   imageSrc?: string;
   /** Shape mask applied to the content. One of `'circle'`, `'flag'`, `'pin'`, `'triangle'`. */
-  variant?: IconSymbolVariant;
+  variant?: (typeof SYMBOL_VARIANTS)[number];
 }
 
-const IconSymbol = forwardRef<SVGSVGElement, Readonly<IconSymbolProps>>(
+const Symbol = forwardRef<SVGSVGElement, SymbolProps>(
   ({ className, fill, imageProps, imageSrc, variant, ...props }, ref) => {
     const maskId = useId();
-
-    const renderSymbolMask = () => {
-      switch (variant) {
-        case "circle":
-        case "triangle": {
-          return <circle cx="5" cy="5" fill="white" r="5" />;
-        }
-        case "pin": {
-          return <SvgPathPin fill="white" transform="translate(.95 0)" />;
-        }
-        case "flag": {
-          return <SvgPathFlag fill="white" transform="translate(.3 0)" />;
-        }
-        default: {
-          return <rect fill="white" height="100%" width="100%" />;
-        }
-      }
-    };
 
     return (
       <svg
@@ -83,7 +63,17 @@ const IconSymbol = forwardRef<SVGSVGElement, Readonly<IconSymbolProps>>(
       >
         <mask id={maskId}>
           <rect fill="black" height="100%" width="100%" />
-          {renderSymbolMask()}
+          {variant === "circle" ? (
+            <circle cx="5" cy="5" fill="white" r="5" />
+          ) : variant === "triangle" ? (
+            <circle cx="5" cy="5" fill="white" r="5" />
+          ) : variant === "pin" ? (
+            <SVGPathPin fill="white" transform="translate(.95 0)" />
+          ) : variant === "flag" ? (
+            <SVGPathFlag fill="white" transform="translate(.3 0)" />
+          ) : (
+            <rect fill="white" height="100%" width="100%" />
+          )}
         </mask>
         <rect fill={fill} height="100%" mask={`url(#${maskId})`} width="100%" />
         {!!imageSrc && (
@@ -99,6 +89,6 @@ const IconSymbol = forwardRef<SVGSVGElement, Readonly<IconSymbolProps>>(
     );
   },
 );
-IconSymbol.displayName = "IconSymbol";
+Symbol.displayName = "Symbol";
 
-export default IconSymbol;
+export default Symbol;

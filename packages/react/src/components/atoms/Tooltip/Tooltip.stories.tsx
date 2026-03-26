@@ -30,8 +30,8 @@ const metadata: Meta<typeof Tooltip> = {
       },
     },
   },
-  render: (args) => <Tooltip {...args} />,
   title: "Atoms/Tooltip",
+  render: (args) => <Tooltip {...args} />,
 };
 
 export default metadata;
@@ -130,7 +130,7 @@ export const Placements: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-list">
+    <div className="story-flex">
       <div className="story-flex-grow">
         <div className="story-title">Leftdiv</div>
         <div
@@ -194,7 +194,7 @@ export const Triggers: Story = {
     showArrow: true,
   },
   render: (args) => (
-    <div className="story-list">
+    <div className="story-grid">
       <div>
         <Tooltip trigger="click" {...args}>
           Click for Tooltip!
@@ -210,23 +210,23 @@ export const Triggers: Story = {
 };
 
 function ButtonInDropdownTemplate() {
-  const [open, setOpen] = useState(false);
+  const [open, setIsOpen] = useState(false);
 
   return (
     <Tooltip
       isOpen={open}
       onClick={() => {
-        setOpen(true);
+        setIsOpen(true);
       }}
       onClose={() => {
-        setOpen(false);
+        setIsOpen(false);
       }}
       title={
         <div>
-          <span>Content in Tooltip!</span>
+          Content in Tooltip!
           <button
             onClick={() => {
-              setOpen(false);
+              setIsOpen(false);
             }}
             style={{ marginLeft: "auto" }}
           >
@@ -244,8 +244,8 @@ export const WithButton: Story = {
   render: () => <ButtonInDropdownTemplate />,
 };
 
-function ValidElementChildTemplate(args: Readonly<Partial<TooltipProps>>) {
-  const [open, setOpen] = useState(false);
+function ValidElementChildTemplate(args: Partial<TooltipProps>) {
+  const [open, setIsOpen] = useState(false);
   const [tooltipCount, setTooltipCount] = useState(0);
   const [inputFocusCount, setInputFocusCount] = useState(0);
 
@@ -259,7 +259,7 @@ function ValidElementChildTemplate(args: Readonly<Partial<TooltipProps>>) {
           setTooltipCount((previous) => previous + 1);
         }}
         onClose={() => {
-          setOpen(false);
+          setIsOpen(false);
         }}
         title={<div>Content in Tooltip!</div>}
         {...args}
@@ -267,7 +267,7 @@ function ValidElementChildTemplate(args: Readonly<Partial<TooltipProps>>) {
         <input
           onFocus={() => {
             setInputFocusCount((previous) => previous + 1);
-            setOpen(true);
+            setIsOpen(true);
           }}
           placeholder="Click for Tooltip!"
         />

@@ -1,0 +1,46 @@
+/* stylelint-disable csstools/media-use-custom-media */
+
+.story-flex {
+  flex-wrap: nowrap;
+
+  @media (width < 768px) {
+    flex-wrap: wrap;
+  }
+}
+
+.story-height-overflow {
+  min-height: 150vh;
+}
+
+.story-height-scroll {
+  scrollbar-gutter: auto;
+  overflow: auto;
+  overscroll-behavior: auto;
+  max-height: calc(100vh - var(--ye-spacing-rem-huge));
+
+  &.story-grid-row {
+    max-height: 50vh;
+  }
+}
+
+.story-grid-row {
+  grid-column: 1 / -1;
+}
+
+.story-bordered {
+  border: 1px solid var(--ye-color-dark-10);
+}
+
+.story-bg-container {
+  position: relative;
+  width: 100%;
+  padding: var(--ye-spacing-rem-normal);
+  background-color: var(--ye-color-dark-50);
+}
+
+.story-topnav-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}

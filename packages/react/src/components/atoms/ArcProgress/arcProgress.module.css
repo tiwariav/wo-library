@@ -27,10 +27,10 @@
     width: calc(2 * var(--module-arc-radius));
     height: calc(2 * var(--module-arc-radius));
     padding-bottom: var(--ye-font-size-large);
-    border-radius: var(--module-arc-radius);
 
     line-height: 1;
 
+    border-radius: var(--module-arc-radius);
     box-shadow: var(--ye-shadow-floating-medium);
   }
 
@@ -47,9 +47,10 @@
     display: flex;
 
     width: 2.25em;
-    border-radius: var(--ye-radius-small);
 
     color: var(--ye-color-primary);
+
+    border-radius: var(--ye-radius-small);
   }
 
   .segment {

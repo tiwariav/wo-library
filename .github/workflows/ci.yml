@@ -1,44 +1,38 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    lint-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: main
+            - uses: pnpm/action-setup@v4
 
-      - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
+            - uses: tiwariav/github-actions/cache-js-linters@main
 
-      - uses: tiwariav/github-actions/cache-js-linters@main
+            - run: pnpm install --frozen-lockfile
 
-      - run: pnpm install --frozen-lockfile
+            - run: pnpm eslint --cache --cache-strategy=content --quiet packages/*/src
 
-      - run: pnpm eslint --quiet
+            - run: pnpm stylelint --cache ./packages/**/*.css
 
-      - run: pnpm stylelint --cache packages/*/src/**/*.css
+            - run: pnpm prettier --cache --check packages/*/src
 
-      - run: pnpm prettier --cache --check packages/*/src
+            - run: pnpm jscpd packages
 
-      - run: pnpm jscpd packages/*/src
+            - run: npx nx affected -t build
 
-      - run: pnpm nx affected -t test
-        if: github.event_name == 'pull_request'
-
-      - run: pnpm nx run-many -t test --all
-        if: github.event_name == 'push'
+            - run: npx nx affected -t test

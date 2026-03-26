@@ -52,7 +52,7 @@ const itemsMap = {
   ),
 };
 
-function Template({ className, ...props }: Readonly<TopNavProps>) {
+function Template({ className, ...props }: TopNavProps) {
   const ref = useRef<HTMLDivElement>(null);
   return (
     <div
@@ -92,8 +92,6 @@ const metadata: Meta<typeof TopNav> = {
         options: Object.keys(iconMap),
       },
     },
-    logoVariant: { control: "select", options: ["hanging"] },
-    variant: { control: "select", options: TOPNAV_VARIANTS },
   },
   component: TopNav,
   parameters: {
@@ -104,8 +102,8 @@ const metadata: Meta<typeof TopNav> = {
       },
     },
   },
-  render: Template,
   title: "Structures/TopNav",
+  render: Template,
 };
 
 export default metadata;
@@ -117,8 +115,8 @@ export const Basic: Story = {};
 export const Sticky: Story = {
   args: { banner: <div>What a great day!</div> },
   render: (args) => (
-    <div className="story-list">
-      <Template {...args} className="story-list-row" logo="fixed" sticky />
+    <div className="story-grid">
+      <Template {...args} className="story-grid-row" logo="fixed" sticky />
       <Template {...args} logo="hideOnScroll" sticky={{ hideOnScroll: true }} />
       <Template {...args} logo="shrinkOffset" sticky={{ shrinkOffset: 100 }} />
     </div>
@@ -128,7 +126,7 @@ export const Sticky: Story = {
 export const Variants: Story = {
   args: { sticky: true },
   render: (args) => (
-    <div className="story-list">
+    <div className="story-grid">
       {TOPNAV_VARIANTS.map((variant) => (
         <Template key={variant} variant={variant} {...args} logo={variant} />
       ))}

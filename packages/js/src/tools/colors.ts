@@ -62,7 +62,6 @@ const MAX_RGB = 255;
 const MAX_ANGLE = 360;
 
 function getRandomRgb(opacity = 100) {
-  // eslint-disable-next-line sonarjs/pseudo-random
   const number_ = Math.round(RGB_BASE * Math.random());
   const r = number_ >> G_SHIFT;
   const g = (number_ >> B_SHIFT) & MAX_RGB;
@@ -85,7 +84,6 @@ function getRandomRgb(opacity = 100) {
 export function randomGradientGenerator(opacity: number) {
   const newColor1 = getRandomRgb(opacity);
   const newColor2 = getRandomRgb(opacity);
-  // eslint-disable-next-line sonarjs/pseudo-random
   const angle = Math.round(Math.random() * MAX_ANGLE);
   return `linear-gradient(${angle}deg, ${newColor1}, ${newColor2})`;
 }

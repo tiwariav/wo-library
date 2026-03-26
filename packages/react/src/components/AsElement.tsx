@@ -2,7 +2,6 @@ import type {
   ComponentPropsWithoutRef,
   ElementType,
   HTMLAttributes,
-  ReactElement,
 } from "react";
 
 export type AsElementProps<TElement extends ElementType = "div"> = {
@@ -13,7 +12,7 @@ export type AsElementProps<TElement extends ElementType = "div"> = {
 export default function AsElement<TElement extends ElementType>({
   as,
   ...props
-}: Readonly<AsElementProps<TElement>>): ReactElement {
-  const Element = (as ?? "div") as ElementType;
+}: AsElementProps<TElement>) {
+  const Element = as ?? "div";
   return <Element {...props} />;
 }

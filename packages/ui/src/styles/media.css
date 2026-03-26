@@ -26,6 +26,3 @@
 
 /* hover enabled */
 @custom-media --media-hover (hover: hover);
-
-/* reduced motion */
-@custom-media --media-reduced-motion (prefers-reduced-motion: reduce);

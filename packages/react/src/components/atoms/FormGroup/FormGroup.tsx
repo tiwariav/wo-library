@@ -29,7 +29,7 @@ export default function FormGroup({
   error,
   label,
   ...props
-}: Readonly<FormGroupProps>) {
+}: FormGroupProps) {
   return (
     <div className={styles.container} {...props}>
       {label ? (

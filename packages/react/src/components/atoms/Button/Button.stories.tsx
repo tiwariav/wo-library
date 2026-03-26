@@ -23,9 +23,6 @@ const metadata: Meta<typeof Button> = {
       mapping: storyIconMap,
       options: Object.keys(storyIconMap),
     },
-    size: { control: "select", options: COMPONENT_SIZES },
-    spacing: { control: "select", options: BUTTON_SPACINGS },
-    variant: { control: "select", options: BUTTON_VARIANTS },
   },
   component: Button,
   parameters: {
@@ -36,8 +33,8 @@ const metadata: Meta<typeof Button> = {
       },
     },
   },
-  render: (args) => <Button {...args} />,
   title: "Atoms/Button",
+  render: (args) => <Button {...args} />,
 };
 
 export default metadata;
@@ -54,9 +51,9 @@ export const WithIcon: Story = {
   },
 };
 
-function FirstButtonTemplate({ children, ...args }: Readonly<ButtonProps>) {
+function FirstButtonTemplate({ children, ...args }: ButtonProps) {
   return (
-    <div className="story-list">
+    <div className="story-grid">
       <Button {...args}>Button</Button>
       {children}
     </div>
@@ -112,7 +109,7 @@ export const Spacings: Story = {
 
 export const Variants: Story = {
   render: (args) => (
-    <div className="story-list">
+    <div className="story-grid">
       {BUTTON_VARIANTS.map((variant) => (
         <div key={variant}>
           <Button variant={variant} {...args}>

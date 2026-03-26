@@ -15,10 +15,8 @@ type ErrorKey<TFieldValues extends FieldValues> =
   | `root.${string}`
   | Path<TFieldValues>;
 
-export interface HookFormProps<TFieldValues extends FieldValues> extends Omit<
-  UseFormProps<TFieldValues>,
-  "errors"
-> {
+export interface HookFormProps<TFieldValues extends FieldValues>
+  extends Omit<UseFormProps<TFieldValues>, "errors"> {
   children: React.ReactNode;
   className?: string;
   errors?: Record<ErrorKey<TFieldValues>, string>;
@@ -38,7 +36,7 @@ export default function HookForm<TFieldValues extends FieldValues>({
   onInvalid,
   onValid,
   ...props
-}: Readonly<HookFormProps<TFieldValues>>) {
+}: HookFormProps<TFieldValues>) {
   const methods = useForm({ criteriaMode, mode, ...props });
 
   useEffect(() => {

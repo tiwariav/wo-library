@@ -1,4 +1,4 @@
-import { addBanner } from "./utilities.js";
+import { addBanner } from "./utils.js";
 
 export const getEsOutput = ({ isDev = false } = {}) => ({
   banner: addBanner,
@@ -11,6 +11,13 @@ export const getEsOutput = ({ isDev = false } = {}) => ({
   minifyInternalExports: !isDev,
   preserveModules: true,
   preserveModulesRoot: "src",
+});
+
+export const getCjsOutput = ({ isDev = false } = {}) => ({
+  ...getEsOutput({ isDev }),
+  entryFileNames: "[name].cjs",
+  exports: "auto",
+  format: "cjs",
 });
 
 export const cssOutput = {

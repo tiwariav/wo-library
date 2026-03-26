@@ -6,7 +6,8 @@ Includes: `postcss-import`, `postcss-global-import`, `postcss-mixins`, `postcss-
 (stage 1, nesting, custom properties, custom media queries) and `cssnano` (advanced preset,
 `zindex` disabled).
 
-> **Note:** This package is ESM (`"type": "module"`) and should be consumed from ESM PostCSS configs.
+> **Note:** This package uses CommonJS (`"type": "commonjs"`) because rollup-postcss loads
+> config files via `require()` internally.
 
 ## Installation
 
@@ -16,20 +17,20 @@ pnpm add -D @wo-library/postcss-config
 
 ## Usage
 
-### `postcss.config.mjs`
+### `postcss.config.cjs`
 
 ```javascript
-import { getConfig } from "@wo-library/postcss-config";
+const { getConfig } = require("@wo-library/postcss-config");
 
-export default getConfig();
+module.exports = getConfig();
 ```
 
 ### With custom global data (design token custom properties)
 
 ```javascript
-import { getConfig } from "@wo-library/postcss-config";
+const { getConfig } = require("@wo-library/postcss-config");
 
-export default getConfig("production", {
+module.exports = getConfig("production", {
   globalDataOptions: { files: ["src/styles/tokens.css"] },
 });
 ```
@@ -37,9 +38,9 @@ export default getConfig("production", {
 ### With string-based config (for tools that serialise the config)
 
 ```javascript
-import { getStringConfig } from "@wo-library/postcss-config";
+const { getStringConfig } = require("@wo-library/postcss-config");
 
-export default getStringConfig("development");
+module.exports = getStringConfig("development");
 ```
 
 ## API

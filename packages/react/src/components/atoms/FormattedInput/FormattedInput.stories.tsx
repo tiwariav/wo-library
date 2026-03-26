@@ -29,7 +29,7 @@ export default metadata;
 
 type Story = StoryObj<typeof FormattedInput>;
 
-function addHyphens(value: InputFormValue): string {
+function addHyphens(value: InputFormValue) {
   return isString(value)
     ? [...value].filter((item) => item !== "-").join("-")
     : String(value);
@@ -38,11 +38,11 @@ function addHyphens(value: InputFormValue): string {
 function removeHyphens(
   value: number | string | undefined,
   emptyValue: InputFormValue,
-): string {
-  return isString(value) ? value.replaceAll("-", "") : String(emptyValue ?? "");
+) {
+  return isString(value) ? value.replaceAll("-", "") : emptyValue;
 }
 
-function Template(args: Readonly<FormattedInputProps>) {
+function Template(args: FormattedInputProps) {
   return <InputTemplate as={FormattedInput} {...args} />;
 }
 
@@ -67,7 +67,7 @@ export const ParseOnly: Story = {
   render: (args) => <Template {...args} />,
 };
 
-function PresetValueTemplate(args: Readonly<FormattedInputProps>) {
+function PresetValueTemplate(args: FormattedInputProps) {
   const [value, setValue] = useState("Apples");
   return (
     <div>
