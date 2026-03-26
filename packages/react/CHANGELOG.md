@@ -1,3 +1,13 @@
+## 6.2.2 (2026-03-26)
+
+### 🩹 Fixes
+
+- update ESLint command to disable cache and adjust TypeScript paths in configuration ([3a5ef3f](https://github.com/tiwariav/wo-library/commit/3a5ef3f))
+
+### ❤️ Thank You
+
+- Arvind Tiwari
+
 ## 6.2.1 (2026-03-25)
 
 ### 🧱 Updated Dependencies
