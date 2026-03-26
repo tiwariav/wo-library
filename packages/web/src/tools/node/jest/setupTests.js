@@ -1,4 +1,5 @@
 // jest-dom adds custom jest matchers for asserting on DOM nodes.
+import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 
 window.scrollTo = jest.fn();
