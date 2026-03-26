@@ -33,7 +33,7 @@ function getNewProperties(
     finalScrollHeight += topNavElement.offsetHeight;
   }
   if (finalScrollHeight > sideNavElement.clientHeight) {
-    const toggleWidth = Number.parseInt(cssVariable(CSS_VAR_TOGGLE_WIDTH));
+    const toggleWidth = Number.parseInt(cssVariable(CSS_VAR_TOGGLE_WIDTH), 10);
     if (toggleWidth) {
       newProperties[CSS_VAR_TOGGLE_WIDTH] = `${
         toggleWidth + (scrollWidth ?? 0) * TOGGLE_WIDTH_MULTIPLIER
@@ -57,7 +57,7 @@ export function useSideNavEffects(
   const { width } = useWindowSize();
   const isMobile = width < BREAKPOINTS.sm;
 
-  useLockBodyScroll(!!isMobile && !!layoutState.sideNav.isToggled);
+  useLockBodyScroll(isMobile && layoutState.sideNav.isToggled);
 
   useLayoutEffect(() => {
     const sideNavElement = innerRef.current;

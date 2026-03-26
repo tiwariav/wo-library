@@ -35,7 +35,9 @@ export function getFormData(
  * @returns The combined URL string.
  */
 export function combineUrls(baseUrl: string, relativeUrl?: string): string {
-  const sanitizedBaseUrl = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+  const sanitizedBaseUrl = baseUrl.endsWith("/")
+    ? baseUrl.slice(0, -1)
+    : baseUrl;
   const sanitizedRelativeUrl = relativeUrl?.startsWith("/")
     ? relativeUrl.slice(1)
     : relativeUrl;
@@ -69,10 +71,7 @@ function getResourcePath(path: string, devProxy?: string) {
   return path;
 }
 
-function combineResourceUrl(
-  apiEndpoint: string,
-  resourcePath: string,
-) {
+function combineResourceUrl(apiEndpoint: string, resourcePath: string) {
   const baseUrl =
     apiEndpoint.startsWith("http:") || apiEndpoint.startsWith("https:")
       ? apiEndpoint

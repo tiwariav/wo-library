@@ -1,14 +1,12 @@
 import { useEffectOnce } from "react-use";
 
-import type { CalendlyPopupWidgetOptionsPrefill } from "../types/interfaces/calendly";
-
 import { WoLoadScriptError, loadScript, loadStylesheet } from "@wo-library/web";
 
 async function loadCalendlyAssets() {
-  const calendlyScript = await loadScript(
+  const calendlyScript: unknown = await loadScript(
     "https://assets.calendly.com/assets/external/widget.js",
   );
-  const calendlyStlyesheet = await loadStylesheet(
+  const calendlyStlyesheet: unknown = await loadStylesheet(
     "https://assets.calendly.com/assets/external/widget.css",
   );
 
@@ -25,7 +23,14 @@ async function loadCalendlyAssets() {
  */
 export interface CalendlyOptions {
   calendlyLink: string;
-  prefill?: CalendlyPopupWidgetOptionsPrefill;
+  prefill?: Record<string, unknown>;
+}
+
+interface CalendlyWidget {
+  initPopupWidget: (options: {
+    prefill?: Record<string, unknown>;
+    url: string;
+  }) => void;
 }
 
 /**
@@ -52,6 +57,7 @@ export default function useCalendly({
   });
 
   return () => {
-    globalThis.Calendly.initPopupWidget({ prefill, url: calendlyLink });
+    const calendly = (globalThis as { Calendly?: CalendlyWidget }).Calendly;
+    calendly?.initPopupWidget({ prefill, url: calendlyLink });
   };
 }

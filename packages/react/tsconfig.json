@@ -10,6 +10,10 @@
     "noEmit": false,
     "composite": true,
     "paths": {
+      "@wo-library/js": ["../js/src/index.ts"],
+      "@wo-library/react": ["./src/index.ts"],
+      "@wo-library/ui": ["../ui/src/index.ts"],
+      "@wo-library/web": ["../web/src/index.ts"],
       "country-flag-emoji-polyfill": [
         "./node_modules/country-flag-emoji-polyfill/dist/index.d.ts"
       ]

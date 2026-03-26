@@ -1,12 +1,15 @@
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { useState } from "react";
+import type { ReactElement } from "react";
 
 import type { TextInputProps } from "./TextInput.js";
 
 import Button from "../Button/Button.js";
 import TextInput from "./TextInput.js";
 
-export default function PasswordInput(props: TextInputProps) {
+export default function PasswordInput(
+  props: Readonly<TextInputProps>,
+): ReactElement {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <TextInput

@@ -16,7 +16,7 @@ const moreLinkMap = {
   SeeMore: <button>See more</button>,
 };
 
-function Template(args: WoSwiperProps) {
+function Template(args: Readonly<WoSwiperProps>) {
   return (
     <div style={{ overflow: "hidden", padding: 4 }}>
       <WoSwiper {...args}>
@@ -37,6 +37,7 @@ const metadata: Meta<typeof WoSwiper> = {
       mapping: moreLinkMap,
       options: Object.keys(moreLinkMap),
     },
+    variant: { control: "select", options: WO_SWIPER_VARIANTS },
   },
   component: WoSwiper,
   parameters: {

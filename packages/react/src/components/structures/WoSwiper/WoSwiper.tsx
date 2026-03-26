@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import type { Merge } from "type-fest";
 
 import { clsx } from "clsx";
@@ -14,6 +14,8 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { isString } from "lodash-es";
+
 import * as styles from "./woSwiper.module.css";
 
 export const WO_SWIPER_VARIANTS = ["coverflow"] as const;
@@ -28,7 +30,9 @@ const modules = [
   Pagination,
 ];
 
-type SwiperChild = JSX.Element | JSX.Element[];
+type SwiperChild =
+  | ReactElement<{ viewMode?: string }>
+  | ReactElement<{ viewMode?: string }>[];
 type SwiperVariant = (typeof WO_SWIPER_VARIANTS)[number];
 
 interface SwiperTopProps {
@@ -49,7 +53,8 @@ interface FreeModeOptions {
 }
 
 export interface WoSwiperProps
-  extends Partial<SwiperTopProps>,
+  extends
+    Partial<SwiperTopProps>,
     Partial<SwiperFadeProps>,
     Merge<React.ComponentProps<typeof Swiper>, FreeModeOptions> {
   children: SwiperChild;
@@ -63,7 +68,7 @@ const SPACE_BETWEEN_OPTIONS = {
   normal: 32,
 };
 
-function getDerivedProps(variant: string | undefined) {
+function getDerivedProps(variant: string | undefined): Record<string, unknown> {
   let derivedProps = {};
   if (variant === "coverflow") {
     derivedProps = {
@@ -74,17 +79,23 @@ function getDerivedProps(variant: string | undefined) {
   return derivedProps;
 }
 
-function SwiperTop({ moreLink, subtitle, title, variant }: SwiperTopProps) {
+function SwiperTop({
+  moreLink,
+  subtitle,
+  title,
+  variant,
+}: Readonly<SwiperTopProps>) {
+  if (!title && !subtitle && !moreLink) {
+    return null;
+  }
   return (
-    (!!title || !!subtitle || !!moreLink) && (
-      <div className={styles.top}>
-        <div className={styles.topLeft}>
-          {!!title && <h2 className={styles.title}>{title}</h2>}
-          {!!subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
-        </div>
-        <div>{!!moreLink && variant !== "coverflow" && moreLink}</div>
+    <div className={styles.top}>
+      <div className={styles.topLeft}>
+        {!!title && <h2 className={styles.title}>{title}</h2>}
+        {!!subtitle && <h3 className={styles.subtitle}>{subtitle}</h3>}
       </div>
-    )
+      <div>{!!moreLink && variant !== "coverflow" && moreLink}</div>
+    </div>
   );
 }
 
@@ -147,7 +158,7 @@ export default function WoSwiper({
   title,
   variant,
   ...props
-}: WoSwiperProps) {
+}: Readonly<WoSwiperProps>) {
   const derivedProps = getDerivedProps(variant);
 
   return (
@@ -180,17 +191,25 @@ export default function WoSwiper({
               // @ts-expect-error: TS2339 because library definition is wrong
               isDuplicate,
             }) => {
-              const extraProps = {} as { viewMode?: string };
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-              if (child.type.displayName === "Card") {
-                extraProps.viewMode =
-                  variant === "coverflow"
-                    ? isActive && !isDuplicate
-                      ? "mini"
-                      : "thumb"
-                    : undefined;
+              const extraProps: { viewMode?: string } = {};
+              if (
+                React.isValidElement<{ viewMode?: string }>(child) &&
+                !isString(child.type) &&
+                "displayName" in child.type &&
+                child.type.displayName === "Card"
+              ) {
+                if (variant !== "coverflow") {
+                  extraProps.viewMode = undefined;
+                } else if (isActive && !isDuplicate) {
+                  extraProps.viewMode = "mini";
+                } else {
+                  extraProps.viewMode = "thumb";
+                }
               }
-              return React.cloneElement(child, extraProps);
+              return React.cloneElement<{ viewMode?: string }>(
+                child,
+                extraProps,
+              );
             }}
           </SwiperSlide>
         ))}

@@ -1,5 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: ['is-basic', 'is-circular'] }] */
-
 import type { ElementType } from "react";
 
 import { clsx } from "clsx";
@@ -12,7 +10,7 @@ import Spinner from "../Spinner/Spinner.js";
 import ImageLoader from "./ImageLoader.js";
 import * as styles from "./image.module.css";
 
-const IMAGE_VARIANT_OPTIONS = ["basic", "circular"] as const;
+export const IMAGE_VARIANT_OPTIONS = ["basic", "circular"] as const;
 const MAX_PERCENT = 100;
 
 /**
@@ -61,6 +59,14 @@ export default function Image<TElement extends ElementType>({
     }
   }, [aspectRatio, variant]);
 
+  const imageContent = aspectRatio ? (
+    <div className={styles.ratio} style={contentStyle}>
+      {image}
+    </div>
+  ) : (
+    image
+  );
+
   return (
     <div
       className={clsx(
@@ -69,15 +75,7 @@ export default function Image<TElement extends ElementType>({
       )}
       style={style}
     >
-      {isLoading ? (
-        <ImageLoader className={styles.image} />
-      ) : aspectRatio ? (
-        <div className={styles.ratio} style={contentStyle}>
-          {image}
-        </div>
-      ) : (
-        image
-      )}
+      {isLoading ? <ImageLoader className={styles.image} /> : imageContent}
       {isBusy && <Spinner className={styles.spinner} />}
     </div>
   );

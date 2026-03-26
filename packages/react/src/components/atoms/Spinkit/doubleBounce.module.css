@@ -14,10 +14,10 @@
 
     width: 100%;
     height: 100%;
+    border-radius: var(--ye-radius-ellipse);
 
     opacity: 0.6;
     background-color: var(--ye-color-accent-dark);
-    border-radius: var(--ye-radius-ellipse);
 
     animation: sk-bounce 2s infinite ease-in-out;
 

@@ -28,8 +28,10 @@ export type FormattedInputParse = (
 /**
  * Props for the {@link FormattedInput} component.
  */
-export interface FormattedInputProps
-  extends Omit<TextInputProps, "innerClassNames" | "onChange"> {
+export interface FormattedInputProps extends Omit<
+  TextInputProps,
+  "innerClassNames" | "onChange"
+> {
   /** Initial raw DOM value before user interaction. */
   defaultValue?: InputDomValue;
   /** Form value emitted when the input is empty. @default '' */
@@ -61,7 +63,10 @@ export interface FormattedInputProps
   value?: number | string;
 }
 
-const FormattedInput = forwardRef<HTMLInputElement, FormattedInputProps>(
+const FormattedInput = forwardRef<
+  HTMLInputElement,
+  Readonly<FormattedInputProps>
+>(
   (
     {
       className,
@@ -79,7 +84,7 @@ const FormattedInput = forwardRef<HTMLInputElement, FormattedInputProps>(
     },
     ref,
   ) => {
-    const modified = useRef(false);
+    const modifiedRef = useRef(false);
     const [formattedValue, setFormattedValue] = useState<InputDomValue>("");
     const [parsedValue, setParsedValue] = useState<InputFormValue>("");
     const currentParsedValue = useLatest(parsedValue);
@@ -87,7 +92,7 @@ const FormattedInput = forwardRef<HTMLInputElement, FormattedInputProps>(
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       (event) => {
-        modified.current = true;
+        modifiedRef.current = true;
         // to get new formatted text when input value is changed by user
         const newFormattedValue = format
           ? format(event.target.value)
@@ -109,7 +114,7 @@ const FormattedInput = forwardRef<HTMLInputElement, FormattedInputProps>(
     useEffect(() => {
       // return if value is not modified and is empty, to avoid
       // re-render for defaultValue
-      const newValue = !modified.current && !value ? defaultValue : value;
+      const newValue = !modifiedRef.current && !value ? defaultValue : value;
       const newFormattedValue = format ? format(newValue) : newValue;
       const newParsedValue = parse
         ? parse(newFormattedValue, emptyValue)
@@ -117,7 +122,7 @@ const FormattedInput = forwardRef<HTMLInputElement, FormattedInputProps>(
       // when to set formatted value
       if (
         !format ||
-        !modified.current ||
+        !modifiedRef.current ||
         // if format is not required for this change
         // (for example if value is `1` but formatterValue is `1.0`)
         newParsedValue !== currentParsedValue.current

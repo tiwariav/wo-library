@@ -1,6 +1,6 @@
 {
   "name": "@wo-library/web",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -43,7 +43,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.cjs --coverage"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.mjs --coverage"
   },
   "dependencies": {
     "lodash-es": "^4.17.23",

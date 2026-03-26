@@ -1,7 +1,3 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  variant-flat, variant-underlined, variant-transparent, variant-logo-hanging
-]}] */
-
 import type { ReactNode } from "react";
 
 import { IconMenu } from "@tabler/icons-react";
@@ -24,9 +20,9 @@ import TopNavItem from "./TopNavItem.js";
 import * as styles from "./topNav.module.css";
 import { useTopNavProps } from "./utils.js";
 
-const LOGO_VARIANTS = ["hanging"] as const;
+export const LOGO_VARIANTS = ["hanging"] as const;
 
-export function IconMenuItem({ children, ...props }: ButtonProps) {
+export function IconMenuItem({ children, ...props }: Readonly<ButtonProps>) {
   return (
     <TopNavItem className={styles.contentMenuIcon}>
       <Button
@@ -46,7 +42,7 @@ interface LogoProps {
   logoVariant?: (typeof LOGO_VARIANTS)[number];
 }
 
-function Logo({ logo, logoVariant }: LogoProps) {
+function Logo({ logo, logoVariant }: Readonly<LogoProps>) {
   return (
     <div
       className={clsx(
@@ -76,7 +72,7 @@ function ContentMenu({
   contentRight,
   innerClassNames,
   smallerWidth,
-}: ContentMenuProps) {
+}: Readonly<ContentMenuProps>) {
   const layoutState = useLayoutState();
   const [contentMenuHeight, setContentMenuHeight] = useState<number>();
   const contentMenuRef = useRef<HTMLDivElement>(null);
@@ -126,7 +122,7 @@ function ContentMenu({
   );
 }
 
-function RightNavIcon(props: ButtonProps) {
+function RightNavIcon(props: Readonly<ButtonProps>) {
   const layoutState = useLayoutState();
   const layoutDispatch = useLayoutMethods();
 
@@ -143,8 +139,7 @@ function RightNavIcon(props: ButtonProps) {
 }
 
 export interface TopNavProps
-  extends Omit<ContentMenuProps, "smallerWidth">,
-    UseTopNavPropsOptions {
+  extends Omit<ContentMenuProps, "smallerWidth">, UseTopNavPropsOptions {
   banner?: ReactNode;
   leftNavIcon?: ReactNode;
   logo?: ReactNode;

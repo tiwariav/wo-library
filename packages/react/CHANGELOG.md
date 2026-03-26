@@ -1,3 +1,21 @@
+## 6.2.2 (2026-03-26)
+
+### 🩹 Fixes
+
+- update ESLint command to disable cache and adjust TypeScript paths in configuration ([3a5ef3f](https://github.com/tiwariav/wo-library/commit/3a5ef3f))
+
+### ❤️ Thank You
+
+- Arvind Tiwari
+
+## 6.2.1 (2026-03-25)
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/js to 2.1.1
+- Updated @wo-library/web to 2.1.1
+- Updated @wo-library/ui to 2.1.1
+
 ## 6.2.0 (2026-03-21)
 
 ### 🧱 Updated Dependencies

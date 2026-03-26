@@ -22,7 +22,7 @@ export default metadata;
 
 type Story = StoryObj<typeof CardLink>;
 
-function Template(args: Omit<CardLinkProps, "linkRef">) {
+function Template(args: Readonly<Omit<CardLinkProps, "linkRef">>) {
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   return (

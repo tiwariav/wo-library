@@ -10,7 +10,7 @@ import _del from "rollup-plugin-delete";
 import _postcss from "rollup-plugin-postcss";
 import _progress from "rollup-plugin-progress";
 
-import { getConfig as getBabelConfig } from "../cjs/babel.cjs";
+import { getConfig as getBabelConfig } from "../node/babel.js";
 import { autoExternal, skipOutput } from "./plugins.js";
 import { getInput } from "./utilities.js";
 
@@ -86,7 +86,7 @@ export const getBuildPlugins = ({
   const buildPlugins = [
     postcss({
       extract: "dist.css",
-      modules: { localsConvention: "camelCase" },
+      modules: { localsConvention: "camelCaseOnly" },
       namedExports: true,
       sourceMap: isDev,
     }),
@@ -131,10 +131,18 @@ export const getPublishPlugins = ({
       {
         dest: buildPath,
         src: ["package.json", "README.md", "LICENSE"],
-        transform: (contents) =>
-          removePostInstall
-            ? contents.toString().replace(/^\s*"postinstall":\s*"[^"]*",?$/m, "")
-            : contents,
+        transform: (contents) => {
+          const contentText = contents.toString();
+
+          if (!removePostInstall) {
+            return contentText;
+          }
+
+          return contentText
+            .split("\n")
+            .filter((line) => !line.trimStart().startsWith('"postinstall":'))
+            .join("\n");
+        },
       },
       {
         dest: buildPath,

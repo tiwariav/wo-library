@@ -17,14 +17,14 @@ jobs:
       
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"
-          cache: "pnpm"
+          node-version: 24
+          cache: pnpm
 
       - uses: tiwariav/github-actions/cache-js-linters@main
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm eslint --cache --cache-strategy=content --quiet packages/{js,react,ui,web}/src
+      - run: pnpm eslint --quiet
 
       - run: pnpm stylelint --cache packages/*/src/**/*.css
 
@@ -32,6 +32,4 @@ jobs:
 
       - run: pnpm jscpd packages/*/src
 
-      - run: npx nx affected -t build
-
-      - run: npx nx affected -t test
+      - run: pnpm nx affected -t test

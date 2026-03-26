@@ -24,9 +24,11 @@ import { useRef } from "react";
 const linkRef = useRef<HTMLAnchorElement>(null);
 
 <CardLink linkRef={linkRef}>
-  <a href="/product/1" ref={linkRef}>Product Name</a>
+  <a href="/product/1" ref={linkRef}>
+    Product Name
+  </a>
   <p>Description</p>
-</CardLink>
+</CardLink>;
 ```
 
 **Props**: All `CardProps` plus `linkRef: MutableRefObject<HTMLAnchorElement | null>`.
@@ -43,7 +45,7 @@ import { Popover } from "@wo-library/react";
 
 <Popover content={<div>Rich popup content</div>} trigger="click">
   <button>Open</button>
-</Popover>
+</Popover>;
 ```
 
 **Props**: All `TooltipProps` (except `title` is optional) plus `content: ReactNode`.

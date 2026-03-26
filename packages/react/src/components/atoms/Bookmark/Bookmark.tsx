@@ -19,7 +19,7 @@ import * as styles from "./bookmark.module.css";
 export default function Bookmark({
   children,
   ...props
-}: ComponentPropsWithoutRef<"div">) {
+}: Readonly<ComponentPropsWithoutRef<"div">>) {
   return (
     <div className={styles.bookmark} {...props}>
       {Children.map(children, (child, index) => (
