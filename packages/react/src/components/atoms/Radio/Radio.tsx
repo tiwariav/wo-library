@@ -1,13 +1,10 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { forwardRef } from "react";
 
-import { clsx } from "clsx";
-import { forwardRef, useId } from "react";
-
-import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
-
-import { getDynamicClassName } from "../../../tools/utils.js";
-import Label from "../Label.js";
-import * as styles from "./radio.module.css";
+import {
+  renderCheckableControl,
+  type SelectionControlPropsBase,
+} from "../_shared/SelectionControlBase.js";
+import * as styles from "../Checkbox/checkbox.module.css";
 
 /**
  * Props for the `Radio` component.
@@ -16,14 +13,7 @@ import * as styles from "./radio.module.css";
  * @property size - Size variant: `"small"` | `"large"`.
  * @property hasError - Applies error styling when `true`.
  */
-export interface RadioProps extends Omit<
-  ComponentPropsWithoutRef<"input">,
-  "size"
-> {
-  hasError?: boolean;
-  label?: ReactNode;
-  size?: (typeof COMPONENT_SIZES)[number];
-}
+export type RadioProps = SelectionControlPropsBase;
 
 /**
  * A standard radio input component.
@@ -34,36 +24,21 @@ export interface RadioProps extends Omit<
  * <Radio name="option" value="2" label="Option 2" />
  * ```
  */
+// eslint-disable-next-line @eslint-react/no-forward-ref
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  ({ className, hasError, id, label, size, style, ...props }, ref) => {
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-
-    return (
-      <div
-        className={clsx(
-          styles.root,
-          size && getDynamicClassName(styles, `size-${size}`),
-          hasError && styles.hasError,
-          className,
-        )}
-        style={style}
-      >
-        <input
-          className={styles.input}
-          id={inputId}
-          ref={ref}
-          type="radio"
-          {...props}
-        />
-        {label && (
-          <Label className={styles.label} htmlFor={inputId}>
-            {label}
-          </Label>
-        )}
-      </div>
-    );
-  },
+  ({ className, hasError, id, label, size, style, ...props }, ref) =>
+    renderCheckableControl({
+      className,
+      hasError,
+      id,
+      inputProps: props,
+      inputRef: ref,
+      inputType: "radio",
+      label,
+      size,
+      style,
+      styles,
+    }),
 );
 Radio.displayName = "Radio";
 

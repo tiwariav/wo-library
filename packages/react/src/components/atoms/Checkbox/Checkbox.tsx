@@ -1,13 +1,9 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ReactNode } from "react";
 
-import { clsx } from "clsx";
-import { isFunction } from "lodash-es";
-import { forwardRef, useId } from "react";
+import { forwardRef } from "react";
 
-import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
-
-import { getDynamicClassName } from "../../../tools/utils.js";
-import Label from "../Label.js";
+import type { SelectionControlPropsBase } from "../_shared/SelectionControlBase.js";
+import { renderCheckableControl } from "../_shared/SelectionControlBase.js";
 import * as styles from "./checkbox.module.css";
 
 /**
@@ -18,14 +14,10 @@ import * as styles from "./checkbox.module.css";
  * @property hasError - Applies error styling when `true`.
  * @property indeterminate - Sets the indeterminate state of the checkbox.
  */
-export interface CheckboxProps extends Omit<
-  ComponentPropsWithoutRef<"input">,
-  "size"
-> {
+export interface CheckboxProps extends SelectionControlPropsBase {
   hasError?: boolean;
   indeterminate?: boolean;
   label?: ReactNode;
-  size?: (typeof COMPONENT_SIZES)[number];
 }
 
 /**
@@ -38,48 +30,25 @@ export interface CheckboxProps extends Omit<
  * <Checkbox label="Accept terms and conditions" onChange={handleChange} />
  * ```
  */
+// eslint-disable-next-line @eslint-react/no-forward-ref
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     { className, hasError, id, indeterminate, label, size, style, ...props },
     ref,
-  ) => {
-    const generatedId = useId();
-    const inputId = id ?? generatedId;
-
-    return (
-      <div
-        className={clsx(
-          styles.root,
-          size && getDynamicClassName(styles, `size-${size}`),
-          hasError && styles.hasError,
-          className,
-        )}
-        style={style}
-      >
-        <input
-          className={styles.input}
-          id={inputId}
-          ref={(node) => {
-            if (node) {
-              node.indeterminate = !!indeterminate;
-            }
-            if (isFunction(ref)) {
-              ref(node);
-            } else if (ref) {
-              ref.current = node;
-            }
-          }}
-          type="checkbox"
-          {...props}
-        />
-        {label && (
-          <Label className={styles.label} htmlFor={inputId}>
-            {label}
-          </Label>
-        )}
-      </div>
-    );
-  },
+  ) =>
+    renderCheckableControl({
+      className,
+      hasError,
+      id,
+      indeterminate,
+      inputProps: props,
+      inputRef: ref,
+      inputType: "checkbox",
+      label,
+      size,
+      style,
+      styles,
+    }),
 );
 Checkbox.displayName = "Checkbox";
 
