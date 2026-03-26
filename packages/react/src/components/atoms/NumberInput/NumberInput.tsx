@@ -63,7 +63,7 @@ function getFormattedNumber(
     nullValue,
     ...formatOptions,
     minimumFractionDigits,
-  }) as string;
+  });
   if (
     newValueDecimals >
     ((formattedValue.split(".")[1] as string | undefined)?.length ?? 0)

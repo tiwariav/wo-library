@@ -1,11 +1,11 @@
-import { resolve } from "node:path";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { getConfig } from "@wo-library/postcss-config";
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const mediaFile = resolve(__dirname, "../ui/src/styles/media.css");
+const mediaFile = path.resolve(__dirname, "../ui/src/styles/media.css");
 
 const { plugins } = getConfig("development", {
   globalDataOptions: { files: [mediaFile] },
