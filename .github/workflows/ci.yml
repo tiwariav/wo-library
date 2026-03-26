@@ -13,8 +13,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+
       - uses: pnpm/action-setup@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -33,3 +38,7 @@ jobs:
       - run: pnpm jscpd packages/*/src
 
       - run: pnpm nx affected -t test
+        if: github.event_name == 'pull_request'
+
+      - run: pnpm nx run-many -t test --all
+        if: github.event_name == 'push'
