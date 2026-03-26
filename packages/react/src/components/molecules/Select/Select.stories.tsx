@@ -14,7 +14,8 @@ const meta: Meta<typeof Select> = {
   parameters: {
     docs: {
       description: {
-        component: "A robust, accessible select component supporting single and multi-select modes.",
+        component:
+          "A robust, accessible select component supporting single and multi-select modes.",
       },
     },
   },

@@ -3,14 +3,16 @@ const config = {
   coverageProvider: "v8",
   extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
-    "^(\\.{1,2}/.*)\\.js$": "$1",
     "\\.(css|less|scss)$": "identity-obj-proxy",
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   testEnvironment: "jsdom",
-  transformIgnorePatterns: ["/node_modules/(?!lodash-es|@tabler|default-import)/"],
   transform: {
     "^.+\\.tsx?$": "babel-jest",
   },
+  transformIgnorePatterns: [
+    "/node_modules/(?!lodash-es|@tabler|default-import)/",
+  ],
 };
 
 module.exports = { config };

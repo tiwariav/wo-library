@@ -5,6 +5,8 @@ import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 import { getDynamicClassName } from "../../../tools/utils.js";
 import * as styles from "./progressBar.module.css";
 
+const MAX_PROGRESS = 100;
+
 /**
  * Props for the `ProgressBar` component.
  *
@@ -32,8 +34,8 @@ export default function ProgressBar({
   progress,
   size,
   variant = "primary",
-}: ProgressBarProps) {
-  const clampedProgress = Math.min(Math.max(progress, 0), 100);
+}: Readonly<ProgressBarProps>) {
+  const clampedProgress = Math.min(Math.max(progress, 0), MAX_PROGRESS);
 
   return (
     <div
@@ -44,10 +46,7 @@ export default function ProgressBar({
         className,
       )}
     >
-      <div
-        className={styles.fill}
-        style={{ width: `${clampedProgress}%` }}
-      />
+      <div className={styles.fill} style={{ width: `${clampedProgress}%` }} />
     </div>
   );
 }

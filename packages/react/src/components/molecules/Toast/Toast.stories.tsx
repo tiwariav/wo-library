@@ -7,7 +7,8 @@ const meta: Meta<typeof ToastContainer> = {
   parameters: {
     docs: {
       description: {
-        component: "Container for Toast notifications. Use with `ToastProvider`.",
+        component:
+          "Container for Toast notifications. Use with `ToastProvider`.",
       },
     },
   },
@@ -17,29 +18,32 @@ const meta: Meta<typeof ToastContainer> = {
 export default meta;
 type Story = StoryObj<typeof ToastContainer>;
 
+function ToastStoryContent() {
+  const { dispatch } = useToastMethods();
+
+  return (
+    <div>
+      <button
+        onClick={() =>
+          dispatch.addToast({ message: "Success message!", type: "success" })
+        }
+        type="button"
+      >
+        Add Success Toast
+      </button>
+      <button
+        onClick={() =>
+          dispatch.addToast({ message: "Error message!", type: "error" })
+        }
+        type="button"
+      >
+        Add Error Toast
+      </button>
+      <ToastContainer />
+    </div>
+  );
+}
+
 export const Default: Story = {
-  render: () => {
-    const { dispatch } = useToastMethods();
-    return (
-      <div>
-        <button
-          onClick={() =>
-            dispatch.addToast({ message: "Success message!", type: "success" })
-          }
-          type="button"
-        >
-          Add Success Toast
-        </button>
-        <button
-          onClick={() =>
-            dispatch.addToast({ message: "Error message!", type: "error" })
-          }
-          type="button"
-        >
-          Add Error Toast
-        </button>
-        <ToastContainer />
-      </div>
-    );
-  },
+  render: () => <ToastStoryContent />,
 };

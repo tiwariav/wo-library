@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { clsx } from "clsx";
+import { isFunction } from "lodash-es";
 import { forwardRef, useId } from "react";
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
@@ -17,8 +18,10 @@ import * as styles from "./checkbox.module.css";
  * @property hasError - Applies error styling when `true`.
  * @property indeterminate - Sets the indeterminate state of the checkbox.
  */
-export interface CheckboxProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+export interface CheckboxProps extends Omit<
+  ComponentPropsWithoutRef<"input">,
+  "size"
+> {
   hasError?: boolean;
   indeterminate?: boolean;
   label?: ReactNode;
@@ -37,20 +40,11 @@ export interface CheckboxProps
  */
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
-    {
-      className,
-      hasError,
-      id,
-      indeterminate,
-      label,
-      size,
-      style,
-      ...props
-    },
+    { className, hasError, id, indeterminate, label, size, style, ...props },
     ref,
   ) => {
     const generatedId = useId();
-    const inputId = id || generatedId;
+    const inputId = id ?? generatedId;
 
     return (
       <div
@@ -69,7 +63,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             if (node) {
               node.indeterminate = !!indeterminate;
             }
-            if (typeof ref === "function") {
+            if (isFunction(ref)) {
               ref(node);
             } else if (ref) {
               ref.current = node;

@@ -67,7 +67,7 @@ export default function Select<T = string | number>({
   placeholder = "Select...",
   size,
   value,
-}: SelectProps<T>) {
+}: Readonly<SelectProps<T>>) {
   const [isOpen, setIsOpen] = useState(false);
 
   const selectedOptions = useMemo(() => {
@@ -122,7 +122,9 @@ export default function Select<T = string | number>({
             [styles.isSelected]: isOptionSelected(option),
           })}
           key={String(option.value)}
-          onClick={() => handleOptionClick(option)}
+          onClick={() => {
+            handleOptionClick(option);
+          }}
           role="option"
           type="button"
         >
@@ -152,11 +154,7 @@ export default function Select<T = string | number>({
         placement="bottom-start"
         trigger="click"
       >
-        <button
-          className={styles.trigger}
-          disabled={disabled}
-          type="button"
-        >
+        <button className={styles.trigger} disabled={disabled} type="button">
           <span className={styles.displayText}>{displayText}</span>
           <span className={styles.arrow} />
         </button>

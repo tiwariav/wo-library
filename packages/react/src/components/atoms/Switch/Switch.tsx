@@ -16,8 +16,10 @@ import * as styles from "./switch.module.css";
  * @property size - Size variant: `"small"` | `"large"`.
  * @property hasError - Applies error styling when `true`.
  */
-export interface SwitchProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+export interface SwitchProps extends Omit<
+  ComponentPropsWithoutRef<"input">,
+  "size"
+> {
   hasError?: boolean;
   label?: ReactNode;
   size?: (typeof COMPONENT_SIZES)[number];
@@ -32,12 +34,9 @@ export interface SwitchProps
  * ```
  */
 const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  (
-    { className, hasError, id, label, size, style, ...props },
-    ref,
-  ) => {
+  ({ className, hasError, id, label, size, style, ...props }, ref) => {
     const generatedId = useId();
-    const inputId = id || generatedId;
+    const inputId = id ?? generatedId;
 
     return (
       <div

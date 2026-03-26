@@ -13,7 +13,8 @@ const meta: Meta<typeof Radio> = {
   parameters: {
     docs: {
       description: {
-        component: "A standard radio input component for mutual-exclusion selection.",
+        component:
+          "A standard radio input component for mutual-exclusion selection.",
       },
     },
   },

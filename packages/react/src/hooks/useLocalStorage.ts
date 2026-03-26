@@ -1,3 +1,6 @@
+import type { SetStateAction } from "react";
+
+import { isFunction } from "lodash-es";
 import { useCallback, useEffect, useState } from "react";
 
 /**
@@ -13,28 +16,31 @@ import { useCallback, useEffect, useState } from "react";
  * ```
  */
 export default function useLocalStorage<T>(key: string, initialValue: T) {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    if (typeof window === "undefined") {
-      return initialValue;
-    }
+  const getInitialValue = useCallback((): T => {
     try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      const item = globalThis.localStorage.getItem(key);
+      if (item === null) {
+        return initialValue;
+      }
+
+      const parsedItem: unknown = JSON.parse(item);
+      return parsedItem as T;
     } catch (error) {
       console.error(error);
       return initialValue;
     }
+  }, [initialValue, key]);
+
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    return getInitialValue();
   });
 
   const setValue = useCallback(
-    (value: T | ((val: T) => T)) => {
+    (value: SetStateAction<T>) => {
       try {
-        const valueToStore =
-          value instanceof Function ? value(storedValue) : value;
+        const valueToStore = isFunction(value) ? value(storedValue) : value;
         setStoredValue(valueToStore);
-        if (typeof window !== "undefined") {
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        }
+        globalThis.localStorage.setItem(key, JSON.stringify(valueToStore));
       } catch (error) {
         console.error(error);
       }
@@ -45,12 +51,15 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === key && event.newValue) {
-        setStoredValue(JSON.parse(event.newValue));
+        const parsedValue: unknown = JSON.parse(event.newValue);
+        setStoredValue(parsedValue as T);
       }
     };
 
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    globalThis.addEventListener("storage", handleStorageChange);
+    return () => {
+      globalThis.removeEventListener("storage", handleStorageChange);
+    };
   }, [key]);
 
   return [storedValue, setValue] as const;

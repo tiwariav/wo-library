@@ -13,7 +13,8 @@ const meta: Meta<typeof Checkbox> = {
   parameters: {
     docs: {
       description: {
-        component: "A standard checkbox input component with support for labels and indeterminate states.",
+        component:
+          "A standard checkbox input component with support for labels and indeterminate states.",
       },
     },
   },
@@ -43,7 +44,7 @@ export const Indeterminate: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   args: {
     hasError: true,
     label: "Error Checkbox",

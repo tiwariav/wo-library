@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { useMemo } from "react";
-
 import type { ContextDispatch } from "../utils.js";
 import type { ToastMethods } from "./methods.js";
 import type { ToastState } from "./state.js";
@@ -26,10 +24,7 @@ interface ToastProviderProps {
  * Provider for the Toast notification system.
  */
 function ToastProvider({ children }: ToastProviderProps) {
-  const [state, dispatch] = useMethods(
-    createToastMethods,
-    INITIAL_TOAST_STATE,
-  );
+  const [state, dispatch] = useMethods(createToastMethods, INITIAL_TOAST_STATE);
 
   return useSimpleProvider(StateContext, MethodContext, {
     children,

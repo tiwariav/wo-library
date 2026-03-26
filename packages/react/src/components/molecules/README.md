@@ -60,11 +60,11 @@ A robust, accessible dropdown selection component supporting search, single-sele
 import { Select } from "@wo-library/react";
 
 const options = [
-  { label: 'Option 1', value: 1 },
-  { label: 'Option 2', value: 2 },
+  { label: "Option 1", value: 1 },
+  { label: "Option 2", value: 2 },
 ];
 
-<Select options={options} onChange={setValue} label="Select an option" />
+<Select options={options} onChange={setValue} label="Select an option" />;
 ```
 
 **Props**: `options`, `value`, `onChange`, `multiple`, `label`, `placeholder`, `size`, `hasError`, `disabled`.
@@ -76,7 +76,11 @@ const options = [
 A global notification system for transient feedback. Consists of `ToastProvider`, `ToastContainer`, and hooks.
 
 ```tsx
-import { ToastProvider, ToastContainer, useToastMethods } from "@wo-library/react";
+import {
+  ToastProvider,
+  ToastContainer,
+  useToastMethods,
+} from "@wo-library/react";
 
 function App() {
   return (
@@ -90,7 +94,11 @@ function App() {
 function MyComponent() {
   const { dispatch } = useToastMethods();
   return (
-    <button onClick={() => dispatch.addToast({ message: 'Success!', type: 'success' })}>
+    <button
+      onClick={() =>
+        dispatch.addToast({ message: "Success!", type: "success" })
+      }
+    >
       Show Toast
     </button>
   );

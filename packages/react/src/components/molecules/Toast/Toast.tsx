@@ -2,11 +2,36 @@ import { clsx } from "clsx";
 import { useEffect } from "react";
 
 import {
-  ToastProvider,
   useToastMethods,
   useToastState,
 } from "../../../contexts/ToastContext/index.js";
 import * as styles from "./toast.module.css";
+
+const TOAST_TIMEOUT_MS = 5000;
+
+function ToastItem({
+  onClose,
+  toast,
+}: Readonly<{
+  onClose: () => void;
+  toast: { id: string; message: string; type: string };
+}>) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, TOAST_TIMEOUT_MS);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [onClose]);
+
+  return (
+    <div className={clsx(styles.toast, styles[toast.type])}>
+      <span className={styles.message}>{toast.message}</span>
+      <button className={styles.closeBtn} onClick={onClose} type="button">
+        &times;
+      </button>
+    </div>
+  );
+}
 
 /**
  * Container component that renders active toasts.
@@ -21,7 +46,9 @@ export function ToastContainer() {
       {toasts.map((toast) => (
         <ToastItem
           key={toast.id}
-          onClose={() => dispatch.removeToast(toast.id)}
+          onClose={() => {
+            dispatch.removeToast(toast.id);
+          }}
           toast={toast}
         />
       ))}
@@ -29,26 +56,4 @@ export function ToastContainer() {
   );
 }
 
-function ToastItem({
-  onClose,
-  toast,
-}: {
-  onClose: () => void;
-  toast: { id: string; message: string; type: string };
-}) {
-  useEffect(() => {
-    const timer = setTimeout(onClose, 5000);
-    return () => clearTimeout(timer);
-  }, [onClose]);
-
-  return (
-    <div className={clsx(styles.toast, styles[toast.type])}>
-      <span className={styles.message}>{toast.message}</span>
-      <button className={styles.closeBtn} onClick={onClose} type="button">
-        &times;
-      </button>
-    </div>
-  );
-}
-
-export { ToastProvider };
+export { ToastProvider } from "../../../contexts/ToastContext/index.js";

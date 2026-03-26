@@ -16,8 +16,10 @@ import * as styles from "./radio.module.css";
  * @property size - Size variant: `"small"` | `"large"`.
  * @property hasError - Applies error styling when `true`.
  */
-export interface RadioProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+export interface RadioProps extends Omit<
+  ComponentPropsWithoutRef<"input">,
+  "size"
+> {
   hasError?: boolean;
   label?: ReactNode;
   size?: (typeof COMPONENT_SIZES)[number];
@@ -33,12 +35,9 @@ export interface RadioProps
  * ```
  */
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  (
-    { className, hasError, id, label, size, style, ...props },
-    ref,
-  ) => {
+  ({ className, hasError, id, label, size, style, ...props }, ref) => {
     const generatedId = useId();
-    const inputId = id || generatedId;
+    const inputId = id ?? generatedId;
 
     return (
       <div

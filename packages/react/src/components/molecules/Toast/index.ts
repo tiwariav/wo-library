@@ -1,7 +1,4 @@
-export {
-  ToastContainer,
-  ToastProvider,
-} from "./Toast.js";
+export { ToastContainer, ToastProvider } from "./Toast.js";
 export {
   useToastMethods,
   useToastState,
