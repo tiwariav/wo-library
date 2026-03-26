@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ToastContainer, useToastMethods } from "./Toast.js";
+import { useToastMethods } from "../../../contexts/ToastContext/index.js";
+import { ToastContainer, ToastProvider } from "./Toast.js";
 
 const meta: Meta<typeof ToastContainer> = {
   component: ToastContainer,
@@ -45,5 +46,9 @@ function ToastStoryContent() {
 }
 
 export const Default: Story = {
-  render: () => <ToastStoryContent />,
+  render: () => (
+    <ToastProvider>
+      <ToastStoryContent />
+    </ToastProvider>
+  ),
 };
