@@ -1,3 +1,18 @@
+## 6.2.3 (2026-03-26)
+
+### 🩹 Fixes
+
+- update test script to use NODE_OPTIONS for experimental modules ([13d86d2](https://github.com/tiwariav/wo-library/commit/13d86d2))
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/web to 2.1.2
+- Updated @wo-library/ui to 2.1.2
+
+### ❤️ Thank You
+
+- Arvind Tiwari
+
 ## 6.2.2 (2026-03-26)
 
 ### 🩹 Fixes

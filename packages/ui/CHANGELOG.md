@@ -1,3 +1,9 @@
+## 2.1.2 (2026-03-26)
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/web to 2.1.2
+
 ## 2.1.1 (2026-03-25)
 
 ### 🧱 Updated Dependencies
