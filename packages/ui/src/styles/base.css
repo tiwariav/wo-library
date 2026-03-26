@@ -74,8 +74,6 @@
   --ye-color-background: var(--ye-color-light);
   --ye-color-background-card: var(--ye-color-light);
   --ye-color-background-content: var(--ye-color-light);
-  --ye-color-background-inverse-light: var(--ye-color-dark-75);
-  --ye-color-background-inverse-lighter: var(--ye-color-dark-50);
   --ye-color-background-secondary: var(--ye-color-light);
   --ye-color-border: var(--ye-color-dark-5);
   --ye-color-danger: oklch(64.78% 0.258 29.2deg);
@@ -83,15 +81,9 @@
   --ye-color-positive: oklch(64.78% 0.226 140.4deg);
   --ye-color-primary: oklch(74.22% 0.169 60.6deg);
   --ye-color-ripple: var(--ye-color-shadow);
-  --ye-color-overlay: color-mix(
-    in oklch,
-    var(--ye-color-dark),
-    transparent 35%
-  );
   --ye-color-shadow: var(--ye-color-dark-10);
   --ye-color-shadow-inset: var(--ye-color-dark-5);
   --ye-color-text: var(--ye-color-dark);
-  --ye-color-text-inverse: var(--ye-color-light);
   --ye-color-text-light: var(--ye-color-dark-50);
   --ye-color-text-anchor: oklch(64.78% 0.191 252.8deg);
   --ye-color-input-background: color-mix(
@@ -133,14 +125,14 @@
   /* FONTS */
 
   /* Make sure the fonts are imported in the appropriate html (.storybook/preview-head.html for storybook) */
-  --ye-font-family-body:
-    "Poppins", "Helvetica Neue", helvetica, arial, sans-serif;
-  --ye-font-family-title:
-    "Poppins", "Helvetica Neue", helvetica, arial, sans-serif;
-  --ye-font-family-display:
-    "Poppins", "Helvetica Neue", helvetica, arial, sans-serif;
-  --ye-font-family-mono:
-    source-code-pro, "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+  --ye-font-family-body: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-title: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-display: "Poppins", "Helvetica Neue", helvetica, arial,
+    sans-serif;
+  --ye-font-family-mono: source-code-pro, "Menlo", "Monaco", "Consolas",
+    "Courier New", monospace;
   --ye-font-family-input: var(--ye-font-family-body);
 
   /* type scale 1.2 (https://type-scale.com/) */
@@ -183,17 +175,14 @@
   --ye-shadow-pressable: var(--ye-shadow-floating-low);
   --ye-shadow-hovered: var(--ye-shadow-floating-lowest);
   --ye-shadow-pressed: var(--ye-shadow-inset), var(--ye-shadow-outer-none);
-  --ye-shadow-neu:
-    2px 2px 5px var(--ye-color-neu-shadow-dark),
+  --ye-shadow-neu: 2px 2px 5px var(--ye-color-neu-shadow-dark),
     -2px -2px 5px var(--ye-color-neu-shadow-light);
-  --ye-shadow-neu-hover:
-    1px 1px 2px var(--ye-color-neu-shadow-dark),
+  --ye-shadow-neu-hover: 1px 1px 2px var(--ye-color-neu-shadow-dark),
     -1px -1px 2px var(--ye-color-neu-shadow-light);
   --ye-shadow-neu-focus: inset 0 0 1px var(--ye-color-neu-shadow-dark);
-  --ye-shadow-input-focus-bottom: 0 2px 1px -1px
-    var(--ye-color-input-focus-shadow);
-  --ye-shadow-drawer:
-    0 -1px 0 var(--ye-color-background), var(--ye-shadow-floating-low);
+  --ye-shadow-input-focus-bottom: 0 2px 1px -1px var(--ye-color-input-focus-shadow);
+  --ye-shadow-drawer: 0 -1px 0 var(--ye-color-background),
+    var(--ye-shadow-floating-low);
   --ye-shadow-scrollbar: inset 0 0 6px var(--ye-color-dark-10);
   --ye-shadow-input-focus-1: inset 0 0 0 var(--ye-color-shadow-inset);
   --ye-shadow-input-focus-2: 0 0 0 1px var(--ye-color-input-focus-shadow);
@@ -401,8 +390,8 @@
 
   /* Works on Chrome/Edge/Safari */
   &::-webkit-scrollbar-track {
-    border-radius: var(--ye-radius-normal);
     background-color: var(--ye-color-bg-scrollbar);
+    border-radius: var(--ye-radius-normal);
     box-shadow: var(--ye-shadow-scrollbar);
   }
 
@@ -412,8 +401,8 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: var(--ye-radius-normal);
     background-color: var(--ye-color-primary);
+    border-radius: var(--ye-radius-normal);
     box-shadow: var(--ye-shadow-scrollbar);
   }
 }

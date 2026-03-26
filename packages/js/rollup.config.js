@@ -41,12 +41,12 @@ const config = {
       babelHelpers: "bundled",
       extensions: [".js", ".ts"],
       include: "src/**/*",
-      plugins: ["@babel/plugin-transform-runtime"],
+      skipPreflightCheck: true,
       presets: [
         ["@babel/preset-env", { modules: false }],
         "@babel/preset-typescript",
       ],
-      skipPreflightCheck: true,
+      plugins: ["@babel/plugin-transform-runtime"],
       targets: { esmodules: true },
     }),
     typescript({

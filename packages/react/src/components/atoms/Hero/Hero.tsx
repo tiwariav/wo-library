@@ -22,11 +22,7 @@ interface HeroProps {
  *   <CallToAction />
  * </Hero>
  */
-export default function Hero({
-  children,
-  midContent,
-  title,
-}: Readonly<HeroProps>) {
+export default function Hero({ children, midContent, title }: HeroProps) {
   return (
     <div className={clsx(styles.hero)}>
       <div className={clsx(styles.content)}>

@@ -18,32 +18,6 @@ const meta = {
   url: "https://github.com/tiwariav/stylelint-config/rules/only-predefined-colors/README.md",
 };
 
-const ONE_HUNDRED = 100;
-const DEFAULT_LIGHTNESS = [
-  "97.78",
-  "93.56",
-  "88.11",
-  "82.67",
-  "74.22",
-  "64.78",
-  "57.33",
-  "46.89",
-  "39.44",
-  "32",
-  "23.78",
-].map(Number);
-
-function parseColor(value) {
-  try {
-    return new Color(value);
-  } catch (error) {
-    if (error instanceof TypeError) {
-      return null;
-    }
-    throw error;
-  }
-}
-
 /** @type {import('stylelint').Rule} */
 const ruleFunction = (primary, secondaryOptions = {}) => {
   return (root, result) => {
@@ -55,17 +29,21 @@ const ruleFunction = (primary, secondaryOptions = {}) => {
         possible: [true],
       },
       {
-        actual: secondaryOptions,
         optional: true,
+        actual: secondaryOptions,
         possible: {
-          lightness: (x) => Number.isFinite(x),
+          lightness: (x) => typeof x === "number",
         },
-      },
+      }
     );
-    const { lightness = DEFAULT_LIGHTNESS } = secondaryOptions;
-    if (!validOptions) {
-      return;
-    }
+    const {
+      lightness = [
+        // default values based on tailwind
+        97.78, 93.56, 88.11, 82.67, 74.22, 64.78, 57.33, 46.89, 39.44, 32,
+        23.78,
+      ],
+    } = secondaryOptions;
+    if (!validOptions) return;
     root.walkDecls(COLOR_PROP_REGEX, (decl) => {
       const newColorStrings = decl.value.match(COLOR_VALUE_REGEX);
       if (!newColorStrings) {
@@ -73,23 +51,24 @@ const ruleFunction = (primary, secondaryOptions = {}) => {
       }
 
       for (const newColorString of newColorStrings) {
-        const newColor = parseColor(newColorString);
-        if (!newColor) {
-          continue;
+        let newColor;
+        try {
+          newColor = new Color(newColorString);
+        } catch (error) {
+          if (error instanceof TypeError) {
+            continue;
+          }
         }
-        const [oklchLightness] = newColor.oklch;
-        const scaledLightness = (oklchLightness ?? 0) * ONE_HUNDRED;
-
         if (
           newColor.space === Color.spaces.oklch &&
-          oklchLightness &&
-          !lightness.includes(scaledLightness)
+          newColor.oklch[0] &&
+          !lightness.includes(newColor.oklch[0] * 100)
         ) {
           report({
-            message: messages.rejected(scaledLightness, lightness),
-            node: decl,
             result,
             ruleName,
+            message: messages.rejected(newColor.oklch[0] * 100, lightness),
+            node: decl,
             word: newColorString,
           });
         }

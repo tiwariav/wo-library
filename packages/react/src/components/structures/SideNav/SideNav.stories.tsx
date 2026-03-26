@@ -40,11 +40,11 @@ function Template(args: ComponentProps<typeof BasicSideNav>) {
   return (
     <LayoutProvider>
       <div
-        className="story-bg-container story-list"
+        className="story-bg-container story-flex"
         // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         style={{ backgroundImage: randomGradientGenerator(20) }}
       >
-        <div className="story-list">
+        <div className="story-flex">
           <BasicSideNav {...args} />
         </div>
         <div>
@@ -68,8 +68,8 @@ const metadata: Meta<typeof SideNav> = {
       },
     },
   },
-  render: Template,
   title: "Structures/SideNav",
+  render: Template,
 };
 
 export default metadata;
@@ -81,7 +81,7 @@ export const Basic: Story = {};
 export const Sticky: Story = {
   args: { sticky: true },
   render: (args) => (
-    <div className="story-list">
+    <div className="story-flex">
       <Template
         {...args}
         toggleIcon={

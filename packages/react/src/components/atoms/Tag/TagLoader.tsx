@@ -5,10 +5,7 @@ import { clsx } from "clsx";
 import ContentLoader from "../../../vendors/ContentLoader.js";
 import * as styles from "./tagLoader.module.css";
 
-const TEST_UNIQUE_KEY =
-  typeof process !== "undefined" && process.env.JEST_WORKER_ID
-    ? "test"
-    : undefined;
+const TEST_UNIQUE_KEY = process.env.JEST_WORKER_ID ? "test" : undefined;
 
 export interface TagLoaderProps extends ComponentPropsWithoutRef<"span"> {
   iconAfter?: boolean;
@@ -33,7 +30,7 @@ export default function TagLoader({
   iconAfter,
   iconBefore,
   ...props
-}: Readonly<TagLoaderProps>) {
+}: TagLoaderProps) {
   return (
     <span className={clsx(styles.loader, className)} {...props}>
       {iconBefore && <IconLoader />}

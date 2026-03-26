@@ -25,25 +25,6 @@
   }
 
   .has-separator {
-    & .container .aside {
-      position: relative;
-      margin-left: var(--ye-spacing-em-large);
-      padding-left: var(--ye-em-base);
-
-      &::after {
-        content: "";
-
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-
-        width: 1px;
-
-        background-color: var(--ye-color-dark-10);
-      }
-    }
-
     & .container:first-child .content {
       position: relative;
       margin-bottom: var(--ye-spacing-em-huge);
@@ -58,6 +39,25 @@
         left: 0;
 
         height: 1px;
+
+        background-color: var(--ye-color-dark-10);
+      }
+    }
+
+    & .container .aside {
+      position: relative;
+      margin-left: var(--ye-spacing-em-large);
+      padding-left: var(--ye-em-base);
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 1px;
 
         background-color: var(--ye-color-dark-10);
       }

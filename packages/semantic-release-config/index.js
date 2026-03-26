@@ -1,4 +1,4 @@
-const fs = require("node:fs");
+const fs = require("fs");
 const {
   branches,
   commitMessage,
@@ -6,7 +6,7 @@ const {
   getSemanticReleaseTypes,
 } = require("./shared.js");
 
-const distributionPath = "./dist";
+const distPath = "./dist";
 
 module.exports = {
   branches,
@@ -33,7 +33,7 @@ module.exports = {
       // NOTE: NPM_TOKEN required to publish to npm
       "@semantic-release/npm",
       {
-        pkgRoot: fs.existsSync(distributionPath) ? distributionPath : "./",
+        pkgRoot: fs.existsSync(distPath) ? distPath : "./",
       },
     ],
     [

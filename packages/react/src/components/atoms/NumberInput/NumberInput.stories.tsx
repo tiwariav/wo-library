@@ -27,7 +27,7 @@ export default metadata;
 
 type Story = StoryObj<typeof NumberInput>;
 
-function Template(args: Readonly<NumberInputProps>) {
+function Template(args: NumberInputProps) {
   return <InputTemplate as={NumberInput} {...args} />;
 }
 
@@ -49,7 +49,7 @@ export const Formatted: Story = {
 const INITIAL_PARSED_NUMBER = 2000.01;
 const PARSED_NUMBER_INCREMENT = 0.01;
 
-function PresetValueTemplate(args: Readonly<NumberInputProps>) {
+function PresetValueTemplate(args: NumberInputProps) {
   const [value, setValue] = useState(INITIAL_PARSED_NUMBER);
   return (
     <div>
@@ -72,7 +72,7 @@ export const PresetValue: Story = {
   render: (args) => <PresetValueTemplate {...args} />,
 };
 
-function ManageStateWithPasedValueTemplate(args: Readonly<NumberInputProps>) {
+function ManageStateWithPasedValueTemplate(args: NumberInputProps) {
   const [value, setValue] = useState("");
   return (
     <div>

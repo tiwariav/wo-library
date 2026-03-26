@@ -46,7 +46,7 @@ const ERROR_MESSAGES = {
  * @param response - The `Response` object (may be `undefined` for network errors).
  * @param error - The original error, if any.
  */
-export async function defaultErrorHandler(
+export async function defaultErrorHandler<TResponseData>(
   response?: Response,
   error?: unknown,
 ): Promise<void> {
@@ -54,7 +54,7 @@ export async function defaultErrorHandler(
     throw new WoNetworkError("Network Error!");
   }
   // handle error depending on http response status codes
-  const responseData = await getResponseData(response);
+  const responseData = await getResponseData<TResponseData>(response);
   const errorMessage = ERROR_MESSAGES[response.status] ?? "Unhandled error!";
   throw new WoResponseError(responseData, response.status, errorMessage);
 }

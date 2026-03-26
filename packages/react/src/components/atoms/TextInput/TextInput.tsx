@@ -1,3 +1,7 @@
+/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed:[
+  'variant-outlined', 'variant-material', 'variant-basic', 'variant-dashed',
+  'variant-borderless'
+]}] */
 import type {
   ComponentPropsWithoutRef,
   FocusEventHandler,
@@ -6,7 +10,14 @@ import type {
 
 import { clsx } from "clsx";
 import { isEmpty } from "lodash-es";
-import { forwardRef, useCallback, useId, useMemo, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 
 import type { COMPONENT_SIZES } from "../../../tools/constants/props.js";
 
@@ -64,7 +75,7 @@ export interface TextInputProps extends Omit<
   variant?: (typeof TEXT_INPUT_VARIANTS)[number];
 }
 
-const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       className,
@@ -87,22 +98,14 @@ const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
     },
     ref,
   ) => {
-    const [internalHasValue, setInternalHasValue] = useState(
-      () => !isEmpty(defaultValue),
-    );
-    const hasValue = useMemo(() => {
-      if (value === undefined) {
-        return internalHasValue;
-      }
-      return !isEmpty(value);
-    }, [internalHasValue, value]);
+    const [hasValue, setHasValue] = useState(!isEmpty(value ?? defaultValue));
     const inputId = useId();
 
     const [labelRef, { input }] = useMeasureInput();
 
     const handleBlur = useCallback<FocusEventHandler<HTMLInputElement>>(
       (event) => {
-        setInternalHasValue(!isEmpty(event.target.value));
+        setHasValue(!isEmpty(event.target.value));
         onBlur?.(event);
       },
       [onBlur],
@@ -117,6 +120,10 @@ const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
           }
         : originalStyle;
     }, [input, style, variant]);
+
+    useEffect(() => {
+      setHasValue(!isEmpty(value));
+    }, [value]);
 
     return (
       <InputWrapper
@@ -165,12 +172,7 @@ const TextInput = forwardRef<HTMLInputElement, Readonly<TextInputProps>>(
             style={inputStyle}
             type="text"
             value={value}
-            variant={
-              inSubArray(
-                FORM_CONTROL_VARIANTS,
-                variant,
-              ) as (typeof FORM_CONTROL_VARIANTS)[number]
-            }
+            variant={inSubArray(FORM_CONTROL_VARIANTS, variant)}
             {...props}
           />
           {!!iconAfter && (

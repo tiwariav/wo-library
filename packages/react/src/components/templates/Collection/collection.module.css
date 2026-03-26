@@ -30,7 +30,7 @@
   .is-grid {
     display: grid;
     grid-auto-flow: dense;
+    grid-gap: var(--ye-spacing-em-large);
     grid-template-columns: repeat(auto-fill, minmax(160px, auto));
-    gap: var(--ye-spacing-em-large);
   }
 }

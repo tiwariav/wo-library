@@ -1,34 +1,16 @@
-import { existsSync } from "node:fs";
 import type { StorybookConfig } from "@storybook/react-webpack5";
 import type { Configuration } from "webpack";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 
 const isDev = process.env.NODE_ENV === "development";
-const storybookDir = dirname(fileURLToPath(import.meta.url));
-const docsDir = resolve(storybookDir, "../src/docs");
-const mediaFile = resolve(storybookDir, "../../ui/src/styles/media.css");
-
-const stories = [
-  resolve(
-    storybookDir,
-    "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-  ),
-  resolve(
-    storybookDir,
-    "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-  ),
-  resolve(
-    storybookDir,
-    "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-  ),
-];
-
-if (existsSync(docsDir)) {
-  stories.push(resolve(docsDir, "**/*.mdx"));
-}
 
 const config: StorybookConfig = {
+  stories: [
+    "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    // TypeDoc-generated API reference pages (produced by `yarn docs`)
+    "../src/docs/**/*.mdx",
+  ],
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-a11y",
@@ -58,28 +40,6 @@ const config: StorybookConfig = {
               },
               {
                 loader: "postcss-loader",
-                options: {
-                  postcssOptions: {
-                    plugins: [
-                      ["@csstools/postcss-global-data", { files: [mediaFile] }],
-                      "postcss-mixins",
-                      [
-                        "postcss-preset-env",
-                        {
-                          autoprefixer: { flexbox: "no-2009" },
-                          features: {
-                            "cascade-layers": false,
-                            "custom-media-queries": {},
-                            "custom-properties": true,
-                            "gap-properties": true,
-                            "nesting-rules": true,
-                          },
-                          stage: 1,
-                        },
-                      ],
-                    ],
-                  },
-                },
               },
             ],
           },
@@ -104,7 +64,6 @@ const config: StorybookConfig = {
       },
     },
   },
-  stories,
   swc: () => ({
     jsc: {
       transform: {
@@ -118,9 +77,9 @@ const config: StorybookConfig = {
     // Add extension aliases for better TypeScript resolution
     if (config.resolve) {
       config.resolve.extensionAlias = {
-        ".cjs": [".cts", ".cjs"],
         ".js": [".ts", ".tsx", ".js", ".jsx"],
         ".mjs": [".mts", ".mjs"],
+        ".cjs": [".cts", ".cjs"],
       };
     }
 

@@ -19,7 +19,7 @@ function createScriptElement(
     script.setAttribute("nonce", nonceMeta.content);
   }
   for (const [key, value] of Object.entries(props)) {
-    script.setAttribute(key, value);
+    script.setAttribute(key, value as string);
   }
   return script;
 }

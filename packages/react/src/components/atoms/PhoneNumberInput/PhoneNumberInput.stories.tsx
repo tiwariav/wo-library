@@ -5,7 +5,7 @@ import type { FormattedInputProps } from "../FormattedInput/FormattedInput.js";
 import { InputTemplate } from "../../__stories/InputTemplates.js";
 import PhoneNumberInput from "./PhoneNumberInput.js";
 
-function Template(args: Readonly<FormattedInputProps>) {
+function Template(args: FormattedInputProps) {
   return <InputTemplate as={PhoneNumberInput} {...args} />;
 }
 
@@ -22,8 +22,8 @@ const metadata: Meta<typeof PhoneNumberInput> = {
       },
     },
   },
-  render: (args) => <Template {...args} />,
   title: "Atoms/PhoneNumberInput",
+  render: (args) => <Template {...args} />,
 };
 
 export default metadata;

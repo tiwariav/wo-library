@@ -8,5 +8,5 @@
     "declaration": false,
     "noEmit": true
   },
-  "include": ["*.js", "*.ts", "*.mjs"]
+  "include": ["*.js", "*.ts", "*.cjs"]
 }

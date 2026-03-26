@@ -25,9 +25,9 @@
       width: 15%;
       height: 15%;
       margin: 0 auto;
-      border-radius: var(--ye-radius-ellipse);
 
       background-color: var(--ye-color-accent-dark);
+      border-radius: var(--ye-radius-ellipse);
 
       animation: sk-circle-bounce-delay 1.2s infinite ease-in-out both;
 

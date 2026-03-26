@@ -1,3 +1,7 @@
+/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed:
+  ['variant-borderless', 'variant-outlined', 'variant-dashed', 'variant-basic']
+}] */
+
 import type { ComponentPropsWithoutRef, Ref } from "react";
 
 import clsx from "clsx";
@@ -19,7 +23,7 @@ interface FormControlProps {
 }
 
 function formControlProps<TElement>(
-  { className, variant, ...props }: Readonly<FormControlProps>,
+  { className, variant, ...props }: FormControlProps,
   ref: Ref<TElement>,
 ) {
   return {

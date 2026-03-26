@@ -1,3 +1,10 @@
+/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
+  'variant-basic', 'layout-horizontal', 'variant-borderless', 'view-thumb',
+  'floating-highest', 'floating-high', 'floating-medium', 'floating-low', 'floating-lowest', 'floating-none',
+  'flying-medium',
+  'height-full'
+]}] */
+
 /* jscpd:ignore-start */
 import type { ElementType, ReactNode, Ref } from "react";
 

@@ -1,2 +1,2 @@
-export { svgPathFlagData } from "./Flag.js";
-export { svgPathPinData } from "./Pin.js";
+export { SVGPathFlagData } from "./Flag.js";
+export { SVGPathPinData } from "./Pin.js";

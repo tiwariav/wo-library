@@ -27,10 +27,8 @@ import { Collection } from "@wo-library/react";
   filter={[{ key: "category", name: "Category", options: ["A", "B"] }]}
   sort={[{ key: "name", name: "Name" }]}
 >
-  {products.map((p) => (
-    <ProductCard key={p.id} {...p} />
-  ))}
-</Collection>;
+  {products.map((p) => <ProductCard key={p.id} {...p} />)}
+</Collection>
 ```
 
 **Props**:
@@ -61,7 +59,7 @@ import { Details } from "@wo-library/react";
 >
   <ProductDescription />
   <ReviewList />
-</Details>;
+</Details>
 ```
 
 **Props** (extends `ContainerProps`):
@@ -91,7 +89,7 @@ import { Profile } from "@wo-library/react";
 >
   <ActivityCard />
   <StatsCard />
-</Profile>;
+</Profile>
 ```
 
 **Note**: Image URLs are typically set via `process.env.STORYBOOK_IMAGE_SRC` in stories.

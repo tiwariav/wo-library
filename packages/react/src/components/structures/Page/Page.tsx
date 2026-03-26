@@ -13,7 +13,7 @@ import * as styles from "./page.module.css";
 
 const variantTsc = "[T][SC]";
 const variantStc = "[S][TC]";
-export const pageVariantOptions = [variantTsc, variantStc] as const;
+const variantOptions = [variantTsc, variantStc] as const;
 
 interface PageProps {
   children?: ReactNode;
@@ -27,7 +27,7 @@ interface PageProps {
   isCentered?: boolean;
   sideNav?: ReactElement;
   topNav?: ReactElement;
-  variant?: (typeof pageVariantOptions)[number];
+  variant?: (typeof variantOptions)[number];
 }
 
 function PageInner({
@@ -39,7 +39,7 @@ function PageInner({
   sideNav,
   topNav,
   variant = variantTsc,
-}: Readonly<PageProps>) {
+}: PageProps) {
   const topNavMemo = useMemo(() => {
     if (!topNav) {
       return null;
@@ -55,7 +55,7 @@ function PageInner({
     if (!sideNav) {
       return null;
     }
-    const topNavProps = (topNav?.props ?? {}) as TopNavProps;
+    const topNavProps = (topNav?.props || {}) as TopNavProps;
     const sideNavProps = { ...sideNav.props } as SideNavProps;
     if (
       variant === variantTsc &&
@@ -103,7 +103,7 @@ function PageInner({
   );
 }
 
-function Page({ ...props }: Readonly<PageProps>) {
+function Page({ ...props }: PageProps) {
   return (
     <LayoutProvider>
       <PageInner {...props} />

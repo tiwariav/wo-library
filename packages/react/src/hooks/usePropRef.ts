@@ -1,3 +1,5 @@
+import type { MutableRefObject } from "react";
+
 import { isArray, isFunction, isObject } from "lodash-es";
 import { useCallback, useRef } from "react";
 
@@ -25,20 +27,20 @@ export default function usePropRef<TElement = Node>(
     | React.ForwardedRef<TElement>[]
     | undefined,
 ) {
-  const innerRef = useRef<TElement | null>(null);
+  const innerRef: MutableRefObject<TElement | null> = useRef<TElement>(null);
   const setInnerRef = useCallback(
-    (node: TElement | null) => {
+    (node: TElement) => {
       const refs = isArray(propRef) ? propRef : [propRef];
       for (const ref of refs) {
         if (ref) {
           if (isFunction(ref)) {
             ref(node);
           } else if (isObject(ref)) {
-            (ref as { current: TElement | null }).current = node;
+            ref.current = node;
           }
         }
       }
-      (innerRef as { current: TElement | null }).current = node;
+      innerRef.current = node;
     },
     [propRef],
   );

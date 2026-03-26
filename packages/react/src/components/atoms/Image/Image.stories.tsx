@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 
-import Image, { IMAGE_VARIANT_OPTIONS } from "./Image.js";
+import Image from "./Image.js";
 
 type TemplateProps = { width?: number } & ComponentProps<typeof Image>;
 
@@ -14,11 +14,8 @@ export function Template({ width, ...args }: TemplateProps) {
 }
 
 const metadata: Meta<TemplateProps> = {
-  argTypes: {
-    variant: { control: "select", options: IMAGE_VARIANT_OPTIONS },
-  },
   component: Image,
-  excludeStories: /Template$/,
+  excludeStories: /.*Template$/,
   parameters: {
     docs: {
       description: {
@@ -27,8 +24,8 @@ const metadata: Meta<TemplateProps> = {
       },
     },
   },
-  render: Template,
   title: "Atoms/Image",
+  render: Template,
 };
 
 export default metadata;

@@ -3,7 +3,6 @@
   "blame": true,
   "format": ["css", "javascript", "json", "tsx", "typescript"],
   "gitignore": true,
-  "ignore": ["**/*.stories.tsx", "**/__stories__/**", "**/__tests__/**"],
   "ignoreCase": true,
   "maxLines": 5000,
   "minLines": 3,

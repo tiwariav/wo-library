@@ -4,6 +4,7 @@ import type {
   ComponentPropsWithRef,
   FocusEvent,
   ReactElement,
+  ReactNode,
 } from "react";
 import type { ControllerProps, FieldValues } from "react-hook-form";
 import type { SetOptional } from "type-fest";
@@ -18,6 +19,7 @@ import FormError from "../FormError.js";
 
 const ErrorMessage = React.lazy(() =>
   import("@hookform/error-message").then((defaultImport) => ({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     default: defaultImport.ErrorMessage,
   })),
 );
@@ -64,7 +66,7 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
   name,
   showError = true,
   ...props
-}: Readonly<HookFormInputWrapperProps<TValues>>): ReactElement {
+}: HookFormInputWrapperProps<TValues>): ReactNode {
   const {
     field: { onBlur, onChange, ref, value },
     fieldState: { error },
@@ -78,7 +80,7 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
       event: ChangeEvent<HTMLInputElement>,
       inputValue: unknown,
       shouldUpdate?: boolean,
-    ): void => {
+    ) => {
       // for react-select compatibility
       if (
         isObject(inputValue) &&
@@ -86,9 +88,13 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
         inputValue.action === "select-option"
       ) {
         onChange(event);
-      } else if (shouldUpdate) {
+        return;
+      }
+      if (shouldUpdate) {
         onChange(inputValue);
-      } else if (inputValue === undefined) {
+        return;
+      }
+      if (inputValue === undefined) {
         onChange(event);
       }
     },
@@ -101,7 +107,7 @@ export default function HookFormInputWrapper<TValues extends FieldValues>({
         onBlur();
         child.props.onBlur?.(event);
       },
-      onChange: ((event, inputValue, shouldUpdate): void => {
+      onChange: ((event, inputValue, shouldUpdate) => {
         handleHookFormChange(event, inputValue, shouldUpdate);
         child.props.onChange?.(event, inputValue, shouldUpdate);
       }) as ChangeHandler,

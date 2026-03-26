@@ -33,10 +33,9 @@ export const memoryStorage = {
   },
 };
 
-type StorageBackendOptions = Record<
-  (typeof STORAGE_TYPES)[number],
-  StorageBackend
->;
+type StorageBackendOptions = {
+  [key in (typeof STORAGE_TYPES)[number]]: StorageBackend;
+};
 
 interface GetBackendOptions {
   persist?: boolean;
@@ -47,9 +46,9 @@ interface GetItemOptions extends GetBackendOptions {
   json?: boolean;
 }
 
-function getJsonItem(value: string): unknown {
+function getJsonItem<TResponse = object | string>(value: string) {
   try {
-    return JSON.parse(value);
+    return JSON.parse(value) as TResponse;
   } catch (error) {
     if (!(error instanceof SyntaxError)) {
       throw error;
@@ -57,34 +56,6 @@ function getJsonItem(value: string): unknown {
     // in case of syntax error return string
   }
   return value;
-}
-
-function getStorageKeys(backend: StorageBackend): string[] {
-  if (typeof Storage !== "undefined" && backend instanceof Storage) {
-    const keys: string[] = [];
-    for (let index = 0; index < backend.length; index += 1) {
-      const key = backend.key(index);
-      if (key !== null) {
-        keys.push(key);
-      }
-    }
-    return keys;
-  }
-
-  return Object.keys(memoryStorageItems);
-}
-
-function getPrefixedRemovalTasks(
-  backend: StorageBackend,
-  prefix: string,
-): Promise<void>[] {
-  const pendingRemovals: Promise<void>[] = [];
-  for (const key of getStorageKeys(backend)) {
-    if (key.startsWith(`${prefix}.`)) {
-      pendingRemovals.push(Promise.resolve(backend.removeItem(key)));
-    }
-  }
-  return pendingRemovals;
 }
 
 /**
@@ -114,7 +85,7 @@ export class AnyStorage {
     const noBrowser =
       typeof localStorage === "undefined" ||
       typeof sessionStorage === "undefined";
-    this.env = env ?? (noBrowser ? "mobile" : "web");
+    this.env = env ?? noBrowser ? "mobile" : "web";
     this.backends = noBrowser
       ? {
           persist: memoryStorage,
@@ -130,17 +101,18 @@ export class AnyStorage {
 
   async clear() {
     this.backends.temp.clear();
-    if (!this.prefix) {
-      this.backends.session.clear();
-      this.backends.persist.clear();
-      return;
+    if (this.prefix) {
+      await Promise.all(
+        Object.keys(this.backends.session).map((key) =>
+          this.backends.session.removeItem(key),
+        ),
+      );
+      await Promise.all(
+        Object.keys(this.backends.persist).map((key) =>
+          this.backends.persist.removeItem(key),
+        ),
+      );
     }
-
-    const pendingRemovals = [
-      ...getPrefixedRemovalTasks(this.backends.session, this.prefix),
-      ...getPrefixedRemovalTasks(this.backends.persist, this.prefix),
-    ];
-    await Promise.all(pendingRemovals);
   }
 
   getBackend({ persist, session }: GetBackendOptions = {}) {
@@ -176,7 +148,7 @@ export class AnyStorage {
         : this.backends.session.getItem(storageKey));
     }
     if (json && response) {
-      response = getJsonItem(response) as TResponse;
+      response = getJsonItem<TResponse>(response);
     }
     return response;
   }

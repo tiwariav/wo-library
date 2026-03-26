@@ -1,4 +1,9 @@
-import type { CSSProperties, ForwardedRef, RefObject } from "react";
+import type {
+  CSSProperties,
+  ForwardedRef,
+  MutableRefObject,
+  RefObject,
+} from "react";
 
 import clsx from "clsx";
 import { isObject } from "lodash-es";
@@ -43,7 +48,7 @@ function useVariantClassName({
       }
       return "";
     }
-    return variant ? getDynamicClassName(styles, `variant-${variant}`) : "";
+    return variant && getDynamicClassName(styles, `variant-${variant}`);
   }, [topNavExpanded, variant]);
 }
 
@@ -54,8 +59,8 @@ export interface StickyOptions {
 }
 
 interface ScrollUpdateOptions {
-  containerRef?: RefObject<HTMLDivElement | null>;
-  contentLeftRef?: RefObject<HTMLDivElement | null>;
+  containerRef?: RefObject<HTMLDivElement>;
+  contentLeftRef?: RefObject<HTMLDivElement>;
   sticky?: StickyOptions | boolean;
 }
 
@@ -65,7 +70,7 @@ function useScrollUpdates({
   rootRef,
   sticky,
 }: {
-  rootRef: RefObject<HTMLDivElement | null>;
+  rootRef: MutableRefObject<HTMLDivElement | null>;
 } & ScrollUpdateOptions) {
   const layoutState = useLayoutState();
   const { direction, y: scrollY } = useScrollDirection(containerRef);
@@ -85,7 +90,7 @@ function useScrollUpdates({
       !rootRef.current ||
       scrollY + hideOffset < rootRef.current.offsetHeight
     ) {
-      return "0";
+      return 0;
     }
     if (hideOnScroll === "contentLeft" && contentLeftRef?.current) {
       return `${contentLeftRef.current.offsetHeight + HIDE_ON_SCROLL_OFFSET}px`;
@@ -181,8 +186,7 @@ export function useTopNavProps(
           [styles.isScrolled]: direction,
           [styles.isSticky]: sticky && isReady,
         },
-        ((shrinkOffset > 0 &&
-          (globalThis as Record<string, unknown>).window === undefined) ||
+        ((shrinkOffset > 0 && typeof window === "undefined") ||
           (topNavExpanded && isReady)) && [
           styles.isExpanded,
           innerClassNames?.isExpanded,
@@ -193,7 +197,7 @@ export function useTopNavProps(
       style: {
         transform: isReady ? `translateY(${transform})` : "none",
         ...style,
-      } as CSSProperties,
+      },
     },
     smallerWidth,
   };

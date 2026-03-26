@@ -6,6 +6,7 @@
     display: flex;
 
     width: 100%;
+
     border: 1px solid var(--ye-color-dark-10);
   }
 

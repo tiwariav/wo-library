@@ -24,8 +24,8 @@ const metadata: Meta<typeof Details> = {
       },
     },
   },
-  render: Template,
   title: "Templates/Details",
+  render: Template,
 };
 
 export default metadata;

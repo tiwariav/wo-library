@@ -21,7 +21,7 @@ const meta = {
 export default meta;
 
 function Template<TFeildValue extends FieldValues>(
-  args: Readonly<HookFormProps<TFeildValue>>,
+  args: HookFormProps<TFeildValue>,
 ) {
   return (
     <HookForm {...args}>
