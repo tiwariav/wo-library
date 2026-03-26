@@ -16,6 +16,9 @@ const metadata: Meta<typeof Anchor> = {
     as: { control: "text" },
     iconAfter: storyIconControl,
     iconBefore: storyIconControl,
+    size: { control: "select", options: COMPONENT_SIZES },
+    spacing: { control: "select", options: COMPONENT_SPACINGS },
+    variant: { control: "select", options: ANCHOR_VARIANTS },
   },
   component: Anchor,
   parameters: {
@@ -26,8 +29,8 @@ const metadata: Meta<typeof Anchor> = {
       },
     },
   },
-  title: "Atoms/Anchor",
   render: (args) => <Anchor href="/" {...args} />,
+  title: "Atoms/Anchor",
 };
 export default metadata;
 
@@ -57,7 +60,7 @@ function OutlineAnchor(args: AnchorProps) {
 
 export const Sizes: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <OutlineAnchor {...args} />
       {COMPONENT_SIZES.map((size) => (
         <div key={size}>
@@ -72,7 +75,7 @@ export const Sizes: Story = {
 
 export const Spacings: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <OutlineAnchor />
       {COMPONENT_SPACINGS.map((spacing) => (
         <div key={spacing}>
@@ -87,7 +90,7 @@ export const Spacings: Story = {
 
 export const Variants: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <div>
         <Anchor href="/" {...args}>
           Anchor

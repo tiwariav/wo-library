@@ -50,8 +50,8 @@ const metadata: Meta<TemplateProps> = {
       },
     },
   },
-  title: "Templates/Profile",
   render: (args) => <Template {...args} />,
+  title: "Templates/Profile",
 };
 
 export default metadata;

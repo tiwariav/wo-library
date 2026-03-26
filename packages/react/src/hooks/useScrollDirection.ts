@@ -16,23 +16,14 @@ function setScrollDirectionState(
   previousState: DirectionState,
   element?: HTMLElement | null,
 ) {
-  let x = 0,
-    y = 0;
-  if (element) {
-    x = element.scrollLeft;
-    y = element.scrollTop;
-  } else {
-    x = window.scrollX;
-    y = window.scrollY;
-  }
+  const x = element ? element.scrollLeft : window.scrollX;
+  const y = element ? element.scrollTop : window.scrollY;
   const bodyHeight = (element ?? document.body).clientHeight;
   const diff = y - previousState.y;
-  const direction =
-    bodyHeight !== previousState.bodyHeight || diff === 0
-      ? previousState.direction
-      : diff > 0
-        ? "down"
-        : "up";
+  let { direction } = previousState;
+  if (bodyHeight === previousState.bodyHeight && diff !== 0) {
+    direction = diff > 0 ? "down" : "up";
+  }
   return { bodyHeight, direction, x, y };
 }
 
@@ -73,13 +64,13 @@ export default function useScrollDirection(ref?: RefObject<HTMLElement>) {
     //Window scroll may be changed between render and effect handler.
     handler();
 
-    on(current ?? window, "scroll", handler, {
+    on(current ?? globalThis, "scroll", handler, {
       capture: false,
       passive: true,
     });
 
     return () => {
-      off(current ?? window, "scroll", handler);
+      off(current ?? globalThis, "scroll", handler);
     };
   }, [ref, setState]);
 

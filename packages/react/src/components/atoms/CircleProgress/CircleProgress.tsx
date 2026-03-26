@@ -1,10 +1,4 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-    progress-none, progress-partial, progress-full
-  ]}]
-  @typescript-eslint/no-magic-numbers: [2, {
-    ignore: [0, 1, -1, 2],
-  }]
-*/
+/* eslint @typescript-eslint/no-magic-numbers: ["error", { "ignore": [0, 1, -1, 2] }] */
 
 import type { ReactNode } from "react";
 
@@ -47,23 +41,21 @@ function getCircleStyles(radius: number, arcRotation = 0, completion = 0) {
   return { rotationOffset, strokeDasharray, strokeDashoffset };
 }
 
-const CIRCLE_PROGRESS_TEXT_OPTIONS = ["parts", "percent", "value"];
-type TextContentOptions = (typeof CIRCLE_PROGRESS_TEXT_OPTIONS)[number];
-
+/** Controls center text: "parts", "percent", "value" or a custom suffix. */
 function getTextContent(
-  text: TextContentOptions,
+  text: string,
   progress: [number, number],
   percentage: number,
-) {
+): string {
   switch (text) {
     case "parts": {
-      return progress[0] / progress[1];
+      return (progress[0] / progress[1]).toString();
     }
     case "percent": {
       return `${percentage}%`;
     }
     case "value": {
-      return progress[0];
+      return progress[0].toString();
     }
     default: {
       return `${progress[0]} ${text}`;
@@ -77,7 +69,7 @@ interface CenterTextProps {
   fill?: string;
   percentage: number;
   progress: [number, number];
-  text?: TextContentOptions;
+  text?: string;
 }
 
 function CenterText({
@@ -87,21 +79,19 @@ function CenterText({
   percentage,
   progress,
   text,
-}: CenterTextProps) {
-  return (
-    text && (
-      <text
-        className={clsx([styles.text], className)}
-        dominantBaseline="middle"
-        fill={fill}
-        textAnchor="middle"
-        x="50%"
-        y={`${MAX_PERCENT - arcHeight / 2}%`}
-      >
-        {getTextContent(text, progress, percentage)}
-      </text>
-    )
-  );
+}: Readonly<CenterTextProps>) {
+  return text ? (
+    <text
+      className={clsx([styles.text], className)}
+      dominantBaseline="middle"
+      fill={fill}
+      textAnchor="middle"
+      x="50%"
+      y={`${MAX_PERCENT - arcHeight / 2}%`}
+    >
+      {getTextContent(text, progress, percentage)}
+    </text>
+  ) : null;
 }
 
 interface CircleStyle {
@@ -129,11 +119,9 @@ interface CircleProgressProps {
   /** Tuple of `[current, total]` used to compute fill percentage. */
   progress: [number, number];
   /**
-   * Controls the SVG centre text. Use `'parts'` (current/total), `'percent'` (e.g. `'42%'`),
    * `'value'` (current), or a custom suffix string appended to the current value.
    */
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-  progressText?: "parts" | "percent" | "value" | string;
+  progressText?: string;
   /** Whether to use round line-caps on the progress arc. @default true */
   roundEdges?: boolean;
   /** Size of the enclosing SVG viewBox square. @default 20 */
@@ -155,7 +143,7 @@ export default function CircleProgress({
   squareSize = DEFAULT_SQUARE_SIZE,
   strokeWidth = 2,
   ...props
-}: CircleProgressProps) {
+}: Readonly<CircleProgressProps>) {
   const initData = useMemo(() => {
     // Size of the enclosing square
     const height = (squareSize * arcHeight) / MAX_PERCENT;
@@ -249,8 +237,7 @@ export default function CircleProgress({
           arcHeight={arcHeight}
           className={clsx(
             innerClassNames?.text,
-            styles[progressData.progressClass],
-            innerClassNames?.[progressData.progressClass],
+            styles[progressData.progressClass as keyof typeof styles],
           )}
           percentage={progressData.completion}
           progress={progress}

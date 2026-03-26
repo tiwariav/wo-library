@@ -5,15 +5,15 @@ import { useState } from "react";
 import type { FileInputProps } from "./FileInput.js";
 
 import UploadFile from "../../../tools/uploadFile";
-import FileInput from "./FileInput.js";
+import FileInput, { FILE_INPUT_VARIANTS } from "./FileInput.js";
 
-function Template({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState(files);
+function Template({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState(files);
   return (
     <FileInput
       files={allFiles}
       updateFiles={(newFiles) => {
-        setFiles(
+        setAllFiles(
           newFiles.map((item) =>
             item instanceof UploadFile ? item : new UploadFile(item),
           ),
@@ -25,6 +25,9 @@ function Template({ files, ...args }: FileInputProps) {
 }
 
 const metadata: Meta<FileInputProps> = {
+  argTypes: {
+    variant: { control: "select", options: FILE_INPUT_VARIANTS },
+  },
   component: FileInput,
   parameters: {
     docs: {
@@ -34,8 +37,8 @@ const metadata: Meta<FileInputProps> = {
       },
     },
   },
-  title: "Atoms/FileInput",
   render: (args) => <Template {...args} />,
+  title: "Atoms/FileInput",
 };
 
 export default metadata;
@@ -48,14 +51,16 @@ class CustomUploadFile extends UploadFile {
   text?: string;
 }
 
-function FileObjectTemplate({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState<CustomUploadFile[] | undefined>(files);
+function FileObjectTemplate({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState<CustomUploadFile[] | undefined>(
+    files,
+  );
   return (
     <>
       <FileInput
         files={allFiles}
         updateFiles={(newFiles) => {
-          setFiles(
+          setAllFiles(
             newFiles.map((item) => {
               if (item instanceof CustomUploadFile) {
                 return item;
@@ -77,14 +82,14 @@ export const CustomFileObject: Story = {
   render: (args) => <FileObjectTemplate {...args} />,
 };
 
-function PasswordTemplate({ files, ...args }: FileInputProps) {
-  const [allFiles, setFiles] = useState(files);
+function PasswordTemplate({ files, ...args }: Readonly<FileInputProps>) {
+  const [allFiles, setAllFiles] = useState(files);
   return (
     <div className="story-bg-container">
       <FileInput
         files={allFiles}
         updateFiles={(newFiles) => {
-          setFiles(
+          setAllFiles(
             newFiles.map((item) => {
               if (!(item instanceof File)) {
                 return item;

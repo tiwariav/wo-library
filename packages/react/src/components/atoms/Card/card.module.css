@@ -17,8 +17,8 @@
 
   .card {
     position: relative;
-    background-color: var(--ye-color-background-card);
     border-radius: var(--ye-radius-small);
+    background-color: var(--ye-color-background-card);
 
     & .image + .content {
       margin-top: var(--ye-spacing-em-xsmall);

@@ -1,6 +1,5 @@
 import { babel } from "@rollup/plugin-babel";
 import _commonjs from "@rollup/plugin-commonjs";
-import _eslint from "@rollup/plugin-eslint";
 import _json from "@rollup/plugin-json";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import _terser from "@rollup/plugin-terser";
@@ -11,16 +10,15 @@ import _del from "rollup-plugin-delete";
 import _postcss from "rollup-plugin-postcss";
 import _progress from "rollup-plugin-progress";
 
-import { getConfig as getBabelConfig } from "../cjs/babel.cjs";
+import { getConfig as getBabelConfig } from "../node/babel.js";
 import { autoExternal, skipOutput } from "./plugins.js";
-import { getInput } from "./utils.js";
+import { getInput } from "./utilities.js";
 
 const commonjs = defaultImport(_commonjs);
 const postcss = defaultImport(_postcss);
 const copy = defaultImport(_copy);
 const del = defaultImport(_del);
 const terser = defaultImport(_terser);
-const eslint = defaultImport(_eslint);
 const progress = defaultImport(_progress);
 const json = defaultImport(_json);
 
@@ -68,14 +66,8 @@ export function getJsPlugins({
     ...buildPlugins,
   ];
   if (isDev && enableEslint) {
-    response.push(
-      eslint({
-        cache: true,
-        fix: true,
-        include: "src/**/*.{js,jsx,ts,tsx}",
-        throwOnError: true,
-      }),
-    );
+    // Rollup-side linting is intentionally disabled for ESLint v10 compatibility.
+    // Use the top-level `pnpm eslint` command in CI and local workflows instead.
   }
   if (isDev) {
     response.push(progress());
@@ -94,7 +86,7 @@ export const getBuildPlugins = ({
   const buildPlugins = [
     postcss({
       extract: "dist.css",
-      modules: { localsConvention: "camelCase" },
+      modules: { localsConvention: "camelCaseOnly" },
       namedExports: true,
       sourceMap: isDev,
     }),
@@ -139,18 +131,26 @@ export const getPublishPlugins = ({
       {
         dest: buildPath,
         src: ["package.json", "README.md", "LICENSE"],
-        transform: (contents) =>
-          removePostInstall
-            ? contents.toString().replace(/\n*\s*"postinstall": "[^"]*",?/, "")
-            : contents,
+        transform: (contents) => {
+          const contentText = contents.toString();
+
+          if (!removePostInstall) {
+            return contentText;
+          }
+
+          return contentText
+            .split("\n")
+            .filter((line) => !line.trimStart().startsWith('"postinstall":'))
+            .join("\n");
+        },
       },
       {
         dest: buildPath,
         src: ["src/**/*.d.ts"],
       },
-      ...(assetDirectories?.map((dir) => ({
-        dest: `${buildPath}/${dir.replace("src/", "")}`,
-        src: [`${dir}/*`],
+      ...(assetDirectories?.map((directory) => ({
+        dest: `${buildPath}/${directory.replace("src/", "")}`,
+        src: [`${directory}/*`],
       })) ?? []),
     ],
   }),

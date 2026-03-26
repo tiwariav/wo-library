@@ -1,5 +1,8 @@
-import anime from "animejs";
+import { animate } from "animejs";
 import { useEffect } from "react";
+
+const ANIME_DELAY = 1000;
+const ANIME_DURATION = 3000;
 
 export const ARC_ANGLE = 180;
 export const MAX_PROGRESS = 100;
@@ -10,20 +13,19 @@ export default function useProgressAnimation(
 ) {
   useEffect(() => {
     const animeProps = {
-      delay: 1000,
-      duration: 3000,
+      delay: ANIME_DELAY,
+      duration: ANIME_DURATION,
     };
-    anime({
+    animate(`#${animeId}-animeIndicator`, {
       rotateZ: [0, (ARC_ANGLE * percentage) / MAX_PROGRESS],
       targets: `#${animeId}-animeIndicator`,
       ...animeProps,
     });
-    anime({
+    animate(`#${animeId}-animeText`, {
       round: 1,
-      targets: `#${animeId}-animeText`,
       textContent: [0, percentage],
       ...animeProps,
-      easing: "easeOutElastic(1, 2)",
+      easing: "outElastic(1, 2)",
     });
   }, [percentage, animeId]);
   return null;

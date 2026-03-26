@@ -1,16 +1,4 @@
-/* eslint css-modules/no-unused-class: [2, {camelCase: true, markAsUsed: [
-  variant-outlined, variant-dashed, variant-inline, variant-neu, variant-list-item,
-  variant-primary, variant-filled, variant-basic, variant-borderless,
-  size-small, size-large,
-  effect-cursor-tracking, effect-ripple,
-  spacing-equal, spacing-extra, spacing-less, spacing-none
-]}] */
-
-import type {
-  ComponentPropsWithoutRef,
-  MutableRefObject,
-  ReactNode,
-} from "react";
+import type { ComponentPropsWithoutRef, ReactNode, RefObject } from "react";
 
 import { inSubArray } from "@wo-library/js";
 import { overrideStyleProperty } from "@wo-library/web";
@@ -126,9 +114,9 @@ function useButtonEffects({
   neuOptions,
   variant,
 }: {
-  innerRef: MutableRefObject<HTMLButtonElement | null>;
+  innerRef: RefObject<HTMLButtonElement | null>;
 } & SharedButtonProps) {
-  const mouseData = useMouseHovered(innerRef, {
+  const mouseData = useMouseHovered(innerRef as RefObject<Element>, {
     bound: true,
     whenHovered: true,
   });
@@ -246,7 +234,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
         ref={setInnerRef}
         type="button"
-        variant={inSubArray(FORM_CONTROL_VARIANTS, variant)}
+        variant={
+          inSubArray(
+            FORM_CONTROL_VARIANTS,
+            variant,
+          ) as (typeof FORM_CONTROL_VARIANTS)[number]
+        }
         {...props}
       >
         {!!iconBefore && (

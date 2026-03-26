@@ -4,10 +4,10 @@
   "keywords": [
     "stylelint-plugin"
   ],
-  "version": "1.0.0",
+  "version": "3.1.0",
   "type": "module",
   "license": "MIT",
-  "main": "dist/index.cjs",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tiwariav/wo-library.git",
@@ -52,6 +52,6 @@
     "stylelint-find-new-rules": "^6.0.0"
   },
   "peerDependencies": {
-    "stylelint": "^16.5.0"
+    "stylelint": "^17.0.0"
   }
 }

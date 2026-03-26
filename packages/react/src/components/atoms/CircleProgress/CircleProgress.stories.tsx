@@ -25,8 +25,8 @@ const metadata: Meta<typeof CircleProgress> = {
       },
     },
   },
-  title: "Atoms/CircleProgress",
   render: (args) => <CircleProgress {...args} />,
+  title: "Atoms/CircleProgress",
 };
 
 export default metadata;
@@ -37,7 +37,7 @@ export const Basic: Story = {};
 
 export const ArcHeight: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <CircleProgress {...args} />
       <CircleProgress {...args} arcHeight={67} />
       <CircleProgress {...args} arcHeight={50} />
@@ -48,7 +48,7 @@ export const ArcHeight: Story = {
 
 export const Progress: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
       <CircleProgress {...args} progress={[0, 10]} />
       <CircleProgress {...args} />
@@ -59,7 +59,7 @@ export const Progress: Story = {
 
 export const ProgressText: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <CircleProgress {...args} progressText="parts" />
       <CircleProgress {...args} progressText="percent" />
       <CircleProgress {...args} progressText="value" />
@@ -70,7 +70,7 @@ export const ProgressText: Story = {
 
 export const SquareSize: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <CircleProgress {...args} squareSize={16} />
       <CircleProgress {...args} squareSize={48} />
       <CircleProgress {...args} squareSize={200} />
@@ -80,7 +80,7 @@ export const SquareSize: Story = {
 
 export const StrokeWidth: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <CircleProgress {...args} strokeWidth={1} />
       <CircleProgress {...args} />
       <CircleProgress {...args} strokeWidth={5} />
@@ -91,7 +91,7 @@ export const StrokeWidth: Story = {
 
 export const Color: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       <CircleProgress
         {...args}
         innerClassNames={{

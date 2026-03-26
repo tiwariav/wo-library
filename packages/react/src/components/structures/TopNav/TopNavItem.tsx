@@ -13,7 +13,7 @@ export default function TopNavItem({
   className,
   hasSeparator,
   ...props
-}: TopNavItemProps) {
+}: Readonly<TopNavItemProps>) {
   return (
     <div
       className={clsx(

@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "esnext",
-    "lib": ["es2022"],
+    "lib": ["es2022", "dom"],
     "declaration": true,
     "declarationMap": true,
     "outDir": "dist",
@@ -11,5 +11,5 @@
     "composite": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist"]
 }

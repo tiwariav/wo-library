@@ -5,7 +5,7 @@
     transition-duration: 600ms;
     transition-property: opacity, transform;
 
-    @media screen and (prefers-reduced-motion: reduce) {
+    @media (--media-reduced-motion) {
       transition: none;
     }
   }

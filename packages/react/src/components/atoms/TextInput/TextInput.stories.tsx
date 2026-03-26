@@ -17,12 +17,12 @@ const metadata: Meta<typeof TextInput> = {
       },
     },
   },
-  title: "Atoms/TextInput",
   render: (args) => (
     <div style={{ width: 240 }}>
       <TextInput {...args} />
     </div>
   ),
+  title: "Atoms/TextInput",
 };
 
 export default metadata;
@@ -49,7 +49,7 @@ export const WithIcon = {
 
 export const Variants: Story = {
   render: (args) => (
-    <div className="story-grid">
+    <div className="story-list">
       {TEXT_INPUT_VARIANTS.map((variant) => (
         <div key={variant}>
           <TextInput

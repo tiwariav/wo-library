@@ -13,7 +13,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@wo-library/js": ["packages/js/src/index.ts"],
+      "@wo-library/react": ["packages/react/src/index.ts"],
+      "@wo-library/ui": ["packages/ui/src/index.ts"],
+      "@wo-library/web": ["packages/web/src/index.ts"]
+    },
     "jsx": "react-jsx",
     "allowJs": true,
     "esModuleInterop": true,

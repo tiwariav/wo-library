@@ -7,7 +7,7 @@
  * @example
  * ```typescript
  * posixPath("C:\\Users\\docs\\file.txt"); // "C:/Users/docs/file.txt"
- * posixPath("src/utils/index.ts");          // "src/utils/index.ts" (unchanged)
+ * posixPath("src/utilities/index.ts");          // "src/utilities/index.ts" (unchanged)
  * ```
  */
 export function posixPath(path: string) {

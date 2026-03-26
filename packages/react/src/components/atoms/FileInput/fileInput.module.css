@@ -10,15 +10,15 @@
     max-width: 200px;
     margin: auto;
     padding: var(--ye-button-padding);
+    border-color: var(--ye-color-border);
+    border-style: solid;
+    border-width: var(--ye-button-border-width);
+    border-radius: var(--ye-button-border-radius);
 
     line-height: inherit;
     color: inherit;
 
     background-color: var(--ye-color-background);
-    border-color: var(--ye-color-border);
-    border-style: solid;
-    border-width: var(--ye-button-border-width);
-    border-radius: var(--ye-button-border-radius);
     box-shadow: var(--ye-button-shadow);
   }
 
@@ -32,8 +32,8 @@
     }
 
     &:focus + .placeholder {
-      background-color: var(--ye-color-input-focus-placeholder);
       border-color: var(--ye-color-text-anchor-focus);
+      background-color: var(--ye-color-input-focus-placeholder);
       outline: none;
       box-shadow: var(--ye-shadow-inset-none);
     }
@@ -65,14 +65,13 @@
     max-width: 100%;
     margin: var(--ye-spacing-em-normal) 0;
     padding: var(--ye-spacing-rem-small);
-
-    font-size: var(--ye-font-size-xsmall);
-    text-align: left;
-
     border-color: var(--ye-color-border);
     border-style: solid;
     border-width: var(--ye-button-outline-border-width);
     border-radius: var(--ye-radius-normal);
+
+    font-size: var(--ye-font-size-xsmall);
+    text-align: left;
 
     @media (--media-max-sm) {
       flex-direction: column;

@@ -12,7 +12,7 @@ export default function SideNavFooter({
   children,
   hasSeparator,
   ...props
-}: SideNavFooterProps) {
+}: Readonly<SideNavFooterProps>) {
   return (
     <div
       className={clsx(styles.root, {
