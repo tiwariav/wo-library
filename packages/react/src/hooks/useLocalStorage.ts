@@ -25,8 +25,7 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
 
       const parsedItem: unknown = JSON.parse(item);
       return parsedItem as T;
-    } catch (error) {
-      console.error(error);
+    } catch {
       return initialValue;
     }
   }, [initialValue, key]);
@@ -41,8 +40,8 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
         const valueToStore = isFunction(value) ? value(storedValue) : value;
         setStoredValue(valueToStore);
         globalThis.localStorage.setItem(key, JSON.stringify(valueToStore));
-      } catch (error) {
-        console.error(error);
+      } catch {
+        // fail silently
       }
     },
     [key, storedValue],
