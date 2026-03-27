@@ -214,9 +214,9 @@ export class WoFetchBase {
         }),
         true,
       );
-      for (const key of Object.keys(headers)) {
-        xhrObject.setRequestHeader(key, headers.get(key) ?? "");
-      }
+      headers.forEach((value, key) => {
+        xhrObject.setRequestHeader(key, value);
+      });
       xhrObject.send(formData);
     });
   }
