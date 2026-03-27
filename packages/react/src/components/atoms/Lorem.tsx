@@ -19,12 +19,21 @@ export default function Lorem({
         replace: (domNode) => {
           const element = domNode as Element;
           // White-list only allowed tags
-          const allowedTags = ["p", "br", "b", "i", "strong", "em", "div", "span"];
+          const allowedTags = [
+            "p",
+            "br",
+            "b",
+            "i",
+            "strong",
+            "em",
+            "div",
+            "span",
+          ];
 
           if (element.type === "tag") {
             const name = element.name?.toLowerCase() ?? "";
             if (!allowedTags.includes(name)) {
-              return <React.Fragment key={name} />;
+              return null;
             }
             // Strip all attributes
             if (element.attribs && Object.keys(element.attribs).length > 0) {
@@ -32,8 +41,9 @@ export default function Lorem({
             }
           } else if (element.type !== "text") {
             // Remove anything that is not a tag or text (scripts, styles, comments, etc.)
-            return <React.Fragment key={element.type} />;
+            return null;
           }
+          return undefined;
         },
       })}
     </div>
