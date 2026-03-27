@@ -42,8 +42,8 @@ export function rgbToHex(r: number, g: number, b: number) {
  */
 export function hexToRgb(hex: string) {
   const shorthandRegex = /^#?([\da-f])([\da-f])([\da-f])$/i;
-  // eslint-disable-next-line @typescript-eslint/max-params
-  hex = hex.replace(shorthandRegex, (_, r: string, g: string, b: string) => {
+  hex = hex.replace(shorthandRegex, (...args: string[]) => {
+    const [, r, g, b] = args;
     return r + r + g + g + b + b;
   });
 
