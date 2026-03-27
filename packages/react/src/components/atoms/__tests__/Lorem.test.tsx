@@ -10,7 +10,6 @@ describe("Lorem", () => {
 
     // The img, script, and style tags should be stripped
     expect(screen.queryByRole("img")).toBeNull();
-    // For script/style, we check by tag name if possible, or just ensure container is clean
   });
 
   it("security: strips attributes from allowed tags", () => {
