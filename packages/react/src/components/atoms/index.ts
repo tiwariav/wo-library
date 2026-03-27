@@ -42,7 +42,7 @@ export { default as Label } from "./Label.js";
 // Overlays & notifications
 export { default as LoaderWrapper } from "./LoaderWrapper.js";
 // Typography & display
-export { default as Lorem } from "./Lorem.js";
+export { Lorem } from "./Lorem.js";
 
 export { default as Modal } from "./Modal.js";
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Lorem from "./Lorem.js";
+import { Lorem } from "./Lorem.js";
 
 const metadata: Meta<typeof Lorem> = {
   component: Lorem,

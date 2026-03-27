@@ -7,7 +7,7 @@ import { expect, screen, userEvent, within } from "storybook/test";
 import type { ModalProps } from "./Modal.js";
 
 import useStateWithProp from "../../hooks/useStateWithProp.js";
-import Lorem from "./Lorem.js";
+import { Lorem } from "./Lorem.js";
 import Modal from "./Modal.js";
 
 const MODAL_TEXT = "Content inside Modal!";
