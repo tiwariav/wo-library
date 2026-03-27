@@ -1,5 +1,5 @@
 import type { ILoremIpsumParams } from "lorem-ipsum";
-import type { Element, Text } from "html-react-parser";
+import type { Element, DOMNode } from "html-react-parser";
 
 import { defaultImport } from "default-import";
 import _parse from "html-react-parser";
@@ -16,9 +16,7 @@ export default function Lorem({
   return (
     <div>
       {parse(content, {
-        replace: (domNode) => {
-          const element = domNode as Element;
-          // White-list only allowed tags
+        replace: (domNode: DOMNode) => {
           const allowedTags = [
             "p",
             "br",
@@ -30,17 +28,21 @@ export default function Lorem({
             "span",
           ];
 
-          if (element.type === "tag") {
-            const name = element.name.toLowerCase();
-            if (!allowedTags.includes(name)) {
-              return <React.Fragment />;
+          if ("name" in domNode) {
+            const element = domNode as Element;
+            if (!allowedTags.includes(element.name.toLowerCase())) {
+              return null;
             }
             // Strip all attributes
             element.attribs = {};
-          } else if ((domNode as Text).type !== "text") {
-            // Remove anything that is not a tag or text (scripts, styles, comments, etc.)
-            return <React.Fragment />;
+            return undefined;
           }
+
+          if ("data" in domNode) {
+            return undefined;
+          }
+
+          return null;
         },
       })}
     </div>
