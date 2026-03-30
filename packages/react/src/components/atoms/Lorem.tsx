@@ -7,7 +7,7 @@ import { loremIpsum } from "lorem-ipsum";
 
 const parse = defaultImport(_parse);
 
-const allowedTags = ["p", "br", "b", "i", "strong", "em", "div", "span"];
+const allowedTags = new Set(["p", "br", "b", "i", "strong", "em", "div", "span"]);
 
 export default function Lorem({
   format = "html",
@@ -20,7 +20,7 @@ export default function Lorem({
         replace: (domNode: DOMNode) => {
           if ("name" in domNode) {
             const element = domNode as Element;
-            if (!allowedTags.includes(element.name.toLowerCase())) {
+            if (!allowedTags.has(element.name.toLowerCase())) {
               return null;
             }
             // Strip all attributes, then let html-react-parser render the sanitized element
