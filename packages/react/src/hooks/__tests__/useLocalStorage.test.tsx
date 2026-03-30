@@ -1,7 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import useLocalStorage from "../useLocalStorage.js";
 import { expect, describe, it, jest, beforeEach } from "@jest/globals";
-import React from "react";
 
 describe("useLocalStorage", () => {
   const key = "test-key";
@@ -73,7 +72,7 @@ describe("useLocalStorage", () => {
 
     act(() => {
       const event = new StorageEvent("storage", {
-        key: key,
+        key,
         newValue: JSON.stringify(newValue),
       });
       globalThis.dispatchEvent(event);
