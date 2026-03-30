@@ -49,9 +49,11 @@ describe("useLocalStorage", () => {
   });
 
   it("handles localStorage.setItem error gracefully", () => {
-    const setItemSpy = jest.spyOn(globalThis.Storage.prototype, "setItem").mockImplementation(() => {
-      throw new Error("Storage full");
-    });
+    const setItemSpy = jest
+      .spyOn(globalThis.Storage.prototype, "setItem")
+      .mockImplementation(() => {
+        throw new Error("Storage full");
+      });
 
     const { result } = renderHook(() => useLocalStorage(key, initialValue));
     const newValue = { name: "new" };
