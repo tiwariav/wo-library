@@ -7,7 +7,16 @@ import { loremIpsum } from "lorem-ipsum";
 
 const parse = defaultImport(_parse);
 
-const allowedTags = new Set(["p", "br", "b", "i", "strong", "em", "div", "span"]);
+const allowedTags = new Set([
+  "p",
+  "br",
+  "b",
+  "i",
+  "strong",
+  "em",
+  "div",
+  "span",
+]);
 
 export default function Lorem({
   format = "html",
