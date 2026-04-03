@@ -70,12 +70,19 @@ export default function Select<T = string | number>({
 }: Readonly<SelectProps<T>>) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectedOptions = useMemo(() => {
+  const valueSet = useMemo(() => {
     if (multiple && Array.isArray(value)) {
-      return options.filter((opt) => value.includes(opt.value));
+      return new Set(value);
+    }
+    return null;
+  }, [multiple, value]);
+
+  const selectedOptions = useMemo(() => {
+    if (valueSet) {
+      return options.filter((opt) => valueSet.has(opt.value));
     }
     return options.filter((opt) => opt.value === value);
-  }, [multiple, options, value]);
+  }, [options, value, valueSet]);
 
   const displayText = useMemo(() => {
     if (selectedOptions.length === 0) {
@@ -91,26 +98,27 @@ export default function Select<T = string | number>({
     (option: SelectOption<T>) => {
       if (multiple) {
         const currentValues = Array.isArray(value) ? value : [];
-        const newValue = currentValues.includes(option.value)
-          ? currentValues.filter((v) => v !== option.value)
-          : [...currentValues, option.value];
+        const newValue =
+          (valueSet?.has(option.value) ?? false)
+            ? currentValues.filter((v) => v !== option.value)
+            : [...currentValues, option.value];
         onChange?.(newValue);
       } else {
         onChange?.(option.value);
         setIsOpen(false);
       }
     },
-    [multiple, onChange, value],
+    [multiple, onChange, value, valueSet],
   );
 
   const isOptionSelected = useCallback(
     (option: SelectOption<T>) => {
-      if (multiple && Array.isArray(value)) {
-        return value.includes(option.value);
+      if (valueSet) {
+        return valueSet.has(option.value);
       }
       return value === option.value;
     },
-    [multiple, value],
+    [value, valueSet],
   );
 
   const content = (
