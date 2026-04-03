@@ -60,10 +60,16 @@ export function hexToRgb(hex: string) {
 const RGB_BASE = 0xff_ff_ff;
 const MAX_RGB = 255;
 const MAX_ANGLE = 360;
+const UINT32_MAX = 0xff_ff_ff_ff;
+
+function getRandomValue() {
+  const array = new Uint32Array(1);
+  globalThis.crypto.getRandomValues(array);
+  return array[0] / UINT32_MAX;
+}
 
 function getRandomRgb(opacity = 100) {
-  // eslint-disable-next-line sonarjs/pseudo-random
-  const number_ = Math.round(RGB_BASE * Math.random());
+  const number_ = Math.round(RGB_BASE * getRandomValue());
   const r = number_ >> G_SHIFT;
   const g = (number_ >> B_SHIFT) & MAX_RGB;
   const b = number_ & MAX_RGB;
@@ -85,7 +91,6 @@ function getRandomRgb(opacity = 100) {
 export function randomGradientGenerator(opacity: number) {
   const newColor1 = getRandomRgb(opacity);
   const newColor2 = getRandomRgb(opacity);
-  // eslint-disable-next-line sonarjs/pseudo-random
-  const angle = Math.round(Math.random() * MAX_ANGLE);
+  const angle = Math.round(getRandomValue() * MAX_ANGLE);
   return `linear-gradient(${angle}deg, ${newColor1}, ${newColor2})`;
 }
