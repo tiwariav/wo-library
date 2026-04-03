@@ -65,35 +65,38 @@ describe("color tools", () => {
   });
 
   test("randomGradientGenerator produces deterministic shape", () => {
-    const randomSpy = jest
-      .spyOn(Math, "random")
-      .mockReturnValueOnce(0)
-
-      .mockReturnValueOnce(0.5)
-      .mockReturnValueOnce(1);
+    // colors.ts always calls getRandomValues with a Uint32Array(1);
+    // setting element to UINT32_MAX makes getRandomValue() return 1,
+    // so angle = Math.round(1 * 360) = 360.
+    const UINT32_MAX = 0xff_ff_ff_ff;
+    const getRandomValuesSpy = jest
+      .spyOn(globalThis.crypto, "getRandomValues")
+      .mockImplementation(<T extends ArrayBufferView | null>(array: T) => {
+        (array as unknown as Uint32Array)[0] = UINT32_MAX;
+        return array;
+      });
 
     const output = randomGradientGenerator(60);
 
     expect(output).toContain("linear-gradient(360deg");
     expect(output).toContain("/ 60%)");
 
-    randomSpy.mockRestore();
+    getRandomValuesSpy.mockRestore();
   });
 
   test("randomGradientGenerator uses default opacity when undefined", () => {
-    const randomSpy = jest
-      .spyOn(Math, "random")
-
-      .mockReturnValueOnce(0.1)
-
-      .mockReturnValueOnce(0.2)
-
-      .mockReturnValueOnce(0.3);
+    // Any non-zero value suffices here; we only verify the default opacity (100).
+    const getRandomValuesSpy = jest
+      .spyOn(globalThis.crypto, "getRandomValues")
+      .mockImplementation(<T extends ArrayBufferView | null>(array: T) => {
+        (array as unknown as Uint32Array)[0] = 1;
+        return array;
+      });
 
     const output = randomGradientGenerator(undefined as unknown as number);
 
     expect(output).toContain("/ 100%)");
-    randomSpy.mockRestore();
+    getRandomValuesSpy.mockRestore();
   });
 });
 
