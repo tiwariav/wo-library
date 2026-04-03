@@ -1,16 +1,17 @@
-import { render } from "@testing-library/react";
-import Lorem from "../Lorem.js";
-import { expect, describe, it, jest } from "@jest/globals";
-import React from "react";
-import { loremIpsum } from "lorem-ipsum";
+import { describe, expect, it, jest } from "@jest/globals";
 
-jest.mock("lorem-ipsum", () => ({
-  loremIpsum: jest.fn(),
+const mockLoremIpsum = jest.fn<() => string>();
+
+await jest.unstable_mockModule("lorem-ipsum", () => ({
+  loremIpsum: mockLoremIpsum,
 }));
+
+const { render } = await import("@testing-library/react");
+const { default: Lorem } = await import("../Lorem.js");
 
 describe("Lorem", () => {
   it("renders safe tags from loremIpsum", () => {
-    (loremIpsum as jest.Mock).mockReturnValue(
+    mockLoremIpsum.mockReturnValue(
       "<p>Safe text <strong>bold</strong> <em>italic</em></p>",
     );
     const { container } = render(<Lorem />);
@@ -20,7 +21,7 @@ describe("Lorem", () => {
   });
 
   it("removes unsafe tags", () => {
-    (loremIpsum as jest.Mock).mockReturnValue(
+    mockLoremIpsum.mockReturnValue(
       "<p>Safe</p><script>alert('xss')</script><iframe></iframe>",
     );
     const { container } = render(<Lorem />);
@@ -30,7 +31,7 @@ describe("Lorem", () => {
   });
 
   it("strips attributes from allowed tags", () => {
-    (loremIpsum as jest.Mock).mockReturnValue(
+    mockLoremIpsum.mockReturnValue(
       '<p class="danger" onclick="alert(1)">Safe but dirty</p>',
     );
     const { container } = render(<Lorem />);
@@ -40,7 +41,7 @@ describe("Lorem", () => {
   });
 
   it("allows br tags", () => {
-    (loremIpsum as jest.Mock).mockReturnValue("Line 1<br>Line 2");
+    mockLoremIpsum.mockReturnValue("Line 1<br>Line 2");
     const { container } = render(<Lorem />);
     expect(container.innerHTML).toContain("<div>Line 1<br>Line 2</div>");
   });
