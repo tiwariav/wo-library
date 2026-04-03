@@ -98,9 +98,10 @@ export default function Select<T = string | number>({
     (option: SelectOption<T>) => {
       if (multiple) {
         const currentValues = Array.isArray(value) ? value : [];
-        const newValue = (valueSet?.has(option.value) ?? false)
-          ? currentValues.filter((v) => v !== option.value)
-          : [...currentValues, option.value];
+        const newValue =
+          (valueSet?.has(option.value) ?? false)
+            ? currentValues.filter((v) => v !== option.value)
+            : [...currentValues, option.value];
         onChange?.(newValue);
       } else {
         onChange?.(option.value);
