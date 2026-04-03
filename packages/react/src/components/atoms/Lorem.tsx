@@ -1,8 +1,9 @@
 import type { ILoremIpsumParams } from "lorem-ipsum";
 
 import { defaultImport } from "default-import";
-import _parse, { Element } from "html-react-parser";
+import _parse from "html-react-parser";
 import { loremIpsum } from "lorem-ipsum";
+import { Fragment, createElement } from "react";
 
 const parse = defaultImport(_parse);
 
@@ -17,9 +18,9 @@ export default function Lorem({
     <div>
       {parse(content, {
         replace: (domNode) => {
-          if (domNode instanceof Element) {
+          if ("attribs" in domNode) {
             if (!ALLOWED_TAGS.has(domNode.name)) {
-              return null;
+              return createElement(Fragment, null);
             }
             // Strip all attributes to prevent XSS
             domNode.attribs = {};

@@ -314,6 +314,9 @@ importers:
       glob:
         specifier: ^13.0.6
         version: 13.0.6
+      html-react-parser:
+        specifier: ^5.2.17
+        version: 5.2.17(@types/react@19.2.14)(react@19.2.4)
       libphonenumber-js:
         specifier: ^1.12.37
         version: 1.12.37
@@ -480,9 +483,6 @@ importers:
       eslint:
         specifier: ^10.0.0
         version: 10.0.2(jiti@2.6.1)
-      html-react-parser:
-        specifier: ^5.2.17
-        version: 5.2.17(@types/react@19.2.14)(react@19.2.4)
       husky:
         specifier: ^9.1.7
         version: 9.1.7
