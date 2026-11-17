@@ -68,3 +68,4 @@ reports
 
 # Owner-only private notes (source inventory, scrub check)
 local/
+.pnpm-store/

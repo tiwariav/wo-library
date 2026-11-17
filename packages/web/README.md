@@ -94,7 +94,7 @@ Razorpay checkout integration via `razorpayCheckout`.
 ## Related Packages
 
 - [`@wo-library/js`](../js) — pure JS/TS utilities
-- [`@wo-library/react`](../react) — React components and hooks
+- [`packages/registry`](../registry) — shadcn registry source (hooks, themes, ui)
 
 ## License
 

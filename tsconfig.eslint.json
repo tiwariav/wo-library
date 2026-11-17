@@ -11,9 +11,9 @@
   "include": [
     "packages/js/src/**/*",
     "packages/postcss-config/**/*.d.ts",
-    "packages/react/src/**/*",
+    "packages/registry/hooks/**/*",
+    "packages/registry/lib/**/*",
     "packages/storybook/.storybook/**/*.ts",
-    "packages/ui/src/**/*",
     "packages/web/src/**/*"
   ],
   "exclude": ["node_modules", "dist", "coverage", "tmp"]

@@ -22,7 +22,8 @@ and its fate before those packages are deleted.
 | Source | Destination |
 |---|---|
 | `ui/src/svg/paths/{Pin,Flag}.ts` | `js` `svg` module |
-| PhoneNumberInput `getFlagEmoji` (+ phone parse helpers) | `js` phone helpers |
+| PhoneNumberInput `getFlagEmoji` | `js` phone helpers |
+| PhoneNumberInput libphonenumber parse/format | rebuilt with PhoneInput in phase 4 (source still on `legacy-v2`); `getFlagEmoji` is in js |
 | CircleProgress `getProgressClass`, `getCircleStyles` | `js` progress helpers |
 | ArcProgress `getAngles` (+ arc constants) | `js` progress helpers |
 | NumberInput while-typing formatting | already largely in `formatNumber` / `stringToNumber`; any remaining pure helper goes to `js` |

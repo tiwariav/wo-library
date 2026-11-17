@@ -1,6 +1,11 @@
 import type { FormatNumberSuffixOptions } from "../number.js";
 
-import { formatNumber, formatNumberWithSuffix } from "../number.js";
+import {
+  formatNumber,
+  formatNumberWhileTyping,
+  formatNumberWithSuffix,
+  parseFormattedNumber,
+} from "../number.js";
 
 type TestData = [[string, FormatNumberSuffixOptions?], string | undefined][];
 
@@ -111,5 +116,109 @@ describe("format number with suffix", () => {
       [["10000", { fractionDigits: 3, suffix: "Cr" }], "0.001 Cr"],
     ];
     expectResult(tests, true);
+  });
+});
+
+describe("formatNumberWhileTyping", () => {
+  test("returns value unchanged when format is false", () => {
+    expect(formatNumberWhileTyping("1234", false)).toEqual({
+      display: "1234",
+      raw: "1234",
+    });
+  });
+
+  test("keeps trailing decimal and minus while typing", () => {
+    expect(formatNumberWhileTyping("12.", true).display).toBe("12.");
+    expect(formatNumberWhileTyping("-", true).display).toBe("-");
+  });
+
+  test("formats with en-IN grouping", () => {
+    const result = formatNumberWhileTyping("1234567", {
+      fractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    expect(result.display).toBe("12,34,567");
+  });
+
+  test("truncates raw when input exceeds max fraction digits", () => {
+    const result = formatNumberWhileTyping("1.2345", {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+    });
+    expect(result.display).toBe("1.23");
+    expect(result.raw).toBe("1.23");
+  });
+
+  test("truncates to an integer display when max fraction digits is 0", () => {
+    const result = formatNumberWhileTyping("1.9", {
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+    });
+    expect(result.display.includes(".")).toBe(false);
+    expect(result.raw.endsWith(".")).toBe(true);
+  });
+
+  test("formats with boolean true defaults", () => {
+    const result = formatNumberWhileTyping("1000", true);
+    expect(result.display).toContain("1,000");
+  });
+
+  test("uses empty nullValue when value is empty after format path", () => {
+    // empty string short-circuits before formatNumber via endsWith check? ""
+    // does not end with "." and is not "-"; formatNumber("") returns nullValue "".
+    expect(formatNumberWhileTyping("", true)).toEqual({
+      display: "",
+      raw: "",
+    });
+  });
+});
+
+describe("parseFormattedNumber", () => {
+  test("parses formatted display back to a number when parse is true", () => {
+    expect(
+      parseFormattedNumber({
+        emptyValue: "",
+        format: true,
+        formattedValue: "1,234.50",
+        parse: true,
+        textValue: "1234.50",
+      }),
+    ).toBe(1234.5);
+  });
+
+  test("returns emptyValue when text is empty", () => {
+    expect(
+      parseFormattedNumber({
+        emptyValue: null,
+        format: true,
+        formattedValue: "",
+        parse: true,
+        textValue: "",
+      }),
+    ).toBeNull();
+  });
+
+  test("returns textValue when format is false", () => {
+    expect(
+      parseFormattedNumber({
+        emptyValue: "",
+        format: false,
+        formattedValue: "1,234",
+        parse: false,
+        textValue: "1234",
+      }),
+    ).toBe("1234");
+  });
+
+  test("stringifies when parse is false and value is present", () => {
+    expect(
+      parseFormattedNumber({
+        emptyValue: "",
+        format: true,
+        formattedValue: "1,234",
+        parse: false,
+        textValue: "1234",
+      }),
+    ).toBe("1234");
   });
 });

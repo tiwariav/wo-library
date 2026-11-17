@@ -1,4 +1,11 @@
-import { isFinite, isNil, isNumber, isString } from "lodash-es";
+import {
+  isEmpty,
+  isFinite,
+  isNil,
+  isNumber,
+  isObject,
+  isString,
+} from "lodash-es";
 
 /**
  * Converts a string or number value to a number. Strips commas from string values.
@@ -168,4 +175,91 @@ export function ordinalNumber(value: number) {
     return CARDINAL_MAP[value];
   }
   return `${value}th`;
+}
+
+/**
+ * Formats a numeric string while the user is typing (en-IN), truncating the raw
+ * value when it exceeds the configured fraction digits.
+ *
+ * Returns the display string and the (possibly truncated) raw text to keep in
+ * sync with a controlled input.
+ *
+ * @param value - Current input text.
+ * @param format - Formatting options, or `true` for defaults, or `false` to
+ *   return the value unchanged.
+ */
+function truncateRawToDisplay(value: string, display: string): string {
+  const inputDecimals =
+    (value.split(".")[1] as string | undefined)?.length ?? 0;
+  const displayDecimals =
+    (display.split(".")[1] as string | undefined)?.length ?? 0;
+  if (inputDecimals <= displayDecimals) {
+    return value;
+  }
+  const [integerPart] = value.split(".") as [string, string | undefined];
+  return `${integerPart}.${(display.split(".")[1] as string | undefined) ?? ""}`;
+}
+
+export function formatNumberWhileTyping(
+  value: string,
+  format: FormatNumberOptions | boolean,
+): { display: string; raw: string } {
+  if (!format || value.endsWith(".") || value === "-") {
+    return { display: value, raw: value };
+  }
+
+  const newValueDecimals =
+    (value.split(".")[1] as string | undefined)?.length ?? 0;
+  const formatOptions: FormatNumberOptions = isObject(format) ? format : {};
+  const maxDecimals = formatOptions.maximumFractionDigits ?? 2;
+  const display = formatNumber(value, {
+    nullValue: value ? "0" : "",
+    ...formatOptions,
+    minimumFractionDigits:
+      formatOptions.minimumFractionDigits ??
+      Math.min(newValueDecimals, maxDecimals),
+  });
+
+  return { display, raw: truncateRawToDisplay(value, display) };
+}
+
+/**
+ * Parses a formatted number display value back to a form value.
+ *
+ * @param options.formattedValue - Current display / DOM value.
+ * @param options.textValue - Raw text tracked while typing.
+ * @param options.format - Whether / how formatting was applied.
+ * @param options.parse - When `true`, return a number (or empty); otherwise a string.
+ * @param options.emptyValue - Value used when the input is empty.
+ */
+// eslint-disable-next-line sonarjs/function-return-type -- mirrors NumberInput: number | string | empty
+export function parseFormattedNumber({
+  emptyValue,
+  format,
+  formattedValue,
+  parse,
+  textValue,
+}: {
+  emptyValue: NumberLike;
+  format: FormatNumberOptions | boolean;
+  formattedValue: NumberLike;
+  parse: boolean;
+  textValue: NumberLike;
+}): NumberLike {
+  let unformattedValue: NumberLike;
+  if (isEmpty(textValue)) {
+    unformattedValue = emptyValue;
+  } else if (format) {
+    unformattedValue = stringToNumber(
+      formattedValue as string,
+      emptyValue as number,
+    );
+  } else {
+    unformattedValue = textValue;
+  }
+
+  if (parse || isNil(unformattedValue)) {
+    return unformattedValue;
+  }
+  return String(unformattedValue);
 }

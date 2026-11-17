@@ -7,9 +7,7 @@
     "projectsRelationship": "independent",
     "projects": [
       "@wo-library/js",
-      "@wo-library/react",
       "@wo-library/web",
-      "@wo-library/ui",
       "@wo-library/eslint-config",
       "@wo-library/postcss-config",
       "@wo-library/stylelint-config",

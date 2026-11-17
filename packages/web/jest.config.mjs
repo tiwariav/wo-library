@@ -6,6 +6,7 @@ const config = {
     "src/tools/css.ts",
     "src/tools/loadStylesheet.ts",
     "src/tools/svg.ts",
+    "src/tools/uploadFile.ts",
     "src/tools/error/index.ts",
     "src/tools/others/index.ts",
   ],

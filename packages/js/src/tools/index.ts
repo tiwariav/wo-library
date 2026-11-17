@@ -22,7 +22,13 @@ export * from "./objects.js";
 // File path utilities (posixPath)
 export * from "./path.js";
 
-// SVG geometry utilities (polarToCartesian, describeArc)
+// Phone helpers (getFlagEmoji, parsePhoneNumberSafe, formatPhoneAsYouType)
+export * from "./phone.js";
+
+// Progress geometry helpers (getCircleStyles, getArcSegmentAngles, …)
+export * from "./progress.js";
+
+// SVG geometry and path data (polarToCartesian, describeArc, pin/flag paths)
 export * from "./svg.js";
 
 // General purpose utilities (isEmpty, inSubArray)

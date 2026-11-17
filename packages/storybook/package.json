@@ -35,8 +35,7 @@
   },
   "dependencies": {
     "@wo-library/js": "workspace:^",
-    "@wo-library/react": "workspace:^",
-    "@wo-library/ui": "workspace:^",
+    "@wo-library/registry": "workspace:^",
     "@wo-library/web": "workspace:^",
     "chromatic": "^15.2.0"
   }

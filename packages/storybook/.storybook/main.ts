@@ -1,22 +1,18 @@
 import { existsSync } from "node:fs";
-import type { StorybookConfig } from "@storybook/react-webpack5";
-import type { Configuration } from "webpack";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import type { StorybookConfig } from "@storybook/react-webpack5";
+import type { Configuration } from "webpack";
 
 const isDev = process.env.NODE_ENV === "development";
 const storybookDir = dirname(fileURLToPath(import.meta.url));
 const docsDir = resolve(storybookDir, "../src/docs");
-const mediaFile = resolve(storybookDir, "../../ui/src/styles/media.css");
 
 const stories = [
   resolve(
     storybookDir,
-    "../../../packages/react/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-  ),
-  resolve(
-    storybookDir,
-    "../../../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    "../../../packages/registry/**/*.stories.@(js|jsx|ts|tsx|mdx)",
   ),
   resolve(
     storybookDir,
@@ -38,7 +34,6 @@ const config: StorybookConfig = {
       name: "@storybook/addon-styling-webpack",
       options: {
         rules: [
-          // Replaces existing CSS rules to support CSS Modules
           {
             sideEffects: true,
             test: /\.css$/,
@@ -61,7 +56,6 @@ const config: StorybookConfig = {
                 options: {
                   postcssOptions: {
                     plugins: [
-                      ["@csstools/postcss-global-data", { files: [mediaFile] }],
                       "postcss-mixins",
                       [
                         "postcss-preset-env",
@@ -115,7 +109,6 @@ const config: StorybookConfig = {
     },
   }),
   webpackFinal: async (config: Configuration) => {
-    // Add extension aliases for better TypeScript resolution
     if (config.resolve) {
       config.resolve.extensionAlias = {
         ".cjs": [".cts", ".cjs"],

@@ -21,3 +21,11 @@ export * as storage from "./storage/index.js";
 
 // SVG node serialization utilities (svgNodeToData, responseTextToData)
 export * as svg from "./svg.js";
+
+// Upload file status model
+export {
+  UploadFile,
+  UPLOAD_FILE_STATUS,
+  type UploadFileData,
+  type UploadFileInitOptions,
+} from "./uploadFile.js";

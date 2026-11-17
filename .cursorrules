@@ -1,0 +1,11 @@
+# wo-library Cursor Rules
+
+Follow `.ai/instructions.md` and the active plan in `docs/plans/v3-plan.md` (plan wins on conflict).
+
+- Named exports only; TypeScript strict; no `any`
+- Utilities: `@wo-library/js` (pure) and `@wo-library/web` (browser)
+- UI/hooks for apps: `packages/registry` (copy-paste / shadcn), not a published React package
+- No CSS Modules or atomic-design trees
+- Number formatting uses `en-IN`
+- Use `lodash-es`, never `lodash`
+- Never push to `main` unless the owner asks in this session
