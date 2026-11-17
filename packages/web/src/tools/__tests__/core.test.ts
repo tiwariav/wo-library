@@ -62,7 +62,7 @@ describe("script and stylesheet loaders", () => {
     const src = "https://cdn.example.com/new.js";
     const promise = loadScript(src, { "data-kind": "sdk" });
     const script = document.querySelector(
-      `script[src="${src}"]`,
+      `script[src="${CSS.escape(src)}"]`,
     ) as HTMLScriptElement;
 
     expect(script).toBeTruthy();
@@ -76,7 +76,7 @@ describe("script and stylesheet loaders", () => {
     const src = "https://cdn.example.com/fail.js";
     const promise = loadScript(src);
     const script = document.querySelector(
-      `script[src="${src}"]`,
+      `script[src="${CSS.escape(src)}"]`,
     ) as HTMLScriptElement;
 
     script.dispatchEvent(new Event("error"));
@@ -92,18 +92,19 @@ describe("script and stylesheet loaders", () => {
     const src = "https://cdn.example.com/nonce.js";
     const promise = loadScript(src);
     const script = document.querySelector(
-      `script[src="${src}"]`,
+      `script[src="${CSS.escape(src)}"]`,
     ) as HTMLScriptElement;
     expect(script.getAttribute("nonce")).toBe("nonce-123");
     script.dispatchEvent(new Event("load"));
     await expect(promise).resolves.toBe(true);
+    meta.remove();
   });
 
   test("loadStylesheet appends and resolves", async () => {
     const href = "https://cdn.example.com/main.css";
     const promise = loadStylesheet(href);
     const link = document.querySelector(
-      `link[href="${href}"]`,
+      `link[href="${CSS.escape(href)}"]`,
     ) as HTMLLinkElement;
 
     expect(link).toBeTruthy();
@@ -125,7 +126,7 @@ describe("script and stylesheet loaders", () => {
     const href = "https://cdn.example.com/fail.css";
     const promise = loadStylesheet(href);
     const link = document.querySelector(
-      `link[href="${href}"]`,
+      `link[href="${CSS.escape(href)}"]`,
     ) as HTMLLinkElement;
 
     link.dispatchEvent(new Event("error"));
@@ -144,7 +145,7 @@ describe("script and stylesheet loaders", () => {
     const href = "https://cdn.example.com/nonce.css";
     const promise = loadStylesheet(href);
     const link = document.querySelector(
-      `link[href="${href}"]`,
+      `link[href="${CSS.escape(href)}"]`,
     ) as HTMLLinkElement;
     expect(link.getAttribute("nonce")).toBe("nonce-456");
     link.dispatchEvent(new Event("load"));
@@ -218,8 +219,8 @@ describe("storage helpers", () => {
     expect(storage.STORAGE_ENVIRONMENTS).toEqual(["mobile", "server", "web"]);
     expect(storage.STORAGE_TYPES).toEqual(["persist", "session", "temp"]);
 
-    const nativeLocalStorage = globalThis.localStorage;
-    const nativeSessionStorage = globalThis.sessionStorage;
+    const nativeLocalStorage = localStorage;
+    const nativeSessionStorage = sessionStorage;
     Object.defineProperty(globalThis, "localStorage", {
       configurable: true,
       value: undefined,

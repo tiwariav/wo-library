@@ -13,7 +13,7 @@ function createScriptElement(
   const script = document.createElement("script");
   script.src = source;
   const nonceMeta: HTMLMetaElement | null = document.head.querySelector(
-    "[property~=csp-nonce][content]",
+    '[property~="csp-nonce"][content]',
   );
   if (nonceMeta) {
     script.setAttribute("nonce", nonceMeta.content);
@@ -48,7 +48,9 @@ export default function loadScript(
     if (typeof document === "undefined") {
       return;
     }
-    const existingScript = document.querySelector(`script[src="${source}"]`);
+    const existingScript = document.querySelector(
+      `script[src="${CSS.escape(source)}"]`,
+    );
     if (existingScript) {
       resolve(true);
     } else {

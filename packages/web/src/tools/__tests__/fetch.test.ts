@@ -1,4 +1,4 @@
-import { jest } from "@jest/globals";
+import { vi } from "vitest";
 
 import { WoNetworkError, WoResponseError } from "../error/index.js";
 import {
@@ -41,10 +41,9 @@ class MockResponse {
   }
 
   async json() {
-    if (typeof this.payload === "string") {
-      return JSON.parse(this.payload) as unknown;
-    }
-    return this.payload;
+    return typeof this.payload === "string"
+      ? (JSON.parse(this.payload) as unknown)
+      : this.payload;
   }
 
   async text() {
@@ -62,7 +61,7 @@ beforeAll(() => {
   });
   Object.defineProperty(globalThis, "fetch", {
     configurable: true,
-    value: jest.fn(),
+    value: vi.fn(),
     writable: true,
   });
 });
@@ -132,9 +131,9 @@ describe("fetch helpers", () => {
   });
 
   test("handleReadyStateChange resolves and rejects by status", () => {
-    const onState = jest.fn();
-    const reject = jest.fn();
-    const resolve = jest.fn();
+    const onState = vi.fn();
+    const reject = vi.fn();
+    const resolve = vi.fn();
 
     const xhrObject = {
       readyState: 2,
@@ -211,7 +210,7 @@ describe("error and response handlers", () => {
   });
 
   test("response handlers parse successful values and call error handler", async () => {
-    const errorHandler = jest.fn(async () => undefined);
+    const errorHandler = vi.fn(async () => undefined);
 
     const okJson = new MockResponse(JSON.stringify({ ok: true }), {
       headers: { [CONTENT_TYPE_HEADER]: CONTENT_TYPE_JSON },
@@ -263,7 +262,7 @@ describe("WoFetchBase", () => {
   });
 
   test("getHeaders injects auth token and content-type", async () => {
-    const spy = jest
+    const spy = vi
       .spyOn(anyStorageInstance, "getItem")
       .mockResolvedValue("token");
     const instance = new WoFetchBase({ endpoint: "https://api.example.com" });
@@ -277,14 +276,14 @@ describe("WoFetchBase", () => {
 
   test("fetchUrl calls fetch and custom response handler", async () => {
     const instance = new WoFetchBase({ endpoint: "https://api.example.com" });
-    const fetchSpy = jest.spyOn(globalThis, "fetch").mockResolvedValue(
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new MockResponse(JSON.stringify({ ok: true }), {
         headers: { [CONTENT_TYPE_HEADER]: CONTENT_TYPE_JSON },
         status: HTTP_STATUS.ok,
       }) as unknown as Response,
     );
 
-    const responseHandler = jest.fn(async () => ({ ok: true }));
+    const responseHandler = vi.fn(async () => ({ ok: true }));
     await expect(
       instance.fetchUrl("GET", "/resource", {
         responseHandler: responseHandler as never,
@@ -297,10 +296,10 @@ describe("WoFetchBase", () => {
 
   test("fetchUrl catch path invokes error handler and returns fallback response", async () => {
     const instance = new WoFetchBase({ endpoint: "https://api.example.com" });
-    const fetchSpy = jest
+    const fetchSpy = vi
       .spyOn(globalThis, "fetch")
       .mockRejectedValue(new Error("down"));
-    const errorHandler = jest.fn(async () => undefined);
+    const errorHandler = vi.fn(async () => undefined);
 
     const output = await instance.fetchUrl("GET", "/resource", {
       errorHandler,
@@ -313,7 +312,7 @@ describe("WoFetchBase", () => {
 
   test("generateFetchMethod delegates request method", async () => {
     const instance = new WoFetchBase({ endpoint: "https://api.example.com" });
-    const spy = jest
+    const spy = vi
       .spyOn(instance, "fetchUrl")
       .mockResolvedValue({ ok: true } as never);
 

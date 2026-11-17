@@ -1,4 +1,4 @@
-import { jest } from "@jest/globals";
+import { vi } from "vitest";
 import * as rootExports from "../../index.js";
 import { INPUT_DEBOUNCE } from "../constants/index.js";
 import {
@@ -65,7 +65,7 @@ describe("color tools", () => {
   });
 
   test("randomGradientGenerator produces deterministic shape", () => {
-    const randomSpy = jest
+    const randomSpy = vi
       .spyOn(Math, "random")
       .mockReturnValueOnce(0)
 
@@ -81,7 +81,7 @@ describe("color tools", () => {
   });
 
   test("randomGradientGenerator uses default opacity when undefined", () => {
-    const randomSpy = jest
+    const randomSpy = vi
       .spyOn(Math, "random")
 
       .mockReturnValueOnce(0.1)
@@ -111,19 +111,19 @@ describe("language and misc tools", () => {
   });
 
   test("wait resolves after timeout", async () => {
-    jest.useFakeTimers();
-    const resolved = jest.fn();
+    vi.useFakeTimers();
+    const resolved = vi.fn();
 
     const promise = wait(50).then(resolved);
 
-    jest.advanceTimersByTime(49);
+    vi.advanceTimersByTime(49);
     await Promise.resolve();
     expect(resolved).not.toHaveBeenCalled();
 
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     await promise;
     expect(resolved).toHaveBeenCalledTimes(1);
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 });
 

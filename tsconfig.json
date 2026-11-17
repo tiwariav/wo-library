@@ -3,7 +3,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -12,12 +12,11 @@
     "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
-      "@wo-library/js": ["packages/js/src/index.ts"],
-      "@wo-library/registry/hooks": ["packages/registry/hooks/index.ts"],
-      "@wo-library/registry/lib": ["packages/registry/lib/index.ts"],
-      "@wo-library/web": ["packages/web/src/index.ts"]
+      "@wo-library/js": ["./packages/js/src/index.ts"],
+      "@wo-library/registry/hooks": ["./packages/registry/hooks/index.ts"],
+      "@wo-library/registry/lib": ["./packages/registry/lib/index.ts"],
+      "@wo-library/web": ["./packages/web/src/index.ts"]
     },
     "jsx": "react-jsx",
     "allowJs": true,

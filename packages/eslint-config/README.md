@@ -1,8 +1,8 @@
 # @wo-library/eslint-config
 
 Shareable ESLint configuration for the wo-library monorepo and consuming projects.
-Covers TypeScript, React, JSX accessibility, CSS Modules, i18n (FormatJS), testing,
-and code-quality rules.
+Covers TypeScript, React, JSX accessibility, i18n (FormatJS), testing, and
+code-quality rules.
 
 ## Installation
 
@@ -45,7 +45,6 @@ The config extends recommended configs from:
 Supporting modern ESLint config
 
 - eslint-config-prettier
-- eslint-config-react-app
 - eslint-plugin-compat
 - eslint-plugin-formatjs
 - eslint-plugin-jest
@@ -53,6 +52,7 @@ Supporting modern ESLint config
 - @eslint-react/eslint-plugin
 - eslint-plugin-testing-library
 - eslint-plugin-unicorn
+- eslint-plugin-jsx-a11y
 
 No direct preset support used
 

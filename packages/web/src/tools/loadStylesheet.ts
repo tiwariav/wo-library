@@ -11,7 +11,7 @@ function createStyleElement(source: string) {
   style.type = "text/css";
   style.href = source;
   const nonceMeta: HTMLMetaElement | null = document.head.querySelector(
-    "[property~=csp-nonce][content]",
+    '[property~="csp-nonce"][content]',
   );
   if (nonceMeta) {
     style.setAttribute("nonce", nonceMeta.content);
@@ -35,7 +35,9 @@ function createStyleElement(source: string) {
  */
 export default function loadStylesheet(source: string) {
   return new Promise((resolve) => {
-    const existingStyle = document.querySelector(`link[href="${source}"]`);
+    const existingStyle = document.querySelector(
+      `link[href="${CSS.escape(source)}"]`,
+    );
     if (existingStyle) {
       resolve(true);
     } else {

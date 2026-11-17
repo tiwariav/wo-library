@@ -10,11 +10,13 @@
   },
   "include": [
     "packages/js/src/**/*",
+    "packages/js/*.config.ts",
     "packages/postcss-config/**/*.d.ts",
     "packages/registry/hooks/**/*",
     "packages/registry/lib/**/*",
     "packages/storybook/.storybook/**/*.ts",
-    "packages/web/src/**/*"
+    "packages/web/src/**/*",
+    "packages/web/*.config.ts"
   ],
   "exclude": ["node_modules", "dist", "coverage", "tmp"]
 }

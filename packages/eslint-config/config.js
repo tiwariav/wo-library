@@ -1,7 +1,6 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
-import craConfig from "eslint-config-react-app";
 import compatPlugin from "eslint-plugin-compat";
 import formatjsPlugin from "eslint-plugin-formatjs";
 import jest from "eslint-plugin-jest";
@@ -14,14 +13,6 @@ import unicorn from "eslint-plugin-unicorn";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
-
-function removeKeysStartingWith(object, prefixes) {
-  return Object.fromEntries(
-    Object.entries(object).filter(
-      ([key]) => !prefixes.some((prefix) => key.startsWith(prefix)),
-    ),
-  );
-}
 
 const settings = { lintAllEsApis: true, react: { version: "detect" } };
 
@@ -59,7 +50,7 @@ export default defineConfig([
   compatPlugin.configs["flat/recommended"],
   eslintReact.configs["recommended-typescript"],
   prettier,
-  unicorn.configs["flat/recommended"],
+  unicorn.configs.recommended,
   jest.configs["flat/recommended"],
   {
     languageOptions: {
@@ -79,17 +70,10 @@ export default defineConfig([
       ...lodashPlugin.configs.recommended.rules,
       ...sonarjsPlugin.configs.recommended.rules,
       ...testingLibraryPlugin.configs.react.rules,
-      ...removeKeysStartingWith(craConfig.rules, [
-        "css-modules/",
-        "flowtype/",
-        "import/",
-        "react/",
-        "react-hooks/",
-      ]),
       "@eslint-react/exhaustive-deps": "error",
+      "@eslint-react/jsx-no-useless-fragment": "error",
       "@eslint-react/no-nested-component-definitions": "error",
       "@eslint-react/no-unstable-context-value": "error",
-      "@eslint-react/no-useless-fragment": "error",
       "@eslint-react/rules-of-hooks": "error",
       "class-methods-use-this": "error",
       curly: "warn",
@@ -160,6 +144,7 @@ export default defineConfig([
       "sonarjs/cognitive-complexity": "error",
       "sonarjs/no-inverted-boolean-check": "warn",
       "testing-library/render-result-naming-convention": "off",
+      "unicorn/consistent-class-member-order": "off",
       "unicorn/consistent-destructuring": "error",
       "unicorn/custom-error-definition": "error",
       "unicorn/filename-case": [
@@ -169,34 +154,20 @@ export default defineConfig([
             camelCase: true,
             pascalCase: true,
           },
+          ignore: ["^__tests__$", ".*-config$"],
         },
       ],
+      "unicorn/name-replacements": "off",
+      "unicorn/no-asterisk-prefix-in-documentation-comments": "off",
       "unicorn/no-nested-ternary": "off",
       "unicorn/no-null": "off",
       "unicorn/no-unused-properties": "error",
       "unicorn/number-literal-case": "off",
+      "unicorn/prefer-object-define-properties": "off",
       "unicorn/prefer-top-level-await": "off",
-      "unicorn/prevent-abbreviations": [
-        "error",
-        {
-          checkFilenames: false,
-          replacements: {
-            arg: { argument: false },
-            args: { arguments: false },
-            dev: { development: false },
-            env: { environment: false },
-            envs: { environments: false },
-            param: { parameter: false },
-            params: { parameters: false },
-            prop: { property: false },
-            props: { properties: false },
-            ref: { reference: false },
-            refs: { references: false },
-            temp: { temporary: false },
-            tmp: { temp: true },
-          },
-        },
-      ],
+      "unicorn/prefer-url-href": "off",
+      "unicorn/prevent-abbreviations": "off",
+      "unicorn/single-line-block-comment-style": "off",
     },
     settings,
   },
@@ -209,11 +180,6 @@ export default defineConfig([
       },
     },
     rules: {
-      ...removeKeysStartingWith(craConfig.overrides[0].rules, [
-        "css-modules/",
-        "react/",
-        "react-hooks/",
-      ]),
       "@typescript-eslint/class-methods-use-this": "error",
       "@typescript-eslint/consistent-type-exports": "error",
       "@typescript-eslint/consistent-type-imports": "error",
@@ -320,24 +286,20 @@ export default defineConfig([
       "max-lines": "off",
       "max-statements": "off",
       "require-await": "off",
+      "sonarjs/no-floating-point-equality": "off",
+      "sonarjs/prefer-specific-assertions": "off",
       "unicorn/no-array-for-each": "off",
       "unicorn/no-useless-undefined": "off",
+      "unicorn/prefer-await": "off",
       "unicorn/prevent-abbreviations": "off",
-    },
-  },
-  {
-    files: ["**/tools/node/**/*.js", "**/tools/rollup/**/*.js"],
-    rules: {
-      "compat/compat": "off",
     },
   },
   {
     files: [
       "**/eslint.config.{js,mjs}",
-      "**/*.config.{js,mjs}",
-      "**/rollup.config.js",
-      "**/babel.config.mjs",
-      "**/jest.config.{js,mjs}",
+      "**/*.{config,setup}.{js,mjs,ts}",
+      "**/vitest.config.ts",
+      "**/tsdown.config.ts",
     ],
     ...tsEslint.configs.disableTypeChecked,
   },

@@ -22,7 +22,7 @@ export * from "./objects.js";
 // File path utilities (posixPath)
 export * from "./path.js";
 
-// Phone helpers (getFlagEmoji, parsePhoneNumberSafe, formatPhoneAsYouType)
+// Phone helpers (getFlagEmoji)
 export * from "./phone.js";
 
 // Progress geometry helpers (getCircleStyles, getArcSegmentAngles, …)
