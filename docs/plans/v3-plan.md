@@ -1,6 +1,6 @@
 # wo-library v3: utility packages + shadcn registry
 
-**Status: APPROVED by the owner on 2026-11-16. Phase 0 in progress / largely done — see progress log.**
+**Status: APPROVED by the owner on 2026-11-16. Phase 0 done — see progress log. Phase 1 next.**
 This is the single source of truth for the v3 rework. Any agent may pick it up: read it in full, then read the
 progress log at the bottom and continue from the first phase that is not marked done.
 
@@ -205,4 +205,4 @@ Every file ported from private code follows these rules:
 | Date | Phase | Done | Commits | Left over |
 |---|---|---|---|---|
 | 2026-11-16 | — | Plan approved and committed | (this commit) | Phase 0 next |
-| 2026-11-17 | 0 | Tagged `legacy-v2`; wrote `docs/plans/v3-phase0-salvage.md`; salvaged hooks/lib/themes into `packages/registry`, `UploadFile` into web, SVG paths + progress/phone/number helpers into js; deleted `packages/react`, `packages/ui`, rollup-plugin-postcss patch and `*_build.txt`; updated README/ARCHITECTURE/AI instructions/ai-context/storybook | (see git log; tag `legacy-v2` = `4b5b6d7`) | Confirm Storybook still serves registry+web stories; phase 1 toolchain next. Phone parse helpers deferred to phase 4 PhoneInput (Jest cannot load libphonenumber metadata). |
+| 2026-11-17 | 0 | Tagged `legacy-v2`; wrote salvage inventory; salvaged hooks/lib/themes into `packages/registry`, `UploadFile` into web, SVG/progress/phone/number helpers into js; deleted `packages/react` + `packages/ui` (+ patch/`*_build.txt`); updated README/ARCHITECTURE/AI docs/storybook | `cf6ef65`, `0ec25f9`; tag `legacy-v2` → `4b5b6d7` | Phase 0 complete. Next: phase 1 toolchain. Smoke-check Storybook for registry+web. Phone parse/format stays for phase 4 PhoneInput (Jest cannot load libphonenumber metadata). |
