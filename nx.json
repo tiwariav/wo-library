@@ -8,6 +8,7 @@
     "projects": [
       "@wo-library/js",
       "@wo-library/web",
+      "@wo-library/node",
       "@wo-library/eslint-config",
       "@wo-library/oxlint-config",
       "@wo-library/postcss-config",

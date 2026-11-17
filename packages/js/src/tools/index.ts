@@ -16,6 +16,12 @@ export * from "./misc.js";
 // Number formatting and conversion (formatNumber, formatNumberWithSuffix, ordinalNumber, stringToNumber)
 export * from "./number.js";
 
+// Indian grouping and display presets (groupIndian, formatCount, formatWithUnit, …)
+export * from "./indianNumber.js";
+
+// Relative / exact time labels (formatRelativeTime, formatShortAge, formatExactTime)
+export * from "./relativeTime.js";
+
 // Object manipulation utilities (pushOrCreate, getNestedValue)
 export * from "./objects.js";
 

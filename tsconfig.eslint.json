@@ -11,6 +11,8 @@
   "include": [
     "packages/js/src/**/*",
     "packages/js/*.config.ts",
+    "packages/node/src/**/*",
+    "packages/node/*.config.ts",
     "packages/postcss-config/**/*.d.ts",
     "packages/registry/hooks/**/*",
     "packages/registry/lib/**/*",
