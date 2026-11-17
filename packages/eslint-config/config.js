@@ -167,6 +167,7 @@ export default defineConfig([
       "unicorn/prefer-top-level-await": "off",
       "unicorn/prefer-url-href": "off",
       "unicorn/prevent-abbreviations": "off",
+      "unicorn/require-css-escape": "off",
       "unicorn/single-line-block-comment-style": "off",
     },
     settings,

@@ -4,7 +4,7 @@ module.exports = {
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        importFrom: ["./packages/ui/src/styles/base.css"],
+        importFrom: ["./packages/registry/themes/fresh.css"],
       },
     ],
   },

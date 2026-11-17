@@ -115,23 +115,14 @@ export class WoFetchBase {
       this.fetchUrl<TData>(method, path, options);
   }
 
-  async getHeaders({
-    headers = {},
-    requireAuth = true,
-    token,
-  }: {
+  async getHeaders(options?: {
     headers?: Record<string, string>;
     requireAuth?: boolean;
     token?: string;
     xhr?: false;
-  } = {}): Promise<Headers>;
+  }): Promise<Headers>;
 
-  async getHeaders({
-    headers = {},
-    requireAuth = true,
-    token,
-    xhr,
-  }: {
+  async getHeaders(options: {
     headers?: Record<string, string>;
     requireAuth?: boolean;
     token?: string;
@@ -150,7 +141,7 @@ export class WoFetchBase {
     xhr?: boolean;
   } = {}): Promise<Headers | Map<string, string>> {
     const allHeaders: Record<string, string> = merge({}, headers);
-    if (!(CONTENT_TYPE_HEADER in allHeaders)) {
+    if (!Object.hasOwn(allHeaders, CONTENT_TYPE_HEADER)) {
       allHeaders[CONTENT_TYPE_HEADER] = CONTENT_TYPE_JSON;
     }
     if (requireAuth && this.tokenName) {
@@ -185,20 +176,18 @@ export class WoFetchBase {
     return new Promise((resolve, reject) => {
       // add event listeners to xhrObj
       if (loadStartFunction) {
-        xhrObject.upload.addEventListener(
-          "loadstart",
-          loadStartFunction,
-          false,
-        );
+        xhrObject.upload.addEventListener("loadstart", loadStartFunction, {
+          capture: false,
+        });
       }
 
-      xhrObject.upload.addEventListener("progress", progressFunction, false);
+      xhrObject.upload.addEventListener("progress", progressFunction, {
+        capture: false,
+      });
       if (transferCompleteFunction) {
-        xhrObject.upload.addEventListener(
-          "load",
-          transferCompleteFunction,
-          false,
-        );
+        xhrObject.upload.addEventListener("load", transferCompleteFunction, {
+          capture: false,
+        });
       }
 
       xhrObject.addEventListener(

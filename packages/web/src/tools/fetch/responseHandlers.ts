@@ -17,13 +17,11 @@ export async function jsonResponseHandler<TResponseData = object>(
 ): Promise<TResponseData> {
   if (!response.ok) {
     // request not successful, call errorHandler with request param
-    await errorHandler<TResponseData>(response);
+    await errorHandler(response);
   }
-  if (response.status === HTTP_STATUS.noContent) {
-    // no content
-    return {} as TResponseData;
-  }
-  return (await response.json()) as TResponseData;
+  return (
+    response.status === HTTP_STATUS.noContent ? {} : await response.json()
+  ) as TResponseData;
 }
 
 /**

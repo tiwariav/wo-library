@@ -12,6 +12,5 @@
   "output": "./reports/jscpd/",
   "reporters": ["html", "json"],
   "silent": true,
-  "store": "leveldb",
   "threshold": 0
 }

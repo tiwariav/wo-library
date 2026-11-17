@@ -74,4 +74,5 @@ local/
 .claude/settings.local.json
 .nx/polygraph
 .nx/self-healing
-.nx/migrate-runstools/ai-migrations/
+.nx/migrate-runs
+tools/ai-migrations/

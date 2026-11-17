@@ -54,6 +54,7 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@types/micromatch": "^4.0.10",
+    "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.1.0",
     "tsdown": "^0.23.7",
     "typescript": "^7.0.2",
