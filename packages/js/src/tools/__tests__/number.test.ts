@@ -24,7 +24,7 @@ function expectResult(tests: TestData, withSuffix?: boolean) {
   }
 }
 
-const DECIMAL_NUMBER = 85_752.384_823_3;
+const DECIMAL_NUMBER = 85_752.3848233;
 
 describe("format number options", () => {
   test("max fraction digit 0", () => {

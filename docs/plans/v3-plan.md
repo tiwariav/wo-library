@@ -1,6 +1,6 @@
 # wo-library v3: utility packages + shadcn registry
 
-**Status: APPROVED by the owner on 2026-11-16. Phases 0–1 done — see progress log. Phase 2 next.**
+**Status: APPROVED by the owner on 2026-11-16. Phases 0–2 done — see progress log. Phase 3 next.**
 This is the single source of truth for the v3 rework. Any agent may pick it up: read it in full, then read the
 progress log at the bottom and continue from the first phase that is not marked done.
 
@@ -207,3 +207,4 @@ Every file ported from private code follows these rules:
 | 2026-11-16 | — | Plan approved and committed | (this commit) | Phase 0 next |
 | 2026-11-17 | 0 | Tagged `legacy-v2`; wrote salvage inventory; salvaged hooks/lib/themes into `packages/registry`, `UploadFile` into web, SVG/progress/phone/number helpers into js; deleted `packages/react` + `packages/ui` (+ patch/`*_build.txt`); updated README/ARCHITECTURE/AI docs/storybook | `cf6ef65`, `0ec25f9`; tag `legacy-v2` → `4b5b6d7` | Phase 0 complete. Next: phase 1 toolchain. Smoke-check Storybook for registry+web. Phone parse/format stays for phase 4 PhoneInput (Jest cannot load libphonenumber metadata). |
 | 2026-11-17 | 1 | Nx 22→24; deps latest; TypeScript 7 + tsdown + Vitest for js/web; Storybook → `@storybook/react-vite` + Tailwind 4 (`@tailwindcss/vite`); dropped CRA eslint; CI adds typecheck/build and registry paths; fixed jsdom `CSS.escape` / TS7 fetch overloads; `@types/node` for js timers | `61a2c7a`, `722fd0d`, `82f9708`, `4a92567`, `65768a9` | Phase 1 complete. Next: phase 2 oxlint-config. Optional: delete leftover `packages/storybook/src/storybook.css` when registry stories no longer need it. |
+| 2026-11-17 | 2 | Added `@wo-library/oxlint-config` (`base`/`react`/`test`/`type-aware`); root `.oxlintrc.json` + `oxlint`/`oxlint-tsgolint`; migrated from eslint flat config; fixed oxlint errors (`Array.isArray`, parseFloat semantics); wrote `docs/plans/v3-phase2-oxlint.md`; CI runs `pnpm lint:oxlint`; muted unicorn rules oxlint does not implement yet | `d16569a` + follow-ups | Phase 2 complete. Next: phase 3 port from `local/source-inventory.md`. Keep eslint as slower gate until unicorn gaps shrink. |

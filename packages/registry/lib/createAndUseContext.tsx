@@ -41,9 +41,7 @@ export function createAndUseContext<TState, TDispatch>() {
   const StateContext = createContext({} as TState);
   const MethodContext = createContext({} as TDispatch);
 
-  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextState = () => useContext(StateContext);
-  // eslint-disable-next-line @eslint-react/component-hook-factories
   const useContextMethods = () => useContext(MethodContext);
 
   return {

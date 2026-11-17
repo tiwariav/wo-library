@@ -28,7 +28,7 @@ function UseScrollDirectionDemo() {
       </div>
       <div style={{ height: 2000, paddingTop: "1rem" }}>
         <p>↓ Scroll down to see the direction change ↓</p>
-        {Array.from({ length: 20 }).map((_, index) => (
+        {Array.from({ length: 20 }, (_, index) => (
           <p key={`item-${String(index)}`} style={{ padding: "1rem 0" }}>
             Scroll content block {index + 1}
           </p>

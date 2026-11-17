@@ -1,9 +1,9 @@
-import { isArray, isObject } from "lodash-es";
+import { isObject } from "lodash-es";
 
 const isDataKey = <TKey extends number | string>(
   key: number | string,
   data: Record<TKey, unknown>,
-): key is TKey => key in data;
+): key is TKey => Object.hasOwn(data, key);
 
 /**
  * Pushes a value to an array at a given key in a record, or creates a new array if the key doesn't exist.
@@ -89,7 +89,7 @@ export function getNestedValue<TResponse = string>(
         value as Record<string, unknown>,
         key,
       );
-      response = isArray(childResponse)
+      response = Array.isArray(childResponse)
         ? [...response, ...childResponse]
         : [...response, childResponse];
     }

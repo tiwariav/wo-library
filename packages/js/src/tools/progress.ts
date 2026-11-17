@@ -95,9 +95,7 @@ export function getArcSegmentAngles(
   sliceGap = DEFAULT_SLICE_ANGLE,
 ): [number, number][] {
   const value: [number, number][] = [];
-  const parts = Array.from<number>({ length: segments }).fill(
-    MAX_PROGRESS / segments,
-  );
+  const parts = Array.from({ length: segments }, () => MAX_PROGRESS / segments);
   let startAngle = ARC_START_OFFSET;
   for (let index = 0; index < parts.length; index++) {
     const part = parts[index];

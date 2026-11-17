@@ -26,6 +26,9 @@ export function stringToNumber(value: number | string, nanValue?: NumberLike) {
   if (isNumber(value)) {
     return value;
   }
+  // Empty string must stay NaN (Number("") is 0).
+
+  // oxlint-disable-next-line unicorn/prefer-number-coercion -- keep parseFloat semantics
   const number = Number.parseFloat(
     isString(value) ? value.replaceAll(",", "") : value,
   );
@@ -134,6 +137,9 @@ export function formatNumberWithSuffix(
   value: number | string,
   { nullValue = "", suffix = "", ...options }: FormatNumberSuffixOptions = {},
 ) {
+  // Empty string must stay NaN (Number("") is 0).
+
+  // oxlint-disable-next-line unicorn/prefer-number-coercion -- keep parseFloat semantics
   const parsedNumber = isNumber(value) ? value : Number.parseFloat(value);
   if (Number.isNaN(parsedNumber)) {
     return nullValue;
@@ -250,10 +256,7 @@ export function parseFormattedNumber({
   if (isEmpty(textValue)) {
     unformattedValue = emptyValue;
   } else if (format) {
-    unformattedValue = stringToNumber(
-      formattedValue as string,
-      emptyValue as number,
-    );
+    unformattedValue = stringToNumber(formattedValue as string, emptyValue);
   } else {
     unformattedValue = textValue;
   }

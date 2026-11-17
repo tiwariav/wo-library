@@ -29,6 +29,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - run: pnpm lint:oxlint
+
       - run: pnpm eslint --quiet
 
       - run: pnpm stylelint --cache "packages/*/src/**/*.css" "packages/registry/**/*.css"

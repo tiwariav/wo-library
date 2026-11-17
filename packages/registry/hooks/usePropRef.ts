@@ -1,4 +1,4 @@
-import { isArray, isFunction, isObject } from "lodash-es";
+import { isFunction, isObject } from "lodash-es";
 import { useCallback, useRef } from "react";
 
 /**
@@ -21,14 +21,12 @@ import { useCallback, useRef } from "react";
  */
 export function usePropRef<TElement = Node>(
   propRef:
-    | React.ForwardedRef<TElement>
-    | React.ForwardedRef<TElement>[]
-    | undefined,
+    React.ForwardedRef<TElement> | React.ForwardedRef<TElement>[] | undefined,
 ) {
   const innerRef = useRef<TElement | null>(null);
   const setInnerRef = useCallback(
     (node: TElement | null) => {
-      const refs = isArray(propRef) ? propRef : [propRef];
+      const refs = Array.isArray(propRef) ? propRef : [propRef];
       for (const ref of refs) {
         if (ref) {
           if (isFunction(ref)) {

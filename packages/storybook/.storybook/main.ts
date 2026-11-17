@@ -1,27 +1,27 @@
 import { existsSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import type { StorybookConfig } from "@storybook/react-vite";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 
-const storybookDir = dirname(fileURLToPath(import.meta.url));
-const docsDir = resolve(storybookDir, "../src/docs");
+const storybookDir = path.dirname(fileURLToPath(import.meta.url));
+const docsDir = path.resolve(storybookDir, "../src/docs");
 
 const stories = [
-  resolve(
+  path.resolve(
     storybookDir,
     "../../../packages/registry/**/*.stories.@(js|jsx|ts|tsx|mdx)",
   ),
-  resolve(
+  path.resolve(
     storybookDir,
     "../../../packages/web/src/**/*.stories.@(js|jsx|ts|tsx|mdx)",
   ),
 ];
 
 if (existsSync(docsDir)) {
-  stories.push(resolve(docsDir, "**/*.mdx"));
+  stories.push(path.resolve(docsDir, "**/*.mdx"));
 }
 
 const config: StorybookConfig = {
@@ -44,17 +44,21 @@ const config: StorybookConfig = {
     options: {},
   },
   stories,
-  async viteFinal(config) {
-    config.plugins = [...(config.plugins ?? []), react(), tailwindcss()];
-    config.resolve = {
-      ...config.resolve,
+  viteFinal(viteConfig) {
+    viteConfig.plugins = [
+      ...(viteConfig.plugins ?? []),
+      react(),
+      tailwindcss(),
+    ];
+    viteConfig.resolve = {
+      ...viteConfig.resolve,
       alias: {
-        ...config.resolve?.alias,
-        "@wo-library/js": resolve(storybookDir, "../../js/src/index.ts"),
-        "@wo-library/web": resolve(storybookDir, "../../web/src/index.ts"),
+        ...viteConfig.resolve?.alias,
+        "@wo-library/js": path.resolve(storybookDir, "../../js/src/index.ts"),
+        "@wo-library/web": path.resolve(storybookDir, "../../web/src/index.ts"),
       },
     };
-    return config;
+    return viteConfig;
   },
 };
 
