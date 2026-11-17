@@ -6,6 +6,7 @@ export default defineConfig({
       include: [
         "src/index.ts",
         "src/tools/index.ts",
+        "src/tools/clipboard.ts",
         "src/tools/css.ts",
         "src/tools/loadStylesheet.ts",
         "src/tools/svg.ts",
