@@ -2,10 +2,10 @@ import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { StorybookConfig } from "@storybook/react-webpack5";
-import type { Configuration } from "webpack";
+import type { StorybookConfig } from "@storybook/react-vite";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
 
-const isDev = process.env.NODE_ENV === "development";
 const storybookDir = dirname(fileURLToPath(import.meta.url));
 const docsDir = resolve(storybookDir, "../src/docs");
 
@@ -26,60 +26,9 @@ if (existsSync(docsDir)) {
 
 const config: StorybookConfig = {
   addons: [
-    "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
     "@storybook/addon-links",
-    {
-      name: "@storybook/addon-styling-webpack",
-      options: {
-        rules: [
-          {
-            sideEffects: true,
-            test: /\.css$/,
-            use: [
-              "style-loader",
-              {
-                loader: "css-loader",
-                options: {
-                  importLoaders: 1,
-                  modules: {
-                    auto: true,
-                    exportLocalsConvention: "camelCase",
-                    localIdentName: isDev ? "[name]__[local]" : "[hash:base64]",
-                  },
-                  sourceMap: isDev,
-                },
-              },
-              {
-                loader: "postcss-loader",
-                options: {
-                  postcssOptions: {
-                    plugins: [
-                      "postcss-mixins",
-                      [
-                        "postcss-preset-env",
-                        {
-                          autoprefixer: { flexbox: "no-2009" },
-                          features: {
-                            "cascade-layers": false,
-                            "custom-media-queries": {},
-                            "custom-properties": true,
-                            "gap-properties": true,
-                            "nesting-rules": true,
-                          },
-                          stage: 1,
-                        },
-                      ],
-                    ],
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
     "@storybook/addon-themes",
     "@chromatic-com/storybook",
   ],
@@ -91,32 +40,20 @@ const config: StorybookConfig = {
     defaultName: "Documentation",
   },
   framework: {
-    name: "@storybook/react-webpack5",
-    options: {
-      builder: {
-        useSWC: true,
-      },
-    },
+    name: "@storybook/react-vite",
+    options: {},
   },
   stories,
-  swc: () => ({
-    jsc: {
-      transform: {
-        react: {
-          runtime: "automatic",
-        },
+  async viteFinal(config) {
+    config.plugins = [...(config.plugins ?? []), react(), tailwindcss()];
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        "@wo-library/js": resolve(storybookDir, "../../js/src/index.ts"),
+        "@wo-library/web": resolve(storybookDir, "../../web/src/index.ts"),
       },
-    },
-  }),
-  webpackFinal: async (config: Configuration) => {
-    if (config.resolve) {
-      config.resolve.extensionAlias = {
-        ".cjs": [".cts", ".cjs"],
-        ".js": [".ts", ".tsx", ".js", ".jsx"],
-        ".mjs": [".mts", ".mjs"],
-      };
-    }
-
+    };
     return config;
   },
 };

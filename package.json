@@ -31,8 +31,5 @@
     "typedoc-plugin-markdown": "^4.14.1",
     "typescript": "^7.0.2"
   },
-  "packageManager": "pnpm@10.30.3",
-  "dependencies": {
-    "storybook": "10.6.7"
-  }
+  "packageManager": "pnpm@10.30.3"
 }

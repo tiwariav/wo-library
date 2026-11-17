@@ -1,18 +1,12 @@
-import { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react";
 
-import "./preview.css";
+import "../src/styles.css";
 
 const preview: Preview = {
   parameters: {
     controls: {
-      // Show required props first in the Controls panel and autodocs args table
       sort: "requiredFirst",
     },
-    // for addon-actions to work with regex with TS
-    // add argTypes explicitly for components which extend
-    // the change handlers from a different type till this issue is resolved
-    // https://github.com/storybookjs/storybook/issues/15012
-    // actions: { argTypesRegex: "^on.*" },
   },
 };
 
