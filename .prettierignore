@@ -1,3 +1,5 @@
 # ignores all files in .gitignore by default
 
 .yarn/
+
+.nx/self-healing

@@ -69,3 +69,9 @@ reports
 # Owner-only private notes (source inventory, scrub check)
 local/
 .pnpm-store/
+
+.claude/worktrees
+.claude/settings.local.json
+.nx/polygraph
+.nx/self-healing
+.nx/migrate-runstools/ai-migrations/

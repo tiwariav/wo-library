@@ -63,5 +63,8 @@
         "staticStorybookTargetName": "static-storybook"
       }
     }
-  ]
+  ],
+  "affected": {
+    "legacy": true
+  }
 }
