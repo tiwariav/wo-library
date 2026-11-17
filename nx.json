@@ -9,6 +9,7 @@
       "@wo-library/js",
       "@wo-library/web",
       "@wo-library/eslint-config",
+      "@wo-library/oxlint-config",
       "@wo-library/postcss-config",
       "@wo-library/stylelint-config",
       "@wo-library/semantic-release-config"

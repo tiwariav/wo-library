@@ -1,0 +1,42 @@
+{
+  "name": "@wo-library/oxlint-config",
+  "description": "Shared oxlint config presets for wo-library packages",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./base.json": "./base.json",
+    "./react.json": "./react.json",
+    "./test.json": "./test.json",
+    "./type-aware.json": "./type-aware.json"
+  },
+  "files": [
+    "base.json",
+    "react.json",
+    "test.json",
+    "type-aware.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiwariav/wo-library.git",
+    "directory": "packages/oxlint-config"
+  },
+  "homepage": "https://github.com/tiwariav/wo-library/tree/main/packages/oxlint-config#readme",
+  "bugs": {
+    "url": "https://github.com/tiwariav/wo-library/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "oxlint": "^1.94.0",
+    "oxlint-tsgolint": ">=7.0.2007"
+  },
+  "peerDependenciesMeta": {
+    "oxlint-tsgolint": {
+      "optional": true
+    }
+  }
+}

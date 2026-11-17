@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "./packages/oxlint-config/base.json",
+    "./packages/oxlint-config/react.json",
+    "./packages/oxlint-config/test.json",
+    "./packages/oxlint-config/type-aware.json"
+  ],
+  "jsPlugins": [
+    "eslint-plugin-compat",
+    "@eslint-react/eslint-plugin",
+    "eslint-plugin-lodash",
+    "eslint-plugin-sonarjs",
+    "eslint-plugin-testing-library",
+    "eslint-plugin-perfectionist"
+  ],
+  "options": {
+    "typeAware": true
+  },
+  "ignorePatterns": [
+    "**/.nx/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/storybook-static/**",
+    "**/.git/**",
+    "**/.github/**",
+    "**/.ai/**",
+    "**/.husky/**",
+    "reports",
+    "packages/postcss-config/index.d.ts"
+  ]
+}
