@@ -1,7 +1,17 @@
 export { useCalendly } from "./useCalendly.js";
 export type { CalendlyOptions } from "./useCalendly.js";
 
+export { useDebouncedValue } from "./useDebouncedValue.js";
+
+export { useLatest } from "./useLatest.js";
+
 export { useLocalStorage } from "./useLocalStorage.js";
+
+export { useLongPress } from "./useLongPress.js";
+export type {
+  UseLongPressOptions,
+  UseLongPressResult,
+} from "./useLongPress.js";
 
 export { useMethods } from "./useMethods.js";
 export type {

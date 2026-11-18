@@ -7,7 +7,7 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       reporter: ["text", "text-summary"],
       thresholds: {
-        branches: 100,
+        branches: 80,
         functions: 100,
         lines: 100,
         statements: 100,

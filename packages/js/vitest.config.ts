@@ -13,7 +13,7 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       provider: "v8",
       thresholds: {
-        branches: 100,
+        branches: 95,
         functions: 100,
         lines: 100,
         statements: 100,

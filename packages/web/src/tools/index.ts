@@ -1,8 +1,20 @@
 // Clipboard helpers (copyToClipboard, copyImageToClipboard)
 export * from "./clipboard.js";
 
+// Stale-chunk reload recovery
+export * from "./chunkReload.js";
+
 // CSS variable and style manipulation (cssVariable, overrideStyleProperty)
 export * from "./css.js";
+
+// Geolocation prompt helper
+export * from "./geolocation.js";
+
+// Client-side image shrinking
+export * from "./imageCompress.js";
+
+// Text-size preference helpers
+export * from "./textSize.js";
 
 // Custom error classes (WoLoadScriptError, etc.)
 export * from "./error/index.js";

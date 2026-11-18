@@ -25,6 +25,30 @@ export * from "./indianNumber.js";
 // Relative / exact time labels (formatRelativeTime, formatShortAge, formatExactTime)
 export * from "./relativeTime.js";
 
+// Intl date/currency formatting (formatWhen, formatCurrency, …)
+export * from "./format.js";
+
+// Date range presets and calendar arithmetic
+export * from "./dateRange.js";
+
+// Indian-system number words
+export * from "./numberToWords.js";
+
+// Fuzzy text matching
+export * from "./textMatch.js";
+
+// Time-of-day windows
+export * from "./timeWindow.js";
+
+// Encoded polyline helpers
+export * from "./polyline.js";
+
+// Haversine / bearing
+export * from "./geo.js";
+
+// Duplicate-name helpers
+export * from "./names.js";
+
 // Object manipulation utilities (pushOrCreate, getNestedValue)
 export * from "./objects.js";
 
