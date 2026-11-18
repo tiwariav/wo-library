@@ -11,7 +11,11 @@
   "exports": {
     "./hooks": "./hooks/index.ts",
     "./lib": "./lib/index.ts",
-    "./themes/*": "./themes/*"
+    "./themes/*": "./themes/*",
+    "./ui/*": "./ui/*"
+  },
+  "scripts": {
+    "build:registry": "shadcn build -o ../../r"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -30,6 +34,7 @@
     "@types/react-dom": "^19.3.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "shadcn": "^4.23.0",
     "typescript": "^7.0.2"
   }
 }

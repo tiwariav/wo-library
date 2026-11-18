@@ -14,5 +14,5 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["hooks/**/*", "lib/**/*", "themes/**/*"]
+  "include": ["hooks/**/*", "lib/**/*", "themes/**/*", "ui/**/*"]
 }

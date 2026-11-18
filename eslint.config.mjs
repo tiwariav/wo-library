@@ -35,4 +35,12 @@ export default defineConfig([
       "unicorn/prefer-module": "off",
     },
   },
+  {
+    files: ["packages/registry/ui/**/*.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/naming-convention": "off",
+      // shadcn registry items use kebab-case filenames
+      "unicorn/filename-case": "off",
+    },
+  },
 ]);

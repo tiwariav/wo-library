@@ -1,0 +1,203 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "wo",
+  "homepage": "https://tiwariav.github.io/wo-library",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn",
+      "description": "Tiny className joiner.",
+      "files": [{ "path": "lib/cn.ts", "type": "registry:lib" }]
+    },
+    {
+      "name": "hold-button",
+      "type": "registry:ui",
+      "title": "Hold Button",
+      "description": "Press-and-hold confirm control.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/hold-button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty State",
+      "description": "Centered empty list placeholder.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/empty-state.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "error-note",
+      "type": "registry:ui",
+      "title": "Error Note",
+      "description": "Inline error callout with optional retry.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/error-note.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "confirm",
+      "type": "registry:ui",
+      "title": "Confirm",
+      "description": "Lightweight confirm dialog.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/confirm.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Side or bottom sheet panel.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/sheet.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "arc-progress",
+      "type": "registry:ui",
+      "title": "Arc Progress",
+      "description": "Semicircle progress indicator.",
+      "dependencies": ["@wo-library/js"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/arc-progress.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "title": "Number Input",
+      "description": "en-IN grouping number field.",
+      "dependencies": ["@wo-library/js"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/number-input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:ui",
+      "title": "Phone Input",
+      "description": "Digit-normalising phone field.",
+      "dependencies": ["@wo-library/js"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/phone-input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "image-upload",
+      "type": "registry:ui",
+      "title": "Image Upload",
+      "description": "File input with optional client-side image shrink.",
+      "dependencies": ["@wo-library/web"],
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/image-upload.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "Minimal typed data table.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/data-table.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "hook-form-field",
+      "type": "registry:ui",
+      "title": "Hook Form Field",
+      "description": "Presentational field wrapper for form libraries.",
+      "registryDependencies": ["utils"],
+      "files": [{ "path": "ui/hook-form-field.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "theme-fresh",
+      "type": "registry:theme",
+      "title": "Fresh theme",
+      "description": "Tailwind 4 @theme tokens (fresh).",
+      "files": [{ "path": "themes/fresh.css", "type": "registry:theme" }]
+    },
+    {
+      "name": "theme-trusty",
+      "type": "registry:theme",
+      "title": "Trusty theme",
+      "description": "Tailwind 4 @theme tokens (trusty).",
+      "files": [{ "path": "themes/trusty.css", "type": "registry:theme" }]
+    },
+    {
+      "name": "use-long-press",
+      "type": "registry:hook",
+      "title": "useLongPress",
+      "description": "Touch long-press gesture hook.",
+      "dependencies": ["lodash-es"],
+      "files": [{ "path": "hooks/useLongPress.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-debounced-value",
+      "type": "registry:hook",
+      "title": "useDebouncedValue",
+      "description": "Debounced value hook.",
+      "dependencies": ["@wo-library/js"],
+      "files": [
+        { "path": "hooks/useDebouncedValue.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "use-is-phone",
+      "type": "registry:hook",
+      "title": "useIsPhone",
+      "description": "Phone-width media query hook.",
+      "dependencies": ["lodash-es"],
+      "files": [{ "path": "hooks/useIsPhone.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-pwa-install",
+      "type": "registry:hook",
+      "title": "usePwaInstall",
+      "description": "PWA install prompt hook and store.",
+      "files": [
+        { "path": "hooks/pwaInstallStore.ts", "type": "registry:hook" },
+        { "path": "hooks/usePwaInstall.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "use-resend-countdown",
+      "type": "registry:hook",
+      "title": "useResendCountdown",
+      "description": "OTP resend countdown with sessionStorage.",
+      "dependencies": ["lodash-es"],
+      "files": [
+        { "path": "hooks/useResendCountdown.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "use-web-otp",
+      "type": "registry:hook",
+      "title": "useWebOtp",
+      "description": "WebOTP SMS code helper.",
+      "files": [{ "path": "hooks/useWebOtp.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-latest",
+      "type": "registry:hook",
+      "title": "useLatest",
+      "description": "Always-current ref for callbacks.",
+      "files": [{ "path": "hooks/useLatest.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-methods",
+      "type": "registry:hook",
+      "title": "useMethods",
+      "description": "Named-method alternative to useReducer.",
+      "files": [{ "path": "hooks/useMethods.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-local-storage",
+      "type": "registry:hook",
+      "title": "useLocalStorage",
+      "description": "State synced to localStorage.",
+      "files": [{ "path": "hooks/useLocalStorage.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "create-and-use-context",
+      "type": "registry:lib",
+      "title": "createAndUseContext",
+      "description": "Typed React context factory helpers.",
+      "files": [
+        { "path": "lib/createAndUseContext.tsx", "type": "registry:lib" }
+      ]
+    }
+  ]
+}

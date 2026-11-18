@@ -16,6 +16,7 @@
     "packages/postcss-config/**/*.d.ts",
     "packages/registry/hooks/**/*",
     "packages/registry/lib/**/*",
+    "packages/registry/ui/**/*",
     "packages/storybook/.storybook/**/*.ts",
     "packages/web/src/**/*",
     "packages/web/*.config.ts"
