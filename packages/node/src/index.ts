@@ -10,3 +10,11 @@ export {
   parseIdempotencyKey,
 } from "./tools/idempotency.js";
 export { RateLimiter, type RateLimiterOptions } from "./tools/rateLimit.js";
+export {
+  createVendorLimiter,
+  isRateLimited,
+  limited,
+  perCredentialLimiters,
+  retryAfterMs,
+  type VendorLimiterOptions,
+} from "./tools/vendorLimit.js";

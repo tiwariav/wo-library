@@ -49,6 +49,15 @@ export * from "./geo.js";
 // Duplicate-name helpers
 export * from "./names.js";
 
+// Local calendar / wall-clock helpers
+export * from "./localDate.js";
+
+// Log-safe error shaping
+export * from "./safeError.js";
+
+// Generic HTTP error classes
+export * from "./httpErrors.js";
+
 // Object manipulation utilities (pushOrCreate, getNestedValue)
 export * from "./objects.js";
 

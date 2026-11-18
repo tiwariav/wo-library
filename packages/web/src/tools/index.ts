@@ -16,6 +16,15 @@ export * from "./imageCompress.js";
 // Text-size preference helpers
 export * from "./textSize.js";
 
+// Truncated-cell title helper
+export * from "./titleIfTruncated.js";
+
+// Camera device probe
+export * from "./cameraAvailability.js";
+
+// View Transitions helpers
+export * from "./viewTransition.js";
+
 // Custom error classes (WoLoadScriptError, etc.)
 export * from "./error/index.js";
 
