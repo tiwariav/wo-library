@@ -1,7 +1,39 @@
-# `@wo-library/node`
+# @wo-library/node
 
-Node.js utilities for wo-library. HTTP framework and database clients are injected
-as adapters; this package does not import those runtimes directly.
+Node-oriented utilities. HTTP frameworks and ORMs stay outside this package — pass adapters and allow-lists.
 
-Utilities will land in phase 3 of the v3 rework (rate limiting, idempotency,
-upload keys, media helpers, request helpers).
+## Install
+
+```bash
+pnpm add @wo-library/node
+```
+
+Requires Node `>=22.18.0`.
+
+## Function index
+
+| Area | Exports |
+| --- | --- |
+| Rate limit | `RateLimiter`, `createVendorLimiter`, `perCredentialLimiters`, `limited`, `isRateLimited`, `retryAfterMs` |
+| Idempotency | `parseIdempotencyKey`, `canonicalJson`, `hashRequest`, `IDEMPOTENCY_HEADER` |
+| Uploads | `uploadKeyFromStoredValue`, `canonicalUploadValue`, `isPublicUploadKey`, `isPublicReadableKey` |
+| Media keys | `toWebpKey`, `thumbKeyFromCanonicalKey`, `isConvertibleImageKey`, `isThumbKey` |
+| Request maps | `getParam`, `getQueryString`, `getQueryStringArray`, `getQueryEnum`, `getCleanBody` |
+
+```typescript
+import {
+  RateLimiter,
+  hashRequest,
+  uploadKeyFromStoredValue,
+} from "@wo-library/node";
+
+const limiter = new RateLimiter({ name: "vendor", minIntervalMs: 200 });
+await limiter.schedule(() => callVendor(), { isRetryable: () => false });
+
+uploadKeyFromStoredValue(url, { awsBucketNames: ["my-bucket"] });
+hashRequest({ method: "POST", path: "/x", body: { a: 1 } });
+```
+
+## License
+
+MIT

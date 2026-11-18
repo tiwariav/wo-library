@@ -1,38 +1,33 @@
 # @wo-library/js
 
-Pure JavaScript/TypeScript utilities that work in any environment (browser, Node.js, etc).
+Pure TypeScript utilities for any environment (browser, Node.js, workers).
 
-## Installation
+## Install
 
 ```bash
-npm install @wo-library/js
-# or
 pnpm add @wo-library/js
 ```
 
-## Features
+## Function index
 
-- Array utilities (`range`, `addOrUpdate`)
-- Number formatting utilities (`formatNumber`, `formatNumberWithSuffix`, `ordinalNumber`)
-- Object utilities (`pushOrCreate`, `getNestedValue`)
-- Language utilities (`plularize`)
-- Path utilities (`posixPath`)
-- Time constants
-- Miscellaneous utilities (`wait`, `isEmpty`, `inSubArray`)
-
-## Usage
+| Area | Exports |
+| --- | --- |
+| Arrays | `range`, `addOrUpdate` |
+| Numbers | `formatNumber`, `formatNumberWithSuffix`, `ordinalNumber`, `stringToNumber`, `parseFormattedNumber` |
+| Indian display | `groupIndian`, `stripGrouping`, `sanitizeNumberText`, `formatCount`, `formatPercent`, `formatWithUnit`, `numberToWords` |
+| Dates / time | `formatRelativeTime`, `formatWhen`, `formatDay`, `formatClock`, `formatDayTime`, `dateLocaleFor`, `intlLocaleFor`, `getDatePresetRange`, `rollingDays`, `startOfFinancialYear`, `toLocalDateKey`, `wallClockOf`, `istDayRangeUtc`, `inTimeWindow`, `minutesOfDay` |
+| Geo / polyline | `metresBetween`, `bearingDegrees`, `encodePolyline`, `decodePolyline` |
+| Text / names | `normalizeCode`, `nameOverlap`, `uniqueName`, `normalisedName` |
+| Phone | `getFlagEmoji`, `normalizePhoneDigits`, `phoneMatchForms` |
+| Errors | `safeError`, `safeErrSerializer`, `AppError`, `NotFoundError`, `BadRequestError`, … |
+| Misc | `debounce`, `wait`, `isEmpty`, `posixPath`, SVG/`progress` geometry helpers |
 
 ```typescript
-import { range, formatNumber, wait } from "@wo-library/js";
+import { formatCurrency, groupIndian, metresBetween } from "@wo-library/js";
 
-// Array utilities
-const numbers = range(1, 10, 1); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-// Number formatting
-const formatted = formatNumber(1234567.89); // "12,34,567.89" (Indian locale)
-
-// Async utilities
-await wait(1000); // Wait for 1 second
+formatCurrency(1500); // "₹1,500.00"
+groupIndian("1234567"); // "12,34,567"
+metresBetween({ lat: 28.61, lng: 77.2 }, { lat: 28.62, lng: 77.21 });
 ```
 
 ## License

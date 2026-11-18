@@ -25,6 +25,21 @@ export * from "./cameraAvailability.js";
 // View Transitions helpers
 export * from "./viewTransition.js";
 
+// JPEG EXIF DateTimeOriginal + GPS
+export * from "./exif.js";
+
+// Capture/upload provenance metadata
+export * from "./captureMetadata.js";
+
+// Form draft localStorage helpers
+export * from "./formDraft.js";
+
+// CSV escape/download + paginated collect
+export * from "./listCsv.js";
+
+// Web Push / FCM enrolment (config-injected)
+export * from "./webPush.js";
+
 // Custom error classes (WoLoadScriptError, etc.)
 export * from "./error/index.js";
 
