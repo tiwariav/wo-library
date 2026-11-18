@@ -1,6 +1,6 @@
 {
   "name": "@wo-library/web",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "type": "module",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",

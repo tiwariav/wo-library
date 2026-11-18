@@ -1,8 +1,12 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "storybook",
-  "sourceRoot": "packages/storybook/src",
+  "sourceRoot": "packages/storybook",
   "projectType": "library",
   "tags": ["type:storybook"],
-  "implicitDependencies": ["react", "ui", "web"]
+  "implicitDependencies": [
+    "@wo-library/js",
+    "@wo-library/web",
+    "@wo-library/registry"
+  ]
 }
