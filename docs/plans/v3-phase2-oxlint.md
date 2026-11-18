@@ -73,8 +73,9 @@ So oxlint is a fast subset, not a drop-in replacement for the full eslint-config
 1. **CI / local `lint` target**: run **oxlint** (with type-aware) on `js`, `web`, `registry`, and
    storybook package sources as the fast default.
 2. **Keep eslint** for a while as a slower gate (or periodic job) until unicorn/typescript coverage
-   gaps close — or trim eslint to only rules oxlint cannot run (document that table in the
-   oxlint-config README as it stabilizes).
+   gaps close — or trim eslint to only rules oxlint cannot run. The living tables live in
+   [`packages/oxlint-config/GAPS.md`](../../packages/oxlint-config/GAPS.md) (summary also in the
+   oxlint-config README).
 3. **lint-staged**: prefer `oxlint` on staged TS/TSX for speed; leave eslint for broader PR CI
    until the disagreement list is short.
 

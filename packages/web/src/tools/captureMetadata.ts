@@ -190,7 +190,7 @@ export async function readGrantedPosition(
     }
     return await new Promise((resolve) => {
       const timer = setTimeout(() => {
-        resolve(undefined);
+        resolve();
       }, timeoutMs);
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -202,7 +202,7 @@ export async function readGrantedPosition(
         },
         () => {
           clearTimeout(timer);
-          resolve(undefined);
+          resolve();
         },
         {
           enableHighAccuracy: false,

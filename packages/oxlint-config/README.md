@@ -42,3 +42,30 @@ Shared [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) presets for wo-libr
 
 - `oxlint` ^1.94
 - `oxlint-tsgolint` (optional, for type-aware rules)
+
+## Lint strategy
+
+1. **Default / CI fast path:** oxlint with type-aware (`pnpm lint:oxlint`).
+2. **Keep eslint** as a slower gate until unicorn / typescript-eslint gaps close — or trim eslint to
+   only rules oxlint cannot run.
+3. **lint-staged:** prefer oxlint on staged TS/TSX; leave eslint for broader PR CI while the gap
+   list is long.
+
+## Coverage gaps vs eslint-config
+
+From `@oxlint/migrate` against this repo's ESLint flat config (oxlint 1.94):
+
+| Status | Count | Action |
+| --- | ---: | --- |
+| Migrated | 723 | Covered by oxlint presets |
+| Not implemented | 175 | Keep eslint (mostly `unicorn/*`) — full table in [GAPS.md](./GAPS.md) |
+| Unsupported | 28 | Skip; superseded or covered by oxc/TS — table in [GAPS.md](./GAPS.md) |
+| Nursery (skipped) | 6 | Opt-in later with `--with-nursery` |
+
+Refresh `GAPS.md` when bumping oxlint or eslint-config plugins:
+
+```bash
+pnpm exec migrate eslint.config.mjs --type-aware --details
+```
+
+Do not commit the regenerated root `.oxlintrc.json` from that command; this package's presets are the source of truth.
