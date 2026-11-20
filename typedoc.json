@@ -3,7 +3,7 @@
   "plugin": ["typedoc-plugin-markdown"],
   "name": "wo-library",
   "entryPointStrategy": "packages",
-  "entryPoints": ["packages/js", "packages/web", "packages/ui"],
+  "entryPoints": ["packages/js", "packages/web", "packages/node"],
   "out": "packages/storybook/src/docs",
   "fileExtension": ".mdx",
   "entryFileName": "index",
