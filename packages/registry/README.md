@@ -22,13 +22,13 @@ Add the registry in the consumer `components.json`:
 
 ## Layout
 
-| Path | Kind | Notes |
-| --- | --- | --- |
-| `hooks/` | `registry:hook` | React hooks |
-| `lib/` | `registry:lib` | `cn`, context helpers |
-| `themes/` | `registry:theme` | Tailwind 4 `@theme` tokens |
-| `ui/` | `registry:ui` | Copy-paste components |
-| `registry.json` | — | shadcn registry index |
+| Path            | Kind             | Notes                      |
+| --------------- | ---------------- | -------------------------- |
+| `hooks/`        | `registry:hook`  | React hooks                |
+| `lib/`          | `registry:lib`   | `cn`, context helpers      |
+| `themes/`       | `registry:theme` | Tailwind 4 `@theme` tokens |
+| `ui/`           | `registry:ui`    | Copy-paste components      |
+| `registry.json` | —                | shadcn registry index      |
 
 ## Build
 
