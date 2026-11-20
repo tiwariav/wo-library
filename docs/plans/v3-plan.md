@@ -1,6 +1,6 @@
 # wo-library v3: utility packages + shadcn registry
 
-**Status: APPROVED by the owner on 2026-11-16. Phases 0–2 done; phase 3 in progress — see progress log.**
+**Status: APPROVED by the owner on 2026-11-16. Phases 0–5 are on `main`; the release is blocked on the owner (GitHub Actions billing lock, npm publishing auth). Phase 6 is out of repo. See the progress log.**
 This is the single source of truth for the v3 rework. Any agent may pick it up: read it in full, then read the
 progress log at the bottom and continue from the first phase that is not marked done.
 
@@ -214,3 +214,4 @@ Every file ported from private code follows these rules:
 | 2026-11-18 | 5 | Bumped package majors per plan; fixed Release workflow (Node 22, OIDC/NPM_TOKEN); removed broken `@nx/storybook` plugin; `nx release --dry-run` plans js/web 3.0.0, node 1.1.0, eslint/stylelint 4.0.0, postcss/semantic-release 3.0.0, oxlint-config 2.0.0 | `e2cfa18` | Owner push to main triggers CI then release. Configure npm trusted publishing (or `NPM_TOKEN`). Then `npm deprecate` old `@wo-library/react` / `@wo-library/ui`. |
 | 2026-11-19 | 3 | Leftover inventory: web exif/captureMetadata/formDraft/listCsv/webPush; node uploadKey/mediaImage/requestParams; js/web/node README indexes | `e4cdc83` | Phase 3 leftovers cleared. Push + npm trusted publishing remain owner actions. |
 | 2026-11-19 | 2 | Documented oxlint vs eslint gaps (`GAPS.md` + README); aligned `custom-error-definition` with eslint; cleared oxlint errors in web/registry; verified typecheck/test/build + Storybook in browser | `8dcac89` | Owner: configure npm trusted publishing (or `NPM_TOKEN`), then `npm deprecate` old react/ui after release. |
+| 2026-11-20 | 4/5 | Fixed a TS 7 typecheck failure in web `captureMetadata` (CI would have failed); `Number.NaN` in NumberInput; added stories for ErrorNote, PhoneInput, ImageUpload, DataTable; removed unused `storybook.css`. Typecheck/test/build, oxlint and Storybook build verified locally | see git log | Owner: unlock GitHub billing, re-run CI, set npm trusted publishing, then `npm deprecate` react/ui. Not done here: Pages/Chromatic/Release (need Actions), scratch `shadcn add`, deprecate. |
