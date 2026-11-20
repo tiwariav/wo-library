@@ -10,7 +10,7 @@ const {
 const ruleName = "@wo-library/stylelint-config/no-indistinguishable-colors";
 
 const messages = ruleMessages(ruleName, {
-  rejected: (color1, color2, delta, prop1, prop2) =>
+  rejected: (color1, color2, delta, prop1) =>
     `Unexpected indistinguishable color "${color2}" from "${color1}" for "${prop1}", with a delta of ${delta}`,
 });
 
@@ -21,7 +21,7 @@ const meta = {
 const MAX_THRESHOLD = 100;
 
 function getWhitelistHashKey(pair) {
-  return pair.toSorted().join("-");
+  return pair.toSorted((a, b) => a.localeCompare(b)).join("-");
 }
 
 function getProp(decl) {
@@ -75,15 +75,13 @@ function findIndistinguishableColors({
   threshold,
   whitelistHash,
 }) {
-  for (const colorString of Object.keys(colors)) {
-    const colorList = colors[colorString];
-    if (!colorList || colorList.length === 0) {
-      continue;
-    }
-    if (isWhitelistedPair(colorString, newColorString, whitelistHash)) {
-      continue;
-    }
-    if (colorList[0].color === newColor) {
+  for (const [colorString, colorList] of Object.entries(colors)) {
+    if (
+      !colorList ||
+      colorList.length === 0 ||
+      isWhitelistedPair(colorString, newColorString, whitelistHash) ||
+      colorList[0].color === newColor
+    ) {
       continue;
     }
 
@@ -113,7 +111,8 @@ const ruleFunction = (primary, secondaryOptions = {}) => {
         actual: secondaryOptions,
         optional: true,
         possible: {
-          threshold: (x) => Number.isInteger(x) && x >= 0 && x <= MAX_THRESHOLD,
+          threshold: (x) =>
+            Number.isSafeInteger(x) && x >= 0 && x <= MAX_THRESHOLD,
           whitelist: (x) =>
             Array.isArray(x) &&
             x.every(

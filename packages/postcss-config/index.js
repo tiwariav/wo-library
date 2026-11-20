@@ -26,6 +26,7 @@ const getPresetEnvOptions = ({ preserveMediaQueries } = {}) => ({
 
 /** @type {import("@wo-library/postcss-config").getConfig} */
 const getConfig = (
+  // eslint-disable-next-line unicorn/prefer-options-parameter -- published signature: (env, options)
   env = "production",
   { globalDataOptions, mixinOptions, presetEnvOptions } = {},
 ) => {
@@ -39,13 +40,14 @@ const getConfig = (
     ],
   };
   if (globalDataOptions) {
-    config.plugins.splice(0, 0, globalData(globalDataOptions));
+    config.plugins.unshift(globalData(globalDataOptions));
   }
   return config;
 };
 
 /** @type {import("@wo-library/postcss-config").getConfig} */
 const getStringConfig = (
+  // eslint-disable-next-line unicorn/prefer-options-parameter -- published signature: (env, options)
   env = "production",
   { globalDataOptions, mixinOptions, presetEnvOptions } = {},
 ) => {
@@ -59,7 +61,7 @@ const getStringConfig = (
     ],
   };
   if (globalDataOptions) {
-    config.plugins.splice(0, 0, [
+    config.plugins.unshift([
       "@csstools/postcss-global-data",
       globalDataOptions,
     ]);
