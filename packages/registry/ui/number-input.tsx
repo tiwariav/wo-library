@@ -1,3 +1,4 @@
+import { isNumber } from "lodash-es";
 /* eslint-disable sonarjs/prefer-read-only-props -- props interfaces are already immutable shapes */
 import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
 import {
@@ -33,8 +34,8 @@ export function NumberInput({
     const cleaned = sanitizeNumberText(event.target.value);
     const next = groupIndian(cleaned);
     setText(next);
-    const parsed = stringToNumber(cleaned, NaN);
-    onValueChange(Number.isFinite(parsed) ? parsed : null);
+    const parsed = stringToNumber(cleaned);
+    onValueChange(isNumber(parsed) && Number.isFinite(parsed) ? parsed : null);
   };
 
   return (
