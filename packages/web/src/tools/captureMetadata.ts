@@ -188,9 +188,12 @@ export async function readGrantedPosition(
     if (status.state !== "granted") {
       return undefined;
     }
-    return await new Promise((resolve) => {
+    const coords = await new Promise<{
+      latitude: number;
+      longitude: number;
+    } | null>((resolve) => {
       const timer = setTimeout(() => {
-        resolve();
+        resolve(null);
       }, timeoutMs);
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -202,7 +205,7 @@ export async function readGrantedPosition(
         },
         () => {
           clearTimeout(timer);
-          resolve();
+          resolve(null);
         },
         {
           enableHighAccuracy: false,
@@ -211,6 +214,7 @@ export async function readGrantedPosition(
         },
       );
     });
+    return coords ?? undefined;
   } catch {
     return undefined;
   }
