@@ -1,0 +1,18 @@
+name: "npm deprecate (one-off)"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deprecate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - run: |
+          npm deprecate '@wo-library/react@*' 'Removed in v3. Use the @wo shadcn registry (https://tiwariav.github.io/wo-library/r/{name}.json) and @wo-library/js / @wo-library/web.'
+          npm deprecate '@wo-library/ui@*' 'Removed in v3. Use the @wo shadcn registry (https://tiwariav.github.io/wo-library/r/{name}.json).'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
