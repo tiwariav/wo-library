@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "packages/registry/**"
+      - "packages/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,13 +28,18 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Site layout: Storybook (the documentation) at the root, shadcn registry JSON under /r/.
+      - name: Build API reference
+        run: pnpm run docs
+      - name: Build Storybook
+        run: pnpm --filter @wo-library/storybook build-storybook -o ../../site
       - name: Build registry
         working-directory: packages/registry
-        run: pnpm exec shadcn build -o ../../r
+        run: pnpm exec shadcn build -o ../../site/r
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: r
+          path: site
 
   deploy:
     needs: build

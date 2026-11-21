@@ -79,3 +79,4 @@ local/
 .nx/self-healing
 .nx/migrate-runs
 tools/ai-migrations/
+site
