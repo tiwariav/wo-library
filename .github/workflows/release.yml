@@ -19,10 +19,6 @@ on:
         description: "Publish versions already on main (no bump, tag or commit). Use after a failed publish."
         type: boolean
         default: false
-      use-token:
-        description: "Emergency fallback: publish with the NPM_TOKEN secret instead of trusted publishing."
-        type: boolean
-        default: false
       dry-run:
         description: "Plan only: do not commit, tag, push or publish."
         type: boolean
@@ -79,7 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # nx release commits "chore(release): publish ..."; skip local commit hooks in CI.
           HUSKY: 0
-          NODE_AUTH_TOKEN: ${{ inputs.use-token && secrets.NPM_TOKEN || 'XXXXX-XXXXX-XXXXX-XXXXX' }}
+          NODE_AUTH_TOKEN: XXXXX-XXXXX-XXXXX-XXXXX
           NPM_CONFIG_PROVENANCE: true
           PROJECTS: ${{ inputs.projects }}
           PUBLISH_ONLY: ${{ inputs.publish-only }}
