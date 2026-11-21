@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/prefer-tag-over-role -- lightweight overlay without native dialog */
 import type { ReactNode } from "react";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 export interface SheetProps {
   open: boolean;

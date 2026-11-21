@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/prefer-tag-over-role -- decorative SVG progress */
 import { describeArc } from "@wo-library/js";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 const ARC_START = -180;
 const ARC_END = 0;

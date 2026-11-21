@@ -7,7 +7,7 @@ import {
   stringToNumber,
 } from "@wo-library/js";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 export interface NumberInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,

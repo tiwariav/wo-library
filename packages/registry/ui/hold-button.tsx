@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 const DEFAULT_HOLD_MS = 1200;
 

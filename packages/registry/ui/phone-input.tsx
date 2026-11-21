@@ -3,7 +3,7 @@ import { isString } from "lodash-es";
 import { useState, type ChangeEvent, type InputHTMLAttributes } from "react";
 import { normalizePhoneDigits } from "@wo-library/js";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 export interface PhoneInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,

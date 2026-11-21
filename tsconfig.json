@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
+      "@/lib/*": ["./packages/registry/lib/*"],
       "@wo-library/js": ["./packages/js/src/index.ts"],
       "@wo-library/registry/hooks": ["./packages/registry/hooks/index.ts"],
       "@wo-library/registry/lib": ["./packages/registry/lib/index.ts"],

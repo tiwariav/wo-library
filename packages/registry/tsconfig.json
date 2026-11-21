@@ -12,7 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": { "@/lib/*": ["./lib/*"] }
   },
   "include": ["hooks/**/*", "lib/**/*", "themes/**/*", "ui/**/*"]
 }

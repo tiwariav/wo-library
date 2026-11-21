@@ -2,7 +2,7 @@
 import { useState, type ChangeEvent } from "react";
 import { compressImage } from "@wo-library/web";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 export interface ImageUploadProps {
   onFile: (file: File) => void;

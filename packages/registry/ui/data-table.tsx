@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/prefer-read-only-props -- props interfaces are already immutable shapes */
 import type { ReactNode } from "react";
 
-import { cn } from "../lib/cn.js";
+import { cn } from "@/lib/cn";
 
 export interface DataTableColumn<T> {
   id: string;

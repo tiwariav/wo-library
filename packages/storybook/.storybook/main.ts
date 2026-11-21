@@ -55,6 +55,8 @@ const config: StorybookConfig = {
       ...viteConfig.resolve,
       alias: {
         ...viteConfig.resolve?.alias,
+        // Registry items import `@/lib/*`; the shadcn CLI rewrites it to the consumer's alias.
+        "@/lib": path.resolve(storybookDir, "../../registry/lib"),
         "@wo-library/js": path.resolve(storybookDir, "../../js/src/index.ts"),
         "@wo-library/web": path.resolve(storybookDir, "../../web/src/index.ts"),
       },
