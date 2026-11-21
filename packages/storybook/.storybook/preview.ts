@@ -4,6 +4,11 @@ import "../src/styles.css";
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ["Introduction", "registry", "Hooks", "@wo-library", "*"],
+      },
+    },
     controls: {
       sort: "requiredFirst",
     },

@@ -1,0 +1,79 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# wo-library
+
+Small, typed building blocks for web apps: **utility packages on npm** and a **shadcn registry** of
+React components and hooks you copy into your own project.
+
+## Packages on npm
+
+| Package                               | Use it for                                                                                    |
+| ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `@wo-library/js`                      | Pure TypeScript utilities: formatting (en-IN), dates, geo, polylines, text matching, SVG arcs |
+| `@wo-library/web`                     | Browser utilities: image shrinking, clipboard, geolocation, EXIF, storage, `UploadFile`       |
+| `@wo-library/node`                    | Node-only utilities: rate limiting, idempotency keys, upload keys, request helpers            |
+| `@wo-library/eslint-config`           | Shared ESLint flat-config presets                                                             |
+| `@wo-library/oxlint-config`           | The same rules for oxlint (`base`, `react`, `test`, `type-aware`)                             |
+| `@wo-library/stylelint-config`        | Shared Stylelint configuration                                                                |
+| `@wo-library/postcss-config`          | Shared PostCSS configuration                                                                  |
+| `@wo-library/semantic-release-config` | Semantic release presets                                                                      |
+
+```bash
+npm install @wo-library/js @wo-library/web
+```
+
+```ts
+import { formatNumber } from "@wo-library/js";
+import { compressImage } from "@wo-library/web";
+```
+
+Every export is named. There are no default exports. The full API is in the **API reference**
+section of this site.
+
+## The registry
+
+Components, hooks and themes are not an npm package. You copy the ones you want into your app
+and own the code. Behaviour comes from [base-ui](https://base-ui.com) and appearance from
+Tailwind 4, so you edit the copy freely.
+
+Add the registry once to your `components.json`:
+
+```json
+{
+  "registries": {
+    "@wo": "https://tiwariav.github.io/wo-library/r/{name}.json"
+  }
+}
+```
+
+Then add items by name:
+
+```bash
+npx shadcn add @wo/hold-button
+npx shadcn add @wo/number-input @wo/use-debounced-value
+```
+
+Items that use the npm packages declare them as dependencies, and the CLI installs them for you.
+
+| Kind   | Items                                                                                                                                                               |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UI     | `hold-button`, `confirm`, `sheet`, `empty-state`, `error-note`, `arc-progress`, `number-input`, `phone-input`, `image-upload`, `data-table`, `hook-form-field`      |
+| Hooks  | `use-long-press`, `use-debounced-value`, `use-is-phone`, `use-pwa-install`, `use-resend-countdown`, `use-web-otp`, `use-latest`, `use-methods`, `use-local-storage` |
+| Lib    | `utils` (`cn`), `create-and-use-context`                                                                                                                            |
+| Themes | `theme-fresh`, `theme-trusty`                                                                                                                                       |
+
+Browse the **registry/ui** and **Hooks** sections in the sidebar to see each item running.
+
+## Conventions
+
+- TypeScript strict mode, no `any`.
+- `lodash-es` only.
+- Numbers format with the `en-IN` locale.
+- Each package README has a function index with short examples.
+
+## Links
+
+- [Source on GitHub](https://github.com/tiwariav/wo-library)
+- [Packages on npm](https://www.npmjs.com/org/wo-library)

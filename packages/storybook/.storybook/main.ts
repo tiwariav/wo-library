@@ -10,6 +10,7 @@ const storybookDir = path.dirname(fileURLToPath(import.meta.url));
 const docsDir = path.resolve(storybookDir, "../src/docs");
 
 const stories = [
+  path.resolve(storybookDir, "../src/Introduction.mdx"),
   path.resolve(
     storybookDir,
     "../../../packages/registry/**/*.stories.@(js|jsx|ts|tsx|mdx)",
