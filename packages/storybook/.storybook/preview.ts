@@ -4,13 +4,13 @@ import "../src/styles.css";
 
 const preview: Preview = {
   parameters: {
+    controls: {
+      sort: "requiredFirst",
+    },
     options: {
       storySort: {
         order: ["Introduction", "registry", "Hooks", "@wo-library", "*"],
       },
-    },
-    controls: {
-      sort: "requiredFirst",
     },
   },
 };
