@@ -1,3 +1,9 @@
+## 1.1.1 (2026-11-21)
+
+### 🧱 Updated Dependencies
+
+- Updated @wo-library/js to 1.1.1
+
 ## 1.1.0 (2026-11-21)
 
 ### 🚀 Features

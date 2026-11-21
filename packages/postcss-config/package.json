@@ -1,7 +1,7 @@
 {
   "name": "@wo-library/postcss-config",
   "description": "Postcss config for modern websites",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "main": "./index.js",
   "exports": "./index.js",
