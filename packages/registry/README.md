@@ -7,8 +7,8 @@ items with:
 npx shadcn add @wo/hold-button
 ```
 
-once GitHub Pages serves `r/{name}.json` from
-`https://tiwariav.github.io/wo-library/r/{name}.json`.
+after adding the registry to `components.json`:
+`"registries": { "@wo": "https://tiwariav.github.io/wo-library/r/{name}.json" }`.
 
 Add the registry in the consumer `components.json`:
 

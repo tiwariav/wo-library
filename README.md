@@ -6,17 +6,19 @@ Active work: **[`docs/plans/v3-plan.md`](docs/plans/v3-plan.md)**.
 
 ## Packages
 
-| Package | Description | Docs |
-| --- | --- | --- |
-| [`@wo-library/js`](packages/js) | Pure JS/TS utilities (no DOM/React) | [README](packages/js/README.md) |
-| [`@wo-library/web`](packages/web) | Browser/DOM utilities | [README](packages/web/README.md) |
-| [`packages/registry`](packages/registry) | shadcn registry source (hooks, lib, themes, ui) — not on npm | [README](packages/registry/README.md) |
-| [`@wo-library/eslint-config`](packages/eslint-config) | Shared ESLint flat-config presets | [README](packages/eslint-config/README.md) |
-| [`@wo-library/postcss-config`](packages/postcss-config) | Shared PostCSS configuration | [README](packages/postcss-config/README.md) |
-| [`@wo-library/stylelint-config`](packages/stylelint-config) | Shared Stylelint configuration | [README](packages/stylelint-config/README.md) |
-| [`@wo-library/semantic-release-config`](packages/semantic-release-config) | Semantic release presets | [README](packages/semantic-release-config/README.md) |
+| Package                                                                   | Description                                                  | Docs                                                 |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
+| [`@wo-library/js`](packages/js)                                           | Pure JS/TS utilities (no DOM/React)                          | [README](packages/js/README.md)                      |
+| [`@wo-library/web`](packages/web)                                         | Browser/DOM utilities                                        | [README](packages/web/README.md)                     |
+| [`@wo-library/node`](packages/node)                                       | Node-only utilities                                          | [README](packages/node/README.md)                    |
+| [`@wo-library/oxlint-config`](packages/oxlint-config)                     | Shared oxlint presets                                        | [README](packages/oxlint-config/README.md)           |
+| [`packages/registry`](packages/registry)                                  | shadcn registry source (hooks, lib, themes, ui) — not on npm | [README](packages/registry/README.md)                |
+| [`@wo-library/eslint-config`](packages/eslint-config)                     | Shared ESLint flat-config presets                            | [README](packages/eslint-config/README.md)           |
+| [`@wo-library/postcss-config`](packages/postcss-config)                   | Shared PostCSS configuration                                 | [README](packages/postcss-config/README.md)          |
+| [`@wo-library/stylelint-config`](packages/stylelint-config)               | Shared Stylelint configuration                               | [README](packages/stylelint-config/README.md)        |
+| [`@wo-library/semantic-release-config`](packages/semantic-release-config) | Semantic release presets                                     | [README](packages/semantic-release-config/README.md) |
 
-Coming later in the v3 plan: `@wo-library/node`, `@wo-library/oxlint-config`.
+**Docs:** https://tiwariav.github.io/wo-library/ (Storybook and API reference).
 
 `@wo-library/react` and `@wo-library/ui` were removed in phase 0. Old code is tagged `legacy-v2`.
 
@@ -37,7 +39,8 @@ import { formatNumber, getFlagEmoji, describeArc } from "@wo-library/js";
 import { loadScript, UploadFile } from "@wo-library/web";
 ```
 
-Registry items are copied into apps with `npx shadcn add @wo/<item>` once the registry is published (phase 4). Until then, source lives under `packages/registry/`.
+Registry items are copied into apps with `npx shadcn add @wo/<item>`. Add the registry to `components.json` first:
+`"registries": { "@wo": "https://tiwariav.github.io/wo-library/r/{name}.json" }`. Source lives under `packages/registry/`.
 
 ## Key Conventions
 
