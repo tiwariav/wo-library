@@ -1,11 +1,26 @@
 name: "Release"
 
+# The automatic trigger (workflow_run after CI) is off until the first 1.x release is cut by hand.
+# Restore it afterwards:
+#   workflow_run:
+#     workflows: ["CI"]
+#     branches: [main]
+#     types: [completed]
 on:
-  workflow_run:
-    workflows: ["CI"]
-    branches: [main]
-    types: [completed]
   workflow_dispatch:
+    inputs:
+      specifier:
+        description: "Version specifier (patch|minor|major|x.y.z). Empty = conventional commits."
+        required: false
+        default: ""
+      projects:
+        description: "Comma-separated project names to release. Empty = all."
+        required: false
+        default: ""
+      dry-run:
+        description: "Plan only: do not commit, tag, push or publish."
+        type: boolean
+        default: true
 
 concurrency:
   group: release-main
@@ -13,7 +28,6 @@ concurrency:
 
 jobs:
   release:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -42,10 +56,14 @@ jobs:
 
       # Prefer npm trusted publishing (OIDC) per package settings on npmjs.com.
       # Optionally set NPM_TOKEN as a fallback secret for older packages.
-      - run: pnpm nx release --yes
+      - name: Release
+        run: pnpm nx release $SPECIFIER ${PROJECTS:+--projects=$PROJECTS} $DRY_RUN --yes
         env:
+          DRY_RUN: ${{ inputs.dry-run && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
           # nx release commits "chore(release): publish ..."; skip local commit hooks in CI.
           HUSKY: 0
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          PROJECTS: ${{ inputs.projects }}
+          SPECIFIER: ${{ inputs.specifier }}

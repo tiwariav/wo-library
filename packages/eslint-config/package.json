@@ -1,7 +1,7 @@
 {
   "name": "@wo-library/eslint-config",
   "description": "Shared eslint config",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./index.js",
   "exports": {

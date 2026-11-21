@@ -34,6 +34,9 @@
     },
     "git": {
       "commitMessage": "chore(release): publish {version}"
+    },
+    "releaseTag": {
+      "pattern": "{projectName}@v{version}"
     }
   },
   "targetDefaults": {
