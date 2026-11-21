@@ -1,12 +1,10 @@
 name: "Release"
 
-# The automatic trigger (workflow_run after CI) is off until the first 1.x release is cut by hand.
-# Restore it afterwards:
-#   workflow_run:
-#     workflows: ["CI"]
-#     branches: [main]
-#     types: [completed]
 on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types: [completed]
   workflow_dispatch:
     inputs:
       specifier:
@@ -32,6 +30,7 @@ concurrency:
 
 jobs:
   release:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
