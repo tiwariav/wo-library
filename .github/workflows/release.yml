@@ -17,6 +17,10 @@ on:
         description: "Comma-separated project names to release. Empty = all."
         required: false
         default: ""
+      publish-only:
+        description: "Publish versions already on main (no bump, tag or commit). Use after a failed publish."
+        type: boolean
+        default: false
       dry-run:
         description: "Plan only: do not commit, tag, push or publish."
         type: boolean
@@ -57,7 +61,12 @@ jobs:
       # Prefer npm trusted publishing (OIDC) per package settings on npmjs.com.
       # Optionally set NPM_TOKEN as a fallback secret for older packages.
       - name: Release
-        run: pnpm nx release $SPECIFIER ${PROJECTS:+--projects=$PROJECTS} $DRY_RUN --yes
+        run: |
+          if [ "$PUBLISH_ONLY" = "true" ]; then
+            pnpm nx release publish ${PROJECTS:+--projects=$PROJECTS} $DRY_RUN
+          else
+            pnpm nx release $SPECIFIER ${PROJECTS:+--projects=$PROJECTS} $DRY_RUN --yes
+          fi
         env:
           DRY_RUN: ${{ inputs.dry-run && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,4 +75,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           PROJECTS: ${{ inputs.projects }}
+          PUBLISH_ONLY: ${{ inputs.publish-only }}
           SPECIFIER: ${{ inputs.specifier }}
