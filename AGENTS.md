@@ -10,5 +10,5 @@ Standing rules (details in the plan):
 - Commit locally per logical step with Conventional Commits. Stage files by explicit path.
 - Coding standards: [`.ai/instructions.md`](.ai/instructions.md). Where it disagrees with the v3 plan, the plan wins
   until phase 0 rewrites it.
-- Owner-only, gitignored files: `local/source-inventory.md` (what to port) and `local/scrub-check.sh` (pre-commit
-  leak check). If they are missing, ask the owner.
+- Owner-only, gitignored files: `local/source-inventory.md` (what to port), `local/scrub-check.sh` (pre-commit leak
+  check), and `local/v3-handover.md` (remaining post-push / release tasks). If they are missing, ask the owner.
